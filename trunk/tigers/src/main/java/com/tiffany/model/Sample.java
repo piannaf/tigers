@@ -17,8 +17,8 @@ public class Sample extends BaseObject {
     
     private Long id;
     private Date date_taken;
-    private Short ph;                    
-    private Short ec;   
+    private Integer ph;                    
+    private Integer ec;   
     private String tag;
     
     
@@ -36,22 +36,22 @@ public class Sample extends BaseObject {
 		return date_taken;
 	}
 	public void setDate_taken(Date dateTaken) {
-		date_taken = dateTaken;
+		this.date_taken = dateTaken;
 	}
 	
 	@Column
-	public Short getPh() {
+	public Integer getPh() {
 		return ph;
 	}
-	public void setPh(Short ph) {
+	public void setPh(Integer ph) {
 		this.ph = ph;
 	}
 	
 	@Column
-	public Short getEc() {
+	public Integer getEc() {
 		return ec;
 	}	
-	public void setEc(Short ec) {
+	public void setEc(Integer ec) {
 		this.ec = ec;
 	}
 	
