@@ -857,16 +857,31 @@
             <id>oracle</id>
             <properties>
                 <dbunit.dataTypeFactoryName>org.dbunit.ext.oracle.OracleDataTypeFactory</dbunit.dataTypeFactoryName>
-                <dbunit.schema>SYSTEM</dbunit.schema> <!-- Make sure to capitalize the schema name -->
-                <hibernate.dialect>org.hibernate.dialect.Oracle9Dialect</hibernate.dialect>
+                <dbunit.schema>CSSE3004GC</dbunit.schema> <!-- Make sure to capitalize the schema name -->
+                <hibernate.dialect>org.hibernate.dialect.Oracle10gDialect</hibernate.dialect>
                 <jdbc.groupId>com.oracle</jdbc.groupId>
                 <jdbc.artifactId>ojdbc14</jdbc.artifactId>
                 <jdbc.version>10.2.0.2.0</jdbc.version>
                 <jdbc.driverClassName>oracle.jdbc.OracleDriver</jdbc.driverClassName>
-                <jdbc.url><![CDATA[jdbc:oracle:thin:@localhost:1521:XE]]></jdbc.url>
-                <jdbc.username>tigers</jdbc.username>
-                <jdbc.password>tigers</jdbc.password>
+                <jdbc.url><![CDATA[jdbc:oracle:thin:@oracle.students.itee.uq.edu.au:1521:iteeo]]></jdbc.url>
+                <jdbc.username>csse3004gc</jdbc.username>
+                <jdbc.password>TiGERS2010</jdbc.password>
             </properties>
+        </profile>
+        <profile>
+        	<id>mysql</id>
+        	<properties>
+        	    <dbunit.dataTypeFactoryName>org.dbunit.dataset.datatype.DefaultDataTypeFactory</dbunit.dataTypeFactoryName>
+		        <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
+		        <hibernate.dialect>org.hibernate.dialect.MySQLMyISAMDialect</hibernate.dialect>
+		        <jdbc.groupId>mysql</jdbc.groupId>
+		        <jdbc.artifactId>mysql-connector-java</jdbc.artifactId>
+		        <jdbc.version>5.0.5</jdbc.version>
+		        <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
+		        <jdbc.url><![CDATA[jdbc:mysql://localhost/tigers?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8]]></jdbc.url>
+		        <jdbc.username>tigers</jdbc.username>
+		        <jdbc.password>tigers</jdbc.password>
+        	</properties>
         </profile>
         <profile>
             <id>postgresql</id>
@@ -941,16 +956,18 @@
         <cargo.wait>false</cargo.wait>
                 
         <!-- Database settings -->
-        <dbunit.dataTypeFactoryName>org.dbunit.dataset.datatype.DefaultDataTypeFactory</dbunit.dataTypeFactoryName>
+        <dbunit.dataTypeFactoryName>org.dbunit.ext.oracle.OracleDataTypeFactory</dbunit.dataTypeFactoryName>
+        <dbunit.schema>CSSE3004GC</dbunit.schema> <!-- Make sure to capitalize the schema name -->
         <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
-        <hibernate.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</hibernate.dialect>
-        <jdbc.groupId>mysql</jdbc.groupId>
-        <jdbc.artifactId>mysql-connector-java</jdbc.artifactId>
-        <jdbc.version>5.0.5</jdbc.version>
-        <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
-        <jdbc.url><![CDATA[jdbc:mysql://localhost/tigers?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8]]></jdbc.url>
-        <jdbc.username>tigers</jdbc.username>
-        <jdbc.password>tigers</jdbc.password>
+        <hibernate.dialect>org.hibernate.dialect.Oracle10gDialect</hibernate.dialect>
+        <jdbc.groupId>com.oracle</jdbc.groupId>
+        <jdbc.artifactId>ojdbc14</jdbc.artifactId>
+        <jdbc.version>10.2.0.2.0</jdbc.version>
+        <jdbc.driverClassName>oracle.jdbc.OracleDriver</jdbc.driverClassName>
+        <jdbc.url><![CDATA[jdbc:oracle:thin:@oracle.students.itee.uq.edu.au:1521:iteeo]]></jdbc.url>
+        <jdbc.username>csse3004gc</jdbc.username>
+        <jdbc.password>TiGERS2010</jdbc.password>
+
     
         <!-- Properties calculated by AppFuse when running full-source plugin -->
         <aspectj.version>1.6.0</aspectj.version>
