@@ -59,6 +59,22 @@
     </bean>
 
     <!-- Add additional controller beans here -->
+    <bean id="sampleController" class="com.tiffany.webapp.controller.SampleController">
+        <property name="sampleManager" ref="sampleManager"/>
+    </bean>
+    <bean id="sampleFormController" class="com.tiffany.webapp.controller.SampleFormController">
+           <!--property name="validator" ref="beanValidator"/-->
+           <property name="successView" value="redirect:samples.html"/>
+           <property name="sampleManager" ref="sampleManager"/>
+       </bean>
+
+
+    
+    
+    
+    
+    
+    <!-- Came with AppFuse -->
 
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="2097152"/>

@@ -107,4 +107,7 @@
     </bean>
 
     <!-- Add new Managers here -->
+    <bean id="sampleManager" class="com.tiffany.service.impl.SampleManagerImpl">
+        <constructor-arg ref="sampleDao"/>
+    </bean>
 </beans>

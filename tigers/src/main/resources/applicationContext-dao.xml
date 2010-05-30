@@ -60,5 +60,8 @@
     -->
 
     <!-- Add new DAOs here -->
+	<bean id="sampleDao" class="com.tiffany.dao.hibernate.SampleDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 
 </beans>
