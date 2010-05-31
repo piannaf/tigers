@@ -21,7 +21,16 @@ public class SampleDaoHibernate extends GenericDaoHibernate<Sample, Long> implem
 		
 		Object[] dates = {start, end};
 		List samples = getHibernateTemplate().find(
-				"from Course where date_taken between ? and ?", dates);
+				"from Sample where date_taken between ? and ?", dates);
+		if(samples.isEmpty()) {
+			return null;
+		} else {
+			return samples;
+		}
+	}
+	
+	public List<Sample> findSamplerId() {
+		List samples = getHibernateTemplate().find("from Sample");
 		if(samples.isEmpty()) {
 			return null;
 		} else {
