@@ -31,4 +31,9 @@ public class SampleManagerImpl extends GenericManagerImpl<Sample, Long>
         
 		return list;
 	}
+	
+	public List<Sample> findSamplerId() {
+		List<Sample> samples = sampleDao.findSamplerId();
+		return samples;
+	}
 }
