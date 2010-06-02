@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.*;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
+import java.math.BigDecimal;
 
 /**
  * This class represents the "sample" object in TiGERS
@@ -17,14 +18,14 @@ public class Sample extends BaseObject {
     
     private Long id;
     private Date date_taken;
-    private Double ph;                    
-    private Double ec;   
-    private Double temperature;
-    private Double collar_depth;
-    private Double arsenic;
-    private Double grease;
-    private Double fluoride;
-    private Double chromium;
+    private BigDecimal ph;                    
+    private BigDecimal ec;   
+    private BigDecimal temperature;
+    private BigDecimal collar_depth;
+    private BigDecimal arsenic;
+    private BigDecimal grease;
+    private BigDecimal fluoride;
+    private BigDecimal chromium;
     private String username;
     private String tag;
         
@@ -36,8 +37,8 @@ public class Sample extends BaseObject {
 		this.id = id;
 	}
 	
-	
-	@Column
+
+	@Column(nullable=false)
 	public Date getDate_taken() {
 		return date_taken;
 	}
@@ -45,71 +46,71 @@ public class Sample extends BaseObject {
 		this.date_taken = dateTaken;
 	}
 	
-	@Column
-	public Double getPh() {
+	@Column(precision=5, scale=2)
+	public BigDecimal getPh() {
 		return ph;
 	}
-	public void setPh(Double ph) {
+	public void setPh(BigDecimal ph) {
 		this.ph = ph;
 	}
-	
-	@Column
-	public Double getEc() {
+
+	@Column(precision=5, scale=0)
+	public BigDecimal getEc() {
 		return ec;
 	}	
-	public void setEc(Double ec) {
+	public void setEc(BigDecimal ec) {
 		this.ec = ec;
 	}
 
-	@Column
-	public Double getTemperature() {
+	@Column(precision=5, scale=1)
+	public BigDecimal getTemperature() {
 		return temperature;
 	}
-	public void setTemperature(Double temperature) {
+	public void setTemperature(BigDecimal temperature) {
 		this.temperature = temperature;
 	}
 
-	@Column
-	public Double getCollar_depth() {
+	@Column(precision=5, scale=0)
+	public BigDecimal getCollar_depth() {
 		return collar_depth;
 	}
-	public void setCollar_depth(Double collarDepth) {
+	public void setCollar_depth(BigDecimal collarDepth) {
 		collar_depth = collarDepth;
 	}
 
-	@Column
-	public Double getArsenic() {
+	@Column(precision=5, scale=3)
+	public BigDecimal getArsenic() {
 		return arsenic;
 	}
-	public void setArsenic(Double arsenic) {
+	public void setArsenic(BigDecimal arsenic) {
 		this.arsenic = arsenic;
 	}
 
-	@Column
-	public Double getGrease() {
+	@Column(precision=3, scale=0)
+	public BigDecimal getGrease() {
 		return grease;
 	}
-	public void setGrease(Double grease) {
+	public void setGrease(BigDecimal grease) {
 		this.grease = grease;
 	}
 
-	@Column
-	public Double getFluoride() {
+	@Column(precision=5, scale=3)
+	public BigDecimal getFluoride() {
 		return fluoride;
 	}
-	public void setFluoride(Double fluoride) {
+	public void setFluoride(BigDecimal fluoride) {
 		this.fluoride = fluoride;
 	}
 
-	@Column
-	public Double getChromium() {
+	@Column(precision=5, scale=3)
+	public BigDecimal getChromium() {
 		return chromium;
 	}
-	public void setChromium(Double chromium) {
+	public void setChromium(BigDecimal chromium) {
 		this.chromium = chromium;
 	}
 
-	@Column(length = 20)
+	@Column(nullable=false, length = 20)
 	public String getUsername() {
 		return username;
 	}
@@ -117,7 +118,7 @@ public class Sample extends BaseObject {
 		this.username = username;
 	}
 	
-	@Column(length = 5)
+	@Column(nullable=false, length = 5)
 	public String getTag() {
 		return tag;
 	}
