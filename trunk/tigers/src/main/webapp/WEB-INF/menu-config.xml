@@ -6,7 +6,7 @@
     <Menus>
         <Menu name="MainMenu" title="mainMenu.title" page="/mainMenu.html" roles="ROLE_ADMIN,ROLE_USER">
             <Item name="SearchSamples" title="menu.main.searchSamples" page="/samples.html"/>
-            <Item name="AddSamle" title="menu.main.addSample" page="/sampleForm.html"/>
+            <Item name="AddSamle" title="menu.main.addSample" page="/sampleform.html"/>
         </Menu>
         <Menu name="UserMenu" title="menu.user" description="User Menu" page="/userform.html" roles="ROLE_ADMIN,ROLE_USER"/>
         <Menu name="AdminMenu" title="menu.admin" description="Admin Menu" roles="ROLE_ADMIN" width="120" page="/admin/users.html">
