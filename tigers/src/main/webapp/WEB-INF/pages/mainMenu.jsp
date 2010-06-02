@@ -12,9 +12,17 @@
 
 <ul class="glassList">
     <li>
+        <a href="<c:url value='/samples.html'/>"><fmt:message key="menu.main.searchSamples"/></a>
+    </li>
+    <li>
+        <a href="<c:url value='/sampleForm.html'/>"><fmt:message key="menu.main.addSample"/></a>
+    </li>
+<!-- 
+    <li>
         <a href="<c:url value='/userform.html'/>"><fmt:message key="menu.user"/></a>
     </li>
     <li>
         <a href="<c:url value='/fileupload.html'/>"><fmt:message key="menu.selectFile"/></a>
     </li>
+-->
 </ul>

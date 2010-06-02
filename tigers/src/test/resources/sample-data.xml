@@ -96,19 +96,40 @@
 	  <column>date_taken</column>
 	  <column>ph</column>
 	  <column>ec</column>
+	  <column>temperature</column>
+	  <column>collar_depth</column>
+	  <column>arsenic</column>
+	  <column>grease</column>
+	  <column>fluoride</column>
+	  <column>chromium</column>
+	  <column>username</column>
 	  <column>tag</column>
 	  <row>
 	    <value>1</value>
 	    <value><![CDATA[2010-01-10 10:00:00]]></value>
 	    <value>7</value>
 	    <value>7</value>
+	    <value>20</value>
+	    <value>0.01</value>
+	    <value>0.02</value>
+	    <value>0.11</value>
+	    <value>0.01</value>
+	    <value>0.004</value>
+	    <value>LAB01</value>
 	    <value>GW01</value>
 	  </row>
 	  <row>
 	    <value>2</value>
-	    <value><![CDATA[2010-01-11 10:00:00]]></value>
-	    <value>6</value>
-	    <value>8</value>
+	    <value><![CDATA[2010-02-10 10:30:00]]></value>
+	    <value>3</value>
+	    <value>1</value>
+	    <value>24</value>
+	    <value>0.011</value>
+	    <value>0.005</value>
+	    <value>0.19</value>
+	    <value>0.012</value>
+	    <value>0.006</value>
+	    <value>LAB01</value>
 	    <value>GW01</value>
 	  </row>
 	</table>
