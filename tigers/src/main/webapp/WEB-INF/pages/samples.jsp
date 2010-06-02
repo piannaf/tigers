@@ -31,7 +31,6 @@ url="/sampleform.html" paramId="id" paramProperty="id" titleKey="sample.id"/>
 <display:column property="fluoride" escapeXml="true" sortable="true" titleKey="sample.fluoride"/>
 <display:column property="chromium" escapeXml="true" sortable="true" titleKey="sample.chromium"/>
 <display:column property="username" escapeXml="true" sortable="true" titleKey="sample.username"/>
-
 <display:column property="tag" escapeXml="true" sortable="true" titleKey="sample.tag"/>
 
 <display:setProperty name="paging.banner.item_name" value="sample"/>
