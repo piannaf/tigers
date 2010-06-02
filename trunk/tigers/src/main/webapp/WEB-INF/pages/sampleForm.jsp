@@ -26,8 +26,49 @@
 	<li>         
 		<appfuse:label styleClass="desc" key="sample.ec"/>         
 		<form:errors path="ec" cssClass="fieldError"/>         
-		<form:textarea path="ec" id="ec" rows="10" cols="10"          	
-			cssClass="text medium"/>    
+		<form:input path="ec" id="ec" cssClass="text medium"/>    
+	</li>     
+		
+	<li>         
+		<appfuse:label styleClass="desc" key="sample.temperature"/>         
+		<form:errors path="temperature" cssClass="fieldError"/>         
+		<form:input path="temperature" id="temperature"	cssClass="text medium"/>    
+	</li>     
+	
+	<li>         
+		<appfuse:label styleClass="desc" key="sample.collar_depth"/>         
+		<form:errors path="collar_depth" cssClass="fieldError"/>         
+		<form:input path="collar_depth" id="collar_depth" cssClass="text medium"/>    
+	</li>     
+	
+	<li>         
+		<appfuse:label styleClass="desc" key="sample.arsenic"/>         
+		<form:errors path="arsenic" cssClass="fieldError"/>         
+		<form:input path="arsenic" id="arsenic" cssClass="text medium"/>    
+	</li>     
+	
+	<li>         
+		<appfuse:label styleClass="desc" key="sample.grease"/>         
+		<form:errors path="grease" cssClass="fieldError"/>         
+		<form:input path="grease" id="grease" cssClass="text medium"/>    
+	</li>     
+	
+	<li>         
+		<appfuse:label styleClass="desc" key="sample.fluoride"/>         
+		<form:errors path="fluoride" cssClass="fieldError"/>         
+		<form:input path="fluoride" id="fluoride" cssClass="text medium"/>    
+	</li>     
+	
+	<li>         
+		<appfuse:label styleClass="desc" key="sample.chromium"/>         
+		<form:errors path="chromium" cssClass="fieldError"/>         
+		<form:input path="chromium" id="chromium" cssClass="text medium"/>    
+	</li>     
+	
+	<li>         
+		<appfuse:label styleClass="desc" key="sample.username"/>         
+		<form:errors path="username" cssClass="fieldError"/>         
+		<form:input path="username" id="username" cssClass="text medium"/>    
 	</li>     
 	
 	<li>         
