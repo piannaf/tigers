@@ -63,7 +63,7 @@
         <property name="sampleManager" ref="sampleManager"/>
     </bean>
     <bean id="sampleFormController" class="com.tiffany.webapp.controller.SampleFormController">
-           <!--property name="validator" ref="beanValidator"/-->
+           <property name="validator" ref="beanValidator"/>
            <property name="successView" value="redirect:samples.html"/>
            <property name="sampleManager" ref="sampleManager"/>
        </bean>
