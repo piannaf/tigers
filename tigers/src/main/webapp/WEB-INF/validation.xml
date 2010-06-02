@@ -14,7 +14,36 @@
       <constant>
         <constant-name>currency</constant-name>
         <constant-value>^\d{1,3}(,?\d{1,3})*\.?(\d{1,2})?$</constant-value>
-      </constant> 
+      </constant>
+      <constant>
+        <constant-name>number3</constant-name>
+        <constant-value>^(\d{1,3})$</constant-value>
+      </constant>
+      <constant>
+        <constant-name>number5</constant-name>
+        <constant-value>^(\d{1,5})$</constant-value>
+      </constant>
+      <constant>
+        <constant-name>number5_1</constant-name>
+        <constant-value>^\d{1,3}(\.\d{1})?$</constant-value>
+      </constant>
+      <constant>
+        <constant-name>number5_2</constant-name>
+        <constant-value>^\d{1,3}(\.\d{1,2})?$</constant-value>
+      </constant>
+      <constant>
+        <constant-name>number5_3</constant-name>
+        <constant-value>^\d{1,2}(\.\d{1,3})?$</constant-value>
+      </constant>
+      <constant>
+        <constant-name>varchar20</constant-name>
+        <constant-value>^(\w{1,5})$</constant-value>
+      </constant>
+      <constant>
+        <constant-name>varchar20</constant-name>
+        <constant-value>^(\w{1,20})$</constant-value>
+      </constant>
+      
    </global>
    <formset>
         <form name="fileUpload">
@@ -32,6 +61,129 @@
   <!--
     Define form validation config in validation-forms.xml
   -->
+
+	  <form name="sample">
+	  		<field property="ph"
+                     depends="mask">
+                  <msg
+                    name="mask"
+                    key="errors.ph"/>
+
+                  <arg0 key="sample.ph"/>
+                  <var>
+                    <var-name>mask</var-name>
+                    <var-value>${number5_2}</var-value>
+                  </var>
+              </field>
+	  		<field property="ec"
+                     depends="mask">
+                  <msg
+                    name="mask"
+                    key="errors.ec"/>
+
+                  <arg0 key="sample.ec"/>
+                  <var>
+                    <var-name>mask</var-name>
+                    <var-value>${number5}</var-value>
+                  </var>
+              </field>
+	  		<field property="temperature"
+                     depends="mask">
+                  <msg
+                    name="mask"
+                    key="errors.temperature"/>
+
+                  <arg0 key="sample.temperature"/>
+                  <var>
+                    <var-name>mask</var-name>
+                    <var-value>${number5_1}</var-value>
+                  </var>
+              </field>
+	  		<field property="collar_depth"
+                     depends="mask">
+                  <msg
+                    name="mask"
+                    key="errors.collar_depth"/>
+
+                  <arg0 key="sample.collar_depth"/>
+                  <var>
+                    <var-name>mask</var-name>
+                    <var-value>${number5}</var-value>
+                  </var>
+              </field>
+	  		<field property="arsenic"
+                     depends="mask">
+                  <msg
+                    name="mask"
+                    key="errors.arsenic"/>
+
+                  <arg0 key="sample.arsenic"/>
+                  <var>
+                    <var-name>mask</var-name>
+                    <var-value>${number5_3}</var-value>
+                  </var>
+              </field>
+	  		<field property="grease"
+                     depends="mask">
+                  <msg
+                    name="mask"
+                    key="errors.grease"/>
+
+                  <arg0 key="sample.grease"/>
+                  <var>
+                    <var-name>mask</var-name>
+                    <var-value>${number3}</var-value>
+                  </var>
+              </field>
+	  		<field property="fluoride"
+                     depends="mask">
+                  <msg
+                    name="mask"
+                    key="errors.fluoride"/>
+
+                  <arg0 key="sample.fluoride"/>
+                  <var>
+                    <var-name>mask</var-name>
+                    <var-value>${number5_3}</var-value>
+                  </var>
+              </field>
+	  		<field property="chromium"
+                     depends="mask">
+                  <msg
+                    name="mask"
+                    key="errors.chromium"/>
+
+                  <arg0 key="sample.chromium"/>
+                  <var>
+                    <var-name>mask</var-name>
+                    <var-value>${number5_3}</var-value>
+                  </var>
+              </field>
+	  		<field property="username"
+                     depends="required,mask">
+                  <msg
+                    name="mask"
+                    key="errors.username"/>
+
+                  <arg0 key="sample.username"/>
+                  <var>
+                    <var-name>mask</var-name>
+                    <var-value>${varchar20}</var-value>
+                  </var>
+              </field>
+	  		<field property="tag"
+                     depends="required,mask">
+                  <msg
+                    name="mask"
+                    key="errors.tag"/>
+
+                  <arg0 key="sample.tag"/>
+                  <var>
+                    <var-name>mask</var-name>
+                    <var-value>${varchar5}</var-value>
+                  </var>
+              </field>
+	  </form>
 
       <form name="address">
               <field property="city"
