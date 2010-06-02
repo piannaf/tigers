@@ -17,11 +17,17 @@ public class Sample extends BaseObject {
     
     private Long id;
     private Date date_taken;
-    private Integer ph;                    
-    private Integer ec;   
+    private Double ph;                    
+    private Double ec;   
+    private Double temperature;
+    private Double collar_depth;
+    private Double arsenic;
+    private Double grease;
+    private Double fluoride;
+    private Double chromium;
+    private String username;
     private String tag;
-    
-    
+        
     @Id @GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getId() {
 		return id;
@@ -40,28 +46,85 @@ public class Sample extends BaseObject {
 	}
 	
 	@Column
-	public Integer getPh() {
+	public Double getPh() {
 		return ph;
 	}
-	public void setPh(Integer ph) {
+	public void setPh(Double ph) {
 		this.ph = ph;
 	}
 	
 	@Column
-	public Integer getEc() {
+	public Double getEc() {
 		return ec;
 	}	
-	public void setEc(Integer ec) {
+	public void setEc(Double ec) {
 		this.ec = ec;
 	}
-	
+
 	@Column
+	public Double getTemperature() {
+		return temperature;
+	}
+	public void setTemperature(Double temperature) {
+		this.temperature = temperature;
+	}
+
+	@Column
+	public Double getCollar_depth() {
+		return collar_depth;
+	}
+	public void setCollar_depth(Double collarDepth) {
+		collar_depth = collarDepth;
+	}
+
+	@Column
+	public Double getArsenic() {
+		return arsenic;
+	}
+	public void setArsenic(Double arsenic) {
+		this.arsenic = arsenic;
+	}
+
+	@Column
+	public Double getGrease() {
+		return grease;
+	}
+	public void setGrease(Double grease) {
+		this.grease = grease;
+	}
+
+	@Column
+	public Double getFluoride() {
+		return fluoride;
+	}
+	public void setFluoride(Double fluoride) {
+		this.fluoride = fluoride;
+	}
+
+	@Column
+	public Double getChromium() {
+		return chromium;
+	}
+	public void setChromium(Double chromium) {
+		this.chromium = chromium;
+	}
+
+	@Column(length = 20)
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	@Column(length = 5)
 	public String getTag() {
 		return tag;
 	}
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
+	
 	@Override
 	public boolean equals(final Object other) {
 		if (!(other instanceof Sample))

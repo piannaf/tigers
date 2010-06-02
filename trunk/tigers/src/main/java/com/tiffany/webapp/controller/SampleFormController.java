@@ -51,12 +51,14 @@ public class SampleFormController extends BaseFormController {
             sampleManager.remove(sample.getId());
             saveMessage(request, getText("sample.deleted", locale));
         } else {
-            sampleManager.save(sample);
+            sample = sampleManager.save(sample);
             String key = (isNew) ? "sample.added" : "sample.updated";
-            saveMessage(request, getText(key, locale));
+            saveMessage(request, getText(key, sample.getId().toString(), locale));
 
             if (!isNew) {
-                success = "redirect:sampleform.html?id=" + sample.getId();
+                success = "redirect:samples.html?id=" + sample.getId();
+            } else {
+            	success = "redirect:samples.html?id=" + sample.getId();
             }
         }
 
