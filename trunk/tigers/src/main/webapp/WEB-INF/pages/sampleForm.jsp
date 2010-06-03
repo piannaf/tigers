@@ -2,6 +2,12 @@
 <head>     
 	<title><fmt:message key="sampleList.title"/></title>     
 	<meta name="heading" content="<fmt:message key='sampleList.heading'/>"/> 
+	
+    <script type="text/javascript" src="<c:url value='/scripts/calendar/jscal2.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/scripts/calendar/lang/en.js'/>"></script>
+    <link rel="stylesheet" type="text/css" href="/styles/jscal2/jscal2.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/jscal2/border-radius.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/jscal2/gold/gold.css" />
 </head>  
 
 <form:form commandName="sample" method="post" action="sampleform.html" id="sampleForm"> 
@@ -14,9 +20,21 @@
 	<li>         
 		<appfuse:label styleClass="desc" key="sample.date_taken"/>         
 		<form:errors path="date_taken" cssClass="fieldError"/>         
-		<form:input path="date_taken" id="date_taken" cssClass="text medium"/>     
+		<form:input  path="date_taken" id="date_taken" cssClass="text medium"/>
+		<button id="dateButton" type="button" class="button"> ... </button>
 	</li>      
-	
+	<script>
+	   var dt=new Date();
+	   var year=dt.getFullYear();
+	   var month=dt.getMonth();
+	   var date=dt.getDay();
+	   var hour=dt.getHours();
+	   var min=dt.getMinutes();
+	   var datetime=year+"-"+month+"-"+date+" "+hour+" "+min;
+	  
+	   document.getElementById("date_taken").value=datetime;
+	  
+    </script>
 	<li>         
 		<appfuse:label styleClass="desc" key="sample.ph"/>         
 		<form:errors path="ph" cssClass="fieldError"/>         
@@ -89,5 +107,30 @@
 </form:form>  
 
 <script type="text/javascript">     
-	Form.focusFirstElement($('sampleForm')); 
+	Form.focusFirstElement($('sampleForm'));
+	
+    Calendar.setup(
+    	{
+    	    inputField  : "date_taken",      // id of the input field
+    	    //dateFormat    : "%d/%m/%Y %H:%M",      // the date format
+    	    trigger      : "dateButton",    // id of the button
+        	showTime: 12,
+        	onTimeChange : updateFields
+
+    	}
+	);
+
+
+    function updateFields(cal) {
+        
+//	    var date = cal.selection.get();
+//	    if (date) {
+//	            date = Calendar.intToDate(date);
+//	            document.getElementById("date_taken").value = Calendar.printDate(date, "%d/%m/%Y");
+//	    }
+	    var hour=cal.getHours();
+	    var min=cal.getMinutes();
+	    date=document.getElementById("date_taken").value.split(" ")[0];
+	    document.getElementById("date_taken").value=date+" "+hour+":"+min;
+	};
 </script> 

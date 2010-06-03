@@ -20,16 +20,16 @@ public class SampleManagerImpl extends GenericManagerImpl<Sample, Long>
 		this.sampleDao = sampleDao;
 	}
 	
-	public List<LabelValue> findSampleByDateRange(Date start, Date end) {
+	public List<Sample> findSampleByDateRange(Date start, Date end) {
 		List<Sample> samples = sampleDao.findByDateRange(start, end);
-		List<LabelValue> list = new ArrayList<LabelValue>();
-		
-        for (Sample sample : samples) {
-            list.add(new LabelValue(sample.getDate_taken().toString(), 
-            		sample.getDate_taken().toString()));
-        }
-        
-		return list;
+//		List<LabelValue> list = new ArrayList<LabelValue>();
+//		
+//        for (Sample sample : samples) {
+//            list.add(new LabelValue(sample.getDate_taken().toString(), 
+//            		sample.getDate_taken().toString()));
+//        }
+//        
+		return samples;
 	}
 	
 	public List<Sample> findSamplerId() {

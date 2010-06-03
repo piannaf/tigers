@@ -10,7 +10,7 @@ import javax.jws.WebService;
 
 @WebService
 public interface SampleManager extends GenericManager<Sample, Long> {
-	List<LabelValue> findSampleByDateRange(Date start, Date end);
+	List<Sample> findSampleByDateRange(Date start, Date end);
 	List<Sample> findSamplerId();
 }
 

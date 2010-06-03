@@ -36,12 +36,12 @@
         <constant-value>^\d{1,2}(\.\d{1,3})?$</constant-value>
       </constant>
       <constant>
-        <constant-name>varchar20</constant-name>
-        <constant-value>^(\w{1,5})$</constant-value>
+        <constant-name>varchar5</constant-name>
+        <constant-value>^\w{1,5}$</constant-value>
       </constant>
       <constant>
         <constant-name>varchar20</constant-name>
-        <constant-value>^(\w{1,20})$</constant-value>
+        <constant-value>^\w{1,20}$</constant-value>
       </constant>
       
    </global>
@@ -63,6 +63,11 @@
   -->
 
 	  <form name="sample">
+	  		<field property="date_taken"
+	  			depends="required">
+	  			
+	  			<arg0 key="sample.date_taken"/>
+	  		</field>
 	  		<field property="ph"
                      depends="mask">
                   <msg
