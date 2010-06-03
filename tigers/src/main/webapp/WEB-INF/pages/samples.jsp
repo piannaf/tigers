@@ -4,6 +4,12 @@
 <title><fmt:message key="sampleList.title"/></title>
 <meta name="heading" content="<fmt:message key='sampleList.heading'/>"/>
 <meta name="menu" content="CourseMenu"/>
+
+	<script type="text/javascript" src="<c:url value='/scripts/calendar/jscal2.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/scripts/calendar/lang/en.js'/>"></script>
+    <link rel="stylesheet" type="text/css" href="/styles/jscal2/jscal2.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/jscal2/border-radius.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/jscal2/gold/gold.css" />
 </head>
 
 <c:set var="buttons">
@@ -14,6 +20,21 @@ value="<fmt:message key="button.add"/>"/>
 <input type="button" onclick="location.href='<c:url value="/mainMenu.html"/>'"
 value="<fmt:message key="button.done"/>"/>
 </c:set>
+<hr />
+<form method="get" action="searchServlet">
+
+
+<label for"from">From:</label>
+<input type="text" id="from" name="from" />
+<input type="button" id="fromB" class="button"  value="..."/> 
+
+<label for"from">To:</label>
+<input type="text" id="to" name="to" />
+<input type="button" id="toB" class="button" value="..."/> 
+
+<input type="submit" id="submit"  value="Search" />
+</form>
+<hr />
 
 <c:out value="${buttons}" escapeXml="false"/>
 <display:table name="sampleList" cellspacing="0" cellpadding="0" requestURI=""
@@ -45,5 +66,55 @@ url="/sampleform.html" paramId="id" paramProperty="id" titleKey="sample.id"/>
 
 <script type="text/javascript">
 highlightTableRows("sampleList");
+
+var cal1=Calendar.setup(
+    	{
+    	    inputField  : "from",      // id of the input field
+    	    //dateFormat    : "%d/%m/%Y %H:%M",      // the date format
+    	    trigger      : "fromB",    // id of the button
+        	
+
+    	}
+	);
+
+
+    function updateFields1(cal) {
+        
+//	    var date = cal.selection.get();
+//	    if (date) {
+//	            date = Calendar.intToDate(date);
+//	            document.getElementById("date_taken").value = Calendar.printDate(date, "%d/%m/%Y");
+//	    }
+	    var hour=cal.getHours();
+	    var min=cal.getMinutes();
+	    date=document.getElementById("from").value.split(" ")[0];
+	    document.getElementById("from").value=date+" "+hour+":"+min;
+};
+
+var cal2=Calendar.setup(
+    	{
+    	    inputField  : "to",      // id of the input field
+    	    //dateFormat    : "%d/%m/%Y %H:%M",      // the date format
+    	    trigger      : "toB",    // id of the button
+        	
+
+    	}
+);
+
+
+    function updateFields1(cal) {
+        
+//	    var date = cal.selection.get();
+//	    if (date) {
+//	            date = Calendar.intToDate(date);
+//	            document.getElementById("date_taken").value = Calendar.printDate(date, "%d/%m/%Y");
+//	    }
+	    var hour=cal.getHours();
+	    var min=cal.getMinutes();
+	    date=document.getElementById("from").value.split(" ")[0];
+	    document.getElementById("from").value=date+" "+hour+":"+min;
+};
+
+
 </script>
 

@@ -225,6 +225,17 @@
         <servlet-name>xfire</servlet-name>
         <url-pattern>/services/*</url-pattern>
     </servlet-mapping>
+	
+  <servlet>
+    <description></description>
+    <display-name>Search</display-name>
+    <servlet-name>SearchServlet</servlet-name>
+    <servlet-class>com.tiffany.servlets.SearchServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchServlet</servlet-name>
+    <url-pattern>/searchServlet</url-pattern>
+  </servlet-mapping>
     
     <!-- Dispatching handled by StaticFilter -->
     <!--<servlet-mapping>
