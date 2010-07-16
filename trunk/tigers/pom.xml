@@ -956,9 +956,9 @@
         <cargo.wait>false</cargo.wait>
                 
         <!-- Database settings -->
-        <dbunit.dataTypeFactoryName>org.dbunit.ext.oracle.OracleDataTypeFactory</dbunit.dataTypeFactoryName>
-        <dbunit.schema>CSSE3004GC</dbunit.schema> <!-- Make sure to capitalize the schema name -->
-        <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
+        <!-- <dbunit.dataTypeFactoryName>org.dbunit.ext.oracle.OracleDataTypeFactory</dbunit.dataTypeFactoryName>
+        <dbunit.schema>CSSE3004GC</dbunit.schema>--> <!-- Make sure to capitalize the schema name -->
+        <!--<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
         <hibernate.dialect>org.hibernate.dialect.Oracle10gDialect</hibernate.dialect>
         <jdbc.groupId>com.oracle</jdbc.groupId>
         <jdbc.artifactId>ojdbc14</jdbc.artifactId>
@@ -966,7 +966,7 @@
         <jdbc.driverClassName>oracle.jdbc.OracleDriver</jdbc.driverClassName>
         <jdbc.url><![CDATA[jdbc:oracle:thin:@oracle.students.itee.uq.edu.au:1521:iteeo]]></jdbc.url>
         <jdbc.username>csse3004gc</jdbc.username>
-        <jdbc.password>TiGERS2010</jdbc.password>
+        <jdbc.password>TiGERS2010</jdbc.password> -->
 
     
         <!-- Properties calculated by AppFuse when running full-source plugin -->
