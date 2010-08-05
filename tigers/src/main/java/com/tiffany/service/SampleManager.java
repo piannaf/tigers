@@ -12,6 +12,7 @@ import javax.jws.WebService;
 public interface SampleManager extends GenericManager<Sample, Long> {
 	List<Sample> findSampleByDateRange(Date start, Date end);
 	List<Sample> findSamplerId();
+	List<Sample> findSamplesByTagAndDateRange(String tag, Date from, Date to);
 }
 
 

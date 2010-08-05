@@ -59,15 +59,24 @@
     </bean>
 
     <!-- Add additional controller beans here -->
-    <bean id="sampleController" class="com.tiffany.webapp.controller.SampleController">
-        <property name="sampleManager" ref="sampleManager"/>
-    </bean>
-    <bean id="sampleFormController" class="com.tiffany.webapp.controller.SampleFormController">
-           <property name="validator" ref="beanValidator"/>
-           <property name="successView" value="redirect:samples.html"/>
-           <property name="sampleManager" ref="sampleManager"/>
-       </bean>
-
+    <!-- =============================== Sample ======================================== -->
+    	<!-- samples.html -->
+		    <bean id="sampleController" class="com.tiffany.webapp.controller.SampleController">
+		        <property name="sampleManager" ref="sampleManager"/>
+		    </bean>
+		<!-- sampleform.html -->
+		    <bean id="sampleFormController" class="com.tiffany.webapp.controller.SampleFormController">
+		           <property name="validator" ref="beanValidator"/>
+		           <property name="successView" value="redirect:samples.html"/>
+		           <property name="sampleManager" ref="sampleManager"/>
+		    </bean>
+		<!-- /officer/samplesearch.html -->   
+			<bean id="sampleSearchController" class="com.tiffany.webapp.controller.SampleSearchController">
+				<property name="validator" ref="sampleSearchValidator"/>
+				<property name="successView" value="/officer/samplesearch"/>
+				<property name="sampleManager" ref="sampleManager"/>
+			</bean>
+	<!-- ================================================================================== -->
 
     
     
@@ -92,6 +101,7 @@
                 /admin/flushCache.html=filenameController
                 /admin/reload.html=reloadController
                 /admin/users.html=userController
+                /officer/samplesearch.html=sampleSearchController
                 /mainMenu.html=filenameController
                 /passwordHint.html=passwordHintController
             </value>
