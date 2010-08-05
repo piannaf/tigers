@@ -37,5 +37,11 @@ public class SampleDaoHibernate extends GenericDaoHibernate<Sample, Long> implem
 			return samples;
 		}
 	}
+	
+	public List<Sample> findSamplesByTagAndDateRange(String tag, Date from, Date to) {
+		Object[] tagAndDateRange = {tag, from, to};
+		return getHibernateTemplate().find("from Sample where tag=? and " +
+				"date_taken between ? and ?", tagAndDateRange);
+	}
 
 }

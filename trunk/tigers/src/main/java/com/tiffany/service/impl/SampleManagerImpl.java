@@ -36,4 +36,8 @@ public class SampleManagerImpl extends GenericManagerImpl<Sample, Long>
 		List<Sample> samples = sampleDao.findSamplerId();
 		return samples;
 	}
+	
+	public List<Sample> findSamplesByTagAndDateRange(String tag, Date from, Date to) {
+		return sampleDao.findSamplesByTagAndDateRange(tag, from, to);
+	}
 }
