@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<style type="text/css">
+			div.header {color:black; font-size:16pt}
+			div.content {color:black; font-size:14pt}
+			div.footer {color:green; font-size:12pt; font-family:impact}
+		</style>
+	</head>
+
+	<body>
+		<div class="header">Hi ${fullname},</div>
+		<div class="content"><pre>${message}</pre></div>
+		
+		<hr color="" align="left" width="70%" size="2">
+		<img src="cid:image"/><br/>
+		<div class="footer">
+		Tiffany Gold Mine<br/>
+		Website: <a href="http://uq.edu.au">uq.edu.au</a>
+		</div>
+	</body>	
+</html>

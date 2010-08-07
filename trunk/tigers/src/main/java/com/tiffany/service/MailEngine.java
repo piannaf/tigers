@@ -1,6 +1,7 @@
 package com.tiffany.service;
 
 import java.util.Map;
+import java.io.File;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -10,11 +11,13 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.exception.VelocityException;
 
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
@@ -26,11 +29,13 @@ import org.springframework.ui.velocity.VelocityEngineUtils;
  */
 public class MailEngine {
     private final Log log = LogFactory.getLog(MailEngine.class);
-    private MailSender mailSender;
+    private JavaMailSender mailSender;
     private VelocityEngine velocityEngine;
     private String defaultFrom;
+    private String bannerImagePath;
+    private String templatePath;  
 
-    public void setMailSender(MailSender mailSender) {
+    public void setMailSender(JavaMailSender mailSender) {
         this.mailSender = mailSender;
     }
 
@@ -40,6 +45,14 @@ public class MailEngine {
 
     public void setFrom(String from) {
         this.defaultFrom = from;
+    }
+    
+    public void setBannerImagePath(String bannerImagePath) {
+    	this.bannerImagePath = bannerImagePath;
+    }
+    
+    public void setTemplatePath(String templatePath) {
+    	this.templatePath = templatePath;
     }
 
     /**
@@ -54,7 +67,7 @@ public class MailEngine {
         try {
             result =
                 VelocityEngineUtils.mergeTemplateIntoString(velocityEngine,
-                                                            templateName, model);
+                                                      templatePath + templateName, model);
         } catch (VelocityException e) {
             e.printStackTrace();
             log.error(e.getMessage());
@@ -113,5 +126,40 @@ public class MailEngine {
         helper.addAttachment(attachmentName, resource);
 
         ((JavaMailSenderImpl) mailSender).send(message);
+    }
+    //=======================================================================================
+    public void sendHtmlWithBannerImage(SimpleMailMessage msg, String imageName) {
+    	MimeMessage mimeMessage = mailSender.createMimeMessage();
+    	try {
+    		MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true);
+    		messageHelper.setTo(msg.getTo());
+    		messageHelper.setFrom(msg.getFrom());
+    		messageHelper.setSubject(msg.getSubject());
+    		messageHelper.setText(
+    				"<html><body><pre>"+msg.getText()+"</pre><br/><img src=\"cid:image\"/></body></html>", true);
+    		FileSystemResource img = new FileSystemResource(new File(bannerImagePath + imageName));
+    		messageHelper.addInline("image", img);
+    	} catch(MessagingException e) {
+    		e.printStackTrace();
+    	}
+    	mailSender.send(mimeMessage);
+    }
+    //=======================================================================================
+    public void sendHtmlTemplateWithBannerImage(SimpleMailMessage msg, String templateName, Map model, String imageName) {
+    	MimeMessage mimeMessage = mailSender.createMimeMessage();
+    	try {
+    		MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true);
+    		messageHelper.setTo(msg.getTo());
+    		messageHelper.setFrom(msg.getFrom());
+    		messageHelper.setSubject(msg.getSubject());
+    		String text = VelocityEngineUtils.mergeTemplateIntoString(
+    										velocityEngine, templatePath+templateName, model);
+    		messageHelper.setText(text, true);
+    		FileSystemResource img = new FileSystemResource(new File(bannerImagePath + imageName));
+    		messageHelper.addInline("image", img);
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    	mailSender.send(mimeMessage);
     }
 }

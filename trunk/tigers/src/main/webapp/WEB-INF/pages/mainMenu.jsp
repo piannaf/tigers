@@ -20,6 +20,9 @@
     <li>
     	<a href="<c:url value='/officer/samplesearch.html'/>"><fmt:message key="menu.main.sampleSearch"/></a>
     </li>
+    <li>
+    	<a href="<c:url value='emailexample.html'/>"><fmt:message key="menu.main.emailExample"/></a>
+    </li>
 <!-- 
     <li>
         <a href="<c:url value='/userform.html'/>"><fmt:message key="menu.user"/></a>
