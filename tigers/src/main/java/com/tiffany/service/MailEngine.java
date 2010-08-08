@@ -32,7 +32,8 @@ public class MailEngine {
     private JavaMailSender mailSender;
     private VelocityEngine velocityEngine;
     private String defaultFrom;
-    private String bannerImagePath;
+    private String bannerImage;
+    private String imagePath;
     private String templatePath;  
 
     public void setMailSender(JavaMailSender mailSender) {
@@ -47,8 +48,12 @@ public class MailEngine {
         this.defaultFrom = from;
     }
     
-    public void setBannerImagePath(String bannerImagePath) {
-    	this.bannerImagePath = bannerImagePath;
+    public void setBannerImage(String bannerImage) {
+    	this.bannerImage = bannerImage;
+    }
+    
+    public void setImagePath(String imagePath) {
+    	this.imagePath = imagePath;
     }
     
     public void setTemplatePath(String templatePath) {
@@ -128,7 +133,7 @@ public class MailEngine {
         ((JavaMailSenderImpl) mailSender).send(message);
     }
     //=======================================================================================
-    public void sendHtmlWithBannerImage(SimpleMailMessage msg, String imageName) {
+    public void sendHtmlWithBannerImage(SimpleMailMessage msg) {
     	MimeMessage mimeMessage = mailSender.createMimeMessage();
     	try {
     		MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true);
@@ -137,7 +142,7 @@ public class MailEngine {
     		messageHelper.setSubject(msg.getSubject());
     		messageHelper.setText(
     				"<html><body><pre>"+msg.getText()+"</pre><br/><img src=\"cid:image\"/></body></html>", true);
-    		FileSystemResource img = new FileSystemResource(new File(bannerImagePath + imageName));
+    		FileSystemResource img = new FileSystemResource(new File(imagePath + bannerImage));
     		messageHelper.addInline("image", img);
     	} catch(MessagingException e) {
     		e.printStackTrace();
@@ -145,7 +150,7 @@ public class MailEngine {
     	mailSender.send(mimeMessage);
     }
     //=======================================================================================
-    public void sendHtmlTemplateWithBannerImage(SimpleMailMessage msg, String templateName, Map model, String imageName) {
+    public void sendHtmlTemplateWithBannerImage(SimpleMailMessage msg, String templateName, Map model) {
     	MimeMessage mimeMessage = mailSender.createMimeMessage();
     	try {
     		MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true);
@@ -155,7 +160,7 @@ public class MailEngine {
     		String text = VelocityEngineUtils.mergeTemplateIntoString(
     										velocityEngine, templatePath+templateName, model);
     		messageHelper.setText(text, true);
-    		FileSystemResource img = new FileSystemResource(new File(bannerImagePath + imageName));
+    		FileSystemResource img = new FileSystemResource(new File(imagePath + bannerImage));
     		messageHelper.addInline("image", img);
     	} catch (Exception e) {
     		e.printStackTrace();

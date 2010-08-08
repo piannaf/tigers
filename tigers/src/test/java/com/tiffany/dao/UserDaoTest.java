@@ -112,7 +112,6 @@ public class UserDaoTest extends BaseDaoTestCase {
         address.setPostalCode("80210");
         user.setAddress(address);
         user.setEmail("testuser@appfuse.org");
-        user.setWebsite("http://raibledesigns.com");
         
         Role role = rdao.getRoleByName(Constants.USER_ROLE);
         assertNotNull(role.getId());

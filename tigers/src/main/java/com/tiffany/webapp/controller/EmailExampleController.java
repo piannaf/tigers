@@ -78,7 +78,7 @@ public class EmailExampleController extends BaseFormController {
 	    		Map model = new HashMap();
 	    		model.put("fullname", to[i]);
 	    		model.put("message", content);
-	    		mailEngine.sendHtmlTemplateWithBannerImage(message, "greeting.vm", model, "tigers.jpg");
+	    		mailEngine.sendHtmlTemplateWithBannerImage(message, "greeting.vm", model);
 	    	} catch (MailException me) {
 	    		saveError(request, getText("email.failed", locale));
 	    		return new ModelAndView("emailexample", getCommandName(), command);

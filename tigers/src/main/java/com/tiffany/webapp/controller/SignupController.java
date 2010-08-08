@@ -15,6 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Locale;
+import java.util.HashMap;
+import java.util.Map;
+import java.io.Serializable;
 
 /**
  * Controller to signup new users.
@@ -37,14 +40,14 @@ public class SignupController extends BaseFormController {
                                  Object command, BindException errors)
             throws Exception {
         if (log.isDebugEnabled()) {
-            log.debug("entering 'onSubmit' method...");
+            log.debug("entering 'onSubmit' method at SignupController");
         }
 
         User user = (User) command;
         Locale locale = request.getLocale();
         
         user.setEnabled(true);
-
+        log.debug("@@"+user.getAddress().getCountry()+"@@"+user.getAddress().getAddress()+"@@");
         // Set the default user role on this new user
         user.addRole(roleManager.getRole(Constants.USER_ROLE));
 
@@ -68,10 +71,10 @@ public class SignupController extends BaseFormController {
         request.getSession().setAttribute(Constants.REGISTERED, Boolean.TRUE);
 
         // log user in automatically
-        UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
-                user.getUsername(), user.getConfirmPassword(), user.getAuthorities());
-        auth.setDetails(user);
-        SecurityContextHolder.getContext().setAuthentication(auth);
+//        UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
+//                user.getUsername(), user.getConfirmPassword(), user.getAuthorities());
+//        auth.setDetails(user);
+//        SecurityContextHolder.getContext().setAuthentication(auth);
 
         // Send user an e-mail
         if (log.isDebugEnabled()) {
@@ -80,9 +83,13 @@ public class SignupController extends BaseFormController {
 
         // Send an account information e-mail
         message.setSubject(getText("signup.email.subject", locale));
-
+        
+        Map<String, Serializable> model = new HashMap<String, Serializable>();
+        model.put("message", getText("signup.email.message", locale));
+        
         try {
-            sendUserMessage(user, getText("signup.email.message", locale), RequestUtil.getAppURL(request));
+            //sendUserMessage(user, getText("signup.email.message", locale), RequestUtil.getAppURL(request));
+        	sendUserMessage(user, model);
         } catch (MailException me) {
             saveError(request, me.getMostSpecificCause().getMessage());
         }

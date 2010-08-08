@@ -73,7 +73,7 @@ public class PasswordHintController implements Controller {
             User user = userManager.getUserByUsername(username);
 
             StringBuffer msg = new StringBuffer();
-            msg.append("Your password hint is: ").append(user.getPasswordHint());
+            msg.append("Your password hint is: ").append("password hint no longer exists");
             msg.append("\n\nLogin at: ").append(RequestUtil.getAppURL(request));
 
             message.setTo(user.getEmail());

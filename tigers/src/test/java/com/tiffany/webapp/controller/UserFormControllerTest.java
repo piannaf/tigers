@@ -116,7 +116,7 @@ public class UserFormControllerTest extends BaseControllerTestCase {
         mv = c.handleRequest(request, new MockHttpServletResponse());
 
         Errors errors = (Errors) mv.getModel().get(BindException.MODEL_KEY_PREFIX + "user");
-        assertTrue(errors.getAllErrors().size() == 10);
+        assertTrue(errors.getAllErrors().size() == 9);
     }
     
     public void testRemove() throws Exception {

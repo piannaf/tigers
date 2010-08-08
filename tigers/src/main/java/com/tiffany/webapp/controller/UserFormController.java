@@ -58,7 +58,7 @@ public class UserFormController extends BaseFormController {
 
         return super.processFormSubmission(request, response, command, errors);
     }
-
+//======================================================================================
     public ModelAndView onSubmit(HttpServletRequest request,
                                  HttpServletResponse response, Object command,
                                  BindException errors)
@@ -67,25 +67,25 @@ public class UserFormController extends BaseFormController {
 
         User user = (User) command;
         Locale locale = request.getLocale();
-
+        //====== Delete =============
         if (request.getParameter("delete") != null) {
             getUserManager().removeUser(user.getId().toString());
             saveMessage(request, getText("user.deleted", user.getFullName(), locale));
 
             return new ModelAndView(getSuccessView());
+        //====== Update or Add ==========    
         } else {
-            
+            /** can change role? **/
             // only attempt to change roles if user is admin for other users,
             // formBackingObject() method will handle populating
-            if (request.isUserInRole(Constants.ADMIN_ROLE)) {
+            if (request.isUserInRole(Constants.ADMIN_ROLE)) { // is admin
                 String[] userRoles = request.getParameterValues("userRoles");
-
                 if (userRoles != null) {
                     user.getRoles().clear();
                     for (String roleName : userRoles) {
-                        user.addRole(roleManager.getRole(roleName));
+                        user.addRole(roleManager.getRole(roleName));// add or update role
                     }
-                }
+                } 
             }
 
             Integer originalVersion = user.getVersion();
@@ -133,11 +133,11 @@ public class UserFormController extends BaseFormController {
                     saveMessage(request, getText("user.updated.byAdmin", user.getFullName(), locale));
                 }
             }
+    
         }
-
         return showForm(request, response, errors);
     }
-
+//====================================================================================
     protected ModelAndView showForm(HttpServletRequest request,
                                     HttpServletResponse response,
                                     BindException errors)

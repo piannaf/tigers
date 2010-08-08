@@ -9,7 +9,7 @@
       </constant>
       <constant>
         <constant-name>zip</constant-name>
-        <constant-value>^\d{5}\d*$</constant-value>
+        <constant-value>^\d{4}\d*$</constant-value>
       </constant>
       <constant>
         <constant-name>currency</constant-name>
@@ -298,11 +298,6 @@
                     <var-name>mask</var-name>
                     <var-value>${phone}</var-value>
                   </var>
-              </field>
-              <field property="passwordHint"
-                     depends="required">
-
-                  <arg0 key="user.passwordHint"/>
               </field>
       </form>
   </formset>

@@ -80,11 +80,6 @@
     </li>
     </c:if>
     <li>
-        <appfuse:label styleClass="desc" key="user.passwordHint"/>
-        <form:errors path="passwordHint" cssClass="fieldError"/>
-        <form:input path="passwordHint" id="passwordHint" cssClass="text large" cssErrorClass="text large error"/>
-    </li>
-    <li>
         <div class="left">
             <appfuse:label styleClass="desc" key="user.firstName"/>
             <form:errors path="firstName" cssClass="fieldError"/>
@@ -111,36 +106,31 @@
         </div>
     </li>
     <li>
-        <appfuse:label styleClass="desc" key="user.website"/>
-        <form:errors path="website" cssClass="fieldError"/>
-        <form:input path="website" id="website" cssClass="text large" cssErrorClass="text large error"/>
-    </li>
-    <li>
         <label class="desc"><fmt:message key="user.address.address"/></label>
         <div class="group">
             <div>
-                <form:input path="address.address" id="address.address" cssClass="text large" cssErrorClass="text large error"/>
+				<p><appfuse:label key="user.address.address"/></p>
                 <form:errors path="address.address" cssClass="fieldError"/>
-                <p><appfuse:label key="user.address.address"/></p>
+                <form:input path="address.address" id="address.address" cssClass="text large" cssErrorClass="text large error"/>                
             </div>
             <div class="left">
-                <form:input path="address.city" id="address.city" cssClass="text medium" cssErrorClass="text medium error"/>
-                <form:errors path="address.city" cssClass="fieldError"/>
                 <p><appfuse:label key="user.address.city"/></p>
+                <form:errors path="address.city" cssClass="fieldError"/>
+                <form:input path="address.city" id="address.city" cssClass="text medium" cssErrorClass="text medium error"/>
             </div>
             <div>
-                <form:input path="address.province" id="address.province" cssClass="text state" cssErrorClass="text state error"/>
-                <form:errors path="address.province" cssClass="fieldError"/>
                 <p><appfuse:label key="user.address.province"/></p>
+                <form:errors path="address.province" cssClass="fieldError"/>
+                <form:input path="address.province" id="address.province" cssClass="text state" cssErrorClass="text state error"/>
             </div>
             <div class="left">
-                <form:input path="address.postalCode" id="address.postalCode" cssClass="text medium" cssErrorClass="text medium error"/>
-                <form:errors path="address.postalCode" cssClass="fieldError"/>
                 <p><appfuse:label key="user.address.postalCode"/></p>
+                <form:errors path="address.postalCode" cssClass="fieldError"/>
+                <form:input path="address.postalCode" id="address.postalCode" cssClass="text medium" cssErrorClass="text medium error"/>
             </div>
             <div>
-                <appfuse:country name="address.country" prompt="" default="${user.address.country}"/>
                 <p><appfuse:label key="user.address.country"/></p>
+                <appfuse:country name="address.country" prompt="" default="${user.address.country}"/>
             </div>
         </div>
     </li>
@@ -165,7 +155,12 @@
     <li>
         <fieldset class="pickList">
             <legend><fmt:message key="userProfile.assignRoles"/></legend>
-            <table class="pickList">
+            <c:set var="checkedList" value="${user.roleList}" scope="request"/>
+            <c:set var="checkList" value="${availableRoles}" scope="request"/>
+            <c:import url="/WEB-INF/pages/checkList.jsp">
+            	<c:param name="checkedItems" value="userRoles"/>
+            </c:import>
+            <!--table class="pickList">            
                 <tr>
                     <th class="pickLabel">
                         <appfuse:label key="user.availableRoles" colon="false" styleClass="required"/>
@@ -182,8 +177,8 @@
                     <c:param name="leftId" value="availableRoles"/>
                     <c:param name="rightId" value="userRoles"/>
                 </c:import>
-            </table>
-        </fieldset>
+            </table-->
+        </fieldset>        
     </li>
     </c:when>
     <c:when test="${not empty user.username}">
