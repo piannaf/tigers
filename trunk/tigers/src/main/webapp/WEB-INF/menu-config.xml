@@ -10,6 +10,7 @@
         </Menu>
         <Menu name="UserMenu" title="menu.user" description="User Menu" page="/userform.html" roles="ROLE_ADMIN,ROLE_USER"/>
         <Menu name="AdminMenu" title="menu.admin" description="Admin Menu" roles="ROLE_ADMIN" width="120" page="/admin/users.html">
+        	<Item name="AddAccount" title="menu.admin.addAccount" page="/signup.html"/>
             <Item name="ViewUsers" title="menu.admin.users" page="/admin/users.html"/>
             <Item name="ActiveUsers" title="mainMenu.activeUsers" page="/admin/activeUsers.html"/>
             <Item name="ReloadContext" title="menu.admin.reload" page="/admin/reload.html"/>

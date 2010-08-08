@@ -192,6 +192,18 @@ public class BaseFormController extends SimpleFormController {
         model.put("applicationURL", url);
         mailEngine.sendMessage(message, templateName, model);
     }
+    
+    protected void sendUserMessage(User user, Map model) {
+    	if (log.isDebugEnabled()) {
+    		log.debug("sending e-mail  to user [" + user.getEmail() + "]...");
+    	}
+    	
+    	message.setTo(user.getFullName() + "<" + user.getEmail() + ">");
+    	
+    	model.put("user", user);    	
+    	
+    	mailEngine.sendHtmlTemplateWithBannerImage(message, templateName, model);
+    }
 
     public void setMailEngine(MailEngine mailEngine) {
         this.mailEngine = mailEngine;

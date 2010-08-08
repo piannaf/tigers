@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<style>
+			div {color:block; font-size:16pt}
+			div.footer {color:blue; font-size:12pt}
+		</style>
+	</head>
+	<body>
+		<div>Dear ${user.firstName},</div>
+		<br/>
+		<div>${message}</div>
+		<br/>
+		<div>Username: ${user.username}</div>
+		<div>Password: ${user.confirmPassword}</div>
+		<br/>
+		</br>
+		<hr color="" align="left" width="70%" size="2">
+		<img src="cid:image"/><br/>
+		<div class="footer">
+			Tiffany Gold Mine<br/>
+			Website: <a href="http://uq.edu.au">uq.edu.au</a>
+		</div>
+	</body>
+</html>

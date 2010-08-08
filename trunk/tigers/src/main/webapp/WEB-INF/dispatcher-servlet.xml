@@ -39,7 +39,7 @@
         <property name="roleManager" ref="roleManager"/>
         <property name="mailEngine" ref="mailEngine"/>
         <property name="message" ref="mailMessage"/>
-        <property name="templateName" value="accountCreated.vm"/>
+        <property name="templateName" value="accountCreatedHtml.vm"/>
     </bean>
 
     <bean id="userController" class="com.tiffany.webapp.controller.UserController">
@@ -49,7 +49,7 @@
     <bean id="userFormController" class="com.tiffany.webapp.controller.UserFormController">
         <property name="validator" ref="beanValidator"/>
         <property name="formView" value="userForm"/>
-        <property name="successView" value="redirect:users.html"/>
+        <property name="successView" value="redirect:mainMenu.html"/>
         <property name="cancelView" value="redirect:mainMenu.html"/>
         <property name="userManager" ref="userManager"/>
         <property name="roleManager" ref="roleManager"/>

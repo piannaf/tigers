@@ -30,12 +30,10 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private String username;                    // required
     private String password;                    // required
     private String confirmPassword;
-    private String passwordHint;
     private String firstName;                   // required
     private String lastName;                    // required
     private String email;                       // required; unique
     private String phoneNumber;
-    private String website;
     private Address address = new Address();
     private Integer version;
     private Set<Role> roles = new HashSet<Role>();
@@ -77,11 +75,6 @@ public class User extends BaseObject implements Serializable, UserDetails {
         return confirmPassword;
     }
 
-    @Column(name="password_hint")
-    public String getPasswordHint() {
-        return passwordHint;
-    }
-
     @Column(name="first_name",nullable=false,length=50)
     public String getFirstName() {
         return firstName;
@@ -100,10 +93,6 @@ public class User extends BaseObject implements Serializable, UserDetails {
     @Column(name="phone_number")
     public String getPhoneNumber() {
         return phoneNumber;
-    }
-
-    public String getWebsite() {
-        return website;
     }
 
     /**
@@ -230,10 +219,6 @@ public class User extends BaseObject implements Serializable, UserDetails {
         this.confirmPassword = confirmPassword;
     }
 
-    public void setPasswordHint(String passwordHint) {
-        this.passwordHint = passwordHint;
-    }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -248,10 +233,6 @@ public class User extends BaseObject implements Serializable, UserDetails {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public void setWebsite(String website) {
-        this.website = website;
     }
 
     public void setAddress(Address address) {
