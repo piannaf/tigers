@@ -56,7 +56,17 @@
             </field>
         </form>
     </formset>
-
+	<formset>
+        <form name="bulkUpload">
+            <field property="name" depends="required">
+                <arg0 key="uploadForm.name"/>
+            </field>
+            <!-- Client-side Javascript won't catch this in IE, but server-side will -->
+            <field property="file" depends="required">
+                <arg0 key="uploadForm.file"/>
+            </field>
+        </form>
+    </formset>
   <formset>
   <!--
     Define form validation config in validation-forms.xml
@@ -245,15 +255,15 @@
 
                   <arg0 key="user.confirmPassword"/>
               </field>
-              <field property="firstName"
+              <field property="companyName"
                      depends="required">
 
-                  <arg0 key="user.firstName"/>
+                  <arg0 key="user.companyName"/>
               </field>
-              <field property="lastName"
+              <field property="address.address"
                      depends="required">
 
-                  <arg0 key="user.lastName"/>
+                  <arg0 key="user.address.address"/>
               </field>
               <field property="address.city"
                      depends="required">

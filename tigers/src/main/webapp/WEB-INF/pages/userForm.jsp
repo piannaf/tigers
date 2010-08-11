@@ -80,16 +80,9 @@
     </li>
     </c:if>
     <li>
-        <div class="left">
-            <appfuse:label styleClass="desc" key="user.firstName"/>
-            <form:errors path="firstName" cssClass="fieldError"/>
-            <form:input path="firstName" id="firstName" cssClass="text medium" cssErrorClass="text medium error" maxlength="50"/>
-        </div>
-        <div>
-            <appfuse:label styleClass="desc" key="user.lastName"/>
-            <form:errors path="lastName" cssClass="fieldError"/>
-            <form:input path="lastName" id="lastName" cssClass="text medium" cssErrorClass="text medium error" maxlength="50"/>
-        </div>
+        <appfuse:label styleClass="desc" key="user.companyName"/>
+        <form:errors path="companyName" cssClass="fieldError"/>
+        <form:input path="companyName" id="firstName" cssClass="text large" cssErrorClass="text medium error" maxlength="50"/>       
     </li>
     <li>
         <div>
@@ -153,11 +146,12 @@
         </fieldset>
     </li>
     <li>
+    	<form:errors path="roleList" cssClass="fieldError"/>
         <fieldset class="pickList">
-            <legend><fmt:message key="userProfile.assignRoles"/></legend>
+       		<legend><fmt:message key="userProfile.accountSettings"/></legend>
             <c:set var="checkedList" value="${user.roleList}" scope="request"/>
             <c:set var="checkList" value="${availableRoles}" scope="request"/>
-            <c:import url="/WEB-INF/pages/checkList.jsp">
+            <c:import url="/WEB-INF/pages/radioList.jsp">
             	<c:param name="checkedItems" value="userRoles"/>
             </c:import>
             <!--table class="pickList">            

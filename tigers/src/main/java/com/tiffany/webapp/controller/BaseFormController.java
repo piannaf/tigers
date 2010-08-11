@@ -179,7 +179,7 @@ public class BaseFormController extends SimpleFormController {
             log.debug("sending e-mail to user [" + user.getEmail() + "]...");
         }
 
-        message.setTo(user.getFullName() + "<" + user.getEmail() + ">");
+        message.setTo(user.getCompanyName() + "<" + user.getEmail() + ">");
 
         Map<String, Serializable> model = new HashMap<String, Serializable>();
         model.put("user", user);
@@ -198,7 +198,7 @@ public class BaseFormController extends SimpleFormController {
     		log.debug("sending e-mail  to user [" + user.getEmail() + "]...");
     	}
     	
-    	message.setTo(user.getFullName() + "<" + user.getEmail() + ">");
+    	message.setTo(user.getCompanyName() + "<" + user.getEmail() + ">");
     	
     	model.put("user", user);    	
     	

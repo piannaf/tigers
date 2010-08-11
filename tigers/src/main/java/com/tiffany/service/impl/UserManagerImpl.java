@@ -127,4 +127,12 @@ public class UserManagerImpl extends UniversalManagerImpl implements UserManager
     public User getUserByUsername(String username) throws UsernameNotFoundException {
         return (User) dao.loadUserByUsername(username);
     }
+    
+    public List<User> findUsersByCompanyName(String companyName) {
+    	return dao.findUsersByCompanyName(companyName);
+    }
+    
+    public List<User> findUserByUsernameAndCompanyName(String username, String companyName) {
+    	return dao.findUserByUsernameAndCompanyName(username, companyName);
+    }
 }

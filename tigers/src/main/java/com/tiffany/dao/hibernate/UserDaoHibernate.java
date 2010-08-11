@@ -88,4 +88,14 @@ public class UserDaoHibernate extends GenericDaoHibernate<User, Long> implements
 
     }
     
+    //=====================================================
+    public List<User> findUsersByCompanyName(String companyName) {
+    	List<User> users = getHibernateTemplate().find("from User where company_name=?", companyName);
+    	return users;
+    }
+    
+    public List<User> findUserByUsernameAndCompanyName(String username, String companyName) {
+    	Object obj[] = {username, companyName};
+    	return getHibernateTemplate().find("from User where username=? and company_name=?", obj);
+    }
 }

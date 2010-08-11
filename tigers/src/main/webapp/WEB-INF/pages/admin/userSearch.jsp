@@ -6,22 +6,45 @@
     <meta name="menu" content="AdminMenu"/>
 </head>
 
-<c:set var="buttons">
-    <input type="button" style="margin-right: 5px"
-        onclick="location.href='<c:url value="/userform.html?method=Add&from=list"/>'"
-        value="<fmt:message key="button.add"/>"/>
+<!-- ================================================================================================= -->
+<form:form commandName="search" method="post" action="/admin/usersearch.html" id="userSearchForm">
+<form:errors path="*" cssClass="error" element="div"/>
+<ul>
+    <li>
+    	<fieldset>
+    		<legend><fmt:message key="user.username"/></legend> 
+		        <form:input path="username" id="username" cssClass="text medium"/>
+	    </fieldset>
+    </li>
+    <li>
+    	<fieldset>
+    		<legend><fmt:message key="user.companyName"/></legend>  
+	        	<form:input path="companyName" id="companyName" cssClass="text medium"/>
+	    </fieldset>    
+    </li> 
+    <li>
+    	<fieldset>
+            <legend><fmt:message key="user.roles"/></legend>
+	        <c:set var="checkedList" value="${search.roleList}" scope="request"/>
+			<c:set var="checkList" value="${availableRoles}" scope="request"/>
+            <c:import url="/WEB-INF/pages/checkList.jsp">
+            	<c:param name="checkedItems" value="roles"/>
+            </c:import>
+	    </fieldset>    
+    </li>        
+    <li class="buttonBar bottom">
+        <input type="submit" class="button" name="search" value="<fmt:message key="button.search"/>"/>
+    </li>
+</ul>
+</form:form>
 
-    <input type="button" onclick="location.href='<c:url value="/mainMenu.html"/>'"
-        value="<fmt:message key="button.done"/>"/>
-</c:set>
-
-<c:out value="${buttons}" escapeXml="false" />
+<!-- ================================================================================================= -->
 
 <display:table name="userList" cellspacing="0" cellpadding="0" requestURI="" 
     defaultsort="1" id="users" pagesize="25" class="table" export="true">
     <display:column property="username" escapeXml="true" sortable="true" titleKey="user.username" style="width: 25%"
         url="/userform.html?from=list" paramId="id" paramProperty="id"/>
-    <display:column property="companyName" escapeXml="true" sortable="true" titleKey="activeUsers.companyName" style="width: 34%"/>
+    <display:column property="companyName" escapeXml="true" sortable="true" titleKey="activeUsers.fullName" style="width: 34%"/>
     <display:column property="currentRole" escapeXml="true" sortable="true" titleKey="activeUsers.roles" style="width: 34%"/>
     <display:column property="email" sortable="true" titleKey="user.email" style="width: 25%" autolink="true" media="html"/>
     <display:column property="email" titleKey="user.email" media="csv xml excel pdf"/>
@@ -38,7 +61,6 @@
     <display:setProperty name="export.pdf.filename" value="User List.pdf"/>
 </display:table>
 
-<c:out value="${buttons}" escapeXml="false" />
 
 <script type="text/javascript">
     highlightTableRows("users");

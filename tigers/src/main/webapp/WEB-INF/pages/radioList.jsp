@@ -2,7 +2,7 @@
 
 <c:forEach var="checkItem" items="${checkList}" varStatus="status">
 	
-		<input type="checkbox" name="${param.checkedItems}" value="${checkItem.value}" 
+		<input type="radio" name="${param.checkedItems}" value="${checkItem.value}" 
 			<c:forEach var="checkedItem" items="${checkedList}" varStatus="status">
 				<c:choose>
 					<c:when test="${checkedItem.value == checkItem.value}">
