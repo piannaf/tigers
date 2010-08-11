@@ -60,36 +60,36 @@
 
     <!-- Add additional controller beans here -->
     <!-- =============================== Sample ======================================== -->
-    	<!-- samples.html -->
-		    <bean id="sampleController" class="com.tiffany.webapp.controller.SampleController">
-		        <property name="sampleManager" ref="sampleManager"/>
-		    </bean>
-		<!-- sampleform.html -->
-		    <bean id="sampleFormController" class="com.tiffany.webapp.controller.SampleFormController">
-		           <property name="validator" ref="beanValidator"/>
-		           <property name="successView" value="redirect:samples.html"/>
-		           <property name="sampleManager" ref="sampleManager"/>
-		    </bean>
-		<!-- /officer/samplesearch.html -->   
-			<bean id="sampleSearchController" class="com.tiffany.webapp.controller.SampleSearchController">
-				<property name="validator" ref="sampleSearchValidator"/>
-				<property name="successView" value="/officer/samplesearch"/>
-				<property name="sampleManager" ref="sampleManager"/>
-			</bean>
-	<!-- =============================== Email =================================================== -->
-			<bean id="emailExampleController" class="com.tiffany.webapp.controller.EmailExampleController">
-				<property name="validator" ref="emailExampleValidator"/>
-				<property name="successView" value="redirect:mainMenu.html"/>		        
-		        <property name="messageSource" ref="messageSource"/>
-		        <property name="mailEngine" ref="mailEngine"/>
-		        <property name="message" ref="mailMessage"/>
-    		</bean>
+        <!-- samples.html -->
+                    <bean id="sampleController" class="com.tiffany.webapp.controller.SampleController">
+                        <property name="sampleManager" ref="sampleManager"/>
+                    </bean>
+                <!-- sampleform.html -->
+                    <bean id="sampleFormController" class="com.tiffany.webapp.controller.SampleFormController">
+                           <property name="validator" ref="beanValidator"/>
+                           <property name="successView" value="redirect:samples.html"/>
+                           <property name="sampleManager" ref="sampleManager"/>
+                    </bean>
+                <!-- /officer/samplesearch.html -->  
+                        <bean id="sampleSearchController" class="com.tiffany.webapp.controller.SampleSearchController">
+                                <property name="validator" ref="sampleSearchValidator"/>
+                                <property name="successView" value="/officer/samplesearch"/>
+                                <property name="sampleManager" ref="sampleManager"/>
+                        </bean>
+        <!-- =============================== Email =================================================== -->
+                        <bean id="emailExampleController" class="com.tiffany.webapp.controller.EmailExampleController">
+                                <property name="validator" ref="emailExampleValidator"/>
+                                <property name="successView" value="redirect:mainMenu.html"/>                  
+                        <property name="messageSource" ref="messageSource"/>
+                        <property name="mailEngine" ref="mailEngine"/>
+                        <property name="message" ref="mailMessage"/>
+                </bean>
     <!-- ================================= UserSearch ============================================== -->
-    		<bean id="userSearchController" class="com.tiffany.webapp.controller.UserSearchController">
-    			<property name="validator" ref="userSearchValidator"/>
-				<property name="successView" value="/admin/usersearch"/>
-				<property name="userManager" ref="userManager"/>
-    		</bean>
+                <bean id="userSearchController" class="com.tiffany.webapp.controller.UserSearchController">
+                        <property name="validator" ref="userSearchValidator"/>
+                                <property name="successView" value="/admin/usersearch"/>
+                                <property name="userManager" ref="userManager"/>
+                </bean>
      <!-- ================================= BulkUpload ============================================== -->
     <bean id="bulkUploadController" class="com.tiffany.webapp.controller.BulkUploadController">
         <property name="validator" ref="beanValidator"/>
@@ -98,8 +98,14 @@
         <property name="successView" value="/laboratory/bulkUploadDisplay"/>
     </bean>
     <!-- =================================  ============================================== -->
-    
-    
+    <!-- =============================== Sampler ======================================== -->
+    		    	<!-- samplers.html -->
+    				    <bean id="samplerController" class="com.tiffany.webapp.controller.SamplerController">
+    				        <property name="samplerManager" ref="samplerManager"/>
+    				    </bean>
+	<!-- ================================================================================== -->
+   
+   
     <!-- Came with AppFuse -->
 
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -120,6 +126,7 @@
                 /admin/users.html=userController
                 /admin/usersearch.html=userSearchController
                 /officer/samplesearch.html=sampleSearchController
+                /officer/samplers.html=samplerController
                 /laboratory/bulkupload.html=bulkUploadController
                 /mainMenu.html=filenameController
                 /passwordHint.html=passwordHintController
