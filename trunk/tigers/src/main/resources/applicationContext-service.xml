@@ -115,4 +115,10 @@
     <bean id="sampleManager" class="com.tiffany.service.impl.SampleManagerImpl">
         <constructor-arg ref="sampleDao"/>
     </bean>
+    <bean id="samplerManager" class="com.tiffany.service.impl.SamplerManagerImpl">
+            <constructor-arg ref="samplerDao"/>
+    </bean>
+    <bean id="waterbodyManager" class="com.tiffany.service.impl.WaterbodyManagerImpl">
+                <constructor-arg ref="waterbodyDao"/>
+    </bean>
 </beans>
