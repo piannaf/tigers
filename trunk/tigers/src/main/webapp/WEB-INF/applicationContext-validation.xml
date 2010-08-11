@@ -19,4 +19,5 @@
     <!-- ================================================================================= -->
     	<bean id="sampleSearchValidator" class="com.tiffany.validator.SampleSearchValidator"/>
     	<bean id="emailExampleValidator" class="com.tiffany.validator.EmailExampleValidator"/>
+    	<bean id="userSearchValidator" class="com.tiffany.validator.UserSearchValidator"/>
 </beans>

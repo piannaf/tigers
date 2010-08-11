@@ -34,7 +34,7 @@ public class LookupManagerImpl extends UniversalManagerImpl implements LookupMan
         List<LabelValue> list = new ArrayList<LabelValue>();
 
         for (Role role1 : roles) {
-            list.add(new LabelValue(role1.getName(), role1.getName()));
+            list.add(new LabelValue(role1.getName().substring(5), role1.getName()));
         }
 
         return list;

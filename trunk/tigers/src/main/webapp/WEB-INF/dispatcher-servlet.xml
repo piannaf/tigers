@@ -50,12 +50,12 @@
         <property name="validator" ref="beanValidator"/>
         <property name="formView" value="userForm"/>
         <property name="successView" value="redirect:mainMenu.html"/>
-        <property name="cancelView" value="redirect:mainMenu.html"/>
+        <property name="cancelView" value="redirect:/admin/usersearch.html"/>
         <property name="userManager" ref="userManager"/>
         <property name="roleManager" ref="roleManager"/>
         <property name="mailEngine" ref="mailEngine"/>
         <property name="message" ref="mailMessage"/>
-        <property name="templateName" value="accountCreated.vm"/>
+        <property name="templateName" value="accountCreatedHtml.vm"/>
     </bean>
 
     <!-- Add additional controller beans here -->
@@ -84,9 +84,20 @@
 		        <property name="mailEngine" ref="mailEngine"/>
 		        <property name="message" ref="mailMessage"/>
     		</bean>
-    <!-- ================================================================================== -->
-    
-    
+    <!-- ================================= UserSearch ============================================== -->
+    		<bean id="userSearchController" class="com.tiffany.webapp.controller.UserSearchController">
+    			<property name="validator" ref="userSearchValidator"/>
+				<property name="successView" value="/admin/usersearch"/>
+				<property name="userManager" ref="userManager"/>
+    		</bean>
+     <!-- ================================= BulkUpload ============================================== -->
+    <bean id="bulkUploadController" class="com.tiffany.webapp.controller.BulkUploadController">
+        <property name="validator" ref="beanValidator"/>
+        <property name="cancelView" value="redirect:mainMenu.html"/>
+        <property name="formView" value="/laboratory/bulkUploadForm"/>
+        <property name="successView" value="/laboratory/bulkUploadDisplay"/>
+    </bean>
+    <!-- =================================  ============================================== -->
     
     
     <!-- Came with AppFuse -->
@@ -107,7 +118,9 @@
                 /admin/flushCache.html=filenameController
                 /admin/reload.html=reloadController
                 /admin/users.html=userController
+                /admin/usersearch.html=userSearchController
                 /officer/samplesearch.html=sampleSearchController
+                /laboratory/bulkupload.html=bulkUploadController
                 /mainMenu.html=filenameController
                 /passwordHint.html=passwordHintController
             </value>

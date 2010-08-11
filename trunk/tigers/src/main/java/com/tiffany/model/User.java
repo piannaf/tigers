@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Iterator;
 
 /**
  * This class represents the basic "user" object in AppFuse that allows for authentication
@@ -30,8 +31,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private String username;                    // required
     private String password;                    // required
     private String confirmPassword;
-    private String firstName;                   // required
-    private String lastName;                    // required
+    private String companyName;                   // required
     private String email;                       // required; unique
     private String phoneNumber;
     private Address address = new Address();
@@ -75,14 +75,9 @@ public class User extends BaseObject implements Serializable, UserDetails {
         return confirmPassword;
     }
 
-    @Column(name="first_name",nullable=false,length=50)
-    public String getFirstName() {
-        return firstName;
-    }
-
-    @Column(name="last_name",nullable=false,length=50)
-    public String getLastName() {
-        return lastName;
+    @Column(name="company_name",nullable=false,length=50)
+    public String getCompanyName() {
+        return companyName;
     }
 
     @Column(nullable=false,unique=true)
@@ -93,16 +88,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     @Column(name="phone_number")
     public String getPhoneNumber() {
         return phoneNumber;
-    }
-
-    /**
-     * Returns the full name.
-     * @return firstName + ' ' + lastName
-     */
-    @Transient
-    public String getFullName() {
-        return firstName + ' ' + lastName;
-    }
+    }    
 
     @Embedded
     public Address getAddress() {
@@ -130,11 +116,30 @@ public class User extends BaseObject implements Serializable, UserDetails {
         if (this.roles != null) {
             for (Role role : roles) {
                 // convert the user's roles to LabelValue Objects
-                userRoles.add(new LabelValue(role.getName(), role.getName()));
+                userRoles.add(new LabelValue(role.getName().substring(5), role.getName()));
             }
         }
 
         return userRoles;
+    }
+    
+    /**
+     * Convert user roles to String[] for convenience.
+     * @return an array of String with role information
+     */
+    @Transient
+    public String getCurrentRole() {
+    	String currentRole = "";
+    	int i = 0;
+    	if (this.roles != null) {
+    		Iterator<Role> it = roles.iterator();
+    		currentRole = it.next().getName().substring(5);
+    		while (it.hasNext()) {
+    			Role role = it.next();
+    			currentRole += "/" + role.getName().substring(5);
+    		}
+    	}
+    	return currentRole;
     }
 
     /**
@@ -219,12 +224,8 @@ public class User extends BaseObject implements Serializable, UserDetails {
         this.confirmPassword = confirmPassword;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public void setEmail(String email) {

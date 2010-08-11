@@ -10,6 +10,7 @@ import org.apache.commons.lang.StringUtils;
 import com.tiffany.Constants;
 import com.tiffany.model.Role;
 import com.tiffany.model.User;
+import com.tiffany.model.Address;
 import com.tiffany.service.RoleManager;
 import com.tiffany.service.UserExistsException;
 import com.tiffany.service.UserManager;
@@ -42,14 +43,15 @@ public class UserFormController extends BaseFormController {
         setCommandName("user");
         setCommandClass(User.class);
     }
-
+//==================================================================================
     public ModelAndView processFormSubmission(HttpServletRequest request,
                                               HttpServletResponse response,
                                               Object command,
                                               BindException errors)
     throws Exception {
         if (request.getParameter("cancel") != null) {
-            if (!StringUtils.equals(request.getParameter("from"), "list")) {
+        	// from list
+            if (StringUtils.equals(request.getParameter("from"), "list")) {
                 return new ModelAndView(getCancelView());
             } else {
                 return new ModelAndView(getSuccessView());
@@ -70,7 +72,7 @@ public class UserFormController extends BaseFormController {
         //====== Delete =============
         if (request.getParameter("delete") != null) {
             getUserManager().removeUser(user.getId().toString());
-            saveMessage(request, getText("user.deleted", user.getFullName(), locale));
+            saveMessage(request, getText("user.deleted", user.getCompanyName(), locale));
 
             return new ModelAndView(getSuccessView());
         //====== Update or Add ==========    
@@ -81,10 +83,18 @@ public class UserFormController extends BaseFormController {
             if (request.isUserInRole(Constants.ADMIN_ROLE)) { // is admin
                 String[] userRoles = request.getParameterValues("userRoles");
                 if (userRoles != null) {
-                    user.getRoles().clear();
-                    for (String roleName : userRoles) {
-                        user.addRole(roleManager.getRole(roleName));// add or update role
-                    }
+                	if (userRoles.length == 0) {
+                		errors.rejectValue("roleList", "errors.required", new Object [] {"Role"}, null);
+                		return showForm(request, response, errors);
+                	} else if (userRoles.length > 1) {
+                		errors.rejectValue("roleList", "errors.toManyRoles.user");
+                		return showForm(request, response, errors);
+                	} else {
+                		user.getRoles().clear();
+	                    for (String roleName : userRoles) {
+	                        user.addRole(roleManager.getRole(roleName));// add or update role
+	                    }
+                	}
                 } 
             }
 
@@ -110,19 +120,19 @@ public class UserFormController extends BaseFormController {
             }
 
             if (!StringUtils.equals(request.getParameter("from"), "list")) {
-                saveMessage(request, getText("user.saved", user.getFullName(), locale));
+                saveMessage(request, getText("user.saved", user.getCompanyName(), locale));
 
                 // return to main Menu
                 return new ModelAndView(new RedirectView("mainMenu.html"));
             } else {
                 if (StringUtils.isBlank(request.getParameter("version"))) {
-                    saveMessage(request, getText("user.added", user.getFullName(), locale));
+                    saveMessage(request, getText("user.added", user.getCompanyName(), locale));
 
                     // Send an account information e-mail
                     message.setSubject(getText("signup.email.subject", locale));
 
                     try {
-                        sendUserMessage(user, getText("newuser.email.message", user.getFullName(), locale),
+                        sendUserMessage(user, getText("newuser.email.message", user.getCompanyName(), locale),
                                         RequestUtil.getAppURL(request));
                     } catch (MailException me) {
                         saveError(request, me.getCause().getLocalizedMessage());
@@ -130,7 +140,7 @@ public class UserFormController extends BaseFormController {
 
                     return new ModelAndView(getSuccessView());
                 } else {
-                    saveMessage(request, getText("user.updated.byAdmin", user.getFullName(), locale));
+                    saveMessage(request, getText("user.updated.byAdmin", user.getCompanyName(), locale));
                 }
             }
     
@@ -156,11 +166,12 @@ public class UserFormController extends BaseFormController {
 
         return super.showForm(request, response, errors);
     }
-
+//=======================================================================================
     protected Object formBackingObject(HttpServletRequest request)
     throws Exception {
-
+    	log.debug("UserFormController: formBackingObject");
         if (!isFormSubmission(request)) {
+        	log.debug("!isFormSubmission==true");
             String userId = request.getParameter("id");
 
             // if user logged in with remember me, display a warning that they can't change passwords
@@ -181,13 +192,21 @@ public class UserFormController extends BaseFormController {
             }
 
             User user;
+            // no id specified && not add (check my own profile)
             if (userId == null && !isAdd(request)) {
+            	log.debug("no id and not add");
                 user = getUserManager().getUserByUsername(request.getRemoteUser());
+            // has id specified && has version specified 
             } else if (!StringUtils.isBlank(userId) && !"".equals(request.getParameter("version"))) {
                 user = getUserManager().getUser(userId);
             } else {
+            	log.debug("add new user");
                 user = new User();
                 user.addRole(new Role(Constants.USER_ROLE));
+                Address address = new Address();
+                address.setCountry("AU");
+                user.setAddress(address);
+                user.setEnabled(true);
             }
 
             user.setConfirmPassword(user.getPassword());
@@ -201,7 +220,10 @@ public class UserFormController extends BaseFormController {
 
         return super.formBackingObject(request);
     }
-
+    
+    /* before validation.
+     * if it is a cancel request, then don't need to validate the command.
+     */
     protected void onBind(HttpServletRequest request, Object command)
     throws Exception {
         // if the user is being deleted, turn off validation
@@ -212,6 +234,8 @@ public class UserFormController extends BaseFormController {
         }
     }
 
+    /* check whether is it to add a new user
+     */
     protected boolean isAdd(HttpServletRequest request) {
         String method = request.getParameter("method");
         return (method != null && method.equalsIgnoreCase("add"));

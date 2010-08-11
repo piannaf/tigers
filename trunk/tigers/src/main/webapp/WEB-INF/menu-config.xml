@@ -4,20 +4,24 @@
         <Displayer name="Velocity" type="net.sf.navigator.displayer.VelocityMenuDisplayer"/>
     </Displayers>
     <Menus>
-        <Menu name="MainMenu" title="mainMenu.title" page="/mainMenu.html" roles="ROLE_ADMIN,ROLE_USER">
+        <Menu name="MainMenu" title="mainMenu.title" page="/mainMenu.html" roles="ROLE_ADMIN,ROLE_OFFICER,ROLE_LABORATORY,ROLE_CONTRACTOR,ROLE_USER">
             <Item name="SearchSamples" title="menu.main.searchSamples" page="/samples.html"/>
             <Item name="AddSamle" title="menu.main.addSample" page="/sampleform.html"/>
         </Menu>
-        <Menu name="UserMenu" title="menu.user" description="User Menu" page="/userform.html" roles="ROLE_ADMIN,ROLE_USER"/>
+        <Menu name="UserMenu" title="menu.user" description="User Menu" page="/userform.html" roles="ROLE_ADMIN,ROLE_OFFICER,ROLE_LABORATORY,ROLE_CONTRACTOR,ROLE_USER"/>
         <Menu name="AdminMenu" title="menu.admin" description="Admin Menu" roles="ROLE_ADMIN" width="120" page="/admin/users.html">
-        	<Item name="AddAccount" title="menu.admin.addAccount" page="/signup.html"/>
+        	<Item name="AddAccount" title="menu.admin.addAccount" page="/userform.html?method=Add"/>
             <Item name="ViewUsers" title="menu.admin.users" page="/admin/users.html"/>
-            <Item name="ActiveUsers" title="mainMenu.activeUsers" page="/admin/activeUsers.html"/>
-            <Item name="ReloadContext" title="menu.admin.reload" page="/admin/reload.html"/>
-            <Item name="FileUpload" title="menu.selectFile" page="/fileupload.html"/>
-            <Item name="FlushCache" title="menu.flushCache" page="/admin/flushCache.html"/>
-            <Item name="Clickstream" title="menu.clickstream" page="/admin/clickstreams.jsp"/>
+            <Item name="SearchUsers" title="menu.admin.searchUsers" page="admin/usersearch.html"/>
+            <!--Item name="ActiveUsers" title="mainMenu.activeUsers" page="/admin/activeUsers.html"/-->
+            <!--Item name="ReloadContext" title="menu.admin.reload" page="/admin/reload.html"/-->
+            <!--Item name="FileUpload" title="menu.selectFile" page="/fileupload.html"/-->
+            <!-->Item name="FlushCache" title="menu.flushCache" page="/admin/flushCache.html"/-->
+            <!--Item name="Clickstream" title="menu.clickstream" page="/admin/clickstreams.jsp"/-->
         </Menu>
-        <Menu name="Logout" title="user.logout" page="/logout.jsp" roles="ROLE_ADMIN,ROLE_USER"/>
+        <Menu name="LaboratoryMenu" title="menu.laboratory.sample" description="Laboratory Menu" roles="ROLE_ADMIN,ROLE_OFFICER,ROLE_LABORATORY,ROLE_CONTRACTOR,ROLE_USER" width="120" page="/laboratory/bulkupload.html">
+        	<Item name="BulkUpload" title="menu.laboratory.bulkUpload" page="/laboratory/bulkupload.html"/>
+        </Menu>
+        <Menu name="Logout" title="user.logout" page="/logout.jsp" roles="ROLE_ADMIN,ROLE_OFFICER,ROLE_LABORATORY,ROLE_CONTRACTOR,ROLE_USER"/>
     </Menus>
 </MenuConfig>

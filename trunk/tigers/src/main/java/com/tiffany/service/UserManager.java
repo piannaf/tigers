@@ -61,4 +61,7 @@ public interface UserManager extends UniversalManager {
      * @param userId the user's id
      */
     void removeUser(String userId);
+
+	List<User> findUsersByCompanyName(String companyName);
+	List<User> findUserByUsernameAndCompanyName(String username, String companyName);
 }
