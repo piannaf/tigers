@@ -60,8 +60,22 @@
     -->
 
     <!-- Add new DAOs here -->
-	<bean id="sampleDao" class="com.tiffany.dao.hibernate.SampleDaoHibernate">
+    <bean id="sampleDao" class="com.tiffany.dao.hibernate.SampleDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-
+    <bean id="samplerDao" class="com.tiffany.dao.hibernate.SamplerDaoHibernate">
+            <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="waterbodyDao" class="com.tiffany.dao.hibernate.WaterbodyDaoHibernate">
+            <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="contractorDao" class="com.tiffany.dao.hibernate.ContractorDaoHibernate">
+            <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="parameterNamesDao" class="com.tiffany.dao.hibernate.ParameterNamesDaoHibernate">
+            <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="screeningFrequencyDao" class="com.tiffany.dao.hibernate.ScreeningFrequencyDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 </beans>
