@@ -90,7 +90,7 @@ public class EmailExampleController extends BaseFormController {
     
     private String emailLookup(String name) {
     	Hashtable<String, String> memberList = new Hashtable();
-    	memberList.put("sean", "qqsean@hotmail.com");
+    	memberList.put("sean", "qqsean@gmail.com");
     	memberList.put("jane", "jane.harrison@uqconnect.edu.au");
     	memberList.put("justin", "jmancine@gmail.com");
     	memberList.put("xing", "s4143448@student.uq.edu.au");

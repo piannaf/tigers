@@ -31,8 +31,7 @@ public class UniversalDaoTest extends BaseDaoTestCase {
         // set required fields
         user.setUsername("foo");
         user.setPassword("bar");
-        user.setFirstName("first");
-        user.setLastName("last");
+        user.setCompanyName("company");
         user.getAddress().setCity("Denver");
         user.getAddress().setPostalCode("80465");
         user.setEmail("foo@bar.com");
@@ -45,7 +44,7 @@ public class UniversalDaoTest extends BaseDaoTestCase {
         // retrieve
         user = (User) universalDao.get(User.class, user.getId());
         assertNotNull(user);
-        assertEquals("last", user.getLastName());
+        assertEquals("company", user.getCompanyName());
 
         // update
         user.getAddress().setCountry("USA");

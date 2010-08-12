@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.tiffany.Constants;
+import com.tiffany.model.Sample;
+
 import org.springframework.validation.BindException;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
@@ -74,9 +76,9 @@ public class BulkUploadController extends BaseFormController {
         //retrieve the file data
         InputStream stream = file.getInputStream();
         
-        String absFilePath = uploadDir + file.getOriginalFilename();
+        String csvPath = uploadDir + file.getOriginalFilename();
         //write the file to the file specified
-        OutputStream bos = new FileOutputStream(absFilePath);
+        OutputStream bos = new FileOutputStream(csvPath);
         int bytesRead;
         byte[] buffer = new byte[8192];
 
@@ -89,17 +91,18 @@ public class BulkUploadController extends BaseFormController {
         //close the stream
         stream.close();
         //===================================================
-        
+        File csv = new File(csvPath);
+        BufferedReader text = new BufferedReader(new FileReader(csv));
+        StringBuffer result = new StringBuffer();
+        String line;
+        while ((line = text.readLine()) != null) {
+        	result.append("<strong>" + line + "</strong><br/>");
+        }
+        text.close();
+        csv.delete();
         //===================================================
         // place the data into the request for retrieval on next page
-        request.setAttribute("friendlyName", fileUpload.getName());
-        request.setAttribute("fileName", file.getOriginalFilename());
-        request.setAttribute("contentType", file.getContentType());
-        request.setAttribute("size", file.getSize() + " bytes");
-        request.setAttribute("location", dirPath.getAbsolutePath() + Constants.FILE_SEP + file.getOriginalFilename());
-
-        String link = request.getContextPath() + "/resources" + "/" + request.getRemoteUser() + "/";
-        request.setAttribute("link", link + file.getOriginalFilename());
+        request.setAttribute("message", result.toString());
 
         return new ModelAndView(getSuccessView());
     }

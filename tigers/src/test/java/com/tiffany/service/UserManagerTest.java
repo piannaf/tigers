@@ -48,8 +48,10 @@ public class UserManagerTest extends BaseManagerTestCase {
         user = (User) populate(user);
 
         user.addRole(roleManager.getRole(Constants.USER_ROLE));
-
-        user = mgr.saveUser(user);
+        
+        
+        user = mgr.saveUser(user);//====================
+        
         assertEquals("john", user.getUsername());
         assertEquals(1, user.getRoles().size());
 
