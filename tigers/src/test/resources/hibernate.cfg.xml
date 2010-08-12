@@ -11,6 +11,5 @@
         <mapping class="com.tiffany.model.Contractor"/>
         <mapping class="com.tiffany.model.ParameterNames"/>
         <mapping class="com.tiffany.model.ScreeningFrequency"/>
-        <mapping class="com.tiffany.model.FrequencyItem"/>
     </session-factory>
 </hibernate-configuration>
