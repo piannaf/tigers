@@ -6,5 +6,11 @@
         <mapping class="com.tiffany.model.User"/>
         <mapping class="com.tiffany.model.Role"/>
         <mapping class="com.tiffany.model.Sample"/>
+        <mapping class="com.tiffany.model.Sampler"/>
+        <mapping class="com.tiffany.model.Waterbody"/>
+        <mapping class="com.tiffany.model.Contractor"/>
+        <mapping class="com.tiffany.model.ParameterNames"/>
+        <mapping class="com.tiffany.model.ScreeningFrequency"/>
+        <mapping class="com.tiffany.model.FrequencyItem"/>
     </session-factory>
 </hibernate-configuration>
