@@ -1,37 +1,18 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="display.title"/></title>
-    <meta name="heading" content="<fmt:message key='display.heading'/>"/>
-    <meta name="menu" content="AdminMenu"/>
+    <title><fmt:message key="bulkUpload.display.title"/></title>
+    <meta name="heading" content="<fmt:message key='bulkUpload.display.heading'/>"/>
+    <meta name="menu" content="LaboratoryMenu"/>
 </head>
 
-<p>Below is a list of attributes that were gathered in FileUploadController.java.</p>
+<p><fmt:message key="bulkUpload.display.message"/></p>
 
 <div class="separator"></div>
 
 <table class="detail" cellpadding="5">
     <tr>
-        <th>Friendly Name:</th>
-        <td><c:out value="${friendlyName}"/></td>
-    </tr>
-    <tr>
-        <th>Filename:</th>
-        <td><c:out value="${fileName}"/></td>
-    </tr>
-    <tr>
-        <th>File content type:</th>
-        <td><c:out value="${contentType}"/></td>
-    </tr>
-    <tr>
-        <th>File size:</th>
-        <td><c:out value="${size}"/></td>
-    </tr>
-    <tr>
-        <th class="tallCell">File Location:</th>
-        <td>The file has been written to: <br />
-            <a href="<c:out value="${link}"/>"><c:out value="${location}" escapeXml="false"/></a>
-        </td>
+       <c:out value="${message}" escapeXml="false"/>
     </tr>
     <tr>
         <td></td>
@@ -39,7 +20,7 @@
             <input type="button" name="done" id="done" value="Done"
                 onclick="location.href='mainMenu.html'" />
             <input type="button" style="width: 120px" value="Upload Another"
-                onclick="location.href='fileupload.html'" />
+                onclick="location.href='/laboratory/bulkupload.html'" />
         </td>
     </tr>
 </table>

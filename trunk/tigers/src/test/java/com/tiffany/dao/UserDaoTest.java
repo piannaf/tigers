@@ -103,8 +103,7 @@ public class UserDaoTest extends BaseDaoTestCase {
     public void testAddAndRemoveUser() throws Exception {
         User user = new User("testuser");
         user.setPassword("testpass");
-        user.setFirstName("Test");
-        user.setLastName("Last");
+        user.setCompanyName("Test");
         Address address = new Address();
         address.setCity("Denver");
         address.setProvince("CO");

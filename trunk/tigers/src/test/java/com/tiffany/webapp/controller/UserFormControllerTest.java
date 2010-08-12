@@ -63,7 +63,7 @@ public class UserFormControllerTest extends BaseControllerTestCase {
 
         assertEquals("userForm", mv.getViewName());
         User user = (User) mv.getModel().get(c.getCommandName());
-        assertEquals("Tomcat User", user.getFullName());
+        assertEquals("Google", user.getCompanyName());
     }
 
     public void testEditWithoutPermission() throws Exception {
@@ -88,7 +88,7 @@ public class UserFormControllerTest extends BaseControllerTestCase {
 
         assertEquals("userForm", mv.getViewName());
         User userform = (User) mv.getModel().get(c.getCommandName());
-        assertEquals("Tomcat User", userform.getFullName());
+        assertEquals("Google", userform.getCompanyName());
     }
 
     public void testSave() throws Exception {
@@ -97,7 +97,7 @@ public class UserFormControllerTest extends BaseControllerTestCase {
         // result in multiple parameters with the same name getting sent
         User user = ((UserManager) applicationContext.getBean("userManager")).getUser("-1");
         user.setConfirmPassword(user.getPassword());
-        user.setLastName("Updated Last Name");
+        user.setCompanyName("Updated Company Name");
         super.objectToRequestParameters(user, request);
         
         mv = c.handleRequest(request, new MockHttpServletResponse());
@@ -110,7 +110,7 @@ public class UserFormControllerTest extends BaseControllerTestCase {
     
     public void testAddWithMissingFields() throws Exception {
         request = newPost("/userform.html");
-        request.addParameter("firstName", "Jack");
+        request.addParameter("companyName", "Jack");
         request.setRemoteUser("user");
 
         mv = c.handleRequest(request, new MockHttpServletResponse());

@@ -1,9 +1,9 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="upload.title"/></title>
-    <meta name="heading" content="<fmt:message key='upload.heading'/>"/>
-    <meta name="menu" content="AdminMenu"/>
+    <title><fmt:message key="bulkUpload.title"/></title>
+    <meta name="heading" content="<fmt:message key='bulkUpload.heading'/>"/>
+    <meta name="menu" content="LaboratoryMenu"/>
 </head>
 
 <!--
@@ -25,18 +25,18 @@
 <div class="separator"></div>
 
 <form:form commandName="fileUpload" method="post" action="/laboratory/bulkupload.html" enctype="multipart/form-data"
-    onsubmit="return validateFileUpload(this)" id="uploadForm">
+    onsubmit="return validateFileUpload(this)" id="bulkUploadForm">
 <ul>
     <li class="info">
-        <fmt:message key="upload.message"/>
+        <fmt:message key="bulkUpload.message"/>
     </li>
     <li>
-        <appfuse:label key="uploadForm.name" styleClass="desc"/>
+        <appfuse:label key="bulkUploadForm.name" styleClass="desc"/>
         <form:errors path="name" cssClass="fieldError"/>
         <form:input path="name" id="name" cssClass="text medium" cssErrorClass="text state error"/>
     </li>
     <li>
-        <appfuse:label key="uploadForm.file" styleClass="desc"/>
+        <appfuse:label key="bulkUploadForm.file" styleClass="desc"/>
         <form:errors path="file" cssClass="fieldError"/>
         <input type="file" name="file" id="file" class="file medium"/>
     </li>
@@ -50,7 +50,7 @@
 </form:form>
 
 <script type="text/javascript">
-    Form.focusFirstElement($('uploadForm'));
+    Form.focusFirstElement($('bulkUploadForm'));
     highlightFormElements();
 </script>
 <v:javascript formName="fileUpload" staticJavascript="false"/>

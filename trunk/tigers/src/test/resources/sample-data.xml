@@ -22,7 +22,7 @@
             <value description="username">user</value>
             <value description="password">12dea96fec20593566ab75692c9949596833adc9</value>
             <value description="company_name">Google</value>
-            <value description="address"></value>
+            <value description="address">101 Queen St.</value>
             <value description="city">Denver</value>
             <value description="country">AU</value>
             <value description="email">matt_raible@yahoo.com</value>
@@ -40,7 +40,7 @@
             <value description="username">admin</value>
             <value description="password">d033e22ae348aeb5660fc2140aec35850c4da997</value>
             <value description="company_name">Microsoft</value>
-            <value description="address"></value>
+            <value description="address">100 Queen St.</value>
             <value description="city">Denver</value>
             <value description="country">AU</value>
             <value description="email">matt@raibledesigns.com</value>
