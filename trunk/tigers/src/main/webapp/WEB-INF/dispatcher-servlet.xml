@@ -104,6 +104,13 @@
     				        <property name="samplerManager" ref="samplerManager"/>
     				    </bean>
 	<!-- ================================================================================== -->
+    <!-- =============================== Reports ======================================== -->
+    		    	<!-- officer/reportSamplers.html -->
+    				    <bean id="reportListSamplersController" class="com.tiffany.webapp.controller.ReportListSamplersController">
+    				        <property name="waterbodyManager" ref="waterbodyManager"/>
+    				        <property name="samplerManager" ref="samplerManager"/>
+    				    </bean>
+	<!-- ================================================================================== -->
    
    
     <!-- Came with AppFuse -->
@@ -127,6 +134,7 @@
                 /admin/usersearch.html=userSearchController
                 /officer/samplesearch.html=sampleSearchController
                 /officer/samplers.html=samplerController
+                /officer/reportsamplers.html=reportListSamplersController
                 /laboratory/bulkupload.html=bulkUploadController
                 /mainMenu.html=filenameController
                 /passwordHint.html=passwordHintController

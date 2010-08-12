@@ -22,5 +22,14 @@ public class WaterbodyDaoHibernate extends GenericDaoHibernate<Waterbody, String
 			return waterbodies;
 		}
 	}
+	
+	public List<Waterbody> getAll() {
+		List waterbodies = getHibernateTemplate().find("from Waterbody order by name");
+		if(waterbodies.isEmpty()) {
+			return null;
+		} else {
+			return waterbodies;
+		}
+	}
 
 }
