@@ -24,4 +24,8 @@ public class WaterbodyManagerImpl extends GenericManagerImpl<Waterbody, String> 
 		return waterbodyDao.findLikeName(search);
 	}
 
+	public List<Waterbody> getAll() {
+		return waterbodyDao.getAll();
+	}
+
 }

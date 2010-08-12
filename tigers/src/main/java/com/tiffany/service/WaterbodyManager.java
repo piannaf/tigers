@@ -8,5 +8,6 @@ import com.tiffany.model.Waterbody;
 public interface WaterbodyManager extends GenericManager<Waterbody, String> {
 	
 	List<Waterbody> findLikeName(String search);
+	List<Waterbody> getAll();
 
 }
