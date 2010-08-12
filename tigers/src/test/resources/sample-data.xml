@@ -139,5 +139,181 @@
 	    <value>GW01</value>
 	  </row>
 	</table>
+
+	<table name='sampler'>
+		<column>tag</column>
+		  <column>license</column>
+		  <column>longitude</column>
+		  <column>latitude</column>
+		  <column>comp_screening_freq</column>
+		  <column>collar_height</column>
+		  <column>purpose</column>
+		  <column>contractor</column>
+		  <column>waterbody</column>
+		  <column>laboratory</column>
+		  <column>depth_to_collar_screening_freq</column>
+		  <row>
+		    <value>SW123</value>
+		    <value></value>
+		    <value>123.2347</value>
+		    <value>631.7844</value>
+		    <value>weekly</value>
+		    <value>0</value>
+		    <value>testing sw</value>
+		    <value>Bob</value>
+		    <value>Lake Eyre</value>
+		    <value>Ted</value>
+		    <value></value>
+		  </row>
+		  <row>
+		    <value>GW567</value>
+		    <value>RTEED867484</value>
+		    <value>333.3347</value>
+		    <value>567.454</value>
+		    <value>monthly</value>
+		    <value>3</value>
+		    <value>testing gw</value>
+		    <value>Fred</value>
+		    <value>aquifer 61</value>
+		    <value>Barney</value>
+		    <value>yearly</value>
+		  </row>
+		  <row>
+		  	<value>GW111</value>
+		  	<value>LNO87454533</value>
+		  	<value>3.3347</value>
+		  	<value>1.5</value>
+		  	<value>daily</value>
+		  	<value>2</value>
+		  	<value>testing gw again</value>
+		  	<value>Peter</value>
+		  	<value>aquifer 52</value>
+		  	<value>Piper</value>
+		  	<value>monthly</value>
+		  </row>
+	</table>
+	<table name='waterbody'>
+			<column>name</column>
+			  <column>type</column>
+			  <row>
+			    <value>Lake Eyre</value>
+			    <value>S</value>
+			  </row>
+			  <row>
+			    <value>aquifer 61</value>
+			    <value>G</value>
+			  </row>
+			  <row>
+			  	<value>aquifer 52</value>
+			    <value>G</value>
+			  </row>
+	</table>
+	<table name='contractor'>
+		<column>username</column>
+		<column>name</column>
+		<column>contact</column>
+		<column>phone</column>
+		<column>email</column>
+		<column>address</column>
+		<row>
+			<value>USER1</value>
+			<value>Fred Smith</value>
+			<value>Bob Smith</value>
+			<value>11111111</value>
+			<value>bob@job</value>
+			<value>1 NeverWhere St</value>
+		</row>
+		<row>
+			<value>USER2</value>
+			<value>Supertester</value>
+			<value>Peter Piper</value>
+			<value>22222222</value>
+			<value>peter@home</value>
+			<value>2 NeverMind Rd</value>
+		</row>
+	</table>
+	<table name='parameternames'>
+			<column>parameter_id</column>
+			<column>name</column>
+			<column>type</column>
+			<row>
+				<value>1</value>
+				<value>pH</value>
+				<value>B</value>
+			</row>
+			<row>
+				<value>2</value>
+				<value>Electrical Conductivity</value>
+				<value>B</value>
+			</row>
+			<row>
+				<value>3</value>
+				<value>Temperature</value>
+				<value>B</value>
+			</row>
+			<row>
+				<value>4</value>
+				<value>Arsenic</value>
+				<value>B</value>
+			</row>
+			<row>
+				<value>5</value>
+				<value>Oil &amp; Grease</value>
+				<value>B</value>
+			</row>
+			<row>
+				<value>6</value>
+				<value>Depth to Collar</value>
+				<value>G</value>
+			</row>
+			<row>
+				<value>7</value>
+				<value>Fluoride</value>
+				<value>S</value>
+			</row>
+			<row>
+				<value>8</value>
+				<value>Chromium</value>
+				<value>S</value>
+			</row>
+	</table>
+	<table name='screeningfrequency'>
+		<column>id</column>
+		<column>description</column>
+		<column>frequency</column>
+		<column>tag</column>
+		<row>
+			<value>1</value>
+			<value>Chemicals</value>
+			<value>monthly</value>
+			<value>SW123</value>			
+		</row>
+		<row>
+			<value>2</value>
+			<value>Acidity</value>
+			<value>weekly</value>
+			<value>GW567</value>			
+		</row>
+	</table>
+	<table name='frequencyitem'>
+		<column>frequency_id</column>
+		<column>parameter_id</column>
+		<row>
+			<value>1</value>
+			<value>4</value>			
+		</row>
+		<row>
+			<value>1</value>
+			<value>7</value>			
+		</row>
+		<row>
+			<value>1</value>
+			<value>8</value>			
+		</row>
+		<row>
+			<value>2</value>
+			<value>1</value>			
+		</row>
+	</table>
     
 </dataset>
