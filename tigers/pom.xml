@@ -327,6 +327,15 @@
             <id>appfuse</id>
             <url>http://static.appfuse.org/repository</url>
         </repository>
+        <repository> <!-- For downloading JavaAPIforKml -->
+			<id>maven2-repository.dev.java.net</id>
+			<name>Java.net Maven 2 Repository</name>
+			<url>http://download.java.net/maven/2</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
     </repositories>
 
     <pluginRepositories>
@@ -338,6 +347,12 @@
 
     <!-- Dependencies calculated by AppFuse when running full-source plugin -->
     <dependencies>
+	    <dependency> <!-- For generating and manipulating KML files -->
+			<groupId>de.micromata.jak</groupId>
+			<artifactId>JavaAPIforKml</artifactId>
+			<version>2.2.0-SNAPSHOT</version>
+	    </dependency>
+    
         <dependency>
             <groupId>${jdbc.groupId}</groupId>
             <artifactId>${jdbc.artifactId}</artifactId>
@@ -742,6 +757,7 @@
                             </execution>
                         </executions>
                     </plugin>
+                    <!--
                     <plugin>
                         <artifactId>maven-antrun-plugin</artifactId>
                         <version>1.1</version>
@@ -751,9 +767,9 @@
                                     <classpath refid="maven.test.classpath"/>
                                 </taskdef>
                                 <mkdir dir="target/webtest-data"/>
-                                <!-- Delete old results file if it exists -->
+                                <-!- Delete old results file if it exists ->
                                 <delete file="target/webtest-data/web-tests-result.xml"/>
-                                <!-- This is so the default will be used if no test case is specified -->
+                                <-!- This is so the default will be used if no test case is specified ->
                                 <property name="test" value="run-all-tests"/>
                                 <echo level="info">Testing '${project.build.finalName}' with locale '${user.language}'</echo>
                                 <ant antfile="src/test/resources/web-tests.xml" target="${test}">
@@ -777,8 +793,8 @@
                                 <groupId>com.canoo.webtest</groupId>
                                 <artifactId>webtest</artifactId>
                                 <version>${webtest.version}</version>
-                                <!-- groovy-all doesn't have a pom in central repo -->
-                                <!-- exclude groovy to prevent trying to fetch pom -->
+                                <-!- groovy-all doesn't have a pom in central repo ->
+                                <-!- exclude groovy to prevent trying to fetch pom ->
                                 <exclusions>
                                     <exclusion>
                                         <groupId>groovy</groupId>
@@ -788,6 +804,7 @@
                             </dependency>
                         </dependencies>
                     </plugin>
+                	-->
                 </plugins>
             </build>
         </profile>
