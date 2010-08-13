@@ -53,6 +53,60 @@
             <value description="account_locked">0</value>
             <value description="credentials_expired">0</value>
         </row>
+        <row>
+            <value description="id">-3</value>
+            <value description="username">officer</value>
+            <value description="password">f90409b98ffb61424a01b4bb718aa602cebd5ee2</value>
+            <value description="company_name">Microsoft</value>
+            <value description="address">100 Queen St.</value>
+            <value description="city">Denver</value>
+            <value description="country">AU</value>
+            <value description="email">officer@tiffanygoldmine.com</value>
+            <value description="phone_number"></value>
+            <value description="postal_code">80210</value>
+            <value description="province">CO</value>
+            <value description="version">1</value>
+            <value description="account_enabled">1</value>
+            <value description="account_expired">0</value>
+            <value description="account_locked">0</value>
+            <value description="credentials_expired">0</value>
+        </row>
+        <row>
+            <value description="id">-4</value>
+            <value description="username">contractor</value>
+            <value description="password">864dc49fe1876d8ee49c9f30338373ef1ada16b3</value>
+            <value description="company_name">Microsoft</value>
+            <value description="address">100 Queen St.</value>
+            <value description="city">Denver</value>
+            <value description="country">AU</value>
+            <value description="email">contractor@tiffanygoldmine.com</value>
+            <value description="phone_number"></value>
+            <value description="postal_code">80210</value>
+            <value description="province">CO</value>
+            <value description="version">1</value>
+            <value description="account_enabled">1</value>
+            <value description="account_expired">0</value>
+            <value description="account_locked">0</value>
+            <value description="credentials_expired">0</value>
+        </row>
+        <row>
+            <value description="id">-5</value>
+            <value description="username">lab</value>
+            <value description="password">3953f9ddf975ab5097ee468d99555c5b441169bf</value>
+            <value description="company_name">Microsoft</value>
+            <value description="address">100 Queen St.</value>
+            <value description="city">Denver</value>
+            <value description="country">AU</value>
+            <value description="email">lab@tiffanygoldmine.com</value>
+            <value description="phone_number"></value>
+            <value description="postal_code">80210</value>
+            <value description="province">CO</value>
+            <value description="version">1</value>
+            <value description="account_enabled">1</value>
+            <value description="account_expired">0</value>
+            <value description="account_locked">0</value>
+            <value description="credentials_expired">0</value>
+        </row>
     </table>
     <table name="role">
         <column>id</column>
@@ -94,6 +148,18 @@
         <row>
             <value description="user_id">-2</value>
             <value description="role_id">-1</value>
+        </row>
+        <row>
+            <value description="user_id">-3</value>
+            <value description="role_id">-3</value>
+        </row>
+        <row>
+            <value description="user_id">-4</value>
+            <value description="role_id">-4</value>
+        </row>
+        <row>
+            <value description="user_id">-5</value>
+            <value description="role_id">-5</value>
         </row>
     </table>
     
