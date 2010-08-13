@@ -1,157 +1,177 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"
-       default-lazy-init="true">
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"
+	default-lazy-init="true">
 
-    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-        <property name="exceptionMappings">
-            <props>
-                <prop key="org.springframework.dao.DataAccessException">        
-                    dataAccessFailure
+	<bean id="exceptionResolver"
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="org.springframework.dao.DataAccessException">
+					dataAccessFailure
                 </prop>
-            </props>
-        </property>
-    </bean>
+			</props>
+		</property>
+	</bean>
 
-    <bean id="filenameController" class="org.springframework.web.servlet.mvc.UrlFilenameViewController"/>
+	<bean id="filenameController"
+		class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
 
-    <bean id="fileUploadController" class="com.tiffany.webapp.controller.FileUploadController">
-        <property name="validator" ref="beanValidator"/>
-        <property name="cancelView" value="redirect:mainMenu.html"/>
-        <property name="formView" value="uploadForm"/>
-        <property name="successView" value="uploadDisplay"/>
-    </bean>
+	<bean id="fileUploadController" class="com.tiffany.webapp.controller.FileUploadController">
+		<property name="validator" ref="beanValidator" />
+		<property name="cancelView" value="redirect:mainMenu.html" />
+		<property name="formView" value="uploadForm" />
+		<property name="successView" value="uploadDisplay" />
+	</bean>
 
-    <bean id="passwordHintController" class="com.tiffany.webapp.controller.PasswordHintController">
-        <property name="userManager" ref="userManager"/>
-        <property name="messageSource" ref="messageSource"/>
-        <property name="mailEngine" ref="mailEngine"/>
-        <property name="message" ref="mailMessage"/>
-    </bean>
+	<bean id="passwordHintController" class="com.tiffany.webapp.controller.PasswordHintController">
+		<property name="userManager" ref="userManager" />
+		<property name="messageSource" ref="messageSource" />
+		<property name="mailEngine" ref="mailEngine" />
+		<property name="message" ref="mailMessage" />
+	</bean>
 
-    <bean id="reloadController" class="com.tiffany.webapp.controller.ReloadController"/>
+	<bean id="reloadController" class="com.tiffany.webapp.controller.ReloadController" />
 
-    <bean id="signupController" class="com.tiffany.webapp.controller.SignupController">
-        <property name="validator" ref="beanValidator"/>
-        <property name="formView" value="signup"/>
-        <property name="successView" value="redirect:mainMenu.html"/>
-        <property name="userManager" ref="userManager"/>
-        <property name="roleManager" ref="roleManager"/>
-        <property name="mailEngine" ref="mailEngine"/>
-        <property name="message" ref="mailMessage"/>
-        <property name="templateName" value="accountCreatedHtml.vm"/>
-    </bean>
+	<bean id="signupController" class="com.tiffany.webapp.controller.SignupController">
+		<property name="validator" ref="beanValidator" />
+		<property name="formView" value="signup" />
+		<property name="successView" value="redirect:mainMenu.html" />
+		<property name="userManager" ref="userManager" />
+		<property name="roleManager" ref="roleManager" />
+		<property name="mailEngine" ref="mailEngine" />
+		<property name="message" ref="mailMessage" />
+		<property name="templateName" value="accountCreatedHtml.vm" />
+	</bean>
 
-    <bean id="userController" class="com.tiffany.webapp.controller.UserController">
-        <property name="userManager" ref="userManager"/>
-    </bean>
+	<bean id="userController" class="com.tiffany.webapp.controller.UserController">
+		<property name="userManager" ref="userManager" />
+	</bean>
 
-    <bean id="userFormController" class="com.tiffany.webapp.controller.UserFormController">
-        <property name="validator" ref="beanValidator"/>
-        <property name="formView" value="userForm"/>
-        <property name="successView" value="redirect:mainMenu.html"/>
-        <property name="cancelView" value="redirect:/admin/usersearch.html"/>
-        <property name="userManager" ref="userManager"/>
-        <property name="roleManager" ref="roleManager"/>
-        <property name="mailEngine" ref="mailEngine"/>
-        <property name="message" ref="mailMessage"/>
-        <property name="templateName" value="accountCreatedHtml.vm"/>
-    </bean>
+	<bean id="userFormController" class="com.tiffany.webapp.controller.UserFormController">
+		<property name="validator" ref="beanValidator" />
+		<property name="formView" value="userForm" />
+		<property name="successView" value="redirect:mainMenu.html" />
+		<property name="cancelView" value="redirect:/admin/usersearch.html" />
+		<property name="userManager" ref="userManager" />
+		<property name="roleManager" ref="roleManager" />
+		<property name="mailEngine" ref="mailEngine" />
+		<property name="message" ref="mailMessage" />
+		<property name="templateName" value="accountCreatedHtml.vm" />
+	</bean>
 
-    <!-- Add additional controller beans here -->
-    <!-- =============================== Sample ======================================== -->
-        <!-- samples.html -->
-                    <bean id="sampleController" class="com.tiffany.webapp.controller.SampleController">
-                        <property name="sampleManager" ref="sampleManager"/>
-                    </bean>
-                <!-- sampleform.html -->
-                    <bean id="sampleFormController" class="com.tiffany.webapp.controller.SampleFormController">
-                           <property name="validator" ref="beanValidator"/>
-                           <property name="successView" value="redirect:samples.html"/>
-                           <property name="sampleManager" ref="sampleManager"/>
-                    </bean>
-                <!-- /officer/samplesearch.html -->  
-                        <bean id="sampleSearchController" class="com.tiffany.webapp.controller.SampleSearchController">
-                                <property name="validator" ref="sampleSearchValidator"/>
-                                <property name="successView" value="/officer/samplesearch"/>
-                                <property name="sampleManager" ref="sampleManager"/>
-                        </bean>
-        <!-- =============================== Email =================================================== -->
-                        <bean id="emailExampleController" class="com.tiffany.webapp.controller.EmailExampleController">
-                                <property name="validator" ref="emailExampleValidator"/>
-                                <property name="successView" value="redirect:mainMenu.html"/>                  
-                        <property name="messageSource" ref="messageSource"/>
-                        <property name="mailEngine" ref="mailEngine"/>
-                        <property name="message" ref="mailMessage"/>
-                </bean>
-    <!-- ================================= UserSearch ============================================== -->
-                <bean id="userSearchController" class="com.tiffany.webapp.controller.UserSearchController">
-                        <property name="validator" ref="userSearchValidator"/>
-                                <property name="successView" value="/admin/usersearch"/>
-                                <property name="userManager" ref="userManager"/>
-                </bean>
-     <!-- ================================= BulkUpload ============================================== -->
-    <bean id="bulkUploadController" class="com.tiffany.webapp.controller.BulkUploadController">
-        <property name="validator" ref="beanValidator"/>
-        <property name="cancelView" value="redirect:mainMenu.html"/>
-        <property name="formView" value="/laboratory/bulkUploadForm"/>
-        <property name="successView" value="/laboratory/bulkUploadDisplay"/>
-    </bean>
-    <!-- =================================  ============================================== -->
-    <!-- =============================== Sampler ======================================== -->
-    		    	<!-- samplers.html -->
-    				    <bean id="samplerController" class="com.tiffany.webapp.controller.SamplerController">
-    				        <property name="samplerManager" ref="samplerManager"/>
-    				    </bean>
-	<!-- ================================================================================== -->
-    <!-- =============================== Reports ======================================== -->
-    		    	<!-- officer/reportSamplers.html -->
-    				    <bean id="reportListSamplersController" class="com.tiffany.webapp.controller.ReportListSamplersController">
-    				        <property name="waterbodyManager" ref="waterbodyManager"/>
-    				        <property name="samplerManager" ref="samplerManager"/>
-    				    </bean>
-	<!-- ================================================================================== -->
-   
-   
-    <!-- Came with AppFuse -->
+	<!-- Add additional controller beans here -->
+	<!-- =============================== Sample ======================================== -->
+	<!-- samples.html -->
+	<bean id="sampleController" class="com.tiffany.webapp.controller.SampleController">
+		<property name="sampleManager" ref="sampleManager" />
+	</bean>
 
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <property name="maxUploadSize" value="2097152"/>
-    </bean>
+	<!-- sampleform.html -->
+	<bean id="sampleFormController" class="com.tiffany.webapp.controller.SampleFormController">
+		<property name="validator" ref="beanValidator" />
+		<property name="successView" value="redirect:samples.html" />
+		<property name="sampleManager" ref="sampleManager" />
+	</bean>
 
-    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-        <property name="basename" value="ApplicationResources"/>
-        <property name="useCodeAsDefaultMessage" value="true"/>
-    </bean>
+	<!-- /officer/samplesearch.html -->
+	<bean id="sampleSearchController" class="com.tiffany.webapp.controller.SampleSearchController">
+		<property name="validator" ref="sampleSearchValidator" />
+		<property name="successView" value="/officer/samplesearch" />
+		<property name="sampleManager" ref="sampleManager" />
+	</bean>
 
-    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-        <property name="mappings">
-            <value>
-                /admin/activeUsers.html=filenameController
-                /admin/flushCache.html=filenameController
-                /admin/reload.html=reloadController
-                /admin/users.html=userController
-                /admin/usersearch.html=userSearchController
-                /officer/samplesearch.html=sampleSearchController
-                /officer/samplers.html=samplerController
-                /officer/reportsamplers.html=reportListSamplersController
-                /laboratory/bulkupload.html=bulkUploadController
-                /mainMenu.html=filenameController
-                /passwordHint.html=passwordHintController
+	<!-- =============================== Email =================================================== -->
+	<bean id="emailExampleController" class="com.tiffany.webapp.controller.EmailExampleController">
+		<property name="validator" ref="emailExampleValidator" />
+		<property name="successView" value="redirect:mainMenu.html" />
+		<property name="messageSource" ref="messageSource" />
+		<property name="mailEngine" ref="mailEngine" />
+		<property name="message" ref="mailMessage" />
+	</bean>
+
+	<!-- ================================= UserSearch ============================================== -->
+	<bean id="userSearchController" class="com.tiffany.webapp.controller.UserSearchController">
+		<property name="validator" ref="userSearchValidator" />
+		<property name="successView" value="/admin/usersearch" />
+		<property name="userManager" ref="userManager" />
+	</bean>
+
+	<!-- ================================= BulkUpload ============================================== -->
+	<bean id="bulkUploadController" class="com.tiffany.webapp.controller.BulkUploadController">
+		<property name="validator" ref="beanValidator" />
+		<property name="cancelView" value="redirect:mainMenu.html" />
+		<property name="formView" value="/laboratory/bulkUploadForm" />
+		<property name="successView" value="/laboratory/bulkUploadDisplay" />
+	</bean>
+
+	<!-- =============================== Sampler ======================================== -->
+	<!-- samplers.html -->
+	<bean id="samplerController" class="com.tiffany.webapp.controller.SamplerController">
+		<property name="samplerManager" ref="samplerManager" />
+	</bean>
+
+	<!-- =============================== Reports ======================================== -->
+	<!-- officer/reportSamplers.html -->
+	<bean id="reportListSamplersController"
+		class="com.tiffany.webapp.controller.ReportListSamplersController">
+		<property name="waterbodyManager" ref="waterbodyManager" />
+		<property name="samplerManager" ref="samplerManager" />
+	</bean>
+
+	<!-- ================================ Map ========================================== -->
+	<!-- map.html -->
+	<bean id="mapController" class="com.tiffany.webapp.controller.MapController">
+
+	</bean>
+
+	<!-- =================================================================================== -->
+	<!-- Came with AppFuse -->
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="2097152" />
+	</bean>
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="ApplicationResources" />
+		<property name="useCodeAsDefaultMessage" value="true" />
+	</bean>
+
+	<bean id="urlMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<value>
+				/admin/activeUsers.html=filenameController
+				/admin/flushCache.html=filenameController
+				/admin/reload.html=reloadController
+				/admin/users.html=userController
+				/admin/usersearch.html=userSearchController
+				/officer/samplesearch.html=sampleSearchController
+				/officer/samplers.html=samplerController
+				/officer/reportsamplers.html=reportListSamplersController
+				/laboratory/bulkupload.html=bulkUploadController
+				/mainMenu.html=filenameController
+				/passwordHint.html=passwordHintController
             </value>
-        </property>
-        <property name="order" value="0"/>
-    </bean>
+		</property>
+		<property name="order" value="0" />
+	</bean>
 
-    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
-        <property name="order" value="1"/>
-    </bean>
+	<bean
+		class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
+		<property name="order" value="1" />
+	</bean>
 
-    <!-- View Resolver for JSPs -->
-    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="requestContextAttribute" value="rc"/>
-        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-        <property name="prefix" value="/WEB-INF/pages/"/>
-        <property name="suffix" value=".jsp"/>
-    </bean>
+	<!-- View Resolver for JSPs -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="requestContextAttribute" value="rc" />
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
 </beans>
