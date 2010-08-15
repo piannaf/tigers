@@ -57,7 +57,7 @@
             <value description="id">-3</value>
             <value description="username">officer</value>
             <value description="password">f90409b98ffb61424a01b4bb718aa602cebd5ee2</value>
-            <value description="company_name">Microsoft</value>
+            <value description="company_name">Facebook</value>
             <value description="address">100 Queen St.</value>
             <value description="city">Denver</value>
             <value description="country">AU</value>
@@ -75,7 +75,7 @@
             <value description="id">-4</value>
             <value description="username">contractor</value>
             <value description="password">864dc49fe1876d8ee49c9f30338373ef1ada16b3</value>
-            <value description="company_name">Microsoft</value>
+            <value description="company_name">Yahoo</value>
             <value description="address">100 Queen St.</value>
             <value description="city">Denver</value>
             <value description="country">AU</value>
@@ -93,7 +93,7 @@
             <value description="id">-5</value>
             <value description="username">lab</value>
             <value description="password">3953f9ddf975ab5097ee468d99555c5b441169bf</value>
-            <value description="company_name">Microsoft</value>
+            <value description="company_name">UQ</value>
             <value description="address">100 Queen St.</value>
             <value description="city">Denver</value>
             <value description="country">AU</value>
@@ -255,6 +255,19 @@
 		  	<value>Peter</value>
 		  	<value>aquifer 52</value>
 		  	<value>Piper</value>
+		  	<value>monthly</value>
+		  </row>
+		  <row>
+		  	<value>GW112</value>
+		  	<value>LNO87454533</value>
+		  	<value>3.3347</value>
+		  	<value>1.5</value>
+		  	<value>daily</value>
+		  	<value>2</value>
+		  	<value>testing gw again</value>
+		  	<value>contractor</value>
+		  	<value>aquifer 52</value>
+		  	<value>lab</value>
 		  	<value>monthly</value>
 		  </row>
 	</table>
