@@ -9,6 +9,8 @@ import org.springframework.web.context.ContextLoaderListener;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+
+import java.io.File;
 import java.util.Map;
 
 
@@ -56,5 +58,8 @@ public class StartupListenerTest extends TestCase {
         assertTrue(sc.getAttribute(WebApplicationContext
                 .ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE) != null);
         assertTrue(sc.getAttribute(Constants.AVAILABLE_ROLES) != null);
+        
+        // Creation of kml from samplers
+        assertTrue(sc.getAttribute("kmlPath") != null);
     }
 }
