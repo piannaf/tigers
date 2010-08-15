@@ -3,7 +3,10 @@ package com.tiffany.webapp.listener;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import com.tiffany.Constants;
+import com.tiffany.model.Sampler;
 import com.tiffany.service.LookupManager;
+import com.tiffany.service.SamplerManager;
+
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -16,8 +19,15 @@ import org.springframework.security.providers.rememberme.RememberMeAuthenticatio
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import de.micromata.opengis.kml.v_2_2_0.*;
 
 /**
  * <p>StartupListener class used to initialize and database settings
@@ -90,7 +100,10 @@ public class StartupListener implements ServletContextListener {
     }
 
     /**
-     * This method uses the LookupManager to lookup available roles from the data layer.
+     * This method starts-up initialization of the application context:
+     * 1. Uses LookupManager to lookup available roles from the data layer.
+     * 2. Uses SamplerManager to lookup all samplers from the data layer.
+     * 3. TODO Generates and saves a KML file with all samplers accounted for.
      * @param context The servlet context
      */
     public static void setupContext(ServletContext context) {
@@ -100,6 +113,49 @@ public class StartupListener implements ServletContextListener {
         // get list of possible roles
         context.setAttribute(Constants.AVAILABLE_ROLES, mgr.getAllRoles());
         log.debug("Drop-down initialization complete [OK]");
+        
+        //Generate KML file from list of samplers
+        SamplerManager smgr = (SamplerManager) ctx.getBean("samplerManager");
+        generateKml(context, smgr.getAll());
+    }
+    
+    /**
+     * This method generates a KML file from a list of samplers.
+     * @param context The servlet context
+     * @param samplers The list of sampler objects
+     */
+    public static void generateKml(ServletContext context, List<Sampler> samplers) {
+	String kmlPath = context.getRealPath("/resources") + "/";
+	// Create the directory if it doesn't exist
+        File kmlDir = new File(kmlPath);
+        if (!kmlDir.exists()) {
+            kmlDir.mkdirs();
+        }
+	log.debug("\n\n\tCreating initial kml in: " + kmlDir);
+	
+	final Kml kml = new Kml();
+	final Document document = kml.createAndSetDocument()
+		.withName("TiGERS.kml").withDescription("Location of samplers " +
+				"at the Tiffany Gold Mine").withOpen(true);
+	document.createAndAddPlacemark()	// Main placemark
+	   .withName("Tiffany Gold Mine, AU").withOpen(Boolean.TRUE)
+	   .createAndSetPoint().addToCoordinates(151.761274, -25.265189);
+	
+	for(Sampler sampler : samplers) {	// All current samplers
+	    document.createAndAddPlacemark()
+	    	.withName(sampler.getTag()).withOpen(Boolean.TRUE)
+	    	.createAndSetPoint().addToCoordinates(
+	    		sampler.getLongitude().doubleValue(), 
+	    		sampler.getLatitude().doubleValue());
+	}
+	try {
+	    kmlPath = kmlPath + "/" + "TiGERS.kml";
+	    kml.marshal(new File(kmlPath));
+	    context.setAttribute("kmlPath", Constants.KML_PATH);
+	    log.debug("\n\tKML has been created in: " + kmlPath + "\n");
+	} catch (FileNotFoundException e) {
+	    log.debug(e.toString());
+	}
     }
 
     /**

@@ -78,4 +78,9 @@ public class Constants {
      * The name of the CSS Theme setting.
      */
     public static final String CSS_THEME = "csstheme";
+    
+    /**
+     * The path of the KML file used for the interactive map;
+     */
+    public static final String KML_PATH = "/resources/TiGERS.kml";
 }

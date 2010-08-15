@@ -188,7 +188,7 @@
 	    <value>0.01</value>
 	    <value>0.004</value>
 	    <value>LAB01</value>
-	    <value>GW01</value>
+	    <value>GW001</value>
 	  </row>
 	  <row>
 	    <value>2</value>
@@ -202,7 +202,7 @@
 	    <value>0.012</value>
 	    <value>0.006</value>
 	    <value>LAB01</value>
-	    <value>GW01</value>
+	    <value>GW002</value>
 	  </row>
 	</table>
 
@@ -219,10 +219,10 @@
 		  <column>laboratory</column>
 		  <column>depth_to_collar_screening_freq</column>
 		  <row>
-		    <value>SW123</value>
+		    <value>SW006</value>
 		    <value></value>
-		    <value>123.2347</value>
-		    <value>631.7844</value>
+		    <value>151.766349</value>
+		    <value>-25.297174</value>
 		    <value>weekly</value>
 		    <value>0</value>
 		    <value>testing sw</value>
@@ -232,10 +232,10 @@
 		    <value></value>
 		  </row>
 		  <row>
-		    <value>GW567</value>
+		    <value>GW001</value>
 		    <value>RTEED867484</value>
-		    <value>333.3347</value>
-		    <value>567.454</value>
+		    <value>151.78668</value>
+		    <value>-25.280945</value>
 		    <value>monthly</value>
 		    <value>3</value>
 		    <value>testing gw</value>
@@ -245,10 +245,10 @@
 		    <value>yearly</value>
 		  </row>
 		  <row>
-		  	<value>GW111</value>
+		  	<value>GW002</value>
 		  	<value>LNO87454533</value>
-		  	<value>3.3347</value>
-		  	<value>1.5</value>
+		  	<value>151.778612</value>
+		  	<value>-25.248616</value>
 		  	<value>daily</value>
 		  	<value>2</value>
 		  	<value>testing gw again</value>
@@ -257,11 +257,76 @@
 		  	<value>Piper</value>
 		  	<value>monthly</value>
 		  </row>
+          <row>
+            <value>SW001</value>
+            <value></value>
+            <value>151.758828</value>
+            <value>-25.266218</value>
+            <value>daily</value>
+            <value>2</value>
+            <value>testing gw again</value>
+            <value>Peter</value>
+            <value>aquifer 52</value>
+            <value>Piper</value>
+            <value>monthly</value>
+          </row>
+          <row>
+            <value>SW002</value>
+            <value></value>
+            <value>151.764493</value>
+            <value>-25.256185</value>
+            <value>daily</value>
+            <value>2</value>
+            <value>testing gw again</value>
+            <value>Peter</value>
+            <value>aquifer 52</value>
+            <value>Piper</value>
+            <value>monthly</value>
+          </row>
+          <row>
+            <value>SW003</value>
+            <value></value>
+            <value>151.772282</value>
+            <value>-25.266315</value>
+            <value>daily</value>
+            <value>2</value>
+            <value>testing gw again</value>
+            <value>Peter</value>
+            <value>aquifer 52</value>
+            <value>Piper</value>
+            <value>monthly</value>
+          </row>
+          <row>
+            <value>SW004</value>
+            <value></value>
+            <value>151.757154</value>
+            <value>-25.279859</value>
+            <value>daily</value>
+            <value>2</value>
+            <value>testing gw again</value>
+            <value>Peter</value>
+            <value>aquifer 52</value>
+            <value>Piper</value>
+            <value>monthly</value>
+          </row>
+          <row>
+            <value>SW005</value>
+            <value></value>
+            <value>151.751747</value>
+            <value>-25.253701</value>
+            <value>daily</value>
+            <value>2</value>
+            <value>testing gw again</value>
+            <value>Peter</value>
+            <value>aquifer 52</value>
+            <value>Piper</value>
+            <value>monthly</value>
+          </row>
 		  <row>
-		  	<value>GW112</value>
+		  	<value>GW003</value>
 		  	<value>LNO87454533</value>
-		  	<value>3.3347</value>
-		  	<value>1.5</value>
+		  	<value>151.802044</value>
+		  	<value>-25.302752</value>
 		  	<value>daily</value>
 		  	<value>2</value>
 		  	<value>testing gw again</value>
