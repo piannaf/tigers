@@ -20,8 +20,9 @@
             <!--Item name="FlushCache" title="menu.flushCache" page="/admin/flushCache.html"/-->
             <!--Item name="Clickstream" title="menu.clickstream" page="/admin/clickstreams.jsp"/-->
         </Menu>
-        <Menu name="LaboratoryMenu" title="menu.laboratory.sample" description="Laboratory Menu" roles="ROLE_ADMIN,ROLE_OFFICER,ROLE_LABORATORY,ROLE_CONTRACTOR,ROLE_USER" width="120" page="/laboratory/bulkupload.html">
+        <Menu name="LaboratoryMenu" title="menu.laboratory.sample" description="Laboratory Menu" roles="ROLE_LABORATORY" width="120" page="/laboratory/bulkupload.html">
         	<Item name="BulkUpload" title="menu.laboratory.bulkUpload" page="/laboratory/bulkupload.html"/>
+        	<Item name="FindContractor" title="menu.laboratory.findContractor" page="/laboratory/findcontractor.html"/>
         </Menu>
         <Menu name="Logout" title="user.logout" page="/logout.jsp" roles="ROLE_ADMIN,ROLE_OFFICER,ROLE_LABORATORY,ROLE_CONTRACTOR,ROLE_USER"/>
     </Menus>

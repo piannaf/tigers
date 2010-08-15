@@ -310,5 +310,18 @@
                   </var>
               </field>
       </form>
+      <form name="tag">
+            <field property="tag" depends="required">
+                <arg0 key="findContractor.tag"/>
+            </field>
+      </form>
+      <form name="email">
+            <field property="subject" depends="required">
+                <arg0 key="email.subject"/>
+            </field>
+            <field property="content" depends="required">
+                <arg0 key="email.content"/>
+            </field>
+      </form>
   </formset>
 </form-validation>

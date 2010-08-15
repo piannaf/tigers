@@ -1,18 +1,23 @@
 package com.tiffany.webapp.controller;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.*;
+
+import java.util.*;
+import java.math.BigDecimal;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.tiffany.Constants;
 import com.tiffany.model.Sample;
+import com.tiffany.service.SamplerManager;
+import com.tiffany.service.WaterbodyManager;
+import com.tiffany.service.BulkUploadService;
 
+import org.apache.commons.lang.StringUtils;
+import org.springframework.security.AccessDeniedException;
 import org.springframework.validation.BindException;
+import org.springframework.validation.Errors;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,30 +32,62 @@ import org.springframework.web.servlet.ModelAndView;
  * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
  */
 public class BulkUploadController extends BaseFormController {
-
+	private SamplerManager samplerManager;
+	private WaterbodyManager waterbodyManager;
+	private BulkUploadService bulkUploadService;
+	
+	public void setWaterbodyManager(WaterbodyManager waterbodyManager) {
+		this.waterbodyManager = waterbodyManager;
+	}
+	public void setSamplerManager(SamplerManager samplerManager) {
+		this.samplerManager = samplerManager;
+	}	
+	public void setBulkUploadService(BulkUploadService bulkUploadService) {
+		this.bulkUploadService = bulkUploadService;
+	}
     public BulkUploadController() {
         setCommandName("fileUpload");
         setCommandClass(FileUpload.class);
     }
-    
+    //===========================================================================
     public ModelAndView processFormSubmission(HttpServletRequest request,
                                               HttpServletResponse response,
                                               Object command,
                                               BindException errors)
     throws Exception {
+    	log.debug("processFormSubmission");
         if (request.getParameter("cancel") != null) {
             return new ModelAndView(getCancelView());
         }
 
         return super.processFormSubmission(request, response, command, errors);
     }
+    
+    //===========================================================================
+    protected Map referenceData(HttpServletRequest request, Object command, Errors errors) throws Exception {
+		log.debug("entering \"referenceData\" method in BulkUploadController...");
+		Locale locale = request.getLocale();
+		Map<String, Object> refData = new HashMap();
+		//List<String> samplerIdList = new ArrayList<String>();
+		List<String> samplerIdList = samplerManager.getTagListForLaboratory(request.getRemoteUser());
+		refData.put("samplerIdList", samplerIdList);
+		if (samplerIdList.size() == 0)	saveMessage(request, getText("bulkUpload.form.noTag", locale));
+		return refData;
+	}
+    
+  //===========================================================================
+    protected ModelAndView showForm(HttpServletRequest request, HttpServletResponse response,
+            BindException errors) throws Exception {
+    	log.debug("showForm");
 
-    public ModelAndView onSubmit(HttpServletRequest request,
-                                 HttpServletResponse response, Object command,
-                                 BindException errors)
-    throws Exception {
+
+    	return super.showForm(request, response, errors);
+	}
+    //==================================================================
+    public ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object command,
+    			BindException errors) throws Exception {
         FileUpload fileUpload = (FileUpload) command;
-
+        Locale locale = request.getLocale();
         // validate a file was entered
         if (fileUpload.getFile().length == 0) {
             Object[] args = 
@@ -87,23 +124,80 @@ public class BulkUploadController extends BaseFormController {
         }
 
         bos.close();
-
+        
         //close the stream
         stream.close();
+        
         //===================================================
+        String samplerId = fileUpload.getName();
+        String waterbody = samplerManager.getWaterBodyNameByTag(samplerId);
+        log.debug("waterbody: " + waterbody);
+        String type = waterbodyManager.getWaterBodyType(waterbody);        
+        log.debug("watebody type: " + type);
         File csv = new File(csvPath);
         BufferedReader text = new BufferedReader(new FileReader(csv));
-        StringBuffer result = new StringBuffer();
         String line;
+        // empty file
+        if ((line = text.readLine()) == null) {
+        	saveError(request, getText("errors.bulkUpload.empty", locale));
+        	text.close();
+            csv.delete();
+        	return showForm(request, response, errors);
+        } 
+        // invalid header
+        if (!bulkUploadService.initService(type, line, samplerId, request.getRemoteUser())) {
+        	if (type.equals("G")) type = "Ground Water";
+        	else type = "Surface Water";
+        	saveError(request, getText("errors.bulkUpload.header", type, locale));
+        	text.close();
+            csv.delete();
+        	return showForm(request, response, errors);
+        }
+        //======================
+        log.debug("\n==================== header test =======================");
+        Set<Integer> keys = bulkUploadService.fieldsMap.keySet();
+        Iterator it = keys.iterator();
+        while (it.hasNext()) {
+        	int key = (Integer)it.next();
+        	log.debug("item "+key+" : "+bulkUploadService.fieldsMap.get(key));
+        }
+        //=======================
+        int count = 1;
+        List<Data> dataList = new ArrayList();
         while ((line = text.readLine()) != null) {
-        	result.append("<strong>" + line + "</strong><br/>");
+        	Data data = new Data();
+        	data.line = ++count;
+        	data.errorFields = bulkUploadService.update(line);
+        	//=========
+        	log.debug("\n==================== data test ===========");
+        	log.debug("data : "+data.errorFields);
+        	//=========
+        	if (data.errorFields.equals("")) { data.complete = "Y"; }
+        	else { data.complete = "Faild"; }
+        	dataList.add(data);
         }
         text.close();
         csv.delete();
+        // no data
+        if (count == 1) {
+        	saveError(request, getText("errors.bulkUpload.noData", locale));
+        	return showForm(request, response, errors);
+        }
+        
+        
         //===================================================
         // place the data into the request for retrieval on next page
-        request.setAttribute("message", result.toString());
 
-        return new ModelAndView(getSuccessView());
+        return new ModelAndView(getSuccessView()).addObject("dataList", dataList);
+    }
+    //============================================================================
+    public class  Data {
+    	public int line;
+    	public String errorFields;
+    	public String complete;
+    	
+    	public int getLine() { return line; }
+    	public String getComplete() { return complete; }
+    	public String getErrorFields() { return errorFields; }
     }
 }

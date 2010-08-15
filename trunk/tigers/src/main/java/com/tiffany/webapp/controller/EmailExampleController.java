@@ -27,7 +27,7 @@ import org.springframework.security.userdetails.UsernameNotFoundException;
 import org.springframework.validation.BindException;
 
 public class EmailExampleController extends BaseFormController {
-	private final Log log = LogFactory.getLog(PasswordHintController.class);
+	private final Log log = LogFactory.getLog(EmailExampleController.class);
     private MessageSource messageSource = null;
     protected MailEngine mailEngine = null;
     protected SimpleMailMessage message = null;
@@ -78,6 +78,7 @@ public class EmailExampleController extends BaseFormController {
 	    		Map model = new HashMap();
 	    		model.put("fullname", to[i]);
 	    		model.put("message", content);
+	    		log.debug("here");
 	    		mailEngine.sendHtmlTemplateWithBannerImage(message, "greeting.vm", model);
 	    	} catch (MailException me) {
 	    		saveError(request, getText("email.failed", locale));

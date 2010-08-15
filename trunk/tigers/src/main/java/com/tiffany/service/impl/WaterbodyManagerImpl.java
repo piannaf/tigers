@@ -24,6 +24,12 @@ public class WaterbodyManagerImpl extends GenericManagerImpl<Waterbody, String> 
 		return waterbodyDao.findLikeName(search);
 	}
 
+	public String getWaterBodyType(String waterbody) {
+		List<Waterbody> waterbodyList = waterbodyDao.findByName(waterbody);
+		if (waterbodyList.size() == 0) return null;
+		return Character.toString(waterbodyList.get(0).getType());
+	}
+	
 	public List<Waterbody> getAll() {
 		return waterbodyDao.getAll();
 	}
