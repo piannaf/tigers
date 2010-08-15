@@ -33,7 +33,12 @@
     <li>
         <appfuse:label key="bulkUploadForm.name" styleClass="desc"/>
         <form:errors path="name" cssClass="fieldError"/>
-        <form:input path="name" id="name" cssClass="text medium" cssErrorClass="text state error"/>
+        <!--form:input path="name" id="name" cssClass="text medium" cssErrorClass="text state error"/-->
+        <form:select path="name" id="name" cssClass="text medium">
+        	<c:forEach items="${samplerIdList}" var="samplerId">
+        		<option value="<c:out value="${samplerId}"/>"><c:out value="${samplerId}"/></option>
+        	</c:forEach>
+        </form:select>
     </li>
     <li>
         <appfuse:label key="bulkUploadForm.file" styleClass="desc"/>

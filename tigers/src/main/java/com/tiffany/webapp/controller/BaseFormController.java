@@ -197,12 +197,37 @@ public class BaseFormController extends SimpleFormController {
     	if (log.isDebugEnabled()) {
     		log.debug("sending e-mail  to user [" + user.getEmail() + "]...");
     	}
+    	log.debug("message is null"+(message==null));
     	
     	message.setTo(user.getCompanyName() + "<" + user.getEmail() + ">");
     	
     	model.put("user", user);    	
     	
     	mailEngine.sendHtmlTemplateWithBannerImage(message, templateName, model);
+    }
+    
+    protected void sendUserMessage(User user, String subject, Map model) {
+    	if (log.isDebugEnabled()) {
+    		log.debug("sending e-mail  to user [" + user.getEmail() + "]...");
+    	}
+    	log.debug("message is null"+(message==null));
+    	
+    	message.setTo(user.getCompanyName() + "<" + user.getEmail() + ">");
+    	message.setSubject(subject);
+    	model.put("user", user);        	
+    	mailEngine.sendHtmlTemplateWithBannerImage(message, templateName, model);
+    }
+    
+    protected void sendUserMessage(User user, String subject, String template, Map model) {
+    	if (log.isDebugEnabled()) {
+    		log.debug("sending e-mail  to user [" + user.getEmail() + "]...");
+    	}
+    	log.debug("message is null"+(message==null));
+    	
+    	message.setTo(user.getCompanyName() + "<" + user.getEmail() + ">");
+    	message.setSubject(subject);
+    	model.put("user", user);        	
+    	mailEngine.sendHtmlTemplateWithBannerImage(message, template, model);
     }
 
     public void setMailEngine(MailEngine mailEngine) {

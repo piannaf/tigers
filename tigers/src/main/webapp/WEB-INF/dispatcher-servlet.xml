@@ -61,13 +61,14 @@
 		<property name="templateName" value="accountCreatedHtml.vm" />
 	</bean>
 
+
 	<!-- Add additional controller beans here -->
 	<!-- =============================== Sample ======================================== -->
 	<!-- samples.html -->
 	<bean id="sampleController" class="com.tiffany.webapp.controller.SampleController">
 		<property name="sampleManager" ref="sampleManager" />
 	</bean>
-
+	
 	<!-- sampleform.html -->
 	<bean id="sampleFormController" class="com.tiffany.webapp.controller.SampleFormController">
 		<property name="validator" ref="beanValidator" />
@@ -81,6 +82,7 @@
 		<property name="successView" value="/officer/samplesearch" />
 		<property name="sampleManager" ref="sampleManager" />
 	</bean>
+
 
 	<!-- =============================== Email =================================================== -->
 	<bean id="emailExampleController" class="com.tiffany.webapp.controller.EmailExampleController">
@@ -100,10 +102,13 @@
 
 	<!-- ================================= BulkUpload ============================================== -->
 	<bean id="bulkUploadController" class="com.tiffany.webapp.controller.BulkUploadController">
-		<property name="validator" ref="beanValidator" />
-		<property name="cancelView" value="redirect:mainMenu.html" />
-		<property name="formView" value="/laboratory/bulkUploadForm" />
-		<property name="successView" value="/laboratory/bulkUploadDisplay" />
+		<property name="samplerManager" ref="samplerManager"/>
+    	<property name="waterbodyManager" ref="waterbodyManager"/>
+    	<property name="bulkUploadService" ref="bulkUploadService"/>
+        <property name="validator" ref="beanValidator"/>
+        <property name="cancelView" value="redirect:mainMenu.html"/>
+        <property name="formView" value="/laboratory/bulkUploadForm"/>
+        <property name="successView" value="/laboratory/bulkUploadDisplay"/>
 	</bean>
 
 	<!-- =============================== Sampler ======================================== -->
@@ -125,7 +130,22 @@
 	<bean id="mapController" class="com.tiffany.webapp.controller.MapController">
 
 	</bean>
-
+	<!-- ================================ Find Contractor (for laboratory) ========================== -->
+	<bean id="findContractorController" class="com.tiffany.webapp.controller.FindContractorController">
+		<property name="samplerManager" ref="samplerManager"/>
+		<property name="userManager" ref="userManager"/>
+		<property name="validator" ref="beanValidator"/>
+		<property name="successView" value="/laboratory/findcontractor"/>
+	</bean>
+    <!-- ================================= SendEmail ================================================= -->
+    <bean id="sendEmailController" class="com.tiffany.webapp.controller.SendEmailController">
+    	<property name="validator" ref="beanValidator"/>
+        <property name="successView" value="redirect:mainMenu.html"/>   
+        <property name="userManager" ref="userManager"/>   
+        <property name="mailEngine" ref="mailEngine"/>        
+        <property name="message" ref="mailMessage"/> 
+        <property name="templateName" value="userToUserHtml.vm" />          		                		                  		                      
+    </bean>
 	<!-- =================================================================================== -->
 	<!-- Came with AppFuse -->
 
@@ -153,6 +173,7 @@
 				/officer/samplers.html=samplerController
 				/officer/reportsamplers.html=reportListSamplersController
 				/laboratory/bulkupload.html=bulkUploadController
+				/laboratory/findcontractor.html=findContractorController
 				/mainMenu.html=filenameController
 				/passwordHint.html=passwordHintController
             </value>

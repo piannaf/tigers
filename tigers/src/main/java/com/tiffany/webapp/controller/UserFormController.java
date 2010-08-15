@@ -22,7 +22,11 @@ import org.springframework.mail.MailException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * Implementation of <strong>SimpleFormController</strong> that interacts with
@@ -73,7 +77,7 @@ public class UserFormController extends BaseFormController {
         if (request.getParameter("delete") != null) {
             getUserManager().removeUser(user.getId().toString());
             saveMessage(request, getText("user.deleted", user.getCompanyName(), locale));
-
+            
             return new ModelAndView(getSuccessView());
         //====== Update or Add ==========    
         } else {
@@ -99,7 +103,7 @@ public class UserFormController extends BaseFormController {
             }
 
             Integer originalVersion = user.getVersion();
-            
+            boolean isNew = (user.getId() == null);
             try {
                 getUserManager().saveUser(user);
             } catch (AccessDeniedException ade) {
@@ -118,14 +122,36 @@ public class UserFormController extends BaseFormController {
                 
                 return showForm(request, response, errors);
             }
-
+            // send email to new user
+            log.debug("isAdd?"+user.getId());
+            if (isNew) {
+            	log.debug("sending email...");
+            	message.setSubject(getText("signup.email.subject", locale));                
+                Map<String, Serializable> model = new HashMap<String, Serializable>();
+                model.put("message", getText("signup.email.message", locale));                
+                try {
+                    //sendUserMessage(user, getText("signup.email.message", locale), RequestUtil.getAppURL(request));
+                	sendUserMessage(user, model);
+                } catch (MailException me) {
+                	saveError(request, getText("email.failed", locale));
+                    log.debug("MailException");
+                } catch (Exception e) {
+                	log.debug("can't send email");
+                }
+            }
+            
+            log.debug("finish sending");
             if (!StringUtils.equals(request.getParameter("from"), "list")) {
-                saveMessage(request, getText("user.saved", user.getCompanyName(), locale));
-
+            	if (isNew) {
+            		saveMessage(request, getText("user.added", user.getCompanyName(), locale));
+            	} else {
+            		saveMessage(request, getText("user.saved", user.getCompanyName(), locale));
+            	}
                 // return to main Menu
                 return new ModelAndView(new RedirectView("mainMenu.html"));
             } else {
                 if (StringUtils.isBlank(request.getParameter("version"))) {
+                	log.debug("new user");
                     saveMessage(request, getText("user.added", user.getCompanyName(), locale));
 
                     // Send an account information e-mail
@@ -136,16 +162,20 @@ public class UserFormController extends BaseFormController {
                                         RequestUtil.getAppURL(request));
                     } catch (MailException me) {
                         saveError(request, me.getCause().getLocalizedMessage());
+                    } catch (Exception e) {
+                    	log.debug("unknown exception happened when sending email");
                     }
 
                     return new ModelAndView(getSuccessView());
                 } else {
+                	log.debug("old user");
                     saveMessage(request, getText("user.updated.byAdmin", user.getCompanyName(), locale));
+                    return new ModelAndView(getSuccessView());
                 }
             }
     
         }
-        return showForm(request, response, errors);
+        //return showForm(request, response, errors);
     }
 //====================================================================================
     protected ModelAndView showForm(HttpServletRequest request,
@@ -155,7 +185,7 @@ public class UserFormController extends BaseFormController {
 
         // If not an adminstrator, make sure user is not trying to add or edit another user
         if (!request.isUserInRole(Constants.ADMIN_ROLE) && !isFormSubmission(request)) {
-            if (isAdd(request) || request.getParameter("id") != null) {
+			if (isAdd(request) || request.getParameter("id") != null) {
                 response.sendError(HttpServletResponse.SC_FORBIDDEN);
                 log.warn("User '" + request.getRemoteUser() + "' is trying to edit user with id '" +
                          request.getParameter("id") + "'");
@@ -167,8 +197,7 @@ public class UserFormController extends BaseFormController {
         return super.showForm(request, response, errors);
     }
 //=======================================================================================
-    protected Object formBackingObject(HttpServletRequest request)
-    throws Exception {
+    protected Object formBackingObject(HttpServletRequest request) throws Exception {
     	log.debug("UserFormController: formBackingObject");
         if (!isFormSubmission(request)) {
         	log.debug("!isFormSubmission==true");

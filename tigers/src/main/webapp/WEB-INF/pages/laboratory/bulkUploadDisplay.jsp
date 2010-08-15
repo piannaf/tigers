@@ -9,7 +9,20 @@
 <p><fmt:message key="bulkUpload.display.message"/></p>
 
 <div class="separator"></div>
+<!-- ============================================== -->
+<display:table name="dataList" cellspacing="0" cellpadding="0" requestURI=""
+id="dataList" pagesize="25" class="table dataList" export="true">
 
+<display:column property="line" escapeXml="true" titleKey="bulkUpload.display.line"/>
+<display:column property="errorFields" escapeXml="true" titleKey="bulkUpload.display.errorFields"/>
+<display:column property="complete" escapeXml="true" titleKey="bulkUpload.display.complete"/>
+
+</display:table>
+
+
+
+
+<!-- ============================================== -->
 <table class="detail" cellpadding="5">
     <tr>
        <c:out value="${message}" escapeXml="false"/>
@@ -18,7 +31,7 @@
         <td></td>
         <td class="buttonBar">
             <input type="button" name="done" id="done" value="Done"
-                onclick="location.href='mainMenu.html'" />
+                onclick="location.href='../mainMenu.html'" />
             <input type="button" style="width: 120px" value="Upload Another"
                 onclick="location.href='/laboratory/bulkupload.html'" />
         </td>

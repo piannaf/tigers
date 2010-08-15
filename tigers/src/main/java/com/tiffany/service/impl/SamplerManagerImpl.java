@@ -1,6 +1,6 @@
 package com.tiffany.service.impl;
 
-import java.util.List;
+import java.util.*;
 
 import javax.jws.WebService;
 
@@ -23,5 +23,29 @@ SamplerManager {
 	public List<Sampler> findByWaterBody(String tag) {
 		return samplerDao.findByWaterBody(tag);
 	}
-
+	
+	public List<String> getTagListForLaboratory(String laboratory) {
+		List<String> tagList = new ArrayList<String>();
+		Set<String> tagSet = new HashSet<String>();
+		List<Sampler> samplerList = samplerDao.findByLaboratory(laboratory);
+		Iterator it = samplerList.iterator();
+		while (it.hasNext()) {
+			Sampler sampler = (Sampler)it.next();
+			tagSet.add(sampler.getTag());
+		}
+		tagList.addAll(tagSet);
+		return tagList;
+	}
+	
+	public String getWaterBodyNameByTag(String tag) {
+		List<Sampler> samplerList = samplerDao.findByTag(tag);
+		if (samplerList.size() == 0) return null;
+		return samplerList.get(0).getWaterbody();
+	}
+	
+	public String getContractorByTag(String tag) {
+		List<Sampler> samplerList = samplerDao.findByTag(tag);
+		if (samplerList.size() == 0) return null;
+		return samplerList.get(0).getContractor();
+	}
 }

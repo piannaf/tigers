@@ -82,7 +82,7 @@
     <li>
         <appfuse:label styleClass="desc" key="user.companyName"/>
         <form:errors path="companyName" cssClass="fieldError"/>
-        <form:input path="companyName" id="firstName" cssClass="text large" cssErrorClass="text medium error" maxlength="50"/>       
+        <form:input path="companyName" id="companyName" cssClass="text large" cssErrorClass="text medium error" maxlength="50"/>       
     </li>
     <li>
         <div>

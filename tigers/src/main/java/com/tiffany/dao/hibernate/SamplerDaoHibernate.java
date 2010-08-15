@@ -1,7 +1,6 @@
 package com.tiffany.dao.hibernate;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.tiffany.dao.SamplerDao;
 import com.tiffany.model.Sample;
@@ -23,6 +22,14 @@ public class SamplerDaoHibernate extends GenericDaoHibernate<Sampler, String> im
 		} else {
 			return samplers;
 		}
+	}
+	
+	public List<Sampler> findByLaboratory(String laboratory) {
+		return getHibernateTemplate().find("from Sampler where laboratory=?", laboratory);
+	}
+	
+	public List<Sampler> findByTag(String tag) {
+		return getHibernateTemplate().find("from Sampler where tag=?", tag);
 	}
 
 }
