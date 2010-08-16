@@ -7,12 +7,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+
 @Entity
 @Table(name="parameternames")
 public class ParameterNames extends BaseObject {
 
 	private Long parameter_id;
 	private String name;
+	private String internal_name;
 	private char type;
 	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
@@ -31,6 +35,15 @@ public class ParameterNames extends BaseObject {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@Column(nullable=false, length=20)
+	public String getInternal_name() {
+		return internal_name;
+	}
+	public void setInternal_name(String internal_name) {
+		this.internal_name = internal_name;
+	}
+	
 	@Column(nullable=false)
 	public char getType() {
 		return type;
@@ -42,8 +55,8 @@ public class ParameterNames extends BaseObject {
 
 	@Override
 	public String toString() {
-		return "ParameterNames [parameter_id=" + parameter_id + ", name="
-				+ name + ", type=" + type + "]";
+		return new ToStringBuilder(this).append("parameter_id", parameter_id).append("name",
+				name).append("type", type).toString();
 	}
 
 	@Override

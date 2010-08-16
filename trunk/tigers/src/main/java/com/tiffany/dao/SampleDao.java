@@ -11,5 +11,6 @@ public interface SampleDao extends GenericDao<Sample, Long>{
      */
     public List<Sample> findByDateRange(Date start, Date end);
     public List<Sample> findSamplesByTagAndDateRange(String tag, Date start, Date end);
+    public List<Sample> findSamplesByTag(String tag);
     public List<Sample> findSamplerId();
 }

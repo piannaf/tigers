@@ -379,47 +379,68 @@
 	<table name='parameternames'>
 			<column>parameter_id</column>
 			<column>name</column>
+			<column>internal_name</column>
 			<column>type</column>
 			<row>
 				<value>1</value>
 				<value>pH</value>
+				<value>ph</value>
 				<value>B</value>
 			</row>
 			<row>
 				<value>2</value>
 				<value>Electrical Conductivity</value>
+				<value>ec</value>
 				<value>B</value>
 			</row>
 			<row>
 				<value>3</value>
 				<value>Temperature</value>
+				<value>temperature</value>
 				<value>B</value>
 			</row>
 			<row>
 				<value>4</value>
 				<value>Arsenic</value>
+				<value>arsenic</value>
 				<value>B</value>
 			</row>
 			<row>
 				<value>5</value>
 				<value>Oil &amp; Grease</value>
+				<value>grease</value>
 				<value>B</value>
 			</row>
 			<row>
 				<value>6</value>
 				<value>Depth to Collar</value>
+				<value>collar_depth</value>
 				<value>G</value>
 			</row>
 			<row>
 				<value>7</value>
 				<value>Fluoride</value>
+				<value>fluoride</value>
 				<value>S</value>
 			</row>
 			<row>
 				<value>8</value>
 				<value>Chromium</value>
+				<value>chromium</value>
 				<value>S</value>
 			</row>
+	</table>
+	<table name='parameterthresholds'>
+		<column>parameter_id</column>
+		<column>name</column>
+		<column>min</column>
+		<column>max</column>
+		<row>
+			<value>1</value>
+			<value>Lake Eyre</value>
+			<value>0</value>
+			<value>10</value>
+		</row>
 	</table>
 	<table name='screeningfrequency'>
 		<column>id</column>

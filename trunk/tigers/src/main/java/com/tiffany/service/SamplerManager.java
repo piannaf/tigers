@@ -8,6 +8,8 @@ import com.tiffany.model.Sampler;
 public interface SamplerManager extends GenericManager<Sampler, String> {
 	
 	List<Sampler> findByWaterBody(String tag);
+	Sampler getByTag(String tag);
+
 	List<String> getTagListForLaboratory(String laboratory);
 	String getWaterBodyNameByTag(String tag);
 	String getContractorByTag(String tag);

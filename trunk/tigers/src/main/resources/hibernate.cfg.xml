@@ -10,6 +10,7 @@
         <mapping class="com.tiffany.model.Waterbody"/>
         <mapping class="com.tiffany.model.Contractor"/>
         <mapping class="com.tiffany.model.ParameterNames"/>
+        <mapping class="com.tiffany.model.ParameterThresholds"/>
         <mapping class="com.tiffany.model.ScreeningFrequency"/>
     </session-factory>
 </hibernate-configuration>

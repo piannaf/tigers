@@ -40,4 +40,8 @@ public class SampleManagerImpl extends GenericManagerImpl<Sample, Long>
 	public List<Sample> findSamplesByTagAndDateRange(String tag, Date from, Date to) {
 		return sampleDao.findSamplesByTagAndDateRange(tag, from, to);
 	}
+	
+	public List<Sample> findSamplesByTag(String tag) {
+		return sampleDao.findSamplesByTag(tag);
+	}
 }
