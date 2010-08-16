@@ -124,6 +124,20 @@
 		<property name="waterbodyManager" ref="waterbodyManager" />
 		<property name="samplerManager" ref="samplerManager" />
 	</bean>
+	<!-- officer/reportSamples.html -->
+	<bean id="reportListSamplesController"
+		class="com.tiffany.webapp.controller.ReportListSamplesController">
+		<property name="sampleManager" ref="sampleManager" />
+		<property name="parameterNamesManager" ref="parameterNamesManager" />
+	</bean>
+	<!-- officer/reportGraphSamples.html -->
+	<bean id="reportGraphSamplesController"
+		class="com.tiffany.webapp.controller.ReportGraphSamplesController">
+		<property name="sampleManager" ref="sampleManager" />
+		<property name="samplerManager" ref="samplerManager" />
+		<property name="parameterNamesManager" ref="parameterNamesManager" />
+		<property name="parameterThresholdsManager" ref="parameterThresholdsManager" />
+	</bean>
 
 	<!-- ================================ Map ========================================== -->
 	<!-- map.html -->
@@ -172,6 +186,8 @@
 				/officer/samplesearch.html=sampleSearchController
 				/officer/samplers.html=samplerController
 				/officer/reportsamplers.html=reportListSamplersController
+				/officer/reportsamples.html=reportListSamplesController
+				/officer/reportgraphsamples.html=reportGraphSamplesController
 				/laboratory/bulkupload.html=bulkUploadController
 				/laboratory/findcontractor.html=findContractorController
 				/mainMenu.html=filenameController

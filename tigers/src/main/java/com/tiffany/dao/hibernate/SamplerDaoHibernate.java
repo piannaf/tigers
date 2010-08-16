@@ -24,6 +24,16 @@ public class SamplerDaoHibernate extends GenericDaoHibernate<Sampler, String> im
 		}
 	}
 	
+	public Sampler getByTag(String tag) {
+		List samplers = getHibernateTemplate().find("from Sampler where tag=?",tag);
+		
+		if(samplers.isEmpty()) {
+			return null;
+		} else {
+			return (Sampler)samplers.get(0);
+		}
+	}
+	
 	public List<Sampler> findByLaboratory(String laboratory) {
 		return getHibernateTemplate().find("from Sampler where laboratory=?", laboratory);
 	}

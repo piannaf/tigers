@@ -75,6 +75,9 @@
     <bean id="parameterNamesDao" class="com.tiffany.dao.hibernate.ParameterNamesDaoHibernate">
             <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    <bean id="parameterThresholdsDao" class="com.tiffany.dao.hibernate.ParameterThresholdsDaoHibernate">
+            <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
     <bean id="screeningFrequencyDao" class="com.tiffany.dao.hibernate.ScreeningFrequencyDaoHibernate">
                 <property name="sessionFactory" ref="sessionFactory"/>
     </bean>

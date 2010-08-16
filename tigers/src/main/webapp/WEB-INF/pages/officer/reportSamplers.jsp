@@ -11,7 +11,7 @@
 	<div><c:out value="${waterbody.name}" escapeXml="true"/></div>
 	<ul>
 	<c:forEach var="sampler" items="${samplers[waterbody.name]}">
-	<c:url value="reportsampler.html" var="url">
+	<c:url value="reportsamples.html" var="url">
 	<c:param name="tag" value="${sampler.tag}"/>
 	</c:url>
 	<li><a href="<c:out value="${url}" escapeXml="true"/>"><c:out value="${sampler.tag}" escapeXml="true"/></a></li>

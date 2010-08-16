@@ -24,6 +24,11 @@ SamplerManager {
 		return samplerDao.findByWaterBody(tag);
 	}
 	
+	public Sampler getByTag(String tag) {
+		return samplerDao.getByTag(tag);
+	}
+
+	
 	public List<String> getTagListForLaboratory(String laboratory) {
 		List<String> tagList = new ArrayList<String>();
 		Set<String> tagSet = new HashSet<String>();

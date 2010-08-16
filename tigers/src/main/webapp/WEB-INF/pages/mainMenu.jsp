@@ -23,6 +23,9 @@
     <li>
     	<a href="<c:url value='emailexample.html'/>"><fmt:message key="menu.main.emailExample"/></a>
     </li>
+    <li>
+    	<a href="<c:url value='officer/reportsamplers.html'/>"><fmt:message key="menu.main.reports"/></a>
+    </li>
 <!-- 
     <li>
         <a href="<c:url value='/userform.html'/>"><fmt:message key="menu.user"/></a>

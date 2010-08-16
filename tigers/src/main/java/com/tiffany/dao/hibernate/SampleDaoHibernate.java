@@ -6,7 +6,7 @@ import java.util.List;
 import com.tiffany.dao.SampleDao;
 import com.tiffany.model.Sample;
 
-public class SampleDaoHibernate extends GenericDaoHibernate<Sample, Long> implements SampleDao{
+public class SampleDaoHibernate extends GenericDaoHibernate<Sample, Long> implements SampleDao {
     /**
      * Constructor to create a Generics-based version using Sample as the entity
      */
@@ -42,6 +42,11 @@ public class SampleDaoHibernate extends GenericDaoHibernate<Sample, Long> implem
 		Object[] tagAndDateRange = {tag, from, to};
 		return getHibernateTemplate().find("from Sample where tag=? and " +
 				"date_taken between ? and ?", tagAndDateRange);
+	}
+	
+	public List<Sample> findSamplesByTag(String tag) {
+		Object[] tagParam = {tag};
+		return getHibernateTemplate().find("from Sample where tag=?", tagParam);
 	}
 
 }

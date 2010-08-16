@@ -121,6 +121,12 @@
     <bean id="waterbodyManager" class="com.tiffany.service.impl.WaterbodyManagerImpl">
                 <constructor-arg ref="waterbodyDao"/>
     </bean>
+    <bean id="parameterNamesManager" class="com.tiffany.service.impl.ParameterNamesManagerImpl">
+                <constructor-arg ref="parameterNamesDao"/>
+    </bean>
+    <bean id="parameterThresholdsManager" class="com.tiffany.service.impl.ParameterThresholdsManagerImpl">
+                <constructor-arg ref="parameterThresholdsDao"/>
+    </bean>
     <bean id="bulkUploadService" class="com.tiffany.service.BulkUploadService">
     	<property name="sampleManager" ref="sampleManager"/>
     </bean>
