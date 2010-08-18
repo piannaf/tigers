@@ -24,7 +24,7 @@ public class SamplerDaoHibernate extends GenericDaoHibernate<Sampler, Long> impl
 		}
 	}
 
-	public Sampler findByTag(String tag) {
+	public Sampler findOneByTag(String tag) {
 
 		List<Sampler> samplers = getHibernateTemplate().find("from Sampler where tag=?",tag);
 
