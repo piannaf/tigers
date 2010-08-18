@@ -30,6 +30,7 @@
             classpath:/applicationContext-resources.xml
             classpath:/applicationContext-dao.xml
             classpath:/applicationContext-service.xml
+            classpath:/applicationContext-servlets.xml
             classpath*:/applicationContext.xml
             /WEB-INF/applicationContext*.xml
             /WEB-INF/xfire-servlet.xml
@@ -236,7 +237,16 @@
 	  <servlet-name>SearchServlet</servlet-name>
 	  <url-pattern>/searchServlet</url-pattern>
 	</servlet-mapping>
-    
+  
+  <servlet>
+  	<servlet-name>WaterbodyCompleter</servlet-name>
+  	<servlet-class>com.tiffany.servlets.WaterbodyCompleter</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>WaterbodyCompleter</servlet-name>
+  	<url-pattern>/waterbodies</url-pattern>
+  </servlet-mapping>
+      
     <!-- Dispatching handled by StaticFilter -->
     <!--<servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
