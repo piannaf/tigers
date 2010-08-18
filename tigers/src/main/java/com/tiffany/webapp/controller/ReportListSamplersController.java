@@ -18,13 +18,13 @@ import com.tiffany.service.SamplerManager;
 public class ReportListSamplersController implements Controller {
 	
 	//private final Log log = LogFactory.getLog(ReportListSamplersController.class);
-    private GenericManager<Waterbody, String> waterbodyManager = null;
-    private GenericManager<Sampler, String> samplerManager = null;
+    private GenericManager<Waterbody, Long> waterbodyManager = null;
+    private GenericManager<Sampler, Long> samplerManager = null;
 	
-    public void setWaterbodyManager(GenericManager<Waterbody, String> waterbodyManager) {
+    public void setWaterbodyManager(GenericManager<Waterbody, Long> waterbodyManager) {
             this.waterbodyManager = waterbodyManager;
     }
-    public void setSamplerManager(GenericManager<Sampler, String> samplerManager) {
+    public void setSamplerManager(GenericManager<Sampler, Long> samplerManager) {
             this.samplerManager = samplerManager;
     }
 
