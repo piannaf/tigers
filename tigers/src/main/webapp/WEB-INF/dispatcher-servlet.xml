@@ -113,10 +113,18 @@
 
 	<!-- =============================== Sampler ======================================== -->
 	<!-- samplers.html -->
-	<bean id="samplerController" class="com.tiffany.webapp.controller.SamplerController">
-		<property name="samplerManager" ref="samplerManager" />
-	</bean>
-
+    	 <bean id="samplerController" class="com.tiffany.webapp.controller.SamplerController">
+    	     <property name="samplerManager" ref="samplerManager"/>
+    	 </bean>
+    	<!-- samplerform.html -->
+	<bean id="samplerFormController" class="com.tiffany.webapp.controller.SamplerFormController">
+	 	<property name="validator" ref="beanValidator"/>
+        	<property name="formView" value="/officer/samplerform"/>	    	
+	        <property name="successView" value="redirect:samplers.html"/>
+	        <property name="samplerManager" ref="samplerManager"/>
+	        <property name="userManager" ref="userManager"/>
+	        <property name="waterbodyManager" ref="waterbodyManager"/>
+        </bean>
 	<!-- =============================== Reports ======================================== -->
 	<!-- officer/reportSamplers.html -->
 	<bean id="reportListSamplersController"
@@ -191,6 +199,7 @@
 				/admin/usersearch.html=userSearchController
 				/officer/samplesearch.html=sampleSearchController
 				/officer/samplers.html=samplerController
+                		/officer/samplerform.html=samplerFormController
 				/officer/reportsamplers.html=reportListSamplersController
 				/officer/reportsamples.html=reportListSamplesController
 				/officer/reportgraphsamples.html=reportGraphSamplesController
