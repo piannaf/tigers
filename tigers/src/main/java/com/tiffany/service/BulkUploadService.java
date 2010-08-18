@@ -151,74 +151,122 @@ public class BulkUploadService {
 		return result;
 	}
 	private String setPh(Sample sample, String phStr, String result) {
+		int factor = 1;
+		if (phStr.charAt(0) == '<') {
+			factor = -1;
+			phStr = phStr.substring(1);
+		}
 		DecimalFormat format = new DecimalFormat("##.##");
 		float ph;
 		try { ph = Float.parseFloat(phStr); } 
 		catch (Exception e) { return result += "pH(invalid format)/"; }
 		if (ph > 14 || ph < 0) { return result += "pH(out of range)/"; }
+		ph = ph * factor;
 		sample.setPh(new BigDecimal(format.format(ph)));
 		return result;
 	}
 	private String setEc(Sample sample, String ecStr, String result) {
+		int factor = 1;
 		DecimalFormat format = new DecimalFormat("#####");
+		if (ecStr.charAt(0) == '<') {
+			factor = -1;
+			ecStr = ecStr.substring(1);
+		}
 		float ec;
 		try { ec = Float.parseFloat(ecStr); } 
 		catch (Exception e) { return result += "EC(invalid format)/"; }
 		if (ec > 1000 || ec < 0) { return result += "EC(out of range)/"; }
+		ec = ec * factor;
 		sample.setEc(new BigDecimal(format.format(ec)));
 		return result;
 	}
 	private String setTemp(Sample sample, String tempStr, String result) {
+		int factor = 1;
+		if (tempStr.charAt(0) == '<') {
+			factor = -1;
+			tempStr = tempStr.substring(1);
+		}
 		DecimalFormat format = new DecimalFormat("###.##");
 		float temp;
 		try { temp = Float.parseFloat(tempStr); } 
 		catch (Exception e) { return result += "Temp(invalid format)/"; }
 		if (temp > 50 || temp < 0) { return result += "Temp(out of range)/"; }
+		temp = temp * factor;
 		sample.setTemperature(new BigDecimal(format.format(temp)));
 		return result;
 	}
 	private String setAs(Sample sample, String asStr, String result) {
+		int factor = 1;
+		if (asStr.charAt(0) == '<') {
+			factor = -1;
+			asStr = asStr.substring(1);
+		}
 		DecimalFormat format = new DecimalFormat("##.###");
 		float as;
 		try { as = Float.parseFloat(asStr); } 
 		catch (Exception e) { return result += "As(invalid format)/"; }
 		if (as > 0.02 || as < 0) { return result += "As(out of range)/"; }
+		as = as * factor;
 		sample.setArsenic(new BigDecimal(format.format(as)));
 		return result;
 	}
 	private String setOnG(Sample sample, String ongStr, String result) {
+		int factor = 1;
+		if (ongStr.charAt(0) == '<') {
+			factor = -1;
+			ongStr = ongStr.substring(1);
+		}
 		DecimalFormat format = new DecimalFormat("###");
 		float ong;
 		try { ong = Float.parseFloat(ongStr); } 
 		catch (Exception e) { return result += "O&G(invalid format)/"; }
 		if (ong > 15 || ong < 0) { return result += "O&G(out of range)/"; }
+		ong = ong * factor;
 		sample.setGrease(new BigDecimal(format.format(ong)));
 		return result;
 	}
 	private String setDTC(Sample sample, String dtcStr, String result) {
+		int factor = 1;
+		if (dtcStr.charAt(0) == '<') {
+			factor = -1;
+			dtcStr = dtcStr.substring(1);
+		}
 		DecimalFormat format = new DecimalFormat("#####");
 		float dtc;
 		try { dtc = Float.parseFloat(dtcStr); } 
 		catch (Exception e) { return result += "DTC(invalid format)/"; }
 		if (dtc > 300 || dtc < 100) { return result += "DTC(out of range)/"; }
+		dtc = dtc * factor;
 		sample.setCollar_depth(new BigDecimal(format.format(dtc)));
 		return result;
 	}
 	private String setFluoride(Sample sample, String fluorideStr, String result) {
+		int factor = 1;
+		if (fluorideStr.charAt(0) == '<') {
+			factor = -1;
+			fluorideStr = fluorideStr.substring(1);
+		}
 		DecimalFormat format = new DecimalFormat("##.###");
 		float fluoride;
 		try { fluoride = Float.parseFloat(fluorideStr); } 
 		catch (Exception e) { return result += "Fluoride(invalid format)/"; }
 		if (fluoride > 300 || fluoride < 100) { return result += "Fluoride(out of range)/"; }
+		fluoride = fluoride * factor;
 		sample.setFluoride(new BigDecimal(format.format(fluoride)));
 		return result;
 	}
 	private String setChromium(Sample sample, String chromiumStr, String result) {
+		int factor = 1;
+		if (chromiumStr.charAt(0) == '<') {
+			factor = -1;
+			chromiumStr = chromiumStr.substring(1);
+		}
 		DecimalFormat format = new DecimalFormat("##.###");
 		float chromium;
 		try { chromium = Float.parseFloat(chromiumStr); } 
 		catch (Exception e) { return result += "Chromium(invalid format)/"; }
 		if (chromium > 300 || chromium < 100) { return result += "Chromium(out of range)/"; }
+		chromium = chromium * factor;
 		sample.setCollar_depth(new BigDecimal(format.format(chromium)));
 		return result;
 	}
