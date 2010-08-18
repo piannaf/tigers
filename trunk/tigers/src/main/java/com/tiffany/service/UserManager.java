@@ -64,4 +64,5 @@ public interface UserManager extends UniversalManager {
 
 	List<User> findUsersByCompanyName(String companyName);
 	List<User> findUserByUsernameAndCompanyName(String username, String companyName);
+	List<User> getContractors();
 }
