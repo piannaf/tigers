@@ -5,6 +5,7 @@ import org.springframework.security.providers.dao.SaltSource;
 import org.springframework.security.providers.encoding.PasswordEncoder;
 import org.springframework.security.userdetails.UsernameNotFoundException;
 import com.tiffany.dao.UserDao;
+import com.tiffany.model.Role;
 import com.tiffany.model.User;
 import com.tiffany.service.UserExistsException;
 import com.tiffany.service.UserManager;
@@ -14,7 +15,10 @@ import org.springframework.dao.DataIntegrityViolationException;
 
 import javax.jws.WebService;
 import javax.persistence.EntityExistsException;
+
+import java.util.Iterator;
 import java.util.List;
+import java.util.ArrayList;
 
 
 /**
@@ -134,5 +138,20 @@ public class UserManagerImpl extends UniversalManagerImpl implements UserManager
     
     public List<User> findUserByUsernameAndCompanyName(String username, String companyName) {
     	return dao.findUserByUsernameAndCompanyName(username, companyName);
+    }
+    
+    public List<User> getContractors() {
+    	List<User> contractorList = new ArrayList();
+    	List<User> userList = dao.getUsers();
+    	Role role = new Role();
+    	role.setName("ROLE_CONTRACTOR");
+    	Iterator users = userList.iterator();	    	
+		while (users.hasNext()) {
+			User user = (User)users.next();
+			if (user.getRoles().contains(role)) {
+				contractorList.add(user);
+			}						
+		}
+    	return contractorList;
     }
 }
