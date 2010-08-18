@@ -5,7 +5,7 @@ import java.util.List;
 import com.tiffany.dao.WaterbodyDao;
 import com.tiffany.model.Waterbody;
 
-public class WaterbodyDaoHibernate extends GenericDaoHibernate<Waterbody, String> implements
+public class WaterbodyDaoHibernate extends GenericDaoHibernate<Waterbody, Long> implements
 		WaterbodyDao {
 
 	public WaterbodyDaoHibernate() {
@@ -13,7 +13,6 @@ public class WaterbodyDaoHibernate extends GenericDaoHibernate<Waterbody, String
 	}
 
 	public List<Waterbody> findLikeName(String search) {
-		
 		List waterbodies = getHibernateTemplate().find("from Waterbody where lower(name) like ?",(search + "%").toLowerCase());
 		
 		if(waterbodies.isEmpty()) {

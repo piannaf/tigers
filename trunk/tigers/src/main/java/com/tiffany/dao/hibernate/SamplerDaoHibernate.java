@@ -6,7 +6,7 @@ import com.tiffany.dao.SamplerDao;
 import com.tiffany.model.Sample;
 import com.tiffany.model.Sampler;
 
-public class SamplerDaoHibernate extends GenericDaoHibernate<Sampler, String> implements
+public class SamplerDaoHibernate extends GenericDaoHibernate<Sampler, Long> implements
 		SamplerDao {
 
 	public SamplerDaoHibernate() {
@@ -14,30 +14,41 @@ public class SamplerDaoHibernate extends GenericDaoHibernate<Sampler, String> im
 	}
 
 	public List<Sampler> findByWaterBody(String waterbody) {
-		
-		List samplers = getHibernateTemplate().find("from Sampler where waterbody=?",waterbody);
-		
+
+		List samplers = getHibernateTemplate().find("from Sampler where lower(waterbody.name)=?",waterbody.toLowerCase());
+
 		if(samplers.isEmpty()) {
 			return null;
 		} else {
 			return samplers;
 		}
 	}
-	
+
+	public Sampler findByTag(String tag) {
+
+		List<Sampler> samplers = getHibernateTemplate().find("from Sampler where tag=?",tag);
+
+		if(samplers.isEmpty()) {
+			return null;
+		} else {
+			return samplers.get(0);
+		}
+	}
+
 	public Sampler getByTag(String tag) {
 		List samplers = getHibernateTemplate().find("from Sampler where tag=?",tag);
-		
+
 		if(samplers.isEmpty()) {
 			return null;
 		} else {
 			return (Sampler)samplers.get(0);
 		}
 	}
-	
+
 	public List<Sampler> findByLaboratory(String laboratory) {
 		return getHibernateTemplate().find("from Sampler where laboratory=?", laboratory);
 	}
-	
+
 	public List<Sampler> findByTag(String tag) {
 		return getHibernateTemplate().find("from Sampler where tag=?", tag);
 	}
