@@ -24,7 +24,7 @@ SamplerManager {
 		return samplerDao.findByWaterBody(tag);
 	}
 
-	public Sampler findByTag(String tag) {
+	public List<Sampler> findByTag(String tag) {
 		return samplerDao.findByTag(tag);
 	}
 
@@ -49,12 +49,16 @@ SamplerManager {
 	public String getWaterBodyNameByTag(String tag) {
 		List<Sampler> samplerList = samplerDao.findByTag(tag);
 		if (samplerList.size() == 0) return null;
-		return samplerList.get(0).getWaterbody();
+		return samplerList.get(0).getWaterbody().getName();
 	}
 
 	public String getContractorByTag(String tag) {
 		List<Sampler> samplerList = samplerDao.findByTag(tag);
 		if (samplerList.size() == 0) return null;
-		return samplerList.get(0).getContractor();
+		return samplerList.get(0).getContractor().getCompanyName();
+	}
+
+	public Sampler findOneByTag(String tag) {
+			return samplerDao.findOneByTag(tag);		
 	}
 }
