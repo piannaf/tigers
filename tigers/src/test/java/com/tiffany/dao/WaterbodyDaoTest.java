@@ -31,17 +31,17 @@ public class WaterbodyDaoTest  extends BaseDaoTestCase{
 	      waterbodyDao.save(w);
 	      flush();
 	      
-	      w = waterbodyDao.get("Atlantic");
+	      w = waterbodyDao.get(2L);
 	      assertNotNull(w.getName());
 	       
 	  }
 	    public void testWbExists() throws Exception {
-	        boolean b = waterbodyDao.exists("Lake Eyre");
+	        boolean b = waterbodyDao.exists(1L);
 	        assertTrue(b);
 	    }
 	    
 	    public void testUserNotExists() throws Exception {
-	        boolean b = waterbodyDao.exists("L");
+	        boolean b = waterbodyDao.exists(10L);
 	        assertFalse(b);
 	    }
 	    
