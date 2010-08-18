@@ -10,7 +10,7 @@ import com.tiffany.model.Waterbody;
 import com.tiffany.service.WaterbodyManager;
 
 @WebService(serviceName = "WaterbodyService", endpointInterface = "com.tiffany.service.WaterbodyManager")
-public class WaterbodyManagerImpl extends GenericManagerImpl<Waterbody, String> implements
+public class WaterbodyManagerImpl extends GenericManagerImpl<Waterbody, Long> implements
 		WaterbodyManager {
 	
 	WaterbodyDao waterbodyDao;

@@ -9,26 +9,30 @@ import com.tiffany.model.Sampler;
 import com.tiffany.service.SamplerManager;
 
 @WebService(serviceName = "SamplerService", endpointInterface = "com.tiffany.service.SamplerManager")
-public class SamplerManagerImpl extends GenericManagerImpl<Sampler, String> implements
+public class SamplerManagerImpl extends GenericManagerImpl<Sampler, Long> implements
 
 SamplerManager {
 
 	SamplerDao samplerDao;
-		
+
 	public SamplerManagerImpl(SamplerDao samplerDao) {
 		super(samplerDao);
 		this.samplerDao = samplerDao;
-	}		
-		
+	}
+
 	public List<Sampler> findByWaterBody(String tag) {
 		return samplerDao.findByWaterBody(tag);
 	}
-	
+
+	public Sampler findByTag(String tag) {
+		return samplerDao.findByTag(tag);
+	}
+
 	public Sampler getByTag(String tag) {
 		return samplerDao.getByTag(tag);
 	}
 
-	
+
 	public List<String> getTagListForLaboratory(String laboratory) {
 		List<String> tagList = new ArrayList<String>();
 		Set<String> tagSet = new HashSet<String>();
@@ -41,13 +45,13 @@ SamplerManager {
 		tagList.addAll(tagSet);
 		return tagList;
 	}
-	
+
 	public String getWaterBodyNameByTag(String tag) {
 		List<Sampler> samplerList = samplerDao.findByTag(tag);
 		if (samplerList.size() == 0) return null;
 		return samplerList.get(0).getWaterbody();
 	}
-	
+
 	public String getContractorByTag(String tag) {
 		List<Sampler> samplerList = samplerDao.findByTag(tag);
 		if (samplerList.size() == 0) return null;
