@@ -13,7 +13,11 @@ import com.tiffany.model.Sampler;
 import com.tiffany.service.GenericManager;
 import com.tiffany.service.SampleManager;
 import com.tiffany.service.SamplerManager;
-
+/**
+ * This class controls the "sample" list screen
+ *
+ * @author Jane
+ */
 public class SamplerController implements Controller {
 	
 	private final Log log = LogFactory.getLog(SamplerController.class);
@@ -25,14 +29,12 @@ public class SamplerController implements Controller {
 
 	public ModelAndView handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		log.debug("entering Janes 'handleRequest' method...");
         
 		String waterbody = request.getParameter("waterbody");
 		
 		if (null != waterbody && !waterbody.isEmpty()) {
 			List<Sampler> samplerList = ((SamplerManager)samplerManager).findByWaterBody(waterbody);
-       //     log.debug("SamplerList: " + samplerList.toString());
-            
+             
             return new ModelAndView().addObject("samplerList", samplerList);
 		}
 		else
