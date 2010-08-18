@@ -144,6 +144,12 @@
 	<bean id="mapController" class="com.tiffany.webapp.controller.MapController">
 
 	</bean>
+	
+	<!-- *.kml -->
+	<bean id="kmlController" class="com.tiffany.webapp.controller.KmlController">
+		<property name="samplerManager" ref="samplerManager" />
+	</bean>
+	
 	<!-- ================================ Find Contractor (for laboratory) ========================== -->
 	<bean id="findContractorController" class="com.tiffany.webapp.controller.FindContractorController">
 		<property name="samplerManager" ref="samplerManager"/>
@@ -192,6 +198,7 @@
 				/laboratory/findcontractor.html=findContractorController
 				/mainMenu.html=filenameController
 				/passwordHint.html=passwordHintController
+				/resources/*.kml=kmlController
             </value>
 		</property>
 		<property name="order" value="0" />

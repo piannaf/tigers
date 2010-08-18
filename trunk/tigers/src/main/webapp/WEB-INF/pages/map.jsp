@@ -1,46 +1,74 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head> 
+<meta name="heading" content="<fmt:message key='map.heading'/>"/>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"/> 
 <style type="text/css"> 
     #map_container {
-        height: 600px;
-        width: 200%;
-        margin-left: -35%;
-        border: 1px solid red;
+        height: 50em;
+        width: 75em;
+        margin-left: -10em;
+        
+        border: 1px solid black;
     }
 
     #map_canvas {
-        height: 100%;
-        width: 70%;
+        height: 50em;
+        width: 50em;
         float: left;
     }
 
-    #the_side_bar {
-        height: 50%;
-        width: 29%;
+    #the_side_bar, #info_area {
+        height: 25em;
+        width: 25em;
         float: left;
         
         overflow:auto;
         white-space:nowrap;
-        
-        border: 1px solid green;
     }
     
-    #info_area {
-        height: 50%;
-        width: 29%;
-        float: left;
-        
-        border: 1px solid blue;
+    #the_side_bar li { list-style: none; margin:0px;padding:0px }
+    #the_side_bar ul { margin-left:1em; padding:.5em; }
+    
+    /* indent contents of folders */
+    #the_side_bar ul div {
+        padding-left: 1em;
+    }
+    
+    #info_area h1 {
+        display: none;
+    }
+    
+    #description {
+        padding: 1em;
+    }
+    
+    #description h1 {
+        display: inline;
+        font-size: 1.5em;
+        border-bottom: 1px solid #4F8CC9;
+    }
+    
+    #description dl dt {
+        margin: 0;
+        padding: 0;
+        font-weight: bold;
+    }
+    
+    #description dl {
+        padding-top: 1em;
+    }
+    
+    #description dl dd {
+        margin: 0, 0, 1em, 1em;
+        padding 0:
     }
 </style> 
-<title>Google Maps JavaScript API v3 Example: Map Simple</title> 
+<title><fmt:message key="map.title"/></title>
 <script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAxKNSmreHpX8AESttKh0VwBTwM0brOpm-All5BF6PoaKBxRWWERS8jM1JywDsPc13gAgPMsMvUVJrZw"></script> 
 <script type="text/javascript" src="<c:url value='/scripts/geoxml.js'/>"></script>
-<script type="text/javascript">   
-    //<![CDATA[
+<script type="text/javascript">
         window.onload = initialize;
         var gml, mmap;
         function initialize() {    
@@ -49,15 +77,72 @@
             mmap.addControl(new GLargeMapControl3D());
             mmap.addControl(new GMapTypeControl());
             mmap.addControl(new GScaleControl());
+            mmap.addControl(new RefreshKmlControl());
             mmap.addMapType(G_PHYSICAL_MAP);
             mmap.setMapType(G_SATELLITE_MAP);
             mmap.enableScrollWheelZoom();
             mmap.enableDoubleClickZoom();
             mmap.enableContinuousZoom();
-            gml = new GeoXml("gml", mmap, "${kmlPath}", {sidebarid:"the_side_bar",iwwidth:250, domouseover:true, messagebox:document.getElementById('info_area') });
+            gml = new GeoXml("gml", mmap, "<fmt:message key="map.kml"/>", {sidebarid:"the_side_bar",iwwidth:250, domouseover:true, messagebox:document.getElementById('info_area') });
+            refreshKml();
+        }
+        
+        function refreshKml() {
+            gml.clear();
             gml.parse();
         }
-    //]]>
+        
+         ////////////////////////////////
+        // Custom Control to refresh KML
+        // We define the function first
+        function RefreshKmlControl() {
+        }
+
+        // To "subclass" the GControl, we set the prototype object to
+        // an instance of the GControl object
+        RefreshKmlControl.prototype = new GControl();
+
+        // Creates a one DIV for each of the buttons and places them in a container
+        // DIV which is returned as our control element. We add the control to
+        // to the map container and return the element for the map class to
+        // position properly.
+        RefreshKmlControl.prototype.initialize = function(map) {
+          var container = document.createElement("div");
+
+          var refreshKmlDiv = document.createElement("div");
+          this.setButtonStyle_(refreshKmlDiv);
+          container.appendChild(refreshKmlDiv);
+          refreshKmlDiv.appendChild(document.createTextNode("Refresh Markers"));
+          GEvent.addDomListener(refreshKmlDiv, "click", function() {
+            refreshKml();
+          });
+
+          mmap.getContainer().appendChild(container);
+          return container;
+        }
+
+        // By default, the control will appear in the top left corner of the
+        // map with 7 pixels of padding.
+        RefreshKmlControl.prototype.getDefaultPosition = function() {
+          return new GControlPosition(G_ANCHOR_BOTTOM_RIGHT, new GSize(7, 7));
+        }
+
+        // Sets the proper CSS for the given button element.
+        RefreshKmlControl.prototype.setButtonStyle_ = function(button) {
+          button.style.textDecoration = "underline";
+          button.style.color = "#0000cc";
+          button.style.backgroundColor = "white";
+          button.style.font = "small Arial";
+          button.style.border = "1px solid black";
+          button.style.padding = "2px";
+          button.style.marginBottom = "3px";
+          button.style.textAlign = "center";
+          button.style.width = "6em";
+          button.style.cursor = "pointer";
+        }
+
+        
+        ////////////////////////////////////
 </script> 
 </head> 
 <body> 

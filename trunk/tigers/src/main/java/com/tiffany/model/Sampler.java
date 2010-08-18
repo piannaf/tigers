@@ -1,6 +1,7 @@
 package com.tiffany.model;
 
 import java.math.BigDecimal;
+import java.util.*;
 
 import javax.persistence.*;
 
@@ -116,9 +117,30 @@ public class Sampler extends BaseObject {
 			String depth_to_collar_screening_freq) {
 		this.depth_to_collar_screening_freq = depth_to_collar_screening_freq;
 	}
+	
+	//Returns a map of all parameter values and names
+	public Map<String, Object> list_all_params() {
+	    Map<String, Object> allParams = new HashMap<String, Object>();
+	    allParams.put("Collar Height", collar_height);
+	    allParams.put("Contractor", contractor);
+	    allParams.put("Comprehensive Screening Frequency", comp_screening_freq);
+	    allParams.put("Depth to Collar Screening Frequency", depth_to_collar_screening_freq);
+	    allParams.put("Laboratory", laboratory);
+	    allParams.put("License", license);
+	    allParams.put("Purpose", purpose);
+	    allParams.put("Water Body", waterbody);
+	    allParams.put("Longitude", longitude);
+	    allParams.put("Latitude", latitude);
+	    
+	    return allParams;
+	}
+	
+	//public Boolean is_ok_to_delete() {
+	//    return this.collar_height
+	//}
 
 	@Override
-	public String toString() {
+ 	public String toString() {
 		return new ToStringBuilder(this).append("tag", tag).append("purpose",
 				purpose).append("waterbody", waterbody).toString();
 	}
