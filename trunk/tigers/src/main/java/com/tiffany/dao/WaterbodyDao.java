@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.tiffany.model.Waterbody;
 
-public interface WaterbodyDao extends GenericDao<Waterbody, String> {
+public interface WaterbodyDao extends GenericDao<Waterbody, Long> {
 	
 	public List<Waterbody> findLikeName(String search);
 	public List<Waterbody> findByName(String name);
