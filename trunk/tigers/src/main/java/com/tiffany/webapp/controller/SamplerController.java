@@ -21,9 +21,9 @@ import com.tiffany.service.SamplerManager;
 public class SamplerController implements Controller {
 	
 	private final Log log = LogFactory.getLog(SamplerController.class);
-    private GenericManager<Sampler, String> samplerManager = null;
+    private GenericManager<Sampler, Long> samplerManager = null;
     
-    public void setSamplerManager(GenericManager<Sampler, String> samplerManager) {
+    public void setSamplerManager(GenericManager<Sampler, Long> samplerManager) {
             this.samplerManager = samplerManager;
     }
 

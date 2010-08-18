@@ -16,6 +16,7 @@ import com.tiffany.model.Sample;
 import com.tiffany.model.Sampler;
 import com.tiffany.model.ParameterNames;
 import com.tiffany.model.ParameterThresholds;
+import com.tiffany.model.Waterbody;
 import com.tiffany.service.GenericManager;
 import com.tiffany.service.SampleManager;
 import com.tiffany.service.SamplerManager;
@@ -26,14 +27,14 @@ public class ReportGraphSamplesController implements Controller {
 	
 	//private final Log log = LogFactory.getLog(ReportListSamplersController.class);
     private GenericManager<Sample, Long> sampleManager = null;
-    private GenericManager<Sampler, String> samplerManager = null;
+    private GenericManager<Sampler, Long> samplerManager = null;
     private GenericManager<ParameterNames, Long> parameterNamesManager = null;
     private GenericManager<ParameterThresholds, Long> parameterThresholdsManager = null;
 	
     public void setSampleManager(GenericManager<Sample, Long> sampleManager) {
         this.sampleManager = sampleManager;
     }
-    public void setSamplerManager(GenericManager<Sampler, String> samplerManager) {
+    public void setSamplerManager(GenericManager<Sampler, Long> samplerManager) {
         this.samplerManager = samplerManager;
     }
     public void setParameterNamesManager(GenericManager<ParameterNames, Long> parameterNamesManager) {
@@ -60,7 +61,7 @@ public class ReportGraphSamplesController implements Controller {
 		Sampler sampler = ((SamplerManager)samplerManager).getByTag(samplerTag);
 		if(sampler == null)
 			throw new Exception("Could not find sampler");
-		String waterbody = sampler.getWaterbody();
+		String waterbody = sampler.getWaterbody().getName();
 		ParameterThresholds pt = ((ParameterThresholdsManager)parameterThresholdsManager).findByWaterBodyAndId(waterbody, param);
 		
 		ParameterNames parameterName = ((ParameterNamesManager)parameterNamesManager).getId(param);

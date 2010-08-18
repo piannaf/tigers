@@ -47,7 +47,7 @@ public class SamplerFormController extends BaseFormController {
         String tag = request.getParameter("tag");
        
         if (!StringUtils.isBlank(tag)) {
-            return samplerManager.findByTag(tag);
+            return samplerManager.findOneByTag(tag);
         }
         return new Sampler();
     }
@@ -82,7 +82,7 @@ public class SamplerFormController extends BaseFormController {
         if (isValid) {
         
         	if (request.getParameter("delete") != null) {
-        		samplerManager.remove(sampler.getTag());
+        		samplerManager.remove(sampler.getId());
         		saveMessage(request, getText("sampler.deleted", locale));
         	} else {
         		sampler = samplerManager.save(sampler);
