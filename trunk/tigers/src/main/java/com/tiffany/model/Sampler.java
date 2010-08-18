@@ -16,6 +16,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 @Table(name="sampler")
 public class Sampler extends BaseObject {
 	
+	private Long id;
 	private String tag;
 	private String license;
 	private BigDecimal longitude;
@@ -23,12 +24,21 @@ public class Sampler extends BaseObject {
 	private BigDecimal collar_height;
 	private String comp_screening_freq; 
 	private String purpose;
-	private String contractor;
-	private String waterbody; 
-	private String laboratory;
+	private User contractor;
+	private Waterbody waterbody; 
+	private User laboratory;
 	private String depth_to_collar_screening_freq;	
-		
-	@Id @Column(nullable=false)
+	
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	@Column(nullable=false)
 	public String getTag() {
 		return tag;
 	}
@@ -84,28 +94,33 @@ public class Sampler extends BaseObject {
 	public void setPurpose(String purpose) {
 		this.purpose = purpose;
 	}
-
-	public String getContractor() {
+	@OneToOne
+	@JoinColumn(name = "contractor")
+	public User getContractor() {
 		return contractor;
 	}
-
-	public void setContractor(String contractor) {
+	
+	public void setContractor(User contractor) {
 		this.contractor = contractor;
 	}
-	@Column(nullable=false)
-	public String getWaterbody() {
+	
+	@OneToOne
+	@JoinColumn(name = "waterbody")
+	public Waterbody getWaterbody() {
 		return waterbody;
 	}
 
-	public void setWaterbody(String waterbody) {
+	public void setWaterbody(Waterbody waterbody) {
 		this.waterbody = waterbody;
 	}
 
-	public String getLaboratory() {
+	@OneToOne
+	@JoinColumn(name = "laboratory")
+	public User getLaboratory() {
 		return laboratory;
 	}
 
-	public void setLaboratory(String laboratory) {
+	public void setLaboratory(User laboratory) {
 		this.laboratory = laboratory;
 	}
 
@@ -141,8 +156,17 @@ public class Sampler extends BaseObject {
 
 	@Override
  	public String toString() {
-		return new ToStringBuilder(this).append("tag", tag).append("purpose",
-				purpose).append("waterbody", waterbody).toString();
+		return "Sampler [id=" + id + ", tag=" + tag + ", longitude="
+				+ longitude + ", latitude=" + latitude + ", purpose=" + purpose
+				+ "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
 	}
 
 	@Override
@@ -154,20 +178,11 @@ public class Sampler extends BaseObject {
 		if (getClass() != obj.getClass())
 			return false;
 		Sampler other = (Sampler) obj;
-		if (tag == null) {
-			if (other.tag != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!tag.equals(other.tag))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((tag == null) ? 0 : tag.hashCode());
-		return result;
-	}
-
 }
