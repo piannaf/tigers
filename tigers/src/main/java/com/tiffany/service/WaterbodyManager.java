@@ -5,7 +5,7 @@ import javax.jws.WebService;
 import com.tiffany.model.Waterbody;
 
 @WebService
-public interface WaterbodyManager extends GenericManager<Waterbody, String> {
+public interface WaterbodyManager extends GenericManager<Waterbody, Long> {
 	
 	List<Waterbody> findLikeName(String search);
 	String getWaterBodyType(String waterbody);
