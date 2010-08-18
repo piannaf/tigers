@@ -36,7 +36,15 @@ public class SendEmailController extends BaseFormController {
     	setCommandName("email");
     }
     //====================== onBind ==================================
-    
+    protected void onBind(HttpServletRequest request, Object command) throws Exception {
+        // if the user is being deleted, turn off validation
+        if (request.getParameter("cancelSending") != null) {
+        	log.debug("\n===== onBind =====\nCancel sending email");
+            super.setValidateOnBinding(false);
+        } else {
+            super.setValidateOnBinding(true);
+        }
+    }
     //====================== isFormSubmission ========================
     
     //====================== showForm =============================================
@@ -71,6 +79,12 @@ public class SendEmailController extends BaseFormController {
     	Locale locale = request.getLocale();
     	String success = getSuccessView();
     	
+    	if (request.getParameter("cancelSending") != null) {
+    		log.debug("cancel in onSubmit");
+    		request.getSession().removeAttribute("sendTo");
+    		return new ModelAndView(success, getCommandName(), command);
+    	}    	
+    	
     	//MessageSourceAccessor text = new MessageSourceAccessor(messageSource, request.getLocale());
     	Email email = (Email)command;
     	
@@ -87,7 +101,9 @@ public class SendEmailController extends BaseFormController {
     		request.getSession().removeAttribute("sendTo");
 	    } catch (MailException me) {
 	    	saveError(request, getText("email.failed", locale));
-	    	return new ModelAndView("sendemail", getCommandName(), command);
+	    	ModelAndView mv = new ModelAndView("sendemail", getCommandName(), command);
+	    	mv.addObject("company", userManager.getUserByUsername(email.getTo()).getCompanyName());
+	    	return mv;
 	    } catch (Exception e) {
 	    	log.debug("Got exception:"+e.toString());
 	    }

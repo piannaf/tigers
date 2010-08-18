@@ -25,7 +25,8 @@
     	<form:textarea path="content" cssClass="text large"/>
     </li>
     <li class="buttonBar bottom">
-        <input type="submit" class="button" name="send" value="<fmt:message key='button.send'/>"/>       
+        <input type="submit" class="button" name="send" value="<fmt:message key='button.send'/>"/> 
+        <input type="submit" class="button" name="cancelSending" value="<fmt:message key='button.cancel'/>"/>      
     </li>
 </ul>
 
