@@ -137,13 +137,13 @@ public class Sampler extends BaseObject {
 	public Map<String, Object> list_all_params() {
 	    Map<String, Object> allParams = new HashMap<String, Object>();
 	    allParams.put("Collar Height", collar_height);
-	    allParams.put("Contractor", contractor);
+	    allParams.put("Contractor", contractor.getCompanyName());
 	    allParams.put("Comprehensive Screening Frequency", comp_screening_freq);
 	    allParams.put("Depth to Collar Screening Frequency", depth_to_collar_screening_freq);
-	    allParams.put("Laboratory", laboratory);
+	    allParams.put("Laboratory", laboratory.getCompanyName());
 	    allParams.put("License", license);
 	    allParams.put("Purpose", purpose);
-	    allParams.put("Water Body", waterbody);
+	    allParams.put("Water Body", waterbody.getName());
 	    allParams.put("Longitude", longitude);
 	    allParams.put("Latitude", latitude);
 	    
