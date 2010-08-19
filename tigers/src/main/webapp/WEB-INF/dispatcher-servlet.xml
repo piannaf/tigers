@@ -104,6 +104,7 @@
 	<bean id="bulkUploadController" class="com.tiffany.webapp.controller.BulkUploadController">
 		<property name="samplerManager" ref="samplerManager"/>
     	<property name="waterbodyManager" ref="waterbodyManager"/>
+    	<property name="userManager" ref="userManager"/>
     	<property name="bulkUploadService" ref="bulkUploadService"/>
         <property name="validator" ref="beanValidator"/>
         <property name="cancelView" value="redirect:mainMenu.html"/>

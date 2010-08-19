@@ -59,8 +59,10 @@ public class SendEmailController extends BaseFormController {
     //====================== formBackingObject ================================
     protected Object formBackingObject(HttpServletRequest request) throws Exception {
     	log.debug("\n===== formBackingObject =====");
-    	Email email = new Email();    	
-    	email.setTo((String)request.getSession().getAttribute("sendTo"));
+    	Email email = new Email();
+    	if (request.getSession().getAttribute("sendTo") != null) {
+    		email.setTo(((User)request.getSession().getAttribute("sendTo")).getUsername());
+    	}
     	return email;
     }
     //====================== referenceData ================================

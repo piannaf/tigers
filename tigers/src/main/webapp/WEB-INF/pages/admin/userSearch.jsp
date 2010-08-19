@@ -44,7 +44,7 @@
     defaultsort="1" id="users" pagesize="25" class="table" export="true">
     <display:column property="username" escapeXml="true" sortable="true" titleKey="user.username" style="width: 25%"
         url="/userform.html?from=list" paramId="id" paramProperty="id"/>
-    <display:column property="companyName" escapeXml="true" sortable="true" titleKey="activeUsers.fullName" style="width: 34%"/>
+    <display:column property="companyName" escapeXml="true" sortable="true" titleKey="activeUsers.companyName" style="width: 34%"/>
     <display:column property="currentRole" escapeXml="true" sortable="true" titleKey="activeUsers.roles" style="width: 34%"/>
     <display:column property="email" sortable="true" titleKey="user.email" style="width: 25%" autolink="true" media="html"/>
     <display:column property="email" titleKey="user.email" media="csv xml excel pdf"/>
