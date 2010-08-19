@@ -5,6 +5,7 @@ import java.util.*;
 import com.tiffany.dao.SamplerDao;
 import com.tiffany.model.Sample;
 import com.tiffany.model.Sampler;
+import com.tiffany.model.User;
 
 public class SamplerDaoHibernate extends GenericDaoHibernate<Sampler, Long> implements
 		SamplerDao {
@@ -45,7 +46,7 @@ public class SamplerDaoHibernate extends GenericDaoHibernate<Sampler, Long> impl
 		}
 	}
 
-	public List<Sampler> findByLaboratory(String laboratory) {
+	public List<Sampler> findByLaboratory(User laboratory) {
 		return getHibernateTemplate().find("from Sampler where laboratory=?", laboratory);
 	}
 

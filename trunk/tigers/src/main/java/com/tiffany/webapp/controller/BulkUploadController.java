@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.tiffany.Constants;
 import com.tiffany.model.Sample;
+import com.tiffany.model.User;
 import com.tiffany.service.SamplerManager;
+import com.tiffany.service.UserManager;
 import com.tiffany.service.WaterbodyManager;
 import com.tiffany.service.BulkUploadService;
 
@@ -35,7 +37,11 @@ public class BulkUploadController extends BaseFormController {
 	private SamplerManager samplerManager;
 	private WaterbodyManager waterbodyManager;
 	private BulkUploadService bulkUploadService;
+	private UserManager userManager;
 	
+	public void setUserManager(UserManager userManager) {
+		this.userManager = userManager;
+	}
 	public void setWaterbodyManager(WaterbodyManager waterbodyManager) {
 		this.waterbodyManager = waterbodyManager;
 	}
@@ -69,7 +75,8 @@ public class BulkUploadController extends BaseFormController {
 		Locale locale = request.getLocale();
 		Map<String, Object> refData = new HashMap();
 		//List<String> samplerIdList = new ArrayList<String>();
-		List<String> samplerIdList = samplerManager.getTagListForLaboratory(request.getRemoteUser());
+		User remoteUser = userManager.getUserByUsername((request.getRemoteUser()));
+		List<String> samplerIdList = samplerManager.getTagListForLaboratory(remoteUser);
 		refData.put("samplerIdList", samplerIdList);
 		if (samplerIdList.size() == 0)	saveMessage(request, getText("bulkUpload.form.noTag", locale));
 		return refData;
@@ -130,9 +137,7 @@ public class BulkUploadController extends BaseFormController {
         
         //===================================================
         String samplerId = fileUpload.getName();
-        String waterbody = samplerManager.getWaterBodyNameByTag(samplerId);
-        log.debug("waterbody: " + waterbody);
-        String type = waterbodyManager.getWaterBodyType(waterbody);        
+        String type = samplerManager.getWaterBodyTypeByTag(samplerId);  
         log.debug("watebody type: " + type);
         File csv = new File(csvPath);
         BufferedReader text = new BufferedReader(new FileReader(csv));

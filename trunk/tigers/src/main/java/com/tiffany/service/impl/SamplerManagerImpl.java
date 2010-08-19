@@ -6,6 +6,7 @@ import javax.jws.WebService;
 
 import com.tiffany.dao.SamplerDao;
 import com.tiffany.model.Sampler;
+import com.tiffany.model.User;
 import com.tiffany.service.SamplerManager;
 
 @WebService(serviceName = "SamplerService", endpointInterface = "com.tiffany.service.SamplerManager")
@@ -33,7 +34,7 @@ SamplerManager {
 	}
 
 
-	public List<String> getTagListForLaboratory(String laboratory) {
+	public List<String> getTagListForLaboratory(User laboratory) {
 		List<String> tagList = new ArrayList<String>();
 		Set<String> tagSet = new HashSet<String>();
 		List<Sampler> samplerList = samplerDao.findByLaboratory(laboratory);
@@ -60,5 +61,17 @@ SamplerManager {
 
 	public Sampler findOneByTag(String tag) {
 			return samplerDao.findOneByTag(tag);		
+	}
+	
+	public User getContractorByTag2(String tag) {
+		List<Sampler> samplerList = samplerDao.findByTag(tag);
+		if (samplerList.size() == 0) return null;
+		return samplerList.get(0).getContractor();		
+	}
+	
+	public String getWaterBodyTypeByTag(String tag) {
+		List<Sampler> samplerList = samplerDao.findByTag(tag);
+		if (samplerList.size() == 0) return null;
+		return "" + samplerList.get(0).getWaterbody().getType();
 	}
 }

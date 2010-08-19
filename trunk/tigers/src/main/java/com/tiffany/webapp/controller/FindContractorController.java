@@ -46,7 +46,8 @@ public class FindContractorController extends BaseFormController {
 		log.debug("referenceData...");
 		Locale locale = request.getLocale();
 		Map<String, Object> refData = new HashMap();
-		List<String> samplerIdList = samplerManager.getTagListForLaboratory(request.getRemoteUser());
+		User remoteUser = userManager.getUserByUsername((request.getRemoteUser()));
+		List<String> samplerIdList = samplerManager.getTagListForLaboratory(remoteUser);
 		refData.put("samplerIdList", samplerIdList);
 		if (samplerIdList.size() == 0)	saveMessage(request, getText("findContractor.noTag", locale));
 		return refData;
@@ -55,26 +56,29 @@ public class FindContractorController extends BaseFormController {
     public ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object command,
             BindException errors) throws Exception {
     	log.debug("entering 'onSubmit' method...");
+    	
     	if (request.getParameter("emailTo") != null) {
-    		request.getSession().setAttribute("sendTo", request.getParameter("emailTo")); 
+    		User user = userManager.getUserByUsername(request.getParameter("emailTo"));
+    		request.getSession().setAttribute("sendTo", user); 
     		log.debug("sendTo: " +request.getSession(false).getAttribute("sendTo") );
     		return new ModelAndView(new RedirectView("../sendemail.html"));
     	}
     	
     	String success = getSuccessView();
-    	Tag tag = (Tag)command;
-    	String contractor = samplerManager.getContractorByTag(tag.getTag());
-    	log.debug("contractor: "+contractor);
-    	User user;
+    	Tag tag = (Tag)command;  	
+    	
+    	User contractor;
     	try {
-    		user = userManager.getUserByUsername(contractor);
+    		contractor = samplerManager.getContractorByTag2(tag.getTag());
+    		log.debug("contractor: "+contractor.getUsername());
     	} catch (Exception e) {
     		errors.rejectValue("tag", "errors.findContractor.invalidTag", new Object [] {"Sampler Id"}, null);
     		return showForm(request, response, errors);    		
     	}
-    	List<String> samplerIdList = samplerManager.getTagListForLaboratory(request.getRemoteUser());
+    	User remoteUser = userManager.getUserByUsername((request.getRemoteUser()));
+    	List<String> samplerIdList = samplerManager.getTagListForLaboratory(remoteUser);
     	ModelAndView mv = new ModelAndView(success, getCommandName(), command);
-        mv.addObject("user", user);
+        mv.addObject("contractor", contractor);
         mv.addObject("firstTime", "no");
         mv.addObject("id", tag.getTag());
         mv.addObject("samplerIdList",samplerIdList);

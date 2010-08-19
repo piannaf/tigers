@@ -37,7 +37,7 @@
 			<strong><fmt:message key="user.companyName"/>:</strong>
 		</td>
 		<td>
-			${user.companyName}
+			${contractor.companyName}
 		</td>
 	</tr>
 	<tr>
@@ -45,7 +45,7 @@
 			<strong><fmt:message key="user.phoneNumber"/>:</strong>			
 		</td>
 		<td>
-			${user.phoneNumber}
+			${contractor.phoneNumber}
 		</td>
 	</tr>
 	<tr>
@@ -53,33 +53,33 @@
 			<strong><fmt:message key="user.email"/>:</strong>
 		</td>
 		<td>
-			${user.email}
+			${contractor.email}
 		</td>
 	</tr>
 	<tr>
 		 <td><strong><fmt:message key="user.address.address"/>:</strong></td>
-         <td>${user.address.address}</td>
+         <td>${contractor.address.address}</td>
     </tr>
     <tr>
 		 <td><strong><fmt:message key="user.address.city"/>:</strong></td>
-         <td>${user.address.city}</td>
+         <td>${contractor.address.city}</td>
     </tr>
 	<tr>
 		 <td><strong><fmt:message key="user.address.postalCode"/>:</strong></td>
-         <td>${user.address.postalCode}</td>
+         <td>${contractor.address.postalCode}</td>
     </tr>
     <tr>
 		 <td><strong><fmt:message key="user.address.province"/>:</strong></td>
-         <td>${user.address.province}</td>
+         <td>${contractor.address.province}</td>
     </tr>
     <tr>
 		 <td><strong><fmt:message key="user.address.country"/>:</strong></td>
-         <td>${user.address.country}</td>
+         <td>${contractor.address.country}</td>
     </tr>
 	<tr>	
 		<td class="buttonBar">
 			<form method="post" action="/laboratory/findcontractor.html">
-				<input type="hidden" name="emailTo" value="${user.username}" id="mailTo"/>
+				<input type="hidden" name="emailTo" value="${contractor.username}" id="mailTo"/>
 	   			<input type="submit" class="button" name="sendEmail" value="<fmt:message key="button.sendEmail"/>"/>
 	   		</form>
 		</td>
