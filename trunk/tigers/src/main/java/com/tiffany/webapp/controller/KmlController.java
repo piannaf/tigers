@@ -95,9 +95,12 @@ public class KmlController extends AbstractController {
 	Element params = descRoot.addElement("dl");
 	for (Map.Entry<String, Object> entry : 
 	    	sampler.list_all_params().entrySet()) {
-	    if(!entry.getValue().toString().isEmpty()) {
-		params.addElement("dt").addText(entry.getKey());
-		params.addElement("dd").addText(entry.getValue().toString());
+		log.debug("!!!!!!!!");
+		log.debug(entry.getValue());
+		log.debug("!!!!!!!!");
+	    if(entry.getValue() != null && !entry.getValue().toString().isEmpty()) {
+	    	params.addElement("dt").addText(entry.getKey());
+	    	params.addElement("dd").addText(entry.getValue().toString());
 	    }
 	}
 	    
