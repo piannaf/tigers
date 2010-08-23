@@ -226,6 +226,48 @@
 			<value>LAB01</value>
 			<value>GW002</value>
 		</row>
+		<row>
+			<value>3</value>
+			<value><![CDATA[2010-02-11 10:30:00]]></value>
+			<value>4</value>
+			<value>2</value>
+			<value>22</value>
+			<value>0.011</value>
+			<value>0.005</value>
+			<value>0.19</value>
+			<value>0.012</value>
+			<value>0.006</value>
+			<value>LAB01</value>
+			<value>GW002</value>
+		</row>
+		<row>
+			<value>4</value>
+			<value><![CDATA[2010-02-12 10:30:00]]></value>
+			<value>2</value>
+			<value>0.5</value>
+			<value>23</value>
+			<value>0.011</value>
+			<value>0.005</value>
+			<value>0.19</value>
+			<value>0.012</value>
+			<value>0.006</value>
+			<value>LAB01</value>
+			<value>GW002</value>
+		</row>
+		<row>
+			<value>5</value>
+			<value><![CDATA[2010-02-13 10:30:00]]></value>
+			<value>3</value>
+			<value>1</value>
+			<value>24</value>
+			<value>0.011</value>
+			<value>0.005</value>
+			<value>0.19</value>
+			<value>0.012</value>
+			<value>0.006</value>
+			<value>LAB01</value>
+			<value>GW002</value>
+		</row>
 	</table>
 	<table name='waterbody'>
 		<column>id</column>
@@ -466,14 +508,30 @@
 		</row>
 	</table>
 	<table name='parameterthresholds'>
+		<column>id</column>
 		<column>parameter_id</column>
 		<column>name</column>
 		<column>min</column>
 		<column>max</column>
 		<row>
 			<value>1</value>
+			<value>1</value>
 			<value>Lake Eyre</value>
 			<value>0</value>
+			<value>10</value>
+		</row>
+		<row>
+			<value>2</value>
+			<value>1</value>
+			<value>aquifer 52</value>
+			<value>2</value>
+			<value>3</value>
+		</row>
+		<row>
+			<value>3</value>
+			<value>2</value>
+			<value>aquifer 52</value>
+			<value>1</value>
 			<value>10</value>
 		</row>
 	</table>
