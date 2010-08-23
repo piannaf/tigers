@@ -8,7 +8,7 @@
     #map_container {
         height: 50em;
         width: 75em;
-        margin-left: -10em;
+        margin-left: -5em;
         
         border: 1px solid black;
     }
@@ -62,7 +62,11 @@
     
     #description dl dd {
         margin: 0, 0, 1em, 1em;
-        padding 0:
+        padding 0:  
+    }
+        
+    #test {
+        display: none;
     }
 </style> 
 <title><fmt:message key="map.title"/></title>
@@ -73,17 +77,34 @@
         var gml, mmap;
         function initialize() {    
             mmap=new GMap2(document.getElementById("map_canvas"),{draggableCursor: 'crosshair', draggingCursor: 'move'});
-            mmap.setCenter(new GLatLng(-25.265189, 151.761274),14);
+            mmap.setCenter(new GLatLng(-25.265189, 151.761274),14); // This is a fallback in case the KML file doesn't render
             mmap.addControl(new GLargeMapControl3D());
             mmap.addControl(new GMapTypeControl());
             mmap.addControl(new GScaleControl());
-            mmap.addControl(new RefreshKmlControl());
+            mmap.addControl(new RefreshKmlControl());   // Custom control to refresh markers/reload KML from server
             mmap.addMapType(G_PHYSICAL_MAP);
             mmap.setMapType(G_SATELLITE_MAP);
             mmap.enableScrollWheelZoom();
             mmap.enableDoubleClickZoom();
             mmap.enableContinuousZoom();
-            gml = new GeoXml("gml", mmap, "<fmt:message key="map.kml"/>", {sidebarid:"the_side_bar",iwwidth:250, domouseover:true, messagebox:document.getElementById('info_area') });
+            
+            gml = new GeoXml("gml", mmap, "<fmt:message key="map.kml"/>", // where the maps is coming from and where it is going
+                {   //GeoXML options
+                    sidebarid:"the_side_bar", // Let GeoXML generate a nice sidebar
+                    domouseover:true, // Allow messagebox to be updated on mouseover of markers and sidebar items
+                    messagebox:document.getElementById('info_area'),    // Let GeoXML populate a messagebox with descriptions
+                    clickablemarkers:false  // Suppress GeoXML infowindows
+                });
+                
+            // Custom infowindows
+            GEvent.addListener(mmap, 'click', function(marker) {
+                if(marker) {
+                    var latLng = marker.getLatLng()
+                    marker.openInfoWindowHtml("lat: " + latLng.lat() + ", lng: " + latLng.lng() + 
+                            "<p><a href=\"officer/samplerform.html?tag=" + marker.title + "\" target=\"_blank\">Edit Sampler information</a></p>");
+                }
+            });
+            
             refreshKml();
         }
         
@@ -92,8 +113,9 @@
             gml.parse();
         }
         
-         ////////////////////////////////
+        ////////////////////////////////
         // Custom Control to refresh KML
+        
         // We define the function first
         function RefreshKmlControl() {
         }
@@ -142,7 +164,11 @@
         }
 
         
-        ////////////////////////////////////
+        /////////////////////////
+        // Marker Infowindow form
+        var markerInfoWindowForm;
+        
+        //////////////////////////////
 </script> 
 </head> 
 <body> 
