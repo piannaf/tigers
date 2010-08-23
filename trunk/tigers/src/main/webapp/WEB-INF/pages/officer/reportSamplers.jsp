@@ -6,6 +6,9 @@
 <link href="/styles/autocomplete.css" media="screen" rel="stylesheet" type="text/css" />
 
 </head>
+<div id="breadcrumb"></div>
+<h2><fmt:message key="reportSamplers.title"/></h2>
+<p>Select a sampler from the list below to view sample reports for the sampler.  Samplers are grouped by water body.</p>
 
 <c:forEach var="waterbody" items="${waterbodies}">
 	<div><c:out value="${waterbody.name}" escapeXml="true"/></div>

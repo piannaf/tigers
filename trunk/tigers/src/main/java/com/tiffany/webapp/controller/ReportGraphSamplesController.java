@@ -70,23 +70,46 @@ public class ReportGraphSamplesController implements Controller {
 		String paramName = parameterName.getInternal_name();
 		
 		List<Sample> samples = ((SampleManager)sampleManager).findSamplesByTag(samplerTag);
-		HashMap<Date, BigDecimal> data = new HashMap<Date, BigDecimal>(samples.size());
-		BigDecimal value;
-		for(Sample sample : samples) {
-			     if(paramName.equals("ph"))			value = sample.getPh();
-			else if(paramName.equals("ec"))			value = sample.getEc();
-			else if(paramName.equals("temperature"))value = sample.getTemperature();
-			else if(paramName.equals("collar_depth"))value = sample.getCollar_depth();
-			else if(paramName.equals("arsenic"))	value = sample.getArsenic();
-			else if(paramName.equals("grease"))		value = sample.getGrease();
-			else if(paramName.equals("fluoride"))	value = sample.getFluoride();
-			else if(paramName.equals("chromium"))	value = sample.getChromium();
-			else // should never occur
-				throw new Exception("Invalid parameter (" + paramName + ") specified.");
-			
-			data.put(sample.getDate_taken(), value);
-		}
+		HashMap<Long, BigDecimal> data = new HashMap<Long, BigDecimal>(samples.size());
+		BigDecimal value, minValue=null, maxValue=null;
+		Date dateFirst = null, dateLast = null, dateCurrent = null;
+		if(samples != null)
+			for(Sample sample : samples) {
+					 if(paramName.equals("ph"))			value = sample.getPh();
+				else if(paramName.equals("ec"))			value = sample.getEc();
+				else if(paramName.equals("temperature"))value = sample.getTemperature();
+				else if(paramName.equals("collar_depth"))value = sample.getCollar_depth();
+				else if(paramName.equals("arsenic"))	value = sample.getArsenic();
+				else if(paramName.equals("grease"))		value = sample.getGrease();
+				else if(paramName.equals("fluoride"))	value = sample.getFluoride();
+				else if(paramName.equals("chromium"))	value = sample.getChromium();
+				else // should never occur
+					throw new Exception("Invalid parameter (" + paramName + ") specified.");
+				
+				dateCurrent = sample.getDate_taken();
+				data.put(new Long(dateCurrent.getTime()), value);
+				if(dateFirst == null || dateCurrent.compareTo(dateFirst) < 0)
+					dateFirst = dateCurrent;
+				if(dateLast == null || dateCurrent.compareTo(dateLast) > 0)
+					dateLast = dateCurrent;
+				if(minValue == null || value.compareTo(minValue) < 0)
+					minValue = value;
+				if(maxValue == null || value.compareTo(maxValue) > 0)
+					maxValue = value;
+			}
 		
-		return new ModelAndView().addObject("data", data).addObject("parameterThresholds", pt).addObject("tag", samplerTag);
+		if(minValue == null || pt.getMin().compareTo(minValue) < 0)
+			minValue = pt.getMin();
+		if(maxValue == null || pt.getMax().compareTo(maxValue) > 0)
+			maxValue = pt.getMax();
+		
+		ModelAndView ret = new ModelAndView().addObject("data", data).addObject("tag", samplerTag).addObject("parameterName", parameterName).addObject("startTime", new Long(dateFirst.getTime())).addObject("endTime", new Long(dateLast.getTime())).addObject("minValue", minValue).addObject("maxValue", maxValue).addObject("params", ((ParameterNamesManager)parameterNamesManager).getAll());
+		if(pt != null) {
+			if(pt.getMin() != null)
+				ret = ret.addObject("thresMin", pt.getMin());
+			if(pt.getMax() != null)
+				ret = ret.addObject("thresMax", pt.getMax());
+		}
+		return ret;
 	}
 }

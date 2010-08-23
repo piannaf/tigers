@@ -46,7 +46,7 @@ public class SampleDaoHibernate extends GenericDaoHibernate<Sample, Long> implem
 	
 	public List<Sample> findSamplesByTag(String tag) {
 		Object[] tagParam = {tag};
-		return getHibernateTemplate().find("from Sample where tag=?", tagParam);
+		return getHibernateTemplate().find("from Sample where tag=? order by date_taken desc", tagParam);
 	}
 
 }
