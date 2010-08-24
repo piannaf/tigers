@@ -534,6 +534,48 @@
 			<value>1</value>
 			<value>10</value>
 		</row>
+		<row>
+			<value>4</value>
+			<value>3</value>
+			<value>aquifer 52</value>
+			<value>20</value>
+			<value>30</value>
+		</row>
+		<row>
+			<value>5</value>
+			<value>4</value>
+			<value>aquifer 52</value>
+			<value>0.1</value>
+			<value>0.5</value>
+		</row>
+		<row>
+			<value>6</value>
+			<value>5</value>
+			<value>aquifer 52</value>
+			<value>0.1</value>
+			<value>0.5</value>
+		</row>
+		<row>
+			<value>7</value>
+			<value>6</value>
+			<value>aquifer 52</value>
+			<value>0.1</value>
+			<value>0.5</value>
+		</row>
+		<row>
+			<value>8</value>
+			<value>7</value>
+			<value>aquifer 52</value>
+			<value>0.1</value>
+			<value>0.5</value>
+		</row>
+		<row>
+			<value>9</value>
+			<value>8</value>
+			<value>aquifer 52</value>
+			<value>0.1</value>
+			<value>0.5</value>
+		</row>
 	</table>
 	<table name='screeningfrequency'>
 		<column>id</column>
