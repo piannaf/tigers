@@ -89,7 +89,7 @@ new Proto.Chart($('chart'), dat,
 		legend: {show: true},
 		colors: ["#00A8F0", "#ff0000", "#ff8000"],
 		lines: {show: true},
-		points: {show: true},
+		points: {show: true}
 	});
 	
 /* --> */
