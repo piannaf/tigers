@@ -74,4 +74,7 @@ SamplerManager {
 		if (samplerList.size() == 0) return null;
 		return "" + samplerList.get(0).getWaterbody().getType();
 	}
+	public List<Sampler> getAllOrderedByTag() {
+		return samplerDao.getAllOrderedByTag();		
+	}
 }

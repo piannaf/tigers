@@ -45,7 +45,7 @@
       </constant>
       <constant>
       	<constant-name>number9_6</constant-name>
-        <constant-value>^\d{1,3}(\.\d{1,6})?$</constant-value>
+        <constant-value>^-?\d{1,3}(\.\d{1,6})?$</constant-value>
       </constant>
       
    </global>
