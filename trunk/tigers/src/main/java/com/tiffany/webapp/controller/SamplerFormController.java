@@ -11,7 +11,9 @@ import org.springframework.validation.BindException;
 import org.springframework.validation.Errors;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tiffany.model.Sample;
 import com.tiffany.model.Sampler;
+import com.tiffany.service.SampleManager;
 import com.tiffany.service.UserManager;
 import com.tiffany.service.SamplerManager;
 import com.tiffany.service.WaterbodyManager;
@@ -22,11 +24,15 @@ import com.tiffany.service.WaterbodyManager;
  */
 public class SamplerFormController extends BaseFormController {
 	private SamplerManager samplerManager = null;
+	private SampleManager sampleManager = null;
 	private WaterbodyManager waterbodyManager;
 	private UserManager userManager;
 
     public void setSamplerManager(SamplerManager samplerManager) {
         this.samplerManager = samplerManager;
+    }
+    public void setSampleManager(SampleManager sampleManager) {
+    	this.sampleManager = sampleManager;
     }
     public void setWaterbodyManager(WaterbodyManager waterbodyManager) {
         this.waterbodyManager = waterbodyManager;
@@ -59,7 +65,6 @@ public class SamplerFormController extends BaseFormController {
         referenceData.put("waterbodyList", waterbodyManager.getAll());
     	referenceData.put("contractorList", userManager.getContractors());
     	Sampler sampler = (Sampler) command;
-    	log.debug(sampler.toString());
     	
     	return referenceData;
     }
@@ -70,6 +75,15 @@ public class SamplerFormController extends BaseFormController {
     throws Exception {
 
         Sampler sampler = (Sampler) command;
+        if (sampler.getLaboratory().getId() == null) {
+        	sampler.setLaboratory(null);
+        }
+        if (sampler.getContractor().getId() == null) {
+        	sampler.setContractor(null);
+        }
+        else {
+        	sampler.setContractor(userManager.getUser(sampler.getContractor().getId().toString()));
+        }
                 
         boolean isNew = (sampler.getId() == null);
         boolean isValid;
@@ -82,14 +96,26 @@ public class SamplerFormController extends BaseFormController {
         if (isValid) {
         
         	if (request.getParameter("delete") != null) {
-        		samplerManager.remove(sampler.getId());
-        		saveMessage(request, getText("sampler.deleted", locale));
+        		if (samplesExist(sampler)) {
+        			errors.rejectValue("tag", "errors.samplerDeletion", new Object[] {sampler.getId()}, null);
+        			return showForm(request, errors, getFormView());
+        		}
+        		else {
+        			samplerManager.remove(sampler.getId());
+        			saveMessage(request, getText("sampler.deleted", locale));
+        		}
         	} else {
-        		sampler = samplerManager.save(sampler);
-        		String key = (isNew) ? "sampler.added" : "sampler.updated";
-        		saveMessage(request, getText(key, sampler.getTag(), locale));
-
-        		//    success = "redirect:samplerform.html?tag=" + sampler.getTag();
+        		if (isNew && samplerExists(sampler)) {
+        			errors.rejectValue("tag", "errors.duplicateTag", new Object[] {sampler.getId()}, null);
+        			return showForm(request, errors, getFormView());
+        		}
+        		else {
+        			log.debug(sampler.getLaboratory());
+        			log.debug(sampler.getContractor());
+        			sampler = samplerManager.save(sampler);
+        			String key = (isNew) ? "sampler.added" : "sampler.updated";
+        			saveMessage(request, getText(key, sampler.getTag(), locale));
+        		}
         	}
         }
         else 
@@ -103,8 +129,7 @@ public class SamplerFormController extends BaseFormController {
 		
 		BigDecimal collarHeight = sampler.getCollar_height();
 		String depthToCollarScreeningFreq = sampler.getDepth_to_collar_screening_freq();
-		char waterbodyType = sampler.getWaterbody().getType();
-		log.debug(sampler.getWaterbody().toString());
+		char waterbodyType = waterbodyManager.get(sampler.getWaterbody().getId()).getType();
 
 		if (waterbodyType == 'G') {
 			if (license.equals("")) {
@@ -140,5 +165,15 @@ public class SamplerFormController extends BaseFormController {
 		}
 
 		return okeydokey;
+	}
+	private boolean samplesExist(Sampler sampler) {		 
+		List<Sample> samples = sampleManager.findSamplesByTag(sampler.getTag());
+		
+		return (samples.size() != 0);
+	}
+	private boolean samplerExists(Sampler sampler) {		 
+		Sampler otherSampler = samplerManager.findOneByTag(sampler.getTag());
+		
+		return !(otherSampler == null);
 	}
 }

@@ -13,4 +13,5 @@ public interface SamplerDao extends GenericDao<Sampler, Long> {
     public Sampler getByTag(String tag);
     public List<Sampler> findByLaboratory(User laboratory);
     public List<Sampler> findByTag(String tag);
+    public List<Sampler> getAllOrderedByTag();
 }

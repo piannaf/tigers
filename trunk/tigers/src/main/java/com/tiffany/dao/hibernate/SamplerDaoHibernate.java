@@ -16,7 +16,7 @@ public class SamplerDaoHibernate extends GenericDaoHibernate<Sampler, Long> impl
 
 	public List<Sampler> findByWaterBody(String waterbody) {
 
-		List samplers = getHibernateTemplate().find("from Sampler where lower(waterbody.name)=?",waterbody.toLowerCase());
+		List samplers = getHibernateTemplate().find("from Sampler where lower(waterbody.name)=? order by tag",waterbody.toLowerCase());
 
 		if(samplers.isEmpty()) {
 			return null;
@@ -52,6 +52,17 @@ public class SamplerDaoHibernate extends GenericDaoHibernate<Sampler, Long> impl
 
 	public List<Sampler> findByTag(String tag) {
 		return getHibernateTemplate().find("from Sampler where tag=?", tag);
+	}
+	
+	public List<Sampler> getAllOrderedByTag() {
+
+		List samplers = getHibernateTemplate().find("from Sampler order by tag");
+
+		if(samplers.isEmpty()) {
+			return null;
+		} else {
+			return samplers;
+		}
 	}
 
 }

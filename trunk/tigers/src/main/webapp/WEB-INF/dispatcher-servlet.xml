@@ -123,6 +123,7 @@
         	<property name="formView" value="/officer/samplerform"/>	    	
 	        <property name="successView" value="redirect:samplers.html"/>
 	        <property name="samplerManager" ref="samplerManager"/>
+	        <property name="sampleManager" ref="sampleManager"/>
 	        <property name="userManager" ref="userManager"/>
 	        <property name="waterbodyManager" ref="waterbodyManager"/>
         </bean>
@@ -200,7 +201,7 @@
 				/admin/usersearch.html=userSearchController
 				/officer/samplesearch.html=sampleSearchController
 				/officer/samplers.html=samplerController
-                		/officer/samplerform.html=samplerFormController
+                /officer/samplerform.html=samplerFormController
 				/officer/reportsamplers.html=reportListSamplersController
 				/officer/reportsamples.html=reportListSamplesController
 				/officer/reportgraphsamples.html=reportGraphSamplesController

@@ -21,9 +21,9 @@ import com.tiffany.service.SamplerManager;
 public class SamplerController implements Controller {
 	
 	private final Log log = LogFactory.getLog(SamplerController.class);
-    private GenericManager<Sampler, Long> samplerManager = null;
+    private SamplerManager samplerManager = null;
     
-    public void setSamplerManager(GenericManager<Sampler, Long> samplerManager) {
+    public void setSamplerManager(SamplerManager samplerManager) {
             this.samplerManager = samplerManager;
     }
 
@@ -33,12 +33,13 @@ public class SamplerController implements Controller {
 		String waterbody = request.getParameter("waterbody");
 		
 		if (null != waterbody && !waterbody.isEmpty()) {
-			List<Sampler> samplerList = ((SamplerManager)samplerManager).findByWaterBody(waterbody);
-             
-            return new ModelAndView().addObject("samplerList", samplerList);
+	//		List<Sampler> samplerList = ((SamplerManager)samplerManager).findByWaterBody(waterbody);
+			 
+            return new ModelAndView().addObject(samplerManager.findByWaterBody(waterbody));
 		}
-		else
-			return new ModelAndView().addObject(samplerManager.getAll());
+		else {	 
+			return new ModelAndView().addObject(samplerManager.getAllOrderedByTag());
+		}
 	}
 
 }

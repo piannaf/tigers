@@ -18,4 +18,5 @@ public interface SamplerManager extends GenericManager<Sampler, Long> {
 	List<Sampler> findByTag(String tag);
 	User getContractorByTag2(String tag);
 	String getWaterBodyTypeByTag(String tag);
+	public List<Sampler> getAllOrderedByTag();
 }
