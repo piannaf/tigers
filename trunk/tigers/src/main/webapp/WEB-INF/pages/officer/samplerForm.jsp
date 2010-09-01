@@ -135,7 +135,7 @@
 	    <td>
 	    	<form:errors path="depth_to_collar_screening_freq" cssClass="fieldError"/>
             <form:select path="depth_to_collar_screening_freq">
-            	<form:option value="Select" />
+            	<form:option value="" label="Select" />
             	<form:option value="daily" />
         	    <form:option value="weekly" />
             	<form:option value="fortnightly" />

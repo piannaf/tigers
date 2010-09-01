@@ -13,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.tiffany.model.Sample;
 import com.tiffany.model.Sampler;
+import com.tiffany.model.User;
+import com.tiffany.model.Waterbody;
 import com.tiffany.service.SampleManager;
 import com.tiffany.service.UserManager;
 import com.tiffany.service.SamplerManager;
@@ -55,7 +57,12 @@ public class SamplerFormController extends BaseFormController {
         if (!StringUtils.isBlank(tag)) {
             return samplerManager.findOneByTag(tag);
         }
-        return new Sampler();
+        // Initialise foreign keys because Spring doesn't like null values
+        Sampler sampler = new Sampler();
+		sampler.setWaterbody(new Waterbody());
+		sampler.setLaboratory(new User());
+		sampler.setContractor(new User());
+        return sampler;
     }
     @Override
     protected Map referenceData(HttpServletRequest request, Object command,
@@ -75,15 +82,6 @@ public class SamplerFormController extends BaseFormController {
     throws Exception {
 
         Sampler sampler = (Sampler) command;
-        if (sampler.getLaboratory().getId() == null) {
-        	sampler.setLaboratory(null);
-        }
-        if (sampler.getContractor().getId() == null) {
-        	sampler.setContractor(null);
-        }
-        else {
-        	sampler.setContractor(userManager.getUser(sampler.getContractor().getId().toString()));
-        }
                 
         boolean isNew = (sampler.getId() == null);
         boolean isValid;
@@ -110,8 +108,15 @@ public class SamplerFormController extends BaseFormController {
         			return showForm(request, errors, getFormView());
         		}
         		else {
-        			log.debug(sampler.getLaboratory());
-        			log.debug(sampler.getContractor());
+        			if (sampler.getLaboratory().getId() == null) {
+        	        	sampler.setLaboratory(null);
+        	        }
+        	        if (sampler.getContractor().getId() == null) {
+        	        	sampler.setContractor(null);
+        	        }
+        	        else {
+        	        	sampler.setContractor(userManager.getUser(sampler.getContractor().getId().toString()));
+        	        }
         			sampler = samplerManager.save(sampler);
         			String key = (isNew) ? "sampler.added" : "sampler.updated";
         			saveMessage(request, getText(key, sampler.getTag(), locale));
@@ -154,11 +159,11 @@ public class SamplerFormController extends BaseFormController {
 				okeydokey = false;
 				errors.rejectValue("license", "errors.surfaceWaterNotRequired", new Object[] {license}, null);	
 			}
-			if (!depthToCollarScreeningFreq.equals("Select")) {
+			if (!depthToCollarScreeningFreq.equals("")) {
 				okeydokey = false;
 				errors.rejectValue("depth_to_collar_screening_freq", "errors.surfaceWaterNotRequired", new Object[] {depthToCollarScreeningFreq}, null);	
 			}
-			if (!(collarHeight == null)) {
+			if (!(collarHeight == null || collarHeight.compareTo(new BigDecimal(0)) == 0)) {
 				okeydokey = false;
 				errors.rejectValue("collar_height", "errors.surfaceWaterNotRequired", new Object[] {collarHeight}, null);	
 			}

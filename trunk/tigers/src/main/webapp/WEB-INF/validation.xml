@@ -348,7 +348,7 @@
 			depends="required">	 	  			
 			<arg0 key="sampler.purpose"/>
 		</field>
-		<field property="waterbody"
+		<field property="waterbody.id"
 			depends="required">	 	  			
 			<arg0 key="sampler.waterbody"/>
 		</field>
