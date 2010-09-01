@@ -95,7 +95,7 @@ public class Sampler extends BaseObject {
 	@ManyToOne
 	@JoinColumn(name="contractor")
 	public User getContractor() {
-		return this.contractor;
+		return contractor;
 	}
 
 	public void setContractor(User contractor) {
@@ -115,7 +115,7 @@ public class Sampler extends BaseObject {
 	@ManyToOne
 	@JoinColumn(name="laboratory")
 	public User getLaboratory() {
-		return this.laboratory;
+		return laboratory;
 	}
 
 	public void setLaboratory(User laboratory) {
@@ -158,8 +158,8 @@ public class Sampler extends BaseObject {
 				+ ", longitude=" + longitude + ", latitude=" + latitude
 				+ ", collar_height=" + collar_height + ", comp_screening_freq="
 				+ comp_screening_freq + ", purpose=" + purpose
-				+ ", userByContractor=" + contractor
-				+ ", userByLaboratory=" + laboratory + ", waterbody="
+				+ ", contractor=" + contractor
+				+ ", laboratory=" + laboratory + ", waterbody="
 				+ waterbody + ", depth_to_collar_screening_freq="
 				+ depth_to_collar_screening_freq + "]";
 	}
