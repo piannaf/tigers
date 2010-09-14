@@ -345,15 +345,15 @@
                      	</var>
 		</field>
 		<field property="purpose"
-			depends="required">	 	  			
+			depends="required">
 			<arg0 key="sampler.purpose"/>
 		</field>
 		<field property="waterbody.id"
-			depends="required">	 	  			
+			depends="required">
 			<arg0 key="sampler.waterbody"/>
 		</field>
 		<field property="latitude"
-			depends="required,mask">	 	  			
+			depends="required,mask">
 			<msg
 				name="mask"
 				key="errors.invalid"/>
@@ -364,7 +364,7 @@
                 	</var>
 		</field>
 		<field property="longitude"
-			depends="required,mask">	 	  			
+			depends="required,mask">
 			<msg
 				name="mask"
 				key="errors.invalid"/>
@@ -375,8 +375,21 @@
 			</var>
 		</field>
 		<field property="comp_screening_freq"
-			depends="required">	 	  			
+			depends="required">
 			<arg0 key="sampler.comp_screening_freq"/>
+		</field>
+	</form>
+</formset>
+<formset>
+	<form name="waterbody">
+		<field property="name"
+			depends="required,maxlength">
+			<arg0 key="waterbody.name"/>
+			<arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>30</var-value>
+                     	</var>
 		</field>
 	</form>
 </formset>

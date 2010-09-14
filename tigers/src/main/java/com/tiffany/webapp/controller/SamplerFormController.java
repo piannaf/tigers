@@ -55,7 +55,12 @@ public class SamplerFormController extends BaseFormController {
         String tag = request.getParameter("tag");
        
         if (!StringUtils.isBlank(tag)) {
-            return samplerManager.findOneByTag(tag);
+            Sampler sampler = samplerManager.findOneByTag(tag);
+            if (null == sampler.getLaboratory())
+                sampler.setLaboratory(new User());
+            if (null == sampler.getContractor())
+                sampler.setContractor(new User());
+            return sampler;
         }
         // Initialise foreign keys because Spring doesn't like null values
         Sampler sampler = new Sampler();
@@ -64,7 +69,7 @@ public class SamplerFormController extends BaseFormController {
 		sampler.setContractor(new User());
         return sampler;
     }
-    @Override
+     
     protected Map referenceData(HttpServletRequest request, Object command,
             Errors errors) throws Exception {
     	
