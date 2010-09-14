@@ -106,11 +106,32 @@
 			<appfuse:label styleClass="desc" key="sampler.contractor"/>
 		</td>
 		<td>         
-			<form:errors path="contractor" cssClass="fieldError"/>         
-			<form:select path="contractor.id" id="contractor" cssClass="text medium"> 
-	            <form:option value="" label="Select" />
-	            <form:options items="${contractorList}" itemValue="id" itemLabel="companyName" />
-	        </form:select>    
+			<form:errors path="contractor" cssClass="fieldError"/>
+            <c:choose>
+  				<c:when test="${empty sampler.id}">
+  					<form:select path="contractor.id" id="contractor" cssClass="text medium">
+                          <form:option value="" label="Select" />
+	                      <form:options items="${contractorList}" itemValue="id" itemLabel="companyName" />
+	                </form:select>
+  				</c:when>
+  				<c:otherwise>
+  					<form:select path="contractor.id" id="contractor" cssClass="text medium"
+                         onchange="if (confirm('Are you sure you want to assign a new contractor?')){
+                                        selIdx = this.selectedIndex;
+                                    } else {
+                                        this.selectedIndex = selIdx;
+                                    }">
+                          <form:option value="" label="Select" />
+	                      <form:options items="${contractorList}" itemValue="id" itemLabel="companyName" />
+	                </form:select>
+  				</c:otherwise>
+ 			</c:choose>
+
+
+            <script type="text/javascript">
+                // Set selIdx to defalut selected index on page load
+                var selIdx = document.getElementById("contractor").selectedIndex;
+            </script>
 		</td>
 		<td>         
 			<appfuse:label styleClass="desc" key="sampler.license"/> 
@@ -156,7 +177,7 @@
 		<td  colspan="2">
 			<c:if test="${not empty sampler.id}">         
 				<input type="submit" class="button" name="delete" onclick="return confirmDelete('sample')"              
-				value="<fmt:message key="button.delete"/>" />         
+				value="<fmt:message key="button.delete"/>" />
 			</c:if>
 		</td>
 		<td  colspan="2">         

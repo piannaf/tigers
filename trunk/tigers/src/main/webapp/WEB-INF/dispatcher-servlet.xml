@@ -119,7 +119,7 @@
     	 </bean>
     	<!-- samplerform.html -->
 	<bean id="samplerFormController" class="com.tiffany.webapp.controller.SamplerFormController">
-	 	<property name="validator" ref="beanValidator"/>
+	 	    <property name="validator" ref="beanValidator"/>
         	<property name="formView" value="/officer/samplerform"/>	    	
 	        <property name="successView" value="redirect:samplers.html"/>
 	        <property name="samplerManager" ref="samplerManager"/>
@@ -176,6 +176,17 @@
         <property name="message" ref="mailMessage"/> 
         <property name="templateName" value="userToUserHtml.vm" />          		                		                  		                      
     </bean>
+    <!-- =============================== Waterbody ======================================== -->
+	<!-- waterbodies.html -->
+    	 <bean id="waterbodiesController" class="com.tiffany.webapp.controller.WaterbodiesController">
+    	     <property name="waterbodyManager" ref="waterbodyManager"/>
+    	 </bean>
+         <bean id="waterbodyFormController" class="com.tiffany.webapp.controller.WaterbodyFormController">
+             <property name="validator" ref="beanValidator"/>
+             <property name="formView" value="/officer/waterbodyform"/>
+	         <property name="successView" value="redirect:waterbodies.html"/>
+    	     <property name="waterbodyManager" ref="waterbodyManager"/>
+    	 </bean>
 	<!-- =================================================================================== -->
 	<!-- Came with AppFuse -->
 
@@ -205,6 +216,8 @@
 				/officer/reportsamplers.html=reportListSamplersController
 				/officer/reportsamples.html=reportListSamplesController
 				/officer/reportgraphsamples.html=reportGraphSamplesController
+                /officer/waterbodies.html=waterbodiesController
+                /officer/waterbodyform.html=waterbodyFormController
 				/laboratory/bulkupload.html=bulkUploadController
 				/laboratory/findcontractor.html=findContractorController
 				/mainMenu.html=filenameController
