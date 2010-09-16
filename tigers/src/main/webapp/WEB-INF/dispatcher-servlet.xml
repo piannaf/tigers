@@ -220,6 +220,7 @@
                 /officer/waterbodyform.html=waterbodyFormController
 				/laboratory/bulkupload.html=bulkUploadController
 				/laboratory/findcontractor.html=findContractorController
+				/laboratory/samples.html=sampleController
 				/mainMenu.html=filenameController
 				/passwordHint.html=passwordHintController
 				/resources/*.kml=kmlController

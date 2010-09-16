@@ -7,7 +7,7 @@
 </head>
 
 <p><fmt:message key="mainMenu.message"/></p>
-
+<!-- 
 <div class="separator"></div>
 
 <ul class="glassList">
@@ -26,7 +26,7 @@
     <li>
     	<a href="<c:url value='officer/reportsamplers.html'/>"><fmt:message key="menu.main.reports"/></a>
     </li>
-<!-- 
+
     <li>
         <a href="<c:url value='/userform.html'/>"><fmt:message key="menu.user"/></a>
     </li>

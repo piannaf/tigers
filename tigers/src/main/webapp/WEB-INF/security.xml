@@ -8,15 +8,26 @@
         <!--intercept-url pattern="/images/*" filters="none"/>
         <intercept-url pattern="/styles/*" filters="none"/>
         <intercept-url pattern="/scripts/*" filters="none"/-->
+        
+        <!-- User Specific -->
         <intercept-url pattern="/admin/*" access="ROLE_ADMIN"/>
+        <intercept-url pattern="/contractor/*" access="ROLE_CONTRACTOR"/>
         <intercept-url pattern="/laboratory/*" access="ROLE_LABORATORY"/>
+        <intercept-url pattern="/officer/*" access="ROLE_OFFICER"/>
+        
+        <!-- Mixed Use -->
         <intercept-url pattern="/map.html*" access="ROLE_OFFICER,ROLE_CONTRACTOR"/>
+        <intercept-url pattern="/samplers.html*" access="ROLE_OFFICER,ROLE_CONTRACTOR,ROLE_LABORATORY"/>
         <intercept-url pattern="/resources/*.kml" access="ROLE_OFFICER,ROLE_CONTRACTOR" />
         <intercept-url pattern="/passwordHint.html*" access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_USER"/>
         <intercept-url pattern="/signup.html*" access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_USER"/>
+        
+        <!-- Any User -->
         <intercept-url pattern="/a4j.res/*.html*" access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_OFFICER,ROLE_LABORATORY,ROLE_CONTRACTOR,ROLE_USER"/>
         <!-- APF-737, OK to remove line below if you're not using JSF -->
         <intercept-url pattern="/**/*.html*" access="ROLE_ADMIN,ROLE_OFFICER,ROLE_LABORATORY,ROLE_CONTRACTOR,ROLE_USER"/>
+        
+        <!-- Other -->
         <form-login login-page="/login.jsp" authentication-failure-url="/login.jsp?error=true" login-processing-url="/j_security_check"/>
         <remember-me user-service-ref="userDao" key="e37f4b31-0c45-11dd-bd0b-0800200c9a66"/>
     </http>

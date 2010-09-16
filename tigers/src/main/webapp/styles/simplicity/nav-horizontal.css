@@ -90,7 +90,7 @@
                 display: block;
                 text-decoration: none;
                 color: #777;
-                width: 90px;
+                width: auto;
                 text-align: center;
                 white-space: nowrap;
             }
@@ -114,13 +114,13 @@
                 }
                     ul#primary-nav ul li ul {
                         margin-left: 149px;
-                        margin-top: -23px;
+                        margin-top: -22px;
                     }
                     ul#primary-nav ul li.last {
                         border-bottom: 1px solid silver;
                         border-right: 1px solid silver;
                     }
-                        ul#primary-nav li ul li a { padding: 3px 5px; text-align: left; width: 119px } /* Sub Menu Styles */
+                        ul#primary-nav li ul li a { padding: 3px 5px; text-align: left; width: auto; } /* Sub Menu Styles */
                         ul#primary-nav li:hover ul ul,
                         ul#primary-nav li:hover ul ul ul,
                         ul#primary-nav li.over ul ul,
