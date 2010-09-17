@@ -12,9 +12,9 @@ public class ParameterThresholdsDaoHibernate extends GenericDaoHibernate<Paramet
         super(ParameterThresholds.class);
 	}
 
-	public ParameterThresholds findByWaterBodyAndId(String waterBody, Long parameter_id) {
-		Object[] args = {waterBody, parameter_id};
-		List pt = getHibernateTemplate().find("from ParameterThresholds where name=? and parameter_id=?", args);
+	public ParameterThresholds findByWaterBodyAndId(String waterBody, Long parameter) {
+		Object[] args = {waterBody, parameter};
+		List pt = getHibernateTemplate().find("from ParameterThresholds where waterbody.name=? and parameter.id=?", args);
 		
 		if(pt.isEmpty()) {
 			return null;

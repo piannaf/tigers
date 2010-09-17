@@ -30,7 +30,7 @@
 <input type="hidden" name="tag" value="<c:out value='${tag}' escapeXml='true'/>"/>
 Selected Parameter: <select name="display_parameter" onchange="$('graphparamselect').submit();">
 <c:forEach var="parameterNames" items="${params}">
-<option value="<c:out value='${parameterNames.parameter_id}' escapeXml='true'/>"<c:if test='${parameterName.parameter_id == parameterNames.parameter_id}'> selected="selected"</c:if>><c:out value="${parameterNames.name}" escapeXml="true"/></option>
+<option value="<c:out value='${parameterNames.id}' escapeXml='true'/>"<c:if test='${parameterName.id == parameterNames.id}'> selected="selected"</c:if>><c:out value="${parameterNames.name}" escapeXml="true"/></option>
 </c:forEach>
 </select>
 </div>

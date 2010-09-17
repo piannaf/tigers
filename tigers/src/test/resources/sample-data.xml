@@ -454,7 +454,7 @@
 		</row>
 	</table>
 	<table name='parameternames'>
-		<column>parameter_id</column>
+		<column>id</column>
 		<column>name</column>
 		<column>internal_name</column>
 		<column>type</column>
@@ -509,70 +509,70 @@
 	</table>
 	<table name='parameterthresholds'>
 		<column>id</column>
-		<column>parameter_id</column>
-		<column>name</column>
+		<column>parameter</column>
+		<column>waterbody</column>
 		<column>min</column>
 		<column>max</column>
 		<row>
 			<value>1</value>
 			<value>1</value>
-			<value>Lake Eyre</value>
+			<value>1</value>
 			<value>0</value>
 			<value>10</value>
 		</row>
 		<row>
 			<value>2</value>
 			<value>1</value>
-			<value>aquifer 52</value>
+			<value>3</value>
 			<value>2</value>
 			<value>3</value>
 		</row>
 		<row>
 			<value>3</value>
 			<value>2</value>
-			<value>aquifer 52</value>
+			<value>3</value>
 			<value>1</value>
 			<value>10</value>
 		</row>
 		<row>
 			<value>4</value>
 			<value>3</value>
-			<value>aquifer 52</value>
+			<value>3</value>
 			<value>20</value>
 			<value>30</value>
 		</row>
 		<row>
 			<value>5</value>
 			<value>4</value>
-			<value>aquifer 52</value>
+			<value>3</value>
 			<value>0.1</value>
 			<value>0.5</value>
 		</row>
 		<row>
 			<value>6</value>
 			<value>5</value>
-			<value>aquifer 52</value>
+			<value>3</value>
 			<value>0.1</value>
 			<value>0.5</value>
 		</row>
 		<row>
 			<value>7</value>
 			<value>6</value>
-			<value>aquifer 52</value>
+			<value>3</value>
 			<value>0.1</value>
 			<value>0.5</value>
 		</row>
 		<row>
 			<value>8</value>
 			<value>7</value>
-			<value>aquifer 52</value>
+			<value>3</value>
 			<value>0.1</value>
 			<value>0.5</value>
 		</row>
 		<row>
 			<value>9</value>
 			<value>8</value>
-			<value>aquifer 52</value>
+			<value>3</value>
 			<value>0.1</value>
 			<value>0.5</value>
 		</row>

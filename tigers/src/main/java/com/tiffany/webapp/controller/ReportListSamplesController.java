@@ -15,6 +15,7 @@ import com.tiffany.service.SampleManager;
 import com.tiffany.service.ParameterNamesManager;
 
 public class ReportListSamplesController implements Controller {
+    private static final Log log = LogFactory.getLog(ReportListSamplesController.class);
 	
 	//private final Log log = LogFactory.getLog(ReportListSamplersController.class);
     private GenericManager<Sample, Long> sampleManager = null;
@@ -39,6 +40,8 @@ public class ReportListSamplesController implements Controller {
 		// TODO: display exceedances in table?
 		
 		List<ParameterNames> params = ((ParameterNamesManager)parameterNamesManager).getAll();
+		log.debug("params = " + params.toString());
+		
 		List<Sample> samples = ((SampleManager)sampleManager).findSamplesByTag(samplerTag);
 		return new ModelAndView().addObject("sampleList", samples).addObject("params", params).addObject("tag", samplerTag);
 	}
