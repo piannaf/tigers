@@ -26,7 +26,7 @@ public class ParameterNamesDaoHibernate extends GenericDaoHibernate<ParameterNam
 	}
 	
 	public ParameterNames getId(Long id) {
-		List parameterNames = getHibernateTemplate().find("from ParameterNames where parameter_id=?", id);
+		List parameterNames = getHibernateTemplate().find("from ParameterNames where id=?", id);
 		
 		if(parameterNames.isEmpty()) {
 			return null;

@@ -56,7 +56,12 @@ public class ReportGraphSamplesController implements Controller {
 		if(paramStr == null || paramStr.isEmpty())
 			throw new Exception("Parameter not specified");
 		
+
 		Long param = Long.parseLong(paramStr);
+		ParameterNames parameterName = ((ParameterNamesManager)parameterNamesManager).getId(param);
+		if(parameterName == null)
+			throw new Exception("Parameter name could not be found");
+		String paramName = parameterName.getInternal_name();
 		
 		Sampler sampler = ((SamplerManager)samplerManager).getByTag(samplerTag);
 		if(sampler == null)
@@ -64,10 +69,6 @@ public class ReportGraphSamplesController implements Controller {
 		String waterbody = sampler.getWaterbody().getName();
 		ParameterThresholds pt = ((ParameterThresholdsManager)parameterThresholdsManager).findByWaterBodyAndId(waterbody, param);
 		
-		ParameterNames parameterName = ((ParameterNamesManager)parameterNamesManager).getId(param);
-		if(parameterName == null)
-			throw new Exception("Parameter name could not be found");
-		String paramName = parameterName.getInternal_name();
 		
 		List<Sample> samples = ((SampleManager)sampleManager).findSamplesByTag(samplerTag);
 		HashMap<Long, BigDecimal> data = new HashMap<Long, BigDecimal>(samples.size());
@@ -103,7 +104,14 @@ public class ReportGraphSamplesController implements Controller {
 		if(maxValue == null || pt.getMax().compareTo(maxValue) > 0)
 			maxValue = pt.getMax();
 		
-		ModelAndView ret = new ModelAndView().addObject("data", data).addObject("tag", samplerTag).addObject("parameterName", parameterName).addObject("startTime", new Long(dateFirst.getTime())).addObject("endTime", new Long(dateLast.getTime())).addObject("minValue", minValue).addObject("maxValue", maxValue).addObject("params", ((ParameterNamesManager)parameterNamesManager).getAll());
+		ModelAndView ret = new ModelAndView().addObject("data", data)
+			.addObject("tag", samplerTag)
+			.addObject("parameterName", parameterName)
+			.addObject("startTime", new Long(dateFirst.getTime()))
+			.addObject("endTime", new Long(dateLast.getTime()))
+			.addObject("minValue", minValue)
+			.addObject("maxValue", maxValue)
+			.addObject("params", ((ParameterNamesManager)parameterNamesManager).getAll());
 		if(pt != null) {
 			if(pt.getMin() != null)
 				ret = ret.addObject("thresMin", pt.getMin());

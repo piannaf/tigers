@@ -16,8 +16,8 @@ import java.math.BigDecimal;
 public class ParameterThresholds extends BaseObject {
 	
 	private Long id;
-	private String name;
-	private Long parameter_id;
+	private Waterbody waterbody;
+	private ParameterNames parameter;
 	private BigDecimal min;
 	private BigDecimal max;
 	
@@ -29,19 +29,22 @@ public class ParameterThresholds extends BaseObject {
 		this.id = id;
 	}
 	
-	@Column(nullable=false, length=30)
-	public String getName() {
-		return name;
+	@ManyToOne
+	@JoinColumn(name = "waterbody")
+	public Waterbody getWaterbody() {
+		return waterbody;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setWaterbody(Waterbody name) {
+		this.waterbody = name;
 	}
-	@Column(nullable=false)
-	public Long getParameter_id() {
-		return parameter_id;
+	
+	@ManyToOne
+	@JoinColumn(name = "parameter")
+	public ParameterNames getParameter() {
+		return parameter;
 	}
-	public void setParameter_id(Long parameter_id) {
-		this.parameter_id = parameter_id;
+	public void setParameter(ParameterNames parameter) {
+		this.parameter = parameter;
 	}
 
 	@Column(precision=9, scale=6)
@@ -62,8 +65,8 @@ public class ParameterThresholds extends BaseObject {
 
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this).append("id", id).append("name", name).append("parameter_id",
-				parameter_id).append("min", min).append("max", max).toString();
+		return new ToStringBuilder(this).append("id", id).append("name", waterbody).append("parameter_id",
+				parameter).append("min", min).append("max", max).toString();
 	}
 
 	@Override
@@ -75,15 +78,15 @@ public class ParameterThresholds extends BaseObject {
 		if (getClass() != obj.getClass())
 			return false;
 		ParameterThresholds other = (ParameterThresholds) obj;
-		return new EqualsBuilder().append(name, other.name)
-				.append(parameter_id, other.parameter_id).append(min, other.min).append(max,
+		return new EqualsBuilder().append(waterbody, other.waterbody)
+				.append(parameter, other.parameter).append(min, other.min).append(max,
 						other.max).isEquals();
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder(591165033, -1663524385).append(id).append(name)
-				.append(parameter_id).append(min).append(max).toHashCode();
+		return new HashCodeBuilder(591165033, -1663524385).append(id).append(waterbody)
+				.append(parameter).append(min).append(max).toHashCode();
 	}
 
 }

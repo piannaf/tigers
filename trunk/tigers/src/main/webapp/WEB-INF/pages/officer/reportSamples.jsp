@@ -42,7 +42,7 @@
 <input type="hidden" name="tag" value="<c:out value='${tag}' escapeXml='true'/>"/>
 <select name="display_parameter"> <!--  multiple="multiple" size="8" cols="20" -->
 <c:forEach var="parameterNames" items="${params}">
-<option value="<c:out value='${parameterNames.parameter_id}' escapeXml='true'/>"><c:out value="${parameterNames.name}" escapeXml="true"/></option>
+<option value="<c:out value='${parameterNames.id}' escapeXml='true'/>"><c:out value="${parameterNames.name}" escapeXml="true"/></option>
 </c:forEach>
 </select>
 &nbsp;<input type="submit" value="Generate Graph"/>
