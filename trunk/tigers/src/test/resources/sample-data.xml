@@ -351,12 +351,12 @@
 			<value>151.758828</value>
 			<value>-25.266218</value>
 			<value>daily</value>
-			<value>2</value>
+			<value>0</value>
 			<value>testing gw again</value>
 			<value>-6</value>
-			<value>3</value>
+			<value>1</value>
 			<value>-5</value>
-			<value>monthly</value>
+			<value></value>
 		</row>
 		<row>
 			<value>5</value>
@@ -365,12 +365,12 @@
 			<value>151.764493</value>
 			<value>-25.256185</value>
 			<value>daily</value>
-			<value>2</value>
+			<value>0</value>
 			<value>testing gw again</value>
 			<value>-6</value>
-			<value>3</value>
+			<value>1</value>
 			<value>-5</value>
-			<value>monthly</value>
+			<value></value>
 		</row>
 		<row>
 			<value>6</value>
@@ -379,12 +379,12 @@
 			<value>151.772282</value>
 			<value>-25.266315</value>
 			<value>daily</value>
-			<value>2</value>
+			<value>0</value>
 			<value>testing gw again</value>
 			<value>-6</value>
-			<value>3</value>
+			<value>1</value>
 			<value>-5</value>
-			<value>monthly</value>
+			<value></value>
 		</row>
 		<row>
 			<value>7</value>
@@ -393,12 +393,12 @@
 			<value>151.757154</value>
 			<value>-25.279859</value>
 			<value>daily</value>
-			<value>2</value>
+			<value>0</value>
 			<value>testing gw again</value>
 			<value>-6</value>
-			<value>3</value>
+			<value>1</value>
 			<value>-5</value>
-			<value>monthly</value>
+			<value></value>
 		</row>
 		<row>
 			<value>8</value>
@@ -407,12 +407,12 @@
 			<value>151.751747</value>
 			<value>-25.253701</value>
 			<value>daily</value>
-			<value>2</value>
+			<value>0</value>
 			<value>testing gw again</value>
 			<value>-4</value>
-			<value>3</value>
+			<value>1</value>
 			<value>-5</value>
-			<value>monthly</value>
+			<value></value>
 		</row>
 		<row>
 			<value>9</value>
@@ -581,18 +581,18 @@
 		<column>id</column>
 		<column>description</column>
 		<column>frequency</column>
-		<column>tag</column>
+		<column>sampler</column>
 		<row>
 			<value>1</value>
 			<value>Chemicals</value>
 			<value>monthly</value>
-			<value>SW123</value>
+			<value>8</value>
 		</row>
 		<row>
 			<value>2</value>
 			<value>Acidity</value>
 			<value>weekly</value>
-			<value>GW567</value>
+			<value>9</value>
 		</row>
 	</table>
 	<table name='frequencyitem'>
@@ -615,4 +615,4 @@
 			<value>1</value>
 		</row>
 	</table>
-</dataset>
+</dataset>        

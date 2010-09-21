@@ -17,10 +17,10 @@ public class ScreeningFrequency extends BaseObject implements Serializable {
 	private Long id;
 	private String description;
 	private String frequency;
-	private String tag;
-	private Set<ParameterNames> parameterNames = new HashSet<ParameterNames>(0);
-	
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	private Sampler sampler;
+	private List<ParameterNames> parameterNames = new ArrayList<ParameterNames>();
+
+    @Id @GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
@@ -41,26 +41,28 @@ public class ScreeningFrequency extends BaseObject implements Serializable {
 	public void setFrequency(String frequency) {
 		this.frequency = frequency;
 	}
-	@Column(nullable=false)
-	public String getTag() {
-		return tag;
+    @ManyToOne
+    @JoinColumn(name="sampler")
+	public Sampler getSampler() {
+		return sampler;
 	}
-	public void setTag(String tag) {
-		this.tag = tag;
+	public void setSampler(Sampler sampler) {
+		this.sampler = sampler;
 	}
-	public void setParameterNames(Set<ParameterNames> parameterNames) {
+	public void setParameterNames(List<ParameterNames> parameterNames) {
 		this.parameterNames = parameterNames;
 	}
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "frequencyitem", joinColumns = { @JoinColumn(name = "frequency_id") },
-								inverseJoinColumns = { @JoinColumn(name = "parameter_id") })
-	public Set<ParameterNames> getParameterNames() {
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "frequencyitem", joinColumns = { @JoinColumn(name = "frequency_id", referencedColumnName="id") },
+								inverseJoinColumns = { @JoinColumn(name = "parameter_id", referencedColumnName="id") })
+    @OrderBy("id ASC")
+	public List<ParameterNames> getParameterNames() {
 		return parameterNames;
 	}
 	@Override
 	public String toString() {
 		return "ScreeningFrequency [id=" + id + ", description=" + description
-				+ ", frequency=" + frequency + ", tag=" + tag + "]";
+				+ ", frequency=" + frequency + ", sampler=" + sampler + "]";
 	}
 	@Override
 	public int hashCode() {

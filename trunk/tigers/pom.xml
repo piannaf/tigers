@@ -40,7 +40,7 @@
             <timezone></timezone>
         </developer>
     </developers>
-    
+
     <build>
         <defaultGoal>install</defaultGoal>
         <plugins>
@@ -328,14 +328,14 @@
             <url>http://static.appfuse.org/repository</url>
         </repository>
         <repository> <!-- For downloading JavaAPIforKml -->
-			<id>maven2-repository.dev.java.net</id>
-			<name>Java.net Maven 2 Repository</name>
-			<url>http://download.java.net/maven/2</url>
-			<layout>default</layout>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
+                        <id>maven2-repository.dev.java.net</id>
+                        <name>Java.net Maven 2 Repository</name>
+                        <url>http://download.java.net/maven/2</url>
+                        <layout>default</layout>
+                        <snapshots>
+                                <enabled>true</enabled>
+                        </snapshots>
+                </repository>
     </repositories>
 
     <pluginRepositories>
@@ -347,12 +347,12 @@
 
     <!-- Dependencies calculated by AppFuse when running full-source plugin -->
     <dependencies>
-	    <dependency> <!-- For generating and manipulating KML files -->
-			<groupId>de.micromata.jak</groupId>
-			<artifactId>JavaAPIforKml</artifactId>
-			<version>2.2.0-SNAPSHOT</version>
-	    </dependency>
-    
+            <dependency> <!-- For generating and manipulating KML files -->
+                        <groupId>de.micromata.jak</groupId>
+                        <artifactId>JavaAPIforKml</artifactId>
+                        <version>2.2.0-SNAPSHOT</version>
+            </dependency>
+
         <dependency>
             <groupId>${jdbc.groupId}</groupId>
             <artifactId>${jdbc.artifactId}</artifactId>
@@ -804,7 +804,7 @@
                             </dependency>
                         </dependencies>
                     </plugin>
-                	-->
+                        -->
                 </plugins>
             </build>
         </profile>
@@ -827,7 +827,7 @@
                 </plugins>
             </build>
         </profile>
-        
+
         <!-- ================= Database Profiles ================= -->
         <profile>
             <id>derby</id>
@@ -886,19 +886,19 @@
             </properties>
         </profile>
         <profile>
-        	<id>mysql</id>
-        	<properties>
-        	    <dbunit.dataTypeFactoryName>org.dbunit.dataset.datatype.DefaultDataTypeFactory</dbunit.dataTypeFactoryName>
-		        <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
-		        <hibernate.dialect>org.hibernate.dialect.MySQLInnoDBDialect</hibernate.dialect>
-		        <jdbc.groupId>mysql</jdbc.groupId>
-		        <jdbc.artifactId>mysql-connector-java</jdbc.artifactId>
-		        <jdbc.version>5.0.5</jdbc.version>
-		        <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
-		        <jdbc.url><![CDATA[jdbc:mysql://localhost/csse3004gc?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8]]></jdbc.url>
-		        <jdbc.username>tigers</jdbc.username>
-		        <jdbc.password>tigers</jdbc.password>
-        	</properties>
+                <id>mysql</id>
+                <properties>
+                    <dbunit.dataTypeFactoryName>org.dbunit.dataset.datatype.DefaultDataTypeFactory</dbunit.dataTypeFactoryName>
+                        <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
+                        <hibernate.dialect>org.hibernate.dialect.MySQLInnoDBDialect</hibernate.dialect>
+                        <jdbc.groupId>mysql</jdbc.groupId>
+                        <jdbc.artifactId>mysql-connector-java</jdbc.artifactId>
+                        <jdbc.version>5.0.5</jdbc.version>
+                        <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
+                        <jdbc.url><![CDATA[jdbc:mysql://localhost/csse3004gc?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8]]></jdbc.url>
+                        <jdbc.username>tigers</jdbc.username>
+                        <jdbc.password>tigers</jdbc.password>
+                </properties>
         </profile>
         <profile>
             <id>postgresql</id>
@@ -949,10 +949,10 @@
         <web.framework>spring</web.framework>
         <amp.genericCore>true</amp.genericCore>
         <amp.fullSource>true</amp.fullSource>
-        
+
         <!-- Framework dependency versions -->
         <appfuse.version>2.0.2</appfuse.version>
-        <spring.version>2.5.4</spring.version>
+        <spring.version>3.0.3.RELEASE</spring.version>
 
         <!-- Testing dependency versions -->
         <jmock.version>2.4.0</jmock.version>
@@ -971,7 +971,7 @@
         <cargo.host>localhost</cargo.host>
         <cargo.port>8081</cargo.port>
         <cargo.wait>false</cargo.wait>
-                
+
         <!-- Database settings -->
         <dbunit.dataTypeFactoryName>org.dbunit.ext.oracle.OracleDataTypeFactory</dbunit.dataTypeFactoryName>
         <dbunit.schema>CSSE3004GC</dbunit.schema> <!-- Make sure to capitalize the schema name -->
@@ -985,7 +985,7 @@
         <jdbc.username>csse3004gc</jdbc.username>
         <jdbc.password>TiGERS2010</jdbc.password>
 
-    
+
         <!-- Properties calculated by AppFuse when running full-source plugin -->
         <aspectj.version>1.6.0</aspectj.version>
         <clickstream.version>1.0.2</clickstream.version>

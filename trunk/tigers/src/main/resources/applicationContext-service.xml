@@ -130,4 +130,7 @@
     <bean id="bulkUploadService" class="com.tiffany.service.BulkUploadService">
     	<property name="sampleManager" ref="sampleManager"/>
     </bean>
+    <bean id="screeningFrequencyManager" class="com.tiffany.service.impl.ScreeningFrequencyManagerImpl">
+            <constructor-arg ref="screeningFrequencyDao"/>
+    </bean>
 </beans>

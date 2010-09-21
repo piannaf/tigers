@@ -11,7 +11,7 @@ public class ScreeningFrequencyTest extends BaseDaoTestCase{
 
 	  /**
 	   * Spring will automatically inject ScreeningFrequencyDao object on startup
-	   * @param ScreeningFrequencyDao
+	   * @param screeningFrequencyDao
 	   */
 	  public void setScreeningFrequencyDao(ScreeningFrequencyDao screeningFrequencyDao) {
 	      this.screeningFrequencyDao = screeningFrequencyDao;
@@ -33,14 +33,14 @@ public class ScreeningFrequencyTest extends BaseDaoTestCase{
 	    	assertTrue(sf.size() == 2);
 	}
 	    public void testfindbytype() throws Exception {
-	    	List sfs = screeningFrequencyDao.findBySampler("GW567");       
+	    	List sfs = screeningFrequencyDao.findBySampler(9L);
 	    	assertTrue(sfs.size() == 1);
-	    	sfs = screeningFrequencyDao.findBySampler("SW123");
+	    	sfs = screeningFrequencyDao.findBySampler(8L);
 	    	assertTrue(sfs.size() == 1);
 	    }
 	    public void testgetItems() throws Exception {
 	    	ScreeningFrequency sf = screeningFrequencyDao.get(1L);
-	    	Set pn = sf.getParameterNames();
+	    	List pn = sf.getParameterNames();
 	    	assertNotNull(pn);
 	    	assertTrue(pn.size() == 3);
 	}

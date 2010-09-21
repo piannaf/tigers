@@ -118,7 +118,7 @@
     	     <property name="samplerManager" ref="samplerManager"/>
     	 </bean>
     	<!-- samplerform.html -->
-	<bean id="samplerFormController" class="com.tiffany.webapp.controller.SamplerFormController">
+	    <bean id="samplerFormController" class="com.tiffany.webapp.controller.SamplerFormController">
 	 	    <property name="validator" ref="beanValidator"/>
         	<property name="formView" value="/officer/samplerform"/>	    	
 	        <property name="successView" value="redirect:samplers.html"/>
@@ -126,6 +126,20 @@
 	        <property name="sampleManager" ref="sampleManager"/>
 	        <property name="userManager" ref="userManager"/>
 	        <property name="waterbodyManager" ref="waterbodyManager"/>
+        </bean>
+    	<!-- screeningFrequencyform.html -->
+	    <bean id="screeningFrequencyFormController" class="com.tiffany.webapp.controller.ScreeningFrequencyFormController">
+        	<property name="validator" ref="screeningFrequencyValidator" />
+            <property name="formView" value="/officer/screeningfrequencyform"/>
+	        <property name="successView" value="redirect:screeningfrequencies.html"/>
+	        <property name="screeningFrequencyManager" ref="screeningFrequencyManager"/>
+            <property name="samplerManager" ref="samplerManager"/>
+	        <property name="parameterNamesManager" ref="parameterNamesManager"/>
+        </bean>
+        <bean id="screeningFrequenciesController" class="com.tiffany.webapp.controller.ScreeningFrequenciesController">
+	        <property name="screeningFrequencyManager" ref="screeningFrequencyManager"/>
+	        <property name="samplerManager" ref="samplerManager"/>
+	        <property name="parameterNamesManager" ref="parameterNamesManager"/>
         </bean>
 	<!-- =============================== Reports ======================================== -->
 	<!-- officer/reportSamplers.html -->
@@ -218,6 +232,8 @@
 				/officer/reportgraphsamples.html=reportGraphSamplesController
                 /officer/waterbodies.html=waterbodiesController
                 /officer/waterbodyform.html=waterbodyFormController
+                /officer/screeningfrequencyform.html=screeningFrequencyFormController
+                /officer/screeningfrequencies.html=screeningFrequenciesController
 				/laboratory/bulkupload.html=bulkUploadController
 				/laboratory/findcontractor.html=findContractorController
 				/laboratory/samples.html=sampleController
