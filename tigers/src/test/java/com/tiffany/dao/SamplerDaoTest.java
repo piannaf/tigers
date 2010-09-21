@@ -34,11 +34,12 @@ public class SamplerDaoTest
 		      s.setComp_screening_freq("weekly");
 		      s.setPurpose("test");
 		      
-		/*      Waterbody w = new Waterbody();
-		      w.setName("Atlantic");
-		      w.setType('S');
+		      Waterbody w = new Waterbody();
+		      w.setId(1L);
+		//      w.setName("Atlantic");
+		//      w.setType('S');
 		      
-		      s.setWaterbody(w);*/
+		      s.setWaterbody(w);
 		    
 		      samplerDao.save(s);
 		      

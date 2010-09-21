@@ -16,7 +16,7 @@ public class ParameterNamesDaoHibernate extends GenericDaoHibernate<ParameterNam
 
 	public List<ParameterNames> findByType(char type) {
 		log.debug(type);
-		List parameterNames = getHibernateTemplate().find("from ParameterNames where type=?",type);
+		List parameterNames = getHibernateTemplate().find("from ParameterNames where type='B' or type=?",type);
 		
 		if(parameterNames.isEmpty()) {
 			return null;
@@ -36,7 +36,7 @@ public class ParameterNamesDaoHibernate extends GenericDaoHibernate<ParameterNam
 	}
 	
 	public List<ParameterNames> getAll() {
-		List parameterNames = getHibernateTemplate().find("from ParameterNames");
+		List parameterNames = getHibernateTemplate().find("from ParameterNames order by parameter_id");
 		
 		if(parameterNames.isEmpty()) {
 			return null;

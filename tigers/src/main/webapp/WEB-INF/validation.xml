@@ -393,5 +393,21 @@
 		</field>
 	</form>
 </formset>
-  
+<formset>
+	<form name="screeningFrequency">
+		<field property="description"
+			depends="required">
+			<arg0 key="screeningFrequency.description"/>
+		</field>
+        <field property="frequency"
+			depends="required">
+			<arg0 key="screeningFrequency.frequency"/>
+		</field>
+        <field property="parameterNames"
+			depends="required">
+			<arg0 key="screeningFrequency.frequency"/>
+		</field>
+	</form>
+</formset>
+
 </form-validation>

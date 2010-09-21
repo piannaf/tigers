@@ -36,7 +36,7 @@
   					<form:input path="tag" id="tag" disabled="true" cssClass="text medium"/>
   				</c:otherwise>
  			</c:choose>
-			<form:hidden path="id"/>
+			<form:hidden path="id" id="id" />
 		</td>      
 
 		<td>         
@@ -171,19 +171,31 @@
 		</td>        
 	</tr>   
 	<tr>
-		<td colspan="2">        
-			<input type="submit" class="button" name="save" value="<fmt:message key="button.save"/>"/>         
+		<td colspan="6">
+            <table>
+                <tr>
+		            <td>
+			            <input type="submit" class="button" name="save" value="<fmt:message key="button.save"/>"/>
+		            </td>
+		            <td>
+			            <c:if test="${not empty sampler.id}">
+				            <input type="submit" class="button" name="delete" onclick="return confirmDelete('sample')"
+				            value="<fmt:message key="button.delete"/>" />
+			            </c:if>
+		            </td>
+		            <td>
+		            	<input type="submit" class="button" name="cancel" value="<fmt:message key="button.cancel"/>"/>
+		            </td>
+                    <td>
+                        <c:if test="${not empty sampler.id}">
+			                <input type="button" onclick="location.href='<c:url value="/officer/screeningfrequencies.html"><c:param name="id" value="${sampler.id}"/></c:url >'"
+                            value="<fmt:message key="button.frequencies"/>"/>
+                        </c:if>
+		            </td>
+                </tr>
+            </table>
 		</td>
-		<td  colspan="2">
-			<c:if test="${not empty sampler.id}">         
-				<input type="submit" class="button" name="delete" onclick="return confirmDelete('sample')"              
-				value="<fmt:message key="button.delete"/>" />
-			</c:if>
-		</td>
-		<td  colspan="2">         
-			<input type="submit" class="button" name="cancel" value="<fmt:message key="button.cancel"/>"/>     
-		</td>
-	</tr> 
+	</tr>
 </table> 
 
 </form:form> 
