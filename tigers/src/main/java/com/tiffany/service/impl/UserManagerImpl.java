@@ -1,24 +1,24 @@
 package com.tiffany.service.impl;
 
-import org.springframework.security.providers.dao.DaoAuthenticationProvider;
-import org.springframework.security.providers.dao.SaltSource;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+import javax.jws.WebService;
+import javax.persistence.EntityExistsException;
+
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.providers.encoding.PasswordEncoder;
 import org.springframework.security.userdetails.UsernameNotFoundException;
+
 import com.tiffany.dao.UserDao;
 import com.tiffany.model.Role;
 import com.tiffany.model.User;
 import com.tiffany.service.UserExistsException;
 import com.tiffany.service.UserManager;
 import com.tiffany.service.UserService;
-import org.springframework.beans.factory.annotation.Required;
-import org.springframework.dao.DataIntegrityViolationException;
-
-import javax.jws.WebService;
-import javax.persistence.EntityExistsException;
-
-import java.util.Iterator;
-import java.util.List;
-import java.util.ArrayList;
 
 
 /**
@@ -83,7 +83,7 @@ public class UserManagerImpl extends UniversalManagerImpl implements UserManager
                 passwordChanged = true;
             } else {
                 // Existing user, check password in DB
-                String currentPassword = dao.getUserPassword(user.getUsername());
+                String currentPassword = dao.getUserPasswordForId(user.getId());
                 if (currentPassword == null) {
                     passwordChanged = true;
                 } else {
@@ -132,6 +132,7 @@ public class UserManagerImpl extends UniversalManagerImpl implements UserManager
         return (User) dao.loadUserByUsername(username);
     }
     
+    //=========================================================================================
     public List<User> findUsersByCompanyName(String companyName) {
     	return dao.findUsersByCompanyName(companyName);
     }
@@ -141,11 +142,11 @@ public class UserManagerImpl extends UniversalManagerImpl implements UserManager
     }
     
     public List<User> getContractors() {
-    	List<User> contractorList = new ArrayList();
+    	List<User> contractorList = new ArrayList<User>();
     	List<User> userList = dao.getUsers();
     	Role role = new Role();
     	role.setName("ROLE_CONTRACTOR");
-    	Iterator users = userList.iterator();	    	
+    	Iterator<User> users = userList.iterator();	    	
 		while (users.hasNext()) {
 			User user = (User)users.next();
 			if (user.getRoles().contains(role)) {
@@ -153,5 +154,67 @@ public class UserManagerImpl extends UniversalManagerImpl implements UserManager
 			}						
 		}
     	return contractorList;
+    } 
+    public List<User> getOfficers() {
+    	List<User> contractorList = new ArrayList<User>();
+    	List<User> userList = dao.getUsers();
+    	Role role = new Role();
+    	role.setName("ROLE_OFFICER");
+    	Iterator<User> users = userList.iterator();	    	
+		while (users.hasNext()) {
+			User user = (User)users.next();
+			if (user.getRoles().contains(role)) {
+				contractorList.add(user);
+			}						
+		}
+    	return contractorList;
+    }  
+    public List<User> getLaboratories() {
+    	List<User> laboratoryList = new ArrayList<User>();
+    	List<User> userList = dao.getUsers();
+    	Role role = new Role();
+    	role.setName("ROLE_LABORATORY");
+    	Iterator<User> users = userList.iterator();	    	
+		while (users.hasNext()) {
+			User user = (User)users.next();
+			if (user.getRoles().contains(role)) {
+				laboratoryList.add(user);
+			}						
+		}
+    	return laboratoryList;
+    }  
+    
+    public List<User> getMyLaboratories(String username) {
+    	List<User> laboratoryList = new ArrayList<User>();
+    	User con = getUserByUsername(username);
+    	laboratoryList.addAll(con.getChildren());
+    	return laboratoryList;
+    }
+    
+    public List<User> getAvailableLaboratories(String username) {
+    	List<User> laboratoryList = new ArrayList<User>();
+    	List<User> allLaboratories = getLaboratories();
+    	List<User> myLaboratories = getMyLaboratories(username);
+    	for (User lab : allLaboratories) {
+    		if (!myLaboratories.contains(lab)) laboratoryList.add(lab);
+    	}
+    	return laboratoryList;
+    }
+ 
+    public List<User> getMyContractors(String username) {
+    	User lab = getUserByUsername(username);
+    	List<User> contractorList = new ArrayList<User>();
+    	List<User> contractors = getContractors();
+    	for(User con : contractors) {  
+    		if (con.getChildren().contains(lab)) contractorList.add(con);
+    	}
+    	return contractorList;
+    }
+    
+    public boolean isMyLaboratory(String username, User lab) {
+    	return getMyLaboratories(username).contains(lab);
+    }
+    public boolean isMyContractor(String username, User con) {
+    	return getMyContractors(username).contains(con);
     }
 }

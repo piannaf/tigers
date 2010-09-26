@@ -17,6 +17,7 @@ import com.tiffany.service.WaterbodyManager;
 import com.tiffany.service.BulkUploadService;
 
 import org.apache.commons.lang.StringUtils;
+import org.springframework.mail.MailException;
 import org.springframework.security.AccessDeniedException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.Errors;
@@ -158,6 +159,8 @@ public class BulkUploadController extends BaseFormController {
             csv.delete();
         	return showForm(request, response, errors);
         }
+        String result = line + "\n";
+        boolean hasError = false;
         //======================
         log.debug("\n==================== header test =======================");
         Set<Integer> keys = bulkUploadService.fieldsMap.keySet();
@@ -178,7 +181,11 @@ public class BulkUploadController extends BaseFormController {
         	log.debug("data : "+data.errorFields);
         	//=========
         	if (data.errorFields.equals("")) { data.complete = "Y"; }
-        	else { data.complete = "Faild"; }
+        	else { 
+        		data.complete = "Faild"; 
+        		hasError = true;
+        		result += line + "\n";
+        	}
         	dataList.add(data);
         }
         text.close();
@@ -188,12 +195,43 @@ public class BulkUploadController extends BaseFormController {
         	saveError(request, getText("errors.bulkUpload.noData", locale));
         	return showForm(request, response, errors);
         }
-        
-        
+        // write error file
+        String errorPath = uploadDir + "error_file.csv";
+        if (hasError) {
+	        try {
+		        FileWriter errorFile = new FileWriter(errorPath);
+		        BufferedWriter out = new BufferedWriter(errorFile);
+		        out.write(result);
+		        out.close();
+	        } catch (Exception e) {
+	        	log.debug("unable to write error file");
+	        }
+        }
+        // send complete email
+        User contractor = samplerManager.getContractorByTag2(samplerId);
+        message.setSubject(getText("bulkUpload.email.subject", samplerId,locale));                
+        Map<String, Serializable> model = new HashMap<String, Serializable>();
+        Object objs[] = {samplerId, request.getRemoteUser()};
+        model.put("message", getText("bulkUpload.email.message", objs,locale));                
+        try {
+        	sendUserMessage(contractor, model);
+        } catch (MailException me) {
+        	saveError(request, getText("email.failed", locale));
+            log.debug("MailException");
+        } catch (Exception e) {
+        	log.debug("can't send email");
+        }
         //===================================================
         // place the data into the request for retrieval on next page
-
-        return new ModelAndView(getSuccessView()).addObject("dataList", dataList);
+        
+        ModelAndView mv = new ModelAndView(getSuccessView());
+        if (hasError) {
+        	String link = request.getContextPath() + "/resources" + "/bulk_upload/error_file.csv";
+        	log.debug("path: " + link);
+        	mv.addObject("link", link);
+        }
+        mv.addObject("dataList", dataList);
+        return mv;
     }
     //============================================================================
     public class  Data {

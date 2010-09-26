@@ -1,27 +1,23 @@
 package com.tiffany.webapp.controller;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.validation.Errors;
-
-import com.tiffany.Constants;
-import com.tiffany.service.UserManager;
-import com.tiffany.model.User;
-import com.tiffany.model.Role;
-import com.tiffany.webapp.controller.UserSearch;
-
-import org.springframework.validation.BindException;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.security.userdetails.UsernameNotFoundException;
+import org.springframework.validation.BindException;
+import org.springframework.validation.Errors;
+import org.springframework.web.servlet.ModelAndView;
 
-import java.util.*;
+import com.tiffany.Constants;
+import com.tiffany.model.Role;
+import com.tiffany.model.User;
+import com.tiffany.service.UserManager;
 
 public class UserSearchController extends BaseFormController {
 	private UserManager userManager = null;
@@ -40,7 +36,14 @@ public class UserSearchController extends BaseFormController {
 		UserSearch search = new UserSearch();
 		return search;
 	}
-	
+	protected Map referenceData(HttpServletRequest request, Object command, Errors errors) throws Exception {
+		log.debug("\n===== referenceData =====");		
+		Map<String, Object> refData = new HashMap();
+		if (!isFormSubmission(request)) {
+			refData.put("userList", userManager.getUsers(new User()));
+		}
+		return refData;
+	}
 	public ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response,
 			Object command, BindException errors) throws Exception {
 		log.debug("UserSearchController: onSubmit");
@@ -64,7 +67,11 @@ public class UserSearchController extends BaseFormController {
 		// username
 		} else if (!username.equals("") && companyName.equals("")) {
 			log.debug("username");
-			userList.add(userManager.getUserByUsername(username));
+			try {
+				userList.add(userManager.getUserByUsername(username));
+			} catch (UsernameNotFoundException e) {
+				log.debug("username \"" + username + "\" not found");
+			}
 		// nothing
 		} else {
 			log.debug("nothing");

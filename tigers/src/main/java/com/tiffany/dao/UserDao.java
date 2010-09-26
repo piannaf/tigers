@@ -45,7 +45,10 @@ public interface UserDao extends GenericDao<User, Long> {
      */
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     String getUserPassword(String username);
-    
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    String getUserPasswordForId(Long id);
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    String getUserPasswordForId(String id);
     //==================================
     List<User> findUsersByCompanyName(String companyName);
     List<User> findUserByUsernameAndCompanyName(String username, String companyName);

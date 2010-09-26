@@ -1,19 +1,18 @@
 package com.tiffany.webapp.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.security.AccessDeniedException;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
 
 import com.tiffany.Constants;
 import com.tiffany.model.User;
 import com.tiffany.service.UserManager;
+
+import org.springframework.security.AccessDeniedException;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
 
 
 /**
@@ -25,8 +24,8 @@ import com.tiffany.service.UserManager;
  *
  * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
  */
-public class UserController implements Controller {
-    private transient final Log log = LogFactory.getLog(UserController.class);
+public class ViewMyLaboratoriesController implements Controller {
+    private transient final Log log = LogFactory.getLog(ViewMyLaboratoriesController.class);
     private UserManager mgr = null;
 
     public void setUserManager(UserManager userManager) {
@@ -40,16 +39,13 @@ public class UserController implements Controller {
             log.debug("entering 'handleRequest' method...");
         }
         
-        if (!request.isUserInRole("ROLE_ADMIN")) {
+        if (!request.isUserInRole("ROLE_CONTRACTOR")) {
         	response.sendError(HttpServletResponse.SC_FORBIDDEN);
-            log.warn("User '" + request.getRemoteUser() + "' is trying to view admin report");
+            log.warn("User '" + request.getRemoteUser() + "' is trying to edit user with id '" +
+                     request.getParameter("id") + "'");
 
-            throw new AccessDeniedException("You do not have permission to view admin report.");
+            throw new AccessDeniedException("You do not have permission to view laboratories.");
         }
-        
-        List<User> userList = mgr.getOfficers();
-        userList.addAll(mgr.getContractors());
-        userList.addAll(mgr.getLaboratories());
-        return new ModelAndView("admin/userList", Constants.USER_LIST, userList);
+        return new ModelAndView("/contractor/myLaboratoryList", Constants.USER_LIST, mgr.getMyLaboratories(request.getRemoteUser()));
     }
 }

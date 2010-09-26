@@ -46,7 +46,11 @@ SamplerManager {
 		tagList.addAll(tagSet);
 		return tagList;
 	}
-
+	
+	public List<Sampler> getMySamplers(User contractor) {
+		return samplerDao.findByContractor(contractor);
+	}
+	
 	public String getWaterBodyNameByTag(String tag) {
 		List<Sampler> samplerList = samplerDao.findByTag(tag);
 		if (samplerList.size() == 0) return null;

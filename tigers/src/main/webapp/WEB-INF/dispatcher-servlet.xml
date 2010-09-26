@@ -110,6 +110,9 @@
         <property name="cancelView" value="redirect:mainMenu.html"/>
         <property name="formView" value="/laboratory/bulkUploadForm"/>
         <property name="successView" value="/laboratory/bulkUploadDisplay"/>
+        <property name="mailEngine" ref="mailEngine" />
+		<property name="message" ref="mailMessage" />
+		<property name="templateName" value="generalHtml.vm" />
 	</bean>
 
 	<!-- =============================== Sampler ======================================== -->
@@ -201,7 +204,80 @@
 	         <property name="successView" value="redirect:waterbodies.html"/>
     	     <property name="waterbodyManager" ref="waterbodyManager"/>
     	 </bean>
-	<!-- =================================================================================== -->
+	<!-- ================================= Add Contractor ==================================== -->
+	<bean id="addContractorController" class="com.tiffany.webapp.controller.AddContractorController">
+		<property name="validator" ref="beanValidator" />
+		<property name="formView" value="/officer/addContractor" />
+		<property name="successView" value="redirect:../mainMenu.html" />
+		<property name="cancelView" value="redirect:../mainMenu.html" />
+		<property name="userManager" ref="userManager" />
+		<property name="roleManager" ref="roleManager" />
+		<property name="mailEngine" ref="mailEngine" />
+		<property name="message" ref="mailMessage" />
+		<property name="templateName" value="accountCreatedHtml.vm" />
+	</bean>
+	<!-- ================================= view contractors ==================================== -->
+	<bean id="viewContractorsController" class="com.tiffany.webapp.controller.ViewContractorsController">
+		<property name="userManager" ref="userManager" />
+	</bean>
+	<!-- ================================= Add Laboratory ==================================== -->
+	<bean id="addLaboratoryController" class="com.tiffany.webapp.controller.AddLaboratoryController">
+		<property name="validator" ref="beanValidator" />
+		<property name="formView" value="/contractor/addLaboratory" />
+		<property name="successView" value="redirect:../mainMenu.html" />
+		<property name="cancelView" value="redirect:../mainMenu.html" />
+		<property name="userManager" ref="userManager" />
+		<property name="roleManager" ref="roleManager" />
+		<property name="mailEngine" ref="mailEngine" />
+		<property name="message" ref="mailMessage" />
+		<property name="templateName" value="accountCreatedHtml.vm" />
+	</bean>
+	<!-- ================================= pre add laboratory ==================================== -->
+	<bean id="addLaboratoryPreController" class="com.tiffany.webapp.controller.AddLaboratoryPreController">
+		<property name="validator" ref="beanValidator"/>
+		<property name="userManager" ref="userManager" />
+	</bean>
+	<!-- ================================= view my laboratories ==================================== -->
+	<bean id="viewMyLaboratoriesController" class="com.tiffany.webapp.controller.ViewMyLaboratoriesController">
+		<property name="userManager" ref="userManager" />
+	</bean>
+	<!-- ================================= view available laboratories ==================================== -->
+	<bean id="viewAvailableLaboratoriesController" class="com.tiffany.webapp.controller.ViewAvailableLaboratoriesController">
+		<property name="userManager" ref="userManager" />
+	</bean>
+	<!-- ================================= add existing laboratories ==================================== -->
+	<bean id="addExistingLabController" class="com.tiffany.webapp.controller.AddExistingLabController">
+		<property name="userManager" ref="userManager" />
+	</bean>
+	<!-- ================================= drop laboratories ==================================== -->
+	<bean id="dropLaboratoryController" class="com.tiffany.webapp.controller.DropLaboratoryController">
+		<property name="userManager" ref="userManager" />
+	</bean>
+	<!-- ================================= view my contractors ==================================== -->
+	<bean id="viewMyContractorsController" class="com.tiffany.webapp.controller.ViewMyContractorsController">
+		<property name="userManager" ref="userManager" />
+	</bean>
+	<!-- ================================= user info ==================================== -->
+	<bean id="userInfoController" class="com.tiffany.webapp.controller.UserInfoController">
+		<property name="userManager" ref="userManager" />
+	</bean>
+	<!-- ================================= Email ================================================= -->
+    <bean id="emailController" class="com.tiffany.webapp.controller.EmailController">
+    	<property name="validator" ref="beanValidator"/>
+        <property name="successView" value="redirect:mainMenu.html"/>   
+        <property name="userManager" ref="userManager"/>   
+        <property name="mailEngine" ref="mailEngine"/>        
+        <property name="message" ref="mailMessage"/> 
+        <property name="templateName" value="userToUserHtml.vm" />          		                		                  		                      
+    </bean>
+    <!-- ================================ Find Contractor (for laboratory) ========================== -->
+	<bean id="assignLaboratoryController" class="com.tiffany.webapp.controller.AssignLaboratoryController">
+		<property name="samplerManager" ref="samplerManager"/>
+		<property name="userManager" ref="userManager"/>
+		<property name="validator" ref="beanValidator"/>
+		<property name="successView" value="redirect:mainMenu.html"/>
+	</bean>
+	<!-- =================================  ==================================== -->
 	<!-- Came with AppFuse -->
 
 	<bean id="multipartResolver"
@@ -224,6 +300,7 @@
 				/admin/reload.html=reloadController
 				/admin/users.html=userController
 				/admin/usersearch.html=userSearchController
+				/admin/contractorlist.html=viewContractorsController
 				/officer/samplesearch.html=sampleSearchController
 				/officer/samplers.html=samplerController
                 /officer/samplerform.html=samplerFormController
@@ -234,9 +311,19 @@
                 /officer/waterbodyform.html=waterbodyFormController
                 /officer/screeningfrequencyform.html=screeningFrequencyFormController
                 /officer/screeningfrequencies.html=screeningFrequenciesController
+                /officer/addcontractor.html=addContractorController
+                /officer/contractorlist.html=viewContractorsController
+                /contractor/addlaboratory.html=addLaboratoryController
+                /contractor/addlaboratorypre.html=addLaboratoryPreController
+                /contractor/laboratorylist.html=viewMyLaboratoriesController
+                /contractor/availablelaboratorylist.html=viewAvailableLaboratoriesController
+                /contractor/addexistinglab.html=addExistingLabController
+                /contractor/droplaboratory.html=dropLaboratoryController
+                /contractor/assignlaboratory.html=assignLaboratoryController
 				/laboratory/bulkupload.html=bulkUploadController
 				/laboratory/findcontractor.html=findContractorController
 				/laboratory/samples.html=sampleController
+				/laboratory/mycontractors.html=viewMyContractorsController
 				/mainMenu.html=filenameController
 				/passwordHint.html=passwordHintController
 				/resources/*.kml=kmlController

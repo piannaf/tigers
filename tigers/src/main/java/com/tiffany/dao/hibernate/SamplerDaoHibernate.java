@@ -50,6 +50,10 @@ public class SamplerDaoHibernate extends GenericDaoHibernate<Sampler, Long> impl
 		return getHibernateTemplate().find("from Sampler where laboratory=?", laboratory);
 	}
 
+	public List<Sampler> findByContractor(User contractor) {
+		return getHibernateTemplate().find("from Sampler where contractor=?", contractor);
+	}
+	
 	public List<Sampler> findByTag(String tag) {
 		return getHibernateTemplate().find("from Sampler where tag=?", tag);
 	}

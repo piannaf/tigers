@@ -6,7 +6,7 @@
 		</style>
 	</head>
 	<body>
-		<div>Dear ${user.companyName},</div>
+		<div>Dear ${user.username},</div>
 		<br/>
 		<pre><div>${message}</div></pre>
 		<br/>
