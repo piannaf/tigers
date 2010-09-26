@@ -9,24 +9,24 @@
 			roles="ROLE_ADMIN,ROLE_OFFICER,ROLE_LABORATORY,ROLE_CONTRACTOR,ROLE_USER">
 
 			<Item name="Update Password" title="menu.main.updatePassword"
-				page="/TODO.html" />
+				page="/userform.html" />
 
 			<Item name="Logout" title="menu.main.logout" page="logout.jsp" />
 		</Menu>
 
         <!-- Administrator Menus -->
 		<Menu name="AdminMenu" title="menu.admin" description="menu.admin Menu"
-			page="/admin/users.html" roles="ROLE_ADMIN">
+			 roles="ROLE_ADMIN">
 
 			<Item name="AddAccount" title="menu.admin.addAccount" page="/userform.html?method=Add">
 				<Item name="Add Environmental Officer" title="menu.admin.addEO"
-					page="/userform.html?method=Add&amp;role=ROLE_OFFICER" />
+					page="/userform.html?method=Add&amp;role=officer" />
 
 				<Item name="AddContractor" title="menu.admin.addContractor"
-					page="/userform.html?method=Add&amp;role=ROLE_CONTRACTOR" />
+					page="/userform.html?method=Add&amp;role=contractor" />
 
 				<Item name="AddLaboratory" title="menu.admin.addLab"
-					page="/userform.html?method=Add&amp;role=ROLE_LABORATORY" />
+					page="/userform.html?method=Add&amp;role=lab" />
 			</Item>
 
 			<Item name="SearchUsers" title="menu.admin.searchUsers" page="admin/usersearch.html" />
@@ -47,6 +47,9 @@
         
         <Menu name="OfficerAdministrationMenu" title="menu.officer.administration"
             description="Administration Menu" roles="ROLE_OFFICER">
+            <Item name="addContractor" title="menu.officer.adminstration.addContractor"
+                page="/officer/addcontractor.html"/>
+                
             <Item name="addSampler" title="menu.officer.adminstration.addSampler"
                 page="/officer/samplerform.html"/>
                 
@@ -54,7 +57,7 @@
                 page="/officer/waterbodyform.html"/>
                 
             <Item name="viewContractors" title="menu.officer.adminstration.viewContractors"
-                page="TODO.jsp"/>
+                page="/officer/contractorlist.html"/>
                 
             <Item name="viewSamplers" title="menu.officer.adminstration.viewSamplers"
                 page="/samplers.html"/>
@@ -94,7 +97,7 @@
                 page="/laboratory/findcontractor.html" />
                 
             <Item name="ViewContractors" title="menu.laboratory.viewContractors"
-                page="TODO.jsp" />
+                page="/laboratory/mycontractors.html" />
         </Menu>
         
         <Menu name="LabSamplerMenu" title="menu.laboratory.viewSamplers"
@@ -103,20 +106,21 @@
         <!-- Contractor Menus -->
         <Menu name="ContractorLabMenu" title="menu.contractor.labMenu"
             description="Contractor Laboratory Menu" roles="ROLE_CONTRACTOR">
-            <Item name="AddLaboratory" title="menu.contractor.lab.add"
-                page="TODO.jsp"/>    
                 
-            <Item name="ViewLabs" title="menu.contractor.lab.view"
-                page="TODO.jsp" />
-        </Menu>
-        
+			<Item name="AddLaboratory" title="menu.contractor.lab.add" 
+            	page="/contractor/addlaboratorypre.html">
+				
+			</Item>
+			<Item name="ViewLabs" title="menu.contractor.lab.view"
+                page="/contractor/laboratorylist.html" />
+		</Menu>       
         <Menu name="ContractorSamplerMenu" title="menu.contractor.samplerMenu"
             description="Contractor Sampler Menu" roles="ROLE_CONTRACTOR">
             <Item name="ViewSamplers" title="menu.contractor.sampler.view"
                 page="/samplers.html"/>
                 
             <Item name="AssignSampler" title="menu.contractor.sampler.assign"
-                page="TODO.jsp" />
+                page="/contractor/assignlaboratory.html" />
                 
             <Item name="UploadMediaFile" title="menu.contractor.sampler.uploadMedia"
                 page="TODO.jsp" />

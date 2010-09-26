@@ -15,6 +15,7 @@ public interface SamplerManager extends GenericManager<Sampler, Long> {
 	List<String> getTagListForLaboratory(User laboratory);
 	String getWaterBodyNameByTag(String tag);
 	String getContractorByTag(String tag);
+	List<Sampler> getMySamplers(User contractor);
 	List<Sampler> findByTag(String tag);
 	User getContractorByTag2(String tag);
 	String getWaterBodyTypeByTag(String tag);

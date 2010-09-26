@@ -316,7 +316,15 @@
       </form>
       <form name="tag">
             <field property="tag" depends="required">
-                <arg0 key="findContractor.tag"/>
+                <arg0 key="user.username"/>
+            </field>
+      </form>
+      <form name="assignLab">
+            <field property="lab" depends="required">
+                <arg0 key="user.username"/>
+            </field>
+            <field property="samplerId" depends="required">
+                <arg0 key="sampler.tag"/>
             </field>
       </form>
       <form name="email">

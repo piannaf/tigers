@@ -48,6 +48,7 @@ public class FindContractorController extends BaseFormController {
 		Map<String, Object> refData = new HashMap();
 		User remoteUser = userManager.getUserByUsername((request.getRemoteUser()));
 		List<String> samplerIdList = samplerManager.getTagListForLaboratory(remoteUser);
+		java.util.Collections.sort(samplerIdList);
 		refData.put("samplerIdList", samplerIdList);
 		if (samplerIdList.size() == 0)	saveMessage(request, getText("findContractor.noTag", locale));
 		return refData;

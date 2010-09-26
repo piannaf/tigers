@@ -9,10 +9,7 @@
 		<div>Dear ${user.username},</div>
 		<br/>
 		<div>${message}</div>
-		<br/>
-		<div>Username: ${user.username}</div>
-		<div>Password: ${user.confirmPassword}</div>
-		<br/>
+		
 		</br>
 		<hr color="" align="left" width="70%" size="2">
 		<img src="cid:image"/><br/>

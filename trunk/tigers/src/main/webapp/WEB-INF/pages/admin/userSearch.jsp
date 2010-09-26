@@ -62,6 +62,4 @@
 </display:table>
 
 
-<script type="text/javascript">
-    highlightTableRows("users");
-</script>
+

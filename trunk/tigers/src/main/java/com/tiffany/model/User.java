@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import java.util.Iterator;
 
@@ -37,6 +38,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private Address address = new Address();
     private Integer version;
     private Set<Role> roles = new HashSet<Role>();
+    private Set<User> children = new HashSet<User>(0);
     private boolean enabled;
     private boolean accountExpired;
     private boolean accountLocked;
@@ -130,7 +132,6 @@ public class User extends BaseObject implements Serializable, UserDetails {
     @Transient
     public String getCurrentRole() {
     	String currentRole = "";
-    	int i = 0;
     	if (this.roles != null) {
     		Iterator<Role> it = roles.iterator();
     		currentRole = it.next().getName().substring(5);
@@ -314,4 +315,66 @@ public class User extends BaseObject implements Serializable, UserDetails {
         }
         return sb.toString();
     }
+    
+    //=============================================
+    public void resetPassword() {
+    	int size = 6;		
+		String chars = "abc";
+		List<Character> charList = new ArrayList<Character>();
+		for (int i=0; i<chars.length(); i++) {
+			charList.add(chars.charAt(i));			
+		}
+		java.util.Collections.shuffle(charList);
+		Random generator = new Random();
+		String newPassword = "";
+		for (int i=0; i<size; i++) {
+			int index = generator.nextInt(charList.size());
+			newPassword += charList.get(index);
+		}
+		this.password = newPassword;
+		this.confirmPassword = newPassword;
+    }
+    //================================================================
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) 
+    @JoinTable(
+            name="contractor_laboratory",
+            joinColumns = { @JoinColumn( name="contractor_id") },
+            inverseJoinColumns = @JoinColumn( name="laboratory_id")
+    )    
+    public Set<User> getChildren() {
+        return children;
+    }
+    public void setChildren(Set<User> children) {
+        this.children = children;
+    }
+    @Transient
+    public List<LabelValue> getParentList() {
+        List<LabelValue> userParent = new ArrayList<LabelValue>();
+
+        if (this.children != null) {
+            for (User user : children) {
+                // convert the user's roles to LabelValue Objects
+                userParent.add(new LabelValue(user.getUsername(), user.getUsername()));
+            }
+        }
+
+        return userParent;
+    }
+    @Transient
+    public String getCurrentParent() {
+    	String currentChildren = "";
+    	if (this.children != null) {
+    		Iterator<User> it = children.iterator();
+    		currentChildren = it.next().getUsername();
+    		while (it.hasNext()) {
+    			User user = it.next();
+    			currentChildren += "/" + user.getUsername();
+    		}
+    	}
+    	return currentChildren;
+    }
+    public void addChildren(User user) {
+        getChildren().add(user);
+    }
+    
 }

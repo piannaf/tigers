@@ -11,7 +11,7 @@
 <div class="separator"></div>
 <!-- ============================================== -->
 <display:table name="dataList" cellspacing="0" cellpadding="0" requestURI=""
-id="dataList" pagesize="25" class="table dataList" export="true">
+id="dataList" pagesize="25" class="table dataList" export="false">
 
 <display:column property="line" escapeXml="true" titleKey="bulkUpload.display.line"/>
 <display:column property="errorFields" escapeXml="true" titleKey="bulkUpload.display.errorFields"/>
@@ -19,8 +19,9 @@ id="dataList" pagesize="25" class="table dataList" export="true">
 
 </display:table>
 
-
-
+<c:if test="${not empty link}">
+	<a href="<c:out value="${link}"/>">Download error file</a>
+</c:if>
 
 <!-- ============================================== -->
 <table class="detail" cellpadding="5">
