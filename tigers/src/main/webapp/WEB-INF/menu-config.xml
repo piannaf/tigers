@@ -65,6 +65,9 @@
             <Item name="viewWaterBodies" title="menu.officer.adminstration.viewWaterBodies"
                 page="/officer/waterbodies.html"/>
                 
+            <Item name="viewSamplerMedia" title="menu.officer.adminstration.viewSamplerMedia"
+                page="/officer/samplermediasamplers.html"/>
+
             <Item name="samplerToContractor" title="menu.officer.adminstration.samplerToContractor"
                 page="TODO.jsp"/>
         </Menu>

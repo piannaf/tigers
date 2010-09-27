@@ -165,6 +165,14 @@
 		<property name="parameterNamesManager" ref="parameterNamesManager" />
 		<property name="parameterThresholdsManager" ref="parameterThresholdsManager" />
 	</bean>
+	
+	<!-- =============================== Sampler Media ======================================== -->
+	<!-- officer/samplerMediaSamplers.html -->
+	<bean id="samplerMediaListSamplersController"
+		class="com.tiffany.webapp.controller.SamplerMediaListSamplersController">
+		<property name="waterbodyManager" ref="waterbodyManager" />
+		<property name="samplerManager" ref="samplerManager" />
+	</bean>
 
 	<!-- ================================ Map ========================================== -->
 	<!-- map.html -->
@@ -309,6 +317,7 @@
 				/officer/reportgraphsamples.html=reportGraphSamplesController
                 /officer/waterbodies.html=waterbodiesController
                 /officer/waterbodyform.html=waterbodyFormController
+                /officer/samplermediasamplers.html=samplerMediaListSamplersController
                 /officer/screeningfrequencyform.html=screeningFrequencyFormController
                 /officer/screeningfrequencies.html=screeningFrequenciesController
                 /officer/addcontractor.html=addContractorController

@@ -16,7 +16,7 @@ import com.tiffany.service.WaterbodyManager;
 import com.tiffany.service.SamplerManager;
 import com.tiffany.webapp.controller.ListSamplersController;
 
-public class ReportListSamplersController extends ListSamplersController {
+public class SamplerMediaListSamplersController extends ListSamplersController {
 	public void setWaterbodyManager(GenericManager<Waterbody, Long> waterbodyManager) {
 		super.setWaterbodyManager(waterbodyManager);
 	}

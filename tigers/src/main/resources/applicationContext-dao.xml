@@ -81,4 +81,7 @@
     <bean id="screeningFrequencyDao" class="com.tiffany.dao.hibernate.ScreeningFrequencyDaoHibernate">
                 <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    <bean id="samplerMediaDao" class="com.tiffany.dao.hibernate.SamplerMediaDaoHibernate">
+                <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 </beans>
