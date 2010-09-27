@@ -36,7 +36,7 @@ public class ParameterNamesDaoHibernate extends GenericDaoHibernate<ParameterNam
 	}
 	
 	public List<ParameterNames> getAll() {
-		List parameterNames = getHibernateTemplate().find("from ParameterNames order by parameter_id");
+		List parameterNames = getHibernateTemplate().find("from ParameterNames order by id");
 		
 		if(parameterNames.isEmpty()) {
 			return null;

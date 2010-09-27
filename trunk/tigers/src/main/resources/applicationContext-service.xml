@@ -133,4 +133,7 @@
     <bean id="screeningFrequencyManager" class="com.tiffany.service.impl.ScreeningFrequencyManagerImpl">
             <constructor-arg ref="screeningFrequencyDao"/>
     </bean>
+    <bean id="samplerMediaManager" class="com.tiffany.service.impl.SamplerMediaManagerImpl">
+            <constructor-arg ref="samplerMediaDao"/>
+    </bean>
 </beans>
