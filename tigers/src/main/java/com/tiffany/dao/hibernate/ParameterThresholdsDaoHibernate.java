@@ -22,5 +22,16 @@ public class ParameterThresholdsDaoHibernate extends GenericDaoHibernate<Paramet
 			return (ParameterThresholds)pt.get(0);
 		}
 	}
+	
+	public List<ParameterThresholds> findByWaterBody(String waterBody) {
+		Object[] args = {waterBody};
+		List<ParameterThresholds> ret = getHibernateTemplate().find("from ParameterThresholds where waterbody.name=?", args);
+		
+		if(ret.isEmpty()) {
+			return null;
+		} else {
+			return ret;
+		}
+	}
 
 }

@@ -173,6 +173,20 @@
 		<property name="waterbodyManager" ref="waterbodyManager" />
 		<property name="samplerManager" ref="samplerManager" />
 	</bean>
+	<!-- =============================== Exceedance Reports ======================================== -->
+	<!-- officer/reportexceedancesamplers.html -->
+	<bean id="reportExceedanceListSamplersController"
+		class="com.tiffany.webapp.controller.ReportExceedanceListSamplersController">
+		<property name="waterbodyManager" ref="waterbodyManager" />
+		<property name="samplerManager" ref="samplerManager" />
+	</bean>
+	<!-- officer/reportexceedance.html -->
+	<bean id="reportExceedanceController"
+		class="com.tiffany.webapp.controller.ReportExceedanceController">
+		<property name="sampleManager" ref="sampleManager" />
+		<property name="samplerManager" ref="samplerManager" />
+		<property name="parameterThresholdsManager" ref="parameterThresholdsManager" />
+	</bean>
 
 	<!-- ================================ Map ========================================== -->
 	<!-- map.html -->
@@ -315,6 +329,8 @@
 				/officer/reportsamplers.html=reportListSamplersController
 				/officer/reportsamples.html=reportListSamplesController
 				/officer/reportgraphsamples.html=reportGraphSamplesController
+				/officer/reportexceedancesamplers.html=reportExceedanceListSamplersController
+				/officer/reportexceedance.html=reportExceedanceController
                 /officer/waterbodies.html=waterbodiesController
                 /officer/waterbodyform.html=waterbodyFormController
                 /officer/samplermediasamplers.html=samplerMediaListSamplersController
