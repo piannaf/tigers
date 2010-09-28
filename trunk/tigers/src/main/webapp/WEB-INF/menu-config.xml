@@ -39,7 +39,7 @@
         <Menu name="OfficerReportMenu" title="menu.officer.officerReport" description="Reports Menu"
             roles="ROLE_OFFICER">
             <Item name="ExceedanceReport" title="menu.officer.officerReport.exceedance"
-                page="TODO.jsp" />
+                page="/officer/reportexceedancesamplers.html" />
             
             <Item name="AuditReport" title="menu.officer.officerReport.audit"
                 page="/officer/reportsamplers.html" />

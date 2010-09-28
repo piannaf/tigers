@@ -8,5 +8,5 @@ import com.tiffany.model.ParameterThresholds;
 public interface ParameterThresholdsManager extends GenericManager<ParameterThresholds, Long> {
 	
 	ParameterThresholds findByWaterBodyAndId(String waterBody, Long parameter_id);
-
+	List<ParameterThresholds> findByWaterBody(String waterBody);
 }

@@ -21,5 +21,8 @@ public class ParameterThresholdsManagerImpl extends GenericManagerImpl<Parameter
 	public ParameterThresholds findByWaterBodyAndId(String waterBody, Long parameter_id) {
 		return parameterThresholdsDao.findByWaterBodyAndId(waterBody, parameter_id);
 	}
+	public List<ParameterThresholds> findByWaterBody(String waterBody) {
+		return parameterThresholdsDao.findByWaterBody(waterBody);
+	}
 
 }
