@@ -119,12 +119,14 @@
 	<!-- samplers.html -->
     	 <bean id="samplerController" class="com.tiffany.webapp.controller.SamplerController">
     	     <property name="samplerManager" ref="samplerManager"/>
+             <property name="userManager" ref="userManager"/>
     	 </bean>
     	<!-- samplerform.html -->
 	    <bean id="samplerFormController" class="com.tiffany.webapp.controller.SamplerFormController">
 	 	    <property name="validator" ref="beanValidator"/>
         	<property name="formView" value="/officer/samplerform"/>	    	
-	        <property name="successView" value="redirect:samplers.html"/>
+	        <property name="successView" value="redirect:/samplers.html"/>
+            <property name="cancelView" value="redirect:/samplers.html" />
 	        <property name="samplerManager" ref="samplerManager"/>
 	        <property name="sampleManager" ref="sampleManager"/>
 	        <property name="userManager" ref="userManager"/>
@@ -197,6 +199,7 @@
 	<!-- *.kml -->
 	<bean id="kmlController" class="com.tiffany.webapp.controller.KmlController">
 		<property name="samplerManager" ref="samplerManager" />
+        <property name="userManager" ref="userManager"/>
 	</bean>
 	
 	<!-- ================================ Find Contractor (for laboratory) ========================== -->
@@ -246,7 +249,7 @@
 	<bean id="addLaboratoryController" class="com.tiffany.webapp.controller.AddLaboratoryController">
 		<property name="validator" ref="beanValidator" />
 		<property name="formView" value="/contractor/addLaboratory" />
-		<property name="successView" value="redirect:../mainMenu.html" />
+		<property name="successView" value="redirect:./addlaboratorypre.html" />
 		<property name="cancelView" value="redirect:../mainMenu.html" />
 		<property name="userManager" ref="userManager" />
 		<property name="roleManager" ref="roleManager" />

@@ -87,7 +87,7 @@ public class AddLaboratoryPreController extends BaseFormController {
             	
             }
             saveMessage(request, "The laboratory " + lab.getUsername() + " has been added.");
-            return new ModelAndView("mainMenu");
+            return new ModelAndView("redirect:/contractor/laboratorylist.html");
         //=====================================
     	} else {
     		log.debug("add new user with username: " + username);

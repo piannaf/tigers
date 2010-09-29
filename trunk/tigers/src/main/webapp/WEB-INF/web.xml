@@ -226,25 +226,34 @@
         <servlet-name>xfire</servlet-name>
         <url-pattern>/services/*</url-pattern>
     </servlet-mapping>
-	
-	<servlet>
-	  <description></description>
-	  <display-name>Search</display-name>
-	  <servlet-name>SearchServlet</servlet-name>
-	  <servlet-class>com.tiffany.servlets.SearchServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-	  <servlet-name>SearchServlet</servlet-name>
-	  <url-pattern>/searchServlet</url-pattern>
-	</servlet-mapping>
+    
+    <servlet>
+      <description></description>
+      <display-name>Search</display-name>
+      <servlet-name>SearchServlet</servlet-name>
+      <servlet-class>com.tiffany.servlets.SearchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>SearchServlet</servlet-name>
+      <url-pattern>/searchServlet</url-pattern>
+    </servlet-mapping>
   
   <servlet>
-  	<servlet-name>WaterbodyCompleter</servlet-name>
-  	<servlet-class>com.tiffany.servlets.WaterbodyCompleter</servlet-class>
+    <servlet-name>WaterbodyCompleter</servlet-name>
+    <servlet-class>com.tiffany.servlets.WaterbodyCompleter</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>WaterbodyCompleter</servlet-name>
-  	<url-pattern>/waterbodies</url-pattern>
+    <servlet-name>WaterbodyCompleter</servlet-name>
+    <url-pattern>/waterbodies</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>LabCompleter</servlet-name>
+    <servlet-class>com.tiffany.servlets.LabCompleter</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LabCompleter</servlet-name>
+    <url-pattern>/labs</url-pattern>
   </servlet-mapping>
       
     <!-- Dispatching handled by StaticFilter -->
@@ -254,8 +263,8 @@
     </servlet-mapping>-->
     
     <servlet-mapping>
-    	<servlet-name>dispatcher</servlet-name>
-    	<url-pattern>*.kml</url-pattern>	
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>*.kml</url-pattern>    
     </servlet-mapping>
 
     <session-config>

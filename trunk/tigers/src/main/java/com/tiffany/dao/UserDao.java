@@ -52,4 +52,5 @@ public interface UserDao extends GenericDao<User, Long> {
     //==================================
     List<User> findUsersByCompanyName(String companyName);
     List<User> findUserByUsernameAndCompanyName(String username, String companyName);
+    List<User> getLaboratoriesLike(String username);
 }

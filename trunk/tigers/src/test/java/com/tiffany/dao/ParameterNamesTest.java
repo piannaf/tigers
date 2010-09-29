@@ -35,8 +35,8 @@ public class ParameterNamesTest extends BaseDaoTestCase{
 	    	List pns = ParameterNamesDao.findByType('B');       
 	    	assertTrue(pns.size() == 5);
 	    	pns = ParameterNamesDao.findByType('S');       
-	    	assertTrue(pns.size() == 2);
+	    	assertTrue(pns.size() == 7);
 	    	pns = ParameterNamesDao.findByType('G');       
-	    	assertTrue(pns.size() == 1);
+	    	assertTrue(pns.size() == 6);
 	    }
 }
