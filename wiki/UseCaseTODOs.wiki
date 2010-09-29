@@ -18,11 +18,10 @@ See SRS for complete Use Case descriptions
  * Jane
   * {~~13, 14, 15, 17, 18, 19, 20, 21~~, 23, 24} - focus on validation and form design
  * Justin
-  * {6} - database manipulation, validation
+  * {~~6~~} - database manipulation, validation
   * {12} - database manipulation, validation
-  * {13, 14, 16, 17, 19, 22} - focus on database manipulation
   * {14, 17, 22, 23} - map functionality
-  * {22} - note the data security requirements
+  * {~~22~~} - note the data security requirements
 
 =Tickets=
  # Use Case 2: Are bulk uploads validated? *They should be.*
@@ -41,7 +40,7 @@ See SRS for complete Use Case descriptions
  # _*Closed*_. Use Case 16: Can admins update contractors? *They should.* 
  # Use Case 17: Sampler location can be updated via map. 
  # Use Case 19: Must labs have at least one sampler associated with them? *No, it's OK to have a lab with no samplers.*
- # Use Case 19: Note the update condition (sampler can move beween contractors). *No idea why I wrote this condition, should be removed.(Jane)*
+ # Use Case 19: Note the update condition (sampler can move between contractors). *No idea why I wrote this condition, should be removed.(Jane)*
  # Use Case 19: Note there is a confirmation before submission. *I'll add this. (Jane)*
  # Use Case 20: Sampling frequency form same as "update sampler"? *Should be separate forms.  In our last meeting it was going to be one form, have you changed your mind?  It will be easier as a separate form. (Jane)*
  # Use Case 23: Note the various users and their different uses.
@@ -52,3 +51,4 @@ See SRS for complete Use Case descriptions
  # Think of other specific functionality to help user experience, minimize validation errors, etc.
  # Who can view pictures/video? *Only Contractors and EOs should*
  # Change project plan to reflect the minutes are done by Nicholas.
+ # Page transitions (successView, cancelView, etc)
