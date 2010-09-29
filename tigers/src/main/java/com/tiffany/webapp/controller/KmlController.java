@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
 import com.tiffany.model.Sampler;
+import com.tiffany.model.User;
 import com.tiffany.service.SamplerManager;
+import com.tiffany.service.UserManager;
 
 import de.micromata.opengis.kml.v_2_2_0.*;
 import de.micromata.opengis.kml.v_2_2_0.Document;
@@ -25,9 +28,14 @@ import de.micromata.opengis.kml.v_2_2_0.Document;
 public class KmlController extends AbstractController {
     private transient final Log log = LogFactory.getLog(UserController.class);
     private SamplerManager samplerManager = null;
+    private UserManager userManager = null;
 
     public void setSamplerManager(SamplerManager samplerManager) {
 	this.samplerManager = samplerManager;
+    }
+
+    public void setUserManager(UserManager userManager) {
+	this.userManager = userManager;
     }
 
     @Override
@@ -52,14 +60,17 @@ public class KmlController extends AbstractController {
 			"Location of samplers at the Tiffany Gold Mine")
 		.withOpen(true);
 
-	// Main placemark
-	document.createAndAddPlacemark().withName("Tiffany Gold Mine, AU")
-		.withDescription("Central Point of Tiffany Gold Mine Land")
-		.withOpen(Boolean.TRUE).createAndSetPoint()
-		.addToCoordinates(151.761274, -25.265189);
+	// Sampler placemarks
+	List<Sampler> samplers;
+	if (request.isUserInRole("ROLE_CONTRACTOR")) {
+	    User contractor = userManager.getUserByUsername((request
+		    .getRemoteUser()));
+	    samplers = samplerManager.getMySamplers(contractor);
+	} else {
+	    samplers = samplerManager.getAllOrderedByTag();
+	}
 
-	// Other placemarks
-	for (Sampler sampler : samplerManager.getAll()) {
+	for (Sampler sampler : samplers) {
 	    // Generate HTML with dom4j (and assume it works)
 	    StringWriter sw = new StringWriter();
 	    generateDescription(sw, sampler);
@@ -87,25 +98,25 @@ public class KmlController extends AbstractController {
 	org.dom4j.Document desc = DocumentHelper.createDocument();
 	Element descRoot = desc.addElement("div");
 	descRoot.addAttribute("id", "description");
-	    
+
 	// Description header is sampler's unique Tag
 	descRoot.addElement("h1").addText(sampler.getTag());
-	  
+
 	// Sampler parameters as definition list
 	Element params = descRoot.addElement("dl");
-	for (Map.Entry<String, Object> entry : 
-	    	sampler.list_all_params().entrySet()) {
-	    if(entry.getValue() != null && !entry.getValue().toString().isEmpty()) {
-	    	params.addElement("dt").addText(entry.getKey());
-	    	params.addElement("dd").addText(entry.getValue().toString());
+	for (Map.Entry<String, Object> entry : sampler.list_all_params()
+		.entrySet()) {
+	    if (entry.getValue() != null
+		    && !entry.getValue().toString().isEmpty()) {
+		params.addElement("dt").addText(entry.getKey());
+		params.addElement("dd").addText(entry.getValue().toString());
 	    }
 	}
-	    
-	    
+
 	try {
-    	    writer.write(desc);
-    	    writer.flush();
-    	    return true;
+	    writer.write(desc);
+	    writer.flush();
+	    return true;
 	} catch (IOException e) {
 	    log.debug(e);
 	    return false;

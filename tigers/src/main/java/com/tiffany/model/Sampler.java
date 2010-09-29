@@ -23,7 +23,7 @@ public class Sampler extends BaseObject {
 	private String comp_screening_freq;
 	private String purpose;
 	private User contractor;
-    private User laboratory;
+	private User laboratory;
 	private Waterbody waterbody;
 	private String depth_to_collar_screening_freq;
 

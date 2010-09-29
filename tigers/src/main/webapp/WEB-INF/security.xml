@@ -12,6 +12,7 @@
         <!-- User Specific -->
         <intercept-url pattern="/admin/*" access="ROLE_ADMIN"/>
         <intercept-url pattern="/contractor/*" access="ROLE_CONTRACTOR"/>
+        <intercept-url pattern="/labs*" access="ROLE_CONTRACTOR"/>
         <intercept-url pattern="/laboratory/*" access="ROLE_LABORATORY"/>
         <intercept-url pattern="/officer/*" access="ROLE_OFFICER"/>
         

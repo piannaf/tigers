@@ -14,4 +14,7 @@
     <bean id="waterbodyCompleter" class="com.tiffany.servlets.WaterbodyCompleter">
     	<property name="waterbodyDao" ref="waterbodyDao"/>
     </bean>
+    <bean id="labCompleter" class="com.tiffany.servlets.LabCompleter">
+        <property name="userDao" ref="userDao"/>
+    </bean>
 </beans>

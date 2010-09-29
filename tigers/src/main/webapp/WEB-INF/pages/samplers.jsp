@@ -22,7 +22,7 @@ value="<fmt:message key="button.add"/>"/>
 value="<fmt:message key="button.done"/>"/>
 </c:set>
 <hr />
-<form method="get" action="/officer/samplers.html">
+<form method="get" action="/samplers.html">
 
 <label for="waterbody">Water Body:</label>
 <input type="text" id="waterbody" name="waterbody" />

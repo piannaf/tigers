@@ -4,6 +4,7 @@ import org.springframework.security.userdetails.UserDetails;
 import org.springframework.security.userdetails.UserDetailsService;
 import org.springframework.security.userdetails.UsernameNotFoundException;
 import com.tiffany.dao.UserDao;
+import com.tiffany.model.Role;
 import com.tiffany.model.User;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -105,6 +106,12 @@ public class UserDaoHibernate extends GenericDaoHibernate<User, Long> implements
     public List<User> findUserByUsernameAndCompanyName(String username, String companyName) {
     	Object obj[] = {username, companyName};
     	return getHibernateTemplate().find("from User where username=? and company_name=?", obj);
+    }
+
+    public List<User> getLaboratoriesLike(String username) {	
+	Object obj[] = {"ROLE_LABORATORY", "%" + username + "%"};
+	return getHibernateTemplate().find("select user from User as user left join user.roles as role " +
+			"where role.name = ? and user.username like ?", obj);
     }
     
 }
