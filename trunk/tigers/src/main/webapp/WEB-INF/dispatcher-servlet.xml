@@ -295,14 +295,25 @@
         <property name="message" ref="mailMessage"/> 
         <property name="templateName" value="userToUserHtml.vm" />          		                		                  		                      
     </bean>
-    <!-- ================================ Find Contractor (for laboratory) ========================== -->
+    <!-- ================================ assign laboratory ========================== -->
 	<bean id="assignLaboratoryController" class="com.tiffany.webapp.controller.AssignLaboratoryController">
 		<property name="samplerManager" ref="samplerManager"/>
 		<property name="userManager" ref="userManager"/>
 		<property name="validator" ref="beanValidator"/>
 		<property name="successView" value="redirect:mainMenu.html"/>
 	</bean>
-	<!-- =================================  ==================================== -->
+	<!-- ================================= assign lab pre ==================================== -->
+	 <bean id="assignLabPreController" class="com.tiffany.webapp.controller.AssignLabPreController">
+    	<property name="samplerManager" ref="samplerManager"/>
+    	<property name="userManager" ref="userManager"/>
+     </bean>
+     <!-- ================================ assign lab post========================== -->
+	<bean id="assignLabPostController" class="com.tiffany.webapp.controller.AssignLabPostController">
+		<property name="samplerManager" ref="samplerManager"/>
+		<property name="userManager" ref="userManager"/>
+		<property name="validator" ref="beanValidator"/>
+		<property name="successView" value="redirect:mainMenu.html"/>
+	</bean>
 	<!-- Came with AppFuse -->
 
 	<bean id="multipartResolver"
@@ -348,6 +359,8 @@
                 /contractor/addexistinglab.html=addExistingLabController
                 /contractor/droplaboratory.html=dropLaboratoryController
                 /contractor/assignlaboratory.html=assignLaboratoryController
+                /contractor/assignlabpre.html=assignLabPreController
+                /contractor/assignlabpost.html=assignLabPostController
 				/laboratory/bulkupload.html=bulkUploadController
 				/laboratory/findcontractor.html=findContractorController
 				/laboratory/samples.html=sampleController
