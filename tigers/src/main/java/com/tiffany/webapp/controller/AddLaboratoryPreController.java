@@ -22,61 +22,61 @@ import com.tiffany.model.User;
 import com.tiffany.webapp.controller.Tag;
 
 public class AddLaboratoryPreController extends BaseFormController {
-	private SamplerManager samplerManager;
-	private UserManager userManager;
-	
-	public void setSamplerManager(SamplerManager samplerManager) {
-		this.samplerManager = samplerManager;
-	}
-	
-	public void setUserManager(UserManager userManager) {
-		this.userManager = userManager;
-	}
-	
-	public AddLaboratoryPreController() {
-		setCommandName("lab");
+        private SamplerManager samplerManager;
+        private UserManager userManager;
+        
+        public void setSamplerManager(SamplerManager samplerManager) {
+                this.samplerManager = samplerManager;
+        }
+        
+        public void setUserManager(UserManager userManager) {
+                this.userManager = userManager;
+        }
+        
+        public AddLaboratoryPreController() {
+                setCommandName("lab");
         setCommandClass(Tag.class);
-	}
-	//=============
-	protected Object formBackingObject(HttpServletRequest request) throws Exception {
-    	log.debug("\n===== formBackingObject =====");
-    	Tag tag = new Tag();    	
-    	return tag;
+        }
+        //=============
+        protected Object formBackingObject(HttpServletRequest request) throws Exception {
+        log.debug("\n===== formBackingObject =====");
+        Tag tag = new Tag();            
+        return tag;
     }
-	//=======================referenceData=============================================
+        //=======================referenceData=============================================
 //    protected Map referenceData(HttpServletRequest request, Object command, Errors errors) throws Exception {
-//		log.debug("referenceData...");
-//		Locale locale = request.getLocale();
-//		Map<String, Object> refData = new HashMap();
-//		User remoteUser = userManager.getUserByUsername((request.getRemoteUser()));
-//		List<String> samplerIdList = samplerManager.getTagListForLaboratory(remoteUser);
-//		java.util.Collections.sort(samplerIdList);
-//		refData.put("samplerIdList", samplerIdList);
-//		if (samplerIdList.size() == 0)	saveMessage(request, getText("findContractor.noTag", locale));
-//		return refData;
-//	}
+//              log.debug("referenceData...");
+//              Locale locale = request.getLocale();
+//              Map<String, Object> refData = new HashMap();
+//              User remoteUser = userManager.getUserByUsername((request.getRemoteUser()));
+//              List<String> samplerIdList = samplerManager.getTagListForLaboratory(remoteUser);
+//              java.util.Collections.sort(samplerIdList);
+//              refData.put("samplerIdList", samplerIdList);
+//              if (samplerIdList.size() == 0)  saveMessage(request, getText("findContractor.noTag", locale));
+//              return refData;
+//      }
     //=======================onSubmit=============================================
     public ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object command,
             BindException errors) throws Exception {
-    	log.debug("entering 'onSubmit' method...");
-    	
-    	
-    	
-    	String success = getSuccessView();
-    	Tag tag = (Tag)command;  	
-    	String username = tag.getTag();
-    	log.debug(username);
-    	User lab = null;
-    	try {
-    		lab = userManager.getUserByUsername(username);
-    	} catch (Exception e) {
-    		log.debug(e.toString());
-    	}
-    	//==========================
-    	if (lab != null) {
-    		User me = userManager.getUserByUsername(request.getRemoteUser());
-        	me.addChildren(lab);
-        	try {
+        log.debug("entering 'onSubmit' method...");
+        
+        
+        
+        String success = getSuccessView();
+        Tag tag = (Tag)command;         
+        String username = tag.getTag();
+        log.debug(username);
+        User lab = null;
+        try {
+                lab = userManager.getUserByUsername(username);
+        } catch (Exception e) {
+                log.debug(e.toString());
+        }
+        //==========================
+        if (lab != null) {
+                User me = userManager.getUserByUsername(request.getRemoteUser());
+                me.addChildren(lab);
+                try {
                 userManager.saveUser(me);
             } catch (AccessDeniedException ade) {
                 // thrown by UserSecurityAdvice configured in aop:advisor userManagerSecurity
@@ -84,19 +84,19 @@ public class AddLaboratoryPreController extends BaseFormController {
                 response.sendError(HttpServletResponse.SC_FORBIDDEN);
                 return null;
             } catch (UserExistsException e) {
-            	
+                
             }
             saveMessage(request, "The laboratory " + lab.getUsername() + " has been added.");
             return new ModelAndView("redirect:/contractor/laboratorylist.html");
         //=====================================
-    	} else {
-    		log.debug("add new user with username: " + username);
-    		return new ModelAndView("redirect:/contractor/addlaboratory.html?username=" + username);
-    	}
+        } else {
+                log.debug("add new user with username: " + username);
+                return new ModelAndView("redirect:/contractor/addlaboratory.html?username=" + username);
+        }
     }
   //====================== onBind ==================================
 //    protected void onBind(HttpServletRequest request, Object command) throws Exception {
-//    	log.debug("\n===== onBind =====");
+//      log.debug("\n===== onBind =====");
 //        // if the user is being deleted, turn off validation
 //        if (request.getParameter("emailTo") != null) {
 //            super.setValidateOnBinding(false);

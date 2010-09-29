@@ -123,7 +123,7 @@
                 page="/samplers.html"/>
                 
             <Item name="AssignSampler" title="menu.contractor.sampler.assign"
-                page="/contractor/assignlaboratory.html" />
+                page="/contractor/assignlabpre.html" />
                 
             <Item name="UploadMediaFile" title="menu.contractor.sampler.uploadMedia"
                 page="TODO.jsp" />
