@@ -53,6 +53,8 @@ public class SamplerFormController extends BaseFormController {
     protected Object formBackingObject(HttpServletRequest request)
     throws Exception {
         String tag = request.getParameter("tag");
+        String lat = request.getParameter("lat");
+        String lng = request.getParameter("lng");
        
         if (!StringUtils.isBlank(tag)) {
             Sampler sampler = samplerManager.findOneByTag(tag);
@@ -62,6 +64,15 @@ public class SamplerFormController extends BaseFormController {
                 sampler.setContractor(new User());
             return sampler;
         }
+        
+        /* Get here by adding new sampler from map */
+        if (!StringUtils.isBlank(lat) && !StringUtils.isBlank(lng)) {
+            Sampler sampler = new Sampler();
+            sampler.setLatitude(new BigDecimal(lat));
+            sampler.setLongitude(new BigDecimal(lng));
+            return sampler;
+        }
+        
         // Initialise foreign keys because Spring doesn't like null values
         Sampler sampler = new Sampler();
 		sampler.setWaterbody(new Waterbody());
