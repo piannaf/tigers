@@ -20,7 +20,7 @@ See SRS for complete Use Case descriptions
  * Justin
   * {~~6~~} - database manipulation, validation
   * {12} - database manipulation, validation
-  * {14, 17, 22, 23} - map functionality
+  * {~~14~~, 17, 22, 23} - map functionality
   * {~~22~~} - note the data security requirements
 
 =Tickets=
