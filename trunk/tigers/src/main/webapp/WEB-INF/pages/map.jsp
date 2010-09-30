@@ -68,10 +68,17 @@
     #test {
         display: none;
     }
+    
+    .labelstyle {
+        background-color:#ffffff;
+        font-weight:bold;
+    }
 </style> 
 <title><fmt:message key="map.title"/></title>
 <script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAxKNSmreHpX8AESttKh0VwBTwM0brOpm-All5BF6PoaKBxRWWERS8jM1JywDsPc13gAgPMsMvUVJrZw"></script> 
 <script type="text/javascript" src="<c:url value='/scripts/geoxml.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/scripts/elabel.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/scripts/contextmenucontrol.js'/>"></script>
 <script type="text/javascript">
         window.onload = initialize;
         var gml, mmap;
@@ -82,6 +89,18 @@
             mmap.addControl(new GMapTypeControl());
             mmap.addControl(new GScaleControl());
             mmap.addControl(new RefreshKmlControl());   // Custom control to refresh markers/reload KML from server
+            <security:authorize ifAnyGranted="ROLE_OFFICER">
+            mmap.addControl(new ContextMenuControl({ // Custom control to show context menu
+              dirsFrom: false,
+              dirsTo: false,
+              zoomIn: false,
+              zoomOut: false,
+              centerMap: false,
+              whatsHere: false,
+              addSampler: true
+            }));  
+            </security:authorize>
+            
             mmap.addMapType(G_PHYSICAL_MAP);
             mmap.setMapType(G_SATELLITE_MAP);
             mmap.enableScrollWheelZoom();
@@ -103,6 +122,18 @@
                     marker.openInfoWindowHtml("lat: " + latLng.lat() + ", lng: " + latLng.lng() + 
                             "<p><a href=\"officer/samplerform.html?tag=" + marker.title + "\" target=\"_blank\">Edit Sampler information</a></p>");
                 }
+            });
+            
+            // Show lat/lang as mouse moves
+            var latLngLabel=0;
+            GEvent.addListener(mmap, 'mousemove', function(latLng) {
+                content = latLng.lat().toFixed(6) + ', ' + latLng.lng().toFixed(6);
+                if(latLngLabel == 0) {
+                    latLngLabel=new ELabel(latLng, content,"labelstyle",new GSize(2,20),60);
+                    mmap.addOverlay(latLngLabel);
+                }
+                latLngLabel.setContents(content);
+                latLngLabel.setPoint(latLng);
             });
             
             refreshKml();
