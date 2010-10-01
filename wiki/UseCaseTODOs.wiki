@@ -20,28 +20,29 @@ See SRS for complete Use Case descriptions
  * Justin
   * {~~6~~} - database manipulation, validation
   * {12} - database manipulation, validation
-  * {~~14~~, 17, 22, 23} - map functionality
+  * {~~14, 17, 22~~, 23} - map functionality
   * {~~22~~} - note the data security requirements
 
 =Tickets=
  # Use Case 2: Are bulk uploads validated? *They should be.*
  # Use Case 3: Error file? *Rows with errors should get sent to another file.*
- # Use Case 4: Be sure only labs can modify and view directly. 
- # Use Case 4: EOs view through reports only.
- # Use Case 5: Labs`<`--`>`Contractors should be a many to many relationship.
- # Use Case 5: Can EOs see contractor details? *They should.*
- # Use Case 8: "Sampler" vs. "Sample"? *Should be "sampler".*
+ # _*Closed*_.Use Case 4: Be sure only labs can modify and view directly. 
+ # _*Closed*_.Use Case 4: EOs view through reports only.
+ # _*Closed*_.Use Case 5: Labs`<`--`>`Contractors should be a many to many relationship.
+ # _*Closed*_.Use Case 5: Can EOs see contractor details? *They should.*
+ # _*Closed*_.Use Case 8: "Sampler" vs. "Sample"? *Should be "sampler".*
  # _*Closed*_. Use Case 9: Can admins update laboratories? *They should.* 
  # Use Case 10, 11: BLOB vs FILE?
  # Use Case 13: Send email confirmation on password change? *It should.*
- # Use Case 14: Liscense number NOT NULL? *It can be NULL. There should also be a minimum password length.*
- # Use Case 14: Need to be able to add samplers via map. 
+ # Use Case 13: There should also be a minimum password length.
+ # _*Closed*_.Use Case 14: License number NOT NULL? *It can be NULL. *
+ # _*Closed*_.Use Case 14: Need to be able to add samplers via map. 
  # Use Case 15: Maybe have polygon data associated with water bodies? *If there's time.*
  # _*Closed*_. Use Case 16: Can admins update contractors? *They should.* 
- # Use Case 17: Sampler location can be updated via map. 
- # Use Case 19: Must labs have at least one sampler associated with them? *No, it's OK to have a lab with no samplers.*
+ # _*Closed*_.Use Case 17: Sampler location can be updated via map. 
+ # _*Closed*_.Use Case 19: Must labs have at least one sampler associated with them? *No, it's OK to have a lab with no samplers.*
  # Use Case 19: Note the update condition (sampler can move between contractors). *No idea why I wrote this condition, should be removed.(Jane)*
- # Use Case 19: Note there is a confirmation before submission. *I'll add this. (Jane)*
+ # _*Closed*_.Use Case 19: Note there is a confirmation before submission. *I'll add this. (Jane)*
  # Use Case 20: Sampling frequency form same as "update sampler"? *Should be separate forms.  In our last meeting it was going to be one form, have you changed your mind?  It will be easier as a separate form. (Jane)*
  # Use Case 23: Note the various users and their different uses.
  # NaN is visible on spreadsheets and reports but represents NULL in database. "<X.XXX" or ">X.XXX" is for out of range numbers.
