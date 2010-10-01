@@ -67,9 +67,6 @@
                 
             <Item name="viewSamplerMedia" title="menu.officer.adminstration.viewSamplerMedia"
                 page="/officer/samplermediasamplers.html"/>
-
-            <Item name="samplerToContractor" title="menu.officer.adminstration.samplerToContractor"
-                page="TODO.jsp"/>
         </Menu>
         
         <Menu name="OfficerExecutionMenu" title="menu.officer.execution"
@@ -78,7 +75,7 @@
                 page="TODO.jsp"/>
             
             <Item name="samplingFreq" title="menu.officer.execution.samplingFreq"
-                page="TODO.jsp"/>
+                page="/officer/samplingschedule.html"/>
         </Menu>
         
         <Menu name="OfficerMap" title="menu.map"

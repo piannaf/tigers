@@ -90,15 +90,15 @@
             mmap.addControl(new GScaleControl());
             mmap.addControl(new RefreshKmlControl());   // Custom control to refresh markers/reload KML from server
             <security:authorize ifAnyGranted="ROLE_OFFICER">
-            mmap.addControl(new ContextMenuControl({ // Custom control to show context menu
-              dirsFrom: false,
-              dirsTo: false,
-              zoomIn: false,
-              zoomOut: false,
-              centerMap: false,
-              whatsHere: false,
-              addSampler: true
-            }));  
+                mmap.addControl(new ContextMenuControl({ // Custom control to show context menu
+                  dirsFrom: false,
+                  dirsTo: false,
+                  zoomIn: false,
+                  zoomOut: false,
+                  centerMap: false,
+                  whatsHere: false,
+                  addSampler: true
+                }));  
             </security:authorize>
             
             mmap.addMapType(G_PHYSICAL_MAP);
@@ -117,10 +117,24 @@
                 
             // Custom infowindows
             GEvent.addListener(mmap, 'click', function(marker) {
-                if(marker) {
-                    var latLng = marker.getLatLng()
-                    marker.openInfoWindowHtml("lat: " + latLng.lat() + ", lng: " + latLng.lng() + 
-                            "<p><a href=\"officer/samplerform.html?tag=" + marker.title + "\" target=\"_blank\">Edit Sampler information</a></p>");
+                if(marker && marker.getIcon) {    // check whether it's really a marker
+                        var html = ""
+                    <security:authorize ifAnyGranted="ROLE_OFFICER">
+                        html = "<p><a href=\"officer/samplerform.html?tag=" 
+                                + marker.title 
+                                + ">Edit Sampler information</a></p>";
+                    </security:authorize>
+                    
+                    <security:authorize ifAnyGranted="ROLE_CONTRACTOR">
+                        html = "<p><a href=\"contractor/assignlabpost.html?tag=" 
+                                + marker.title 
+                                + ">Assign sampler to laboratory</a></p>";
+                    </security:authorize>
+                
+                
+                    var latLng = marker.getLatLng();
+                    marker.openInfoWindowHtml("<p>lat: " + latLng.lat() 
+                            + "<br/> lng: " + latLng.lng() + "</p>" + html);
                 }
             });
             
