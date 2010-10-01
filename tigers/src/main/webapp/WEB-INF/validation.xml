@@ -389,8 +389,8 @@
 	</form>
 </formset>
 <formset>
-	<form name="waterbody">
-		<field property="name"
+	<form name="waterbodyForm">
+		<field property="waterbody.name"
 			depends="required,maxlength">
 			<arg0 key="waterbody.name"/>
 			<arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
@@ -414,6 +414,14 @@
         <field property="parameterNames"
 			depends="required">
 			<arg0 key="screeningFrequency.frequency"/>
+		</field>
+	</form>
+</formset>
+<formset>
+	<form name="samplingSchedule">
+		<field property="waterbody"
+			depends="required">
+			<arg0 key="samplingSchedule.waterbody"/>
 		</field>
 	</form>
 </formset>

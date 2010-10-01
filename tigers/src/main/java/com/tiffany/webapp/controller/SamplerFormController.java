@@ -157,7 +157,7 @@ public class SamplerFormController extends BaseFormController {
 				okeydokey = false;
 				errors.rejectValue("license", "errors.groundWaterRequired", new Object[] {license}, null);	
 			}
-			if (depthToCollarScreeningFreq.equals("Select")) {
+			if (depthToCollarScreeningFreq.equals("")) {
 				okeydokey = false;
 				errors.rejectValue("depth_to_collar_screening_freq", "errors.groundWaterRequired", new Object[] {depthToCollarScreeningFreq}, null);	
 			}

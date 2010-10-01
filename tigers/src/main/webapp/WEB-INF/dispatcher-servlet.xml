@@ -125,8 +125,8 @@
 	    <bean id="samplerFormController" class="com.tiffany.webapp.controller.SamplerFormController">
 	 	    <property name="validator" ref="beanValidator"/>
         	<property name="formView" value="/officer/samplerform"/>	    	
-	        <property name="successView" value="redirect:/samplers.html"/>
-            <property name="cancelView" value="redirect:/samplers.html" />
+	        <property name="successView" value="redirect:../samplers.html"/>
+            	<property name="cancelView" value="redirect:/samplers.html" />
 	        <property name="samplerManager" ref="samplerManager"/>
 	        <property name="sampleManager" ref="sampleManager"/>
 	        <property name="userManager" ref="userManager"/>
@@ -141,10 +141,21 @@
             <property name="samplerManager" ref="samplerManager"/>
 	        <property name="parameterNamesManager" ref="parameterNamesManager"/>
         </bean>
+        <!-- screeningFrequencies.html -->
         <bean id="screeningFrequenciesController" class="com.tiffany.webapp.controller.ScreeningFrequenciesController">
 	        <property name="screeningFrequencyManager" ref="screeningFrequencyManager"/>
 	        <property name="samplerManager" ref="samplerManager"/>
 	        <property name="parameterNamesManager" ref="parameterNamesManager"/>
+        </bean>
+        <!-- samplingschedule.html -->
+        <bean id="samplingScheduleController" class="com.tiffany.webapp.controller.SamplingScheduleController">
+            <property name="validator" ref="beanValidator"/>
+            <property name="formView" value="/officer/samplingschedule"/>
+            <property name="successView" value="/officer/samplingschedule"/>
+	        <property name="screeningFrequencyManager" ref="screeningFrequencyManager"/>
+	        <property name="samplerManager" ref="samplerManager"/>
+	        <property name="parameterNamesManager" ref="parameterNamesManager"/>
+            <property name="waterbodyManager" ref="waterbodyManager"/>
         </bean>
 	<!-- =============================== Reports ======================================== -->
 	<!-- officer/reportSamplers.html -->
@@ -220,15 +231,18 @@
     </bean>
     <!-- =============================== Waterbody ======================================== -->
 	<!-- waterbodies.html -->
-    	 <bean id="waterbodiesController" class="com.tiffany.webapp.controller.WaterbodiesController">
-    	     <property name="waterbodyManager" ref="waterbodyManager"/>
-    	 </bean>
-         <bean id="waterbodyFormController" class="com.tiffany.webapp.controller.WaterbodyFormController">
-             <property name="validator" ref="beanValidator"/>
-             <property name="formView" value="/officer/waterbodyform"/>
-	         <property name="successView" value="redirect:waterbodies.html"/>
-    	     <property name="waterbodyManager" ref="waterbodyManager"/>
-    	 </bean>
+    <bean id="waterbodiesController" class="com.tiffany.webapp.controller.WaterbodiesController">
+         <property name="waterbodyManager" ref="waterbodyManager"/>
+     </bean>
+     <bean id="waterbodyFormController" class="com.tiffany.webapp.controller.WaterbodyFormController">
+         <property name="validator" ref="beanValidator"/>
+         <property name="formView" value="/officer/waterbodyform"/>
+	     <property name="successView" value="redirect:waterbodies.html"/>
+         <property name="waterbodyManager" ref="waterbodyManager"/>
+         <property name="parameterNamesManager" ref="parameterNamesManager" />
+	     <property name="parameterThresholdsManager" ref="parameterThresholdsManager" />
+         <property name="samplerManager" ref="samplerManager"/>
+     </bean>
 	<!-- ================================= Add Contractor ==================================== -->
 	<bean id="addContractorController" class="com.tiffany.webapp.controller.AddContractorController">
 		<property name="validator" ref="beanValidator" />
@@ -338,7 +352,7 @@
 				/admin/usersearch.html=userSearchController
 				/admin/contractorlist.html=viewContractorsController
 				/officer/samplesearch.html=sampleSearchController
-				/officer/samplers.html=samplerController
+				/samplers.html=samplerController
                 /officer/samplerform.html=samplerFormController
 				/officer/reportsamplers.html=reportListSamplersController
 				/officer/reportsamples.html=reportListSamplesController
@@ -350,6 +364,7 @@
                 /officer/samplermediasamplers.html=samplerMediaListSamplersController
                 /officer/screeningfrequencyform.html=screeningFrequencyFormController
                 /officer/screeningfrequencies.html=screeningFrequenciesController
+                /officer/samplingschedule.html=samplingScheduleController
                 /officer/addcontractor.html=addContractorController
                 /officer/contractorlist.html=viewContractorsController
                 /contractor/addlaboratory.html=addLaboratoryController

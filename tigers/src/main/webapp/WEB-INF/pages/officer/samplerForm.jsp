@@ -179,7 +179,7 @@
 		            </td>
 		            <td>
 			            <c:if test="${not empty sampler.id}">
-				            <input type="submit" class="button" name="delete" onclick="return confirmDelete('sample')"
+				            <input type="submit" class="button" name="delete" onclick="return confirmDelete('sampler')"
 				            value="<fmt:message key="button.delete"/>" />
 			            </c:if>
 		            </td>

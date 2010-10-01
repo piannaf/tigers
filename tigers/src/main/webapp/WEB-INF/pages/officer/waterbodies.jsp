@@ -27,7 +27,7 @@ value="<fmt:message key="button.done"/>"/>
 <hr />
 <form method="get" action="/officer/waterbodies.html">
 
-<label for="waterbody">Water Body:</label>
+<appfuse:label styleClass="desc" key="waterbody.heading"/>
 <input type="text" id="waterbody" name="waterbody" />
 <div id="autocomplete_choices" class="autocomplete"></div>
 <input type="submit" id="submit"  value="Search" />
