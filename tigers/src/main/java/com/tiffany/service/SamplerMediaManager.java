@@ -11,6 +11,7 @@ import javax.jws.WebService;
 @WebService
 public interface SamplerMediaManager extends GenericManager<SamplerMedia, Long> {
 	List<SamplerMedia> findByTag(String tag);
+	// void remove(Long id);
 }
 
 

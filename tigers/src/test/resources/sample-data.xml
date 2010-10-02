@@ -616,4 +616,16 @@
 			<value>1</value>
 		</row>
 	</table>
+	<table name='samplermedia'>
+		<column>id</column>
+		<column>tag</column>
+		<column>description</column>
+		<column>fileName</column>
+		<row>
+			<value>1</value>
+			<value>GW001</value>
+			<value>A useful pile of rocks</value>
+			<value>rocks.jpg</value>
+		</row>
+	</table>
 </dataset>        
