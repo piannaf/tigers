@@ -17,7 +17,7 @@ public class SamplerMedia extends BaseObject {
     private Long id;
     private String tag;
     private String description;
-    private String file;                    
+    private String fileName;                    
         
     @Id @GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getId() {
@@ -44,11 +44,11 @@ public class SamplerMedia extends BaseObject {
 	}
 	
 	@Column(nullable=false, length = 100)
-	public String getFile() {
-		return file;
+	public String getFileName() {
+		return fileName;
 	}
-	public void setFile(String file) {
-		this.file = file;
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 	
 	@Override
@@ -57,16 +57,16 @@ public class SamplerMedia extends BaseObject {
 			return false;
 		SamplerMedia castOther = (SamplerMedia) other;
 		return new EqualsBuilder().append(tag, castOther.tag)
-				.append(file, castOther.file).isEquals();
+				.append(fileName, castOther.fileName).isEquals();
 	}
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder(591165033, -1663524385).append(tag)
-				.append(file).toHashCode();
+				.append(fileName).toHashCode();
 	}
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this).append("id", id).append("tag", tag).append("file",
-				file).toString();
+		return new ToStringBuilder(this).append("id", id).append("tag", tag).append("fileName",
+				fileName).toString();
 	}
 }

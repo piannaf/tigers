@@ -186,6 +186,17 @@
 		<property name="waterbodyManager" ref="waterbodyManager" />
 		<property name="samplerManager" ref="samplerManager" />
 	</bean>
+	<!-- officer/samplerMedia.html -->
+	<bean id="samplerMediaController"
+		class="com.tiffany.webapp.controller.SamplerMediaController">
+		<property name="samplerMediaManager" ref="samplerMediaManager" />
+	</bean>
+	<!-- officer/samplerMediaForm.html -->
+	<bean id="samplerMediaFormController"
+		class="com.tiffany.webapp.controller.SamplerMediaFormController">
+		<property name="successView" value="redirect:samplermedia.html" />
+		<property name="samplerMediaManager" ref="samplerMediaManager" />
+	</bean>
 	<!-- =============================== Exceedance Reports ======================================== -->
 	<!-- officer/reportexceedancesamplers.html -->
 	<bean id="reportExceedanceListSamplersController"
@@ -362,6 +373,8 @@
                 /officer/waterbodies.html=waterbodiesController
                 /officer/waterbodyform.html=waterbodyFormController
                 /officer/samplermediasamplers.html=samplerMediaListSamplersController
+                /officer/samplermedia.html=samplerMediaController
+                /officer/samplermediaform.html=samplerMediaFormController
                 /officer/screeningfrequencyform.html=screeningFrequencyFormController
                 /officer/screeningfrequencies.html=screeningFrequenciesController
                 /officer/samplingschedule.html=samplingScheduleController
