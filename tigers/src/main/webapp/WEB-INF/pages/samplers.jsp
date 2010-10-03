@@ -16,7 +16,7 @@
 <c:set var="buttons">
 <input type="button" style="margin-right: 5px" 
 onclick="location.href='<c:url value="/officer/samplerform.html"/>'"
-value="<fmt:message key="button.add"/>"/>
+value="<fmt:message key="button.add"/> Sampler"/>
 
 <input type="button" onclick="location.href='<c:url value="/mainMenu.html"/>'"
 value="<fmt:message key="button.done"/>"/>
@@ -31,12 +31,23 @@ value="<fmt:message key="button.done"/>"/>
 </form>
 
 <hr />
+<security:authorize ifAnyGranted="ROLE_OFFICER">
+    <c:out value="${buttons}" escapeXml="false"/>
+</security:authorize>
 
-<c:out value="${buttons}" escapeXml="false"/>
 <display:table name="samplerList" cellspacing="0" cellpadding="0" requestURI=""
 id="samplerList" pagesize="25" class="table samplerList" export="false">
-<display:column property="tag" escapeXml="true" sortable="true" title="Update Sampler"
-url="/officer/samplerform.html" paramId="tag" paramProperty="tag" titleKey="sampler.tag"/>
+<security:authorize ifAnyGranted="ROLE_OFFICER">
+    <display:column 
+        property="tag" escapeXml="true" sortable="true" title="Update Sampler"
+        url="/officer/samplerform.html" 
+        paramId="tag" paramProperty="tag" titleKey="sampler.tag"/>
+</security:authorize>
+<security:authorize ifNotGranted="ROLE_OFFICER">
+<display:column 
+    property="tag" escapeXml="true" sortable="true" title="Update Sampler"
+    paramId="tag" paramProperty="tag" titleKey="sampler.tag"/>
+</security:authorize>
 <display:column property="purpose" escapeXml="true" sortable="true" titleKey="sampler.purpose"/>
 <display:column property="waterbody.name" escapeXml="true" sortable="true" titleKey="sampler.waterbody"/>
 <display:column property="latitude" escapeXml="true" sortable="true" titleKey="sampler.latitude"/>
@@ -53,7 +64,8 @@ url="/officer/samplerform.html" paramId="tag" paramProperty="tag" titleKey="samp
 
 </display:table>
 
-<c:out value="${buttons}" escapeXml="false"/>
-
+<security:authorize ifAnyGranted="ROLE_OFFICER">
+    <c:out value="${buttons}" escapeXml="false"/>
+</security:authorize>
 
 

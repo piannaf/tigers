@@ -127,23 +127,23 @@
 			<value description="credentials_expired">0</value>
 		</row>
 		<row>
-            <value description="id">-7</value>
-            <value description="username">lab2</value>
-            <value description="password">3953f9ddf975ab5097ee468d99555c5b441169bf</value>
-            <value description="company_name">Tiffany</value>
-            <value description="address">100 Queen St.</value>
-            <value description="city">Denver</value>
-            <value description="country">AU</value>
-            <value description="email">lab2@tiffanygoldmine.com</value>
-            <value description="phone_number"></value>
-            <value description="postal_code">80210</value>
-            <value description="province">CO</value>
-            <value description="version">1</value>
-            <value description="account_enabled">1</value>
-            <value description="account_expired">0</value>
-            <value description="account_locked">0</value>
-            <value description="credentials_expired">0</value>
-        </row>
+			<value description="id">-7</value>
+			<value description="username">lab2</value>
+			<value description="password">3953f9ddf975ab5097ee468d99555c5b441169bf</value>
+			<value description="company_name">Tiffany</value>
+			<value description="address">100 Queen St.</value>
+			<value description="city">Denver</value>
+			<value description="country">AU</value>
+			<value description="email">lab2@tiffanygoldmine.com</value>
+			<value description="phone_number"></value>
+			<value description="postal_code">80210</value>
+			<value description="province">CO</value>
+			<value description="version">1</value>
+			<value description="account_enabled">1</value>
+			<value description="account_expired">0</value>
+			<value description="account_locked">0</value>
+			<value description="credentials_expired">0</value>
+		</row>
 	</table>
 	<table name="role">
 		<column>id</column>
@@ -202,93 +202,9 @@
 			<value description="user_id">-6</value>
 			<value description="role_id">-4</value>
 		</row>
-        <row>
-            <value description="user_id">-7</value>
-            <value description="role_id">-5</value>
-        </row>
-	</table>
-	<table name='sample'>
-		<column>id</column>
-		<column>date_taken</column>
-		<column>ph</column>
-		<column>ec</column>
-		<column>temperature</column>
-		<column>collar_depth</column>
-		<column>arsenic</column>
-		<column>grease</column>
-		<column>fluoride</column>
-		<column>chromium</column>
-		<column>username</column>
-		<column>tag</column>
 		<row>
-			<value>1</value>
-			<value><![CDATA[2010-01-10 10:00:00]]></value>
-			<value>7</value>
-			<value>7</value>
-			<value>20</value>
-			<value>0.01</value>
-			<value>0.02</value>
-			<value>0.11</value>
-			<value>0.01</value>
-			<value>0.004</value>
-			<value>LAB01</value>
-			<value>GW001</value>
-		</row>
-		<row>
-			<value>2</value>
-			<value><![CDATA[2010-02-10 10:30:00]]></value>
-			<value>3</value>
-			<value>1</value>
-			<value>24</value>
-			<value>0.011</value>
-			<value>0.005</value>
-			<value>0.19</value>
-			<value>0.012</value>
-			<value>0.006</value>
-			<value>LAB01</value>
-			<value>GW002</value>
-		</row>
-		<row>
-			<value>3</value>
-			<value><![CDATA[2010-02-11 10:30:00]]></value>
-			<value>4</value>
-			<value>2</value>
-			<value>22</value>
-			<value>0.011</value>
-			<value>0.005</value>
-			<value>0.19</value>
-			<value>0.012</value>
-			<value>0.006</value>
-			<value>LAB01</value>
-			<value>GW002</value>
-		</row>
-		<row>
-			<value>4</value>
-			<value><![CDATA[2010-02-12 10:30:00]]></value>
-			<value>2</value>
-			<value>0.5</value>
-			<value>23</value>
-			<value>0.011</value>
-			<value>0.005</value>
-			<value>0.19</value>
-			<value>0.012</value>
-			<value>0.006</value>
-			<value>LAB01</value>
-			<value>GW002</value>
-		</row>
-		<row>
-			<value>5</value>
-			<value><![CDATA[2010-02-13 10:30:00]]></value>
-			<value>3</value>
-			<value>1</value>
-			<value>24</value>
-			<value>0.011</value>
-			<value>0.005</value>
-			<value>0.19</value>
-			<value>0.012</value>
-			<value>0.006</value>
-			<value>LAB01</value>
-			<value>GW002</value>
+			<value description="user_id">-7</value>
+			<value description="role_id">-5</value>
 		</row>
 	</table>
 	<table name='waterbody'>
@@ -451,6 +367,90 @@
 			<value>monthly</value>
 		</row>
 	</table>
+	<table name='sample'>
+		<column>id</column>
+		<column>date_taken</column>
+		<column>ph</column>
+		<column>ec</column>
+		<column>temperature</column>
+		<column>collar_depth</column>
+		<column>arsenic</column>
+		<column>grease</column>
+		<column>fluoride</column>
+		<column>chromium</column>
+		<column>laboratory</column>
+		<column>sampler</column>
+		<row>
+			<value>1</value>
+			<value><![CDATA[2010-01-10 10:00:00]]></value>
+			<value>7</value>
+			<value>7</value>
+			<value>20</value>
+			<value>0.01</value>
+			<value>0.02</value>
+			<value>0.11</value>
+			<value>0.01</value>
+			<value>0.004</value>
+			<value>-5</value>
+			<value>2</value>
+		</row>
+		<row>
+			<value>2</value>
+			<value><![CDATA[2010-02-10 10:30:00]]></value>
+			<value>3</value>
+			<value>1</value>
+			<value>24</value>
+			<value>0.011</value>
+			<value>0.005</value>
+			<value>0.19</value>
+			<value>0.012</value>
+			<value>0.006</value>
+			<value>-5</value>
+			<value>3</value>
+		</row>
+		<row>
+			<value>3</value>
+			<value><![CDATA[2010-02-11 10:30:00]]></value>
+			<value>4</value>
+			<value>2</value>
+			<value>22</value>
+			<value>0.011</value>
+			<value>0.005</value>
+			<value>0.19</value>
+			<value>0.012</value>
+			<value>0.006</value>
+			<value>-5</value>
+			<value>3</value>
+		</row>
+		<row>
+			<value>4</value>
+			<value><![CDATA[2010-02-12 10:30:00]]></value>
+			<value>2</value>
+			<value>0.5</value>
+			<value>23</value>
+			<value>0.011</value>
+			<value>0.005</value>
+			<value>0.19</value>
+			<value>0.012</value>
+			<value>0.006</value>
+			<value>-7</value>
+			<value>3</value>
+		</row>
+		<row>
+			<value>5</value>
+			<value><![CDATA[2010-02-13 10:30:00]]></value>
+			<value>3</value>
+			<value>1</value>
+			<value>24</value>
+			<value>0.011</value>
+			<value>0.005</value>
+			<value>0.19</value>
+			<value>0.012</value>
+			<value>0.006</value>
+			<value>-7</value>
+			<value>3</value>
+		</row>
+	</table>
 	<table name='contractor'>
 		<column>username</column>
 		<column>name</column>
@@ -588,7 +588,7 @@
 			<value>Chemicals</value>
 			<value>monthly</value>
 			<value>8</value>
-		</row>       
+		</row>
 		<row>
 			<value>2</value>
 			<value>Acidity</value>

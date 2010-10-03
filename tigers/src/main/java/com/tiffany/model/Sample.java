@@ -3,6 +3,7 @@ package com.tiffany.model;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import java.util.Date;
 import javax.persistence.*;
+
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import java.math.BigDecimal;
@@ -26,8 +27,8 @@ public class Sample extends BaseObject {
     private BigDecimal grease;
     private BigDecimal fluoride;
     private BigDecimal chromium;
-    private String username;
-    private String tag;
+    private User laboratory;
+    private Sampler sampler;
         
     @Id @GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getId() {
@@ -110,20 +111,23 @@ public class Sample extends BaseObject {
 		this.chromium = chromium;
 	}
 
-	@Column(nullable=false, length = 20)
-	public String getUsername() {
-		return username;
+	@ManyToOne
+	@JoinColumn(name = "laboratory")
+	public User getLaboratory() {
+		return laboratory;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setLaboratory(User laboratory) {
+		this.laboratory = laboratory;
 	}
-	
-	@Column(nullable=false, length = 5)
-	public String getTag() {
-		return tag;
+
+	@ManyToOne
+	@JoinColumn(name = "sampler")
+	public Sampler getSampler() {
+		return sampler;
 	}
-	public void setTag(String tag) {
-		this.tag = tag;
+
+	public void setSampler(Sampler sampler) {
+		this.sampler = sampler;
 	}
 	
 	@Override
@@ -132,19 +136,19 @@ public class Sample extends BaseObject {
 			return false;
 		Sample castOther = (Sample) other;
 		return new EqualsBuilder().append(date_taken, castOther.date_taken)
-				.append(ph, castOther.ph).append(ec, castOther.ec).append(tag,
-						castOther.tag).isEquals();
+				.append(ph, castOther.ph).append(ec, castOther.ec).append(sampler,
+						castOther.sampler).isEquals();
 	}
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder(591165033, -1663524385).append(date_taken)
-				.append(ph).append(ec).append(tag).toHashCode();
+				.append(ph).append(ec).append(sampler).toHashCode();
 	}
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append("id", id).append("date_taken",
 				date_taken).append("ph", ph).append("ec", ec)
-				.append("tag", tag).toString();
+				.append("tag", sampler).toString();
 	}
 	
 

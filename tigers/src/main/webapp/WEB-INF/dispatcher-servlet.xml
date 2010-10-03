@@ -67,6 +67,7 @@
 	<!-- samples.html -->
 	<bean id="sampleController" class="com.tiffany.webapp.controller.SampleController">
 		<property name="sampleManager" ref="sampleManager" />
+        <property name="userManager" ref="userManager" />
 	</bean>
 	
 	<!-- sampleform.html -->
@@ -74,6 +75,8 @@
 		<property name="validator" ref="beanValidator" />
 		<property name="successView" value="redirect:samples.html" />
 		<property name="sampleManager" ref="sampleManager" />
+        <property name="samplerManager" ref="samplerManager" />
+        <property name="userManager" ref="userManager" />
 	</bean>
 
 	<!-- /officer/samplesearch.html -->
@@ -325,7 +328,7 @@
 		<property name="samplerManager" ref="samplerManager"/>
 		<property name="userManager" ref="userManager"/>
 		<property name="validator" ref="beanValidator"/>
-		<property name="successView" value="redirect:mainMenu.html"/>
+        <property name="successView" value="redirect:assignlabpre.html"/>
 	</bean>
 	<!-- ================================= assign lab pre ==================================== -->
 	 <bean id="assignLabPreController" class="com.tiffany.webapp.controller.AssignLabPreController">
@@ -337,7 +340,7 @@
 		<property name="samplerManager" ref="samplerManager"/>
 		<property name="userManager" ref="userManager"/>
 		<property name="validator" ref="beanValidator"/>
-		<property name="successView" value="redirect:mainMenu.html"/>
+		<property name="successView" value="redirect:assignlabpre.html"/>
 	</bean>
 	<!-- Came with AppFuse -->
 
@@ -393,6 +396,7 @@
 				/laboratory/findcontractor.html=findContractorController
 				/laboratory/samples.html=sampleController
 				/laboratory/mycontractors.html=viewMyContractorsController
+				/laboratory/sampleform.html=sampleFormController
 				/mainMenu.html=filenameController
 				/passwordHint.html=passwordHintController
 				/resources/*.kml=kmlController
