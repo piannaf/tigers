@@ -35,7 +35,7 @@ public class SamplerMedia extends BaseObject {
 		this.tag = tag;
 	}
 	
-	@Column(nullable=false, length = 200)
+	@Column(nullable=true, length = 200)
 	public String getDescription() {
 		return description;
 	}
