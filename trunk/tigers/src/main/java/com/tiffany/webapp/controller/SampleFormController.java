@@ -3,21 +3,39 @@ package com.tiffany.webapp.controller;
 import org.apache.commons.lang.StringUtils;
 
 import com.tiffany.service.GenericManager;
+import com.tiffany.service.SampleManager;
+import com.tiffany.service.SamplerManager;
+import com.tiffany.service.UserManager;
 import com.tiffany.model.Sample;
+import com.tiffany.model.Sampler;
 import com.tiffany.webapp.controller.BaseFormController;
 
 import org.springframework.validation.BindException;
+import org.springframework.validation.Errors;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class SampleFormController extends BaseFormController {
-    private GenericManager<Sample, Long> sampleManager = null;
+    private SampleManager sampleManager = null;
+    private SamplerManager samplerManager = null;
+    private UserManager userManager = null;
 
-    public void setSampleManager(GenericManager<Sample, Long> sampleManager) {
+    public void setSampleManager(SampleManager sampleManager) {
         this.sampleManager = sampleManager;
+    }
+
+    public void setSamplerManager(SamplerManager samplerManager) {
+        this.samplerManager = samplerManager;
+    }
+
+    public void setUserManager(UserManager userManager) {
+        this.userManager = userManager;
     }
 
     public SampleFormController() {
@@ -34,6 +52,16 @@ public class SampleFormController extends BaseFormController {
         }
         
         return new Sample();
+    } 
+    
+    protected Map referenceData(HttpServletRequest request, Object command,
+            Errors errors) throws Exception {
+    	
+    	Map referenceData = new HashMap();
+        referenceData.put("samplerList", samplerManager.getAll());
+    	referenceData.put("laboratoryList", userManager.getLaboratories());
+    	
+    	return referenceData;
     }
 
     public ModelAndView onSubmit(HttpServletRequest request,

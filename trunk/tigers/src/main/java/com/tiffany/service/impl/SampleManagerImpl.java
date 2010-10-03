@@ -8,6 +8,7 @@ import javax.jws.WebService;
 import com.tiffany.dao.SampleDao;
 import com.tiffany.model.Sample;
 import com.tiffany.model.LabelValue;
+import com.tiffany.model.User;
 import com.tiffany.service.SampleManager;
 
 @WebService(serviceName = "SampleService", endpointInterface = "com.tiffany.service.SampleManager")
@@ -43,5 +44,14 @@ public class SampleManagerImpl extends GenericManagerImpl<Sample, Long>
 	
 	public List<Sample> findSamplesByTag(String tag) {
 		return sampleDao.findSamplesByTag(tag);
+	}
+
+	public List<Sample> findSamplesByLab(User lab) {
+	    return sampleDao.findSamplesByLab(lab);
+	}
+
+	public List<Sample> findSamplesByLabAndDateRange(User lab, Date from,
+		Date to) {
+		return sampleDao.findSamplesByLabAndDateRange(lab, from, to);
 	}
 }

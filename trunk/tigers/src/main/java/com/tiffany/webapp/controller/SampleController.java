@@ -13,23 +13,34 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
 import com.tiffany.model.Sample;
+import com.tiffany.model.User;
 import com.tiffany.service.GenericManager;
 import com.tiffany.service.SampleManager;
+import com.tiffany.service.UserManager;
 
-public class SampleController implements Controller{
+public class SampleController extends BaseFormController implements Controller{
         private final Log log = LogFactory.getLog(SampleController.class);
-        private GenericManager<Sample, Long> sampleManager = null;
+        private SampleManager sampleManager = null;
+        private UserManager userManager = null;
         
-        public void setSampleManager(GenericManager<Sample, Long> sampleManager) {
+        public void setSampleManager(SampleManager sampleManager) {
                 this.sampleManager = sampleManager;
         }
         
-        public ModelAndView handleRequest(HttpServletRequest request, 
+        public void setUserManager(UserManager userManager) {
+	    this.userManager = userManager;
+	}
+
+	public ModelAndView handleRequest(HttpServletRequest request, 
                         HttpServletResponse response) throws Exception {
                 log.debug("entering 'handleRequest' method...");
                 
                 String from = (String)request.getParameter("from");
                 String to = (String)request.getParameter("to");
+                
+                User me = userManager.getUserByUsername((request
+    		    .getRemoteUser()));
+                
                 
                 if( from != null && to != null) {
                     SimpleDateFormat dateFormat = 
@@ -38,16 +49,21 @@ public class SampleController implements Controller{
                     Date toDate = dateFormat.parse(to);
                     
                     if(fromDate.compareTo(toDate) > 0) {
-                    	return new ModelAndView().addObject(sampleManager.getAll());
+                        Locale locale = request.getLocale();
+                	saveMessage(request, getText("sample.swapDates", locale));
+                    	return new ModelAndView().addObject(
+                    		sampleManager.findSamplesByLab(me));
                     }
                     
-                    List<Sample> sampleList = ((SampleManager)sampleManager).findSampleByDateRange(fromDate, toDate);
+                    List<Sample> sampleList = 
+                		sampleManager.findSamplesByLabAndDateRange(
+                			me, fromDate, toDate);
                     log.debug("SampleList: " + sampleList.toString());
                     
                     return new ModelAndView().addObject("sampleList", sampleList);
                 }
                 
-                return new ModelAndView().addObject(sampleManager.getAll());
+                return new ModelAndView().addObject(sampleManager.findSamplesByLab(me));
         }
 }
 

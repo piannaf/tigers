@@ -1,7 +1,7 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
-<title><fmt:message key="reportSampler.title"/></title>
+<title><fmt:message key="reportSamplers.title"/></title>
 <meta name="menu" content="CourseMenu"/>
 <link href="/styles/autocomplete.css" media="screen" rel="stylesheet" type="text/css" />
 <!--[if IE]>

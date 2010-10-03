@@ -48,7 +48,7 @@ public class SamplingScheduleController extends BaseFormController {
 
 	protected Object formBackingObject(HttpServletRequest request) throws Exception {
 		SamplingSchedule samplingSchedule = new SamplingSchedule();
-     //   samplingSchedule.setGroupBy("Sampler");
+		samplingSchedule.setGroupBy("Sampler");
 		return samplingSchedule;
 	}
 

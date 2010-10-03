@@ -178,30 +178,6 @@
                     <var-value>${number5_3}</var-value>
                   </var>
               </field>
-	  		<field property="username"
-                     depends="required,mask">
-                  <msg
-                    name="mask"
-                    key="errors.username"/>
-
-                  <arg0 key="sample.username"/>
-                  <var>
-                    <var-name>mask</var-name>
-                    <var-value>${varchar20}</var-value>
-                  </var>
-              </field>
-	  		<field property="tag"
-                     depends="required,mask">
-                  <msg
-                    name="mask"
-                    key="errors.tag"/>
-
-                  <arg0 key="sample.tag"/>
-                  <var>
-                    <var-name>mask</var-name>
-                    <var-value>${varchar5}</var-value>
-                  </var>
-              </field>
 	  </form>
 
       <form name="address">

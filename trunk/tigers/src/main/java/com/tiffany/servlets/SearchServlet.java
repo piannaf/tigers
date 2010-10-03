@@ -29,7 +29,7 @@ public class SearchServlet extends HttpServlet {
 		String from = request.getParameter("from");
 		String to = request.getParameter("to");
 		
-		response.sendRedirect("/samples.html?from=" + from + "&to=" + to);
+		response.sendRedirect("/laboratory/samples.html?from=" + from + "&to=" + to);
 	}
 
 }

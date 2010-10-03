@@ -10,12 +10,14 @@ import org.apache.commons.logging.LogFactory;
 
 
 import com.tiffany.model.Sample;
+import com.tiffany.model.Sampler;
+import com.tiffany.model.User;
 
 public class BulkUploadService {
 	protected final transient Log log = LogFactory.getLog(getClass());
 	private String type;
-	private String laboratory;
-	private String tag;
+	private User laboratory;
+	private Sampler tag;
 	private List<String> fields;
 	private SampleManager sampleManager;
 	public Map<Integer, String> fieldsMap;
@@ -24,10 +26,10 @@ public class BulkUploadService {
 		this.sampleManager = sampleManager;
 	}
 	
-	public boolean initService(String type,String header, String samplerId, String laboratory) {
+	public boolean initService(String type,String header, Sampler sampler, User laboratory) {
 		this.type = type;
 		this.laboratory = laboratory;
-		this.tag = samplerId;
+		this.tag = sampler;
 		if (setFieldsMap(type, header) == null) { return false; }
 		return true;
 	}
@@ -35,8 +37,8 @@ public class BulkUploadService {
 	public String update(String line) {
 		String result = "";
 		Sample sample = new Sample();
-		sample.setUsername(laboratory);
-		sample.setTag(tag);
+		sample.setLaboratory(laboratory);
+		sample.setSampler(tag);
 		String items[] = line.split(",");
 		if (items.length != fieldsMap.size()+1) { 
 			return "Fields number mismatch with the header. ("+ items.length + ")"; 
