@@ -30,7 +30,7 @@ public class SamplerMediaController implements Controller{
                 if( tag == null ) throw new Exception("No tag specified");
 				
 				List<SamplerMedia> samplerMediaList = ((SamplerMediaManager)samplerMediaManager).findByTag(tag);
-				return new ModelAndView().addObject("samplerMediaList", samplerMediaList).addObject("tag", tag);
+				return new ModelAndView().addObject("samplerMediaList", samplerMediaList).addObject("tag", tag).addObject("numSamplerMedia", samplerMediaList.size());
         }
 }
 

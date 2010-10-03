@@ -69,4 +69,11 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
+	<function>
+		<name>sampleValueFormat</name>
+		<function-class>com.tiffany.model.Sample</function-class>
+		<function-signature>
+			java.lang.String getValueDisplayString(java.math.BigDecimal)
+		</function-signature>
+	</function>
 </taglib>

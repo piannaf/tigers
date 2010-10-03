@@ -88,36 +88,53 @@ public class ReportGraphSamplesController implements Controller {
 					throw new Exception("Invalid parameter (" + paramName + ") specified.");
 				
 				dateCurrent = sample.getDate_taken();
-				data.put(new Long(dateCurrent.getTime()), value);
-				if(dateFirst == null || dateCurrent.compareTo(dateFirst) < 0)
-					dateFirst = dateCurrent;
-				if(dateLast == null || dateCurrent.compareTo(dateLast) > 0)
-					dateLast = dateCurrent;
-				if(minValue == null || value.compareTo(minValue) < 0)
-					minValue = value;
-				if(maxValue == null || value.compareTo(maxValue) > 0)
-					maxValue = value;
+				if(value != null) {
+					if(value.compareTo(new BigDecimal(0)) < 0) // "<0.5" type values are treated as 0
+						value = new BigDecimal(0);
+					data.put(new Long(dateCurrent.getTime()), value);
+					if(dateFirst == null || dateCurrent.compareTo(dateFirst) < 0)
+						dateFirst = dateCurrent;
+					if(dateLast == null || dateCurrent.compareTo(dateLast) > 0)
+						dateLast = dateCurrent;
+					if(minValue == null || value.compareTo(minValue) < 0)
+						minValue = value;
+					if(maxValue == null || value.compareTo(maxValue) > 0)
+						maxValue = value;
+				}
 			}
 		
-		if(minValue == null || pt.getMin().compareTo(minValue) < 0)
-			minValue = pt.getMin();
-		if(maxValue == null || pt.getMax().compareTo(maxValue) > 0)
-			maxValue = pt.getMax();
 		
-		ModelAndView ret = new ModelAndView().addObject("data", data)
+		String thresMinMaxJS = "";
+		if(pt != null) {
+			if(minValue == null || (pt.getMin() != null && pt.getMin().compareTo(minValue) < 0))
+				minValue = pt.getMin();
+			if(maxValue == null || (pt.getMax() != null && pt.getMax().compareTo(maxValue) > 0))
+				maxValue = pt.getMax();
+			
+			if(pt.getMin() != null)
+				thresMinMaxJS += "dat.push({data: makeLineArray(" + String.valueOf(pt.getMin()) + "), label: \"Min Thresh.\"});\n";
+			if(pt.getMax() != null)
+				thresMinMaxJS += "dat.push({data: makeLineArray(" + String.valueOf(pt.getMax()) + "), label: \"Max Thresh.\"});\n";
+		}
+		
+		if(minValue == null) minValue = new BigDecimal(0);
+		if(maxValue == null) maxValue = new BigDecimal(0);
+		
+		Long startTime = new Long(0), endTime = new Long(0);
+		if(dateFirst != null)
+			startTime = new Long(dateFirst.getTime());
+		if(dateLast != null)
+			endTime = new Long(dateLast.getTime());
+		
+		return new ModelAndView()
+			.addObject("data", data)
 			.addObject("tag", samplerTag)
 			.addObject("parameterName", parameterName)
-			.addObject("startTime", new Long(dateFirst.getTime()))
-			.addObject("endTime", new Long(dateLast.getTime()))
+			.addObject("startTime", startTime)
+			.addObject("endTime", endTime)
 			.addObject("minValue", minValue)
 			.addObject("maxValue", maxValue)
+			.addObject("thresMinMaxJS", thresMinMaxJS)
 			.addObject("params", ((ParameterNamesManager)parameterNamesManager).getAll());
-		if(pt != null) {
-			if(pt.getMin() != null)
-				ret = ret.addObject("thresMin", pt.getMin());
-			if(pt.getMax() != null)
-				ret = ret.addObject("thresMax", pt.getMax());
-		}
-		return ret;
 	}
 }
