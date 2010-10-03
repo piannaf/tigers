@@ -183,18 +183,18 @@
 	</bean>
 	
 	<!-- =============================== Sampler Media ======================================== -->
-	<!-- officer/samplerMediaSamplers.html -->
+	<!-- contractor/samplerMediaSamplers.html -->
 	<bean id="samplerMediaListSamplersController"
 		class="com.tiffany.webapp.controller.SamplerMediaListSamplersController">
 		<property name="waterbodyManager" ref="waterbodyManager" />
 		<property name="samplerManager" ref="samplerManager" />
 	</bean>
-	<!-- officer/samplerMedia.html -->
+	<!-- contractor/samplerMedia.html -->
 	<bean id="samplerMediaController"
 		class="com.tiffany.webapp.controller.SamplerMediaController">
 		<property name="samplerMediaManager" ref="samplerMediaManager" />
 	</bean>
-	<!-- officer/samplerMediaForm.html -->
+	<!-- contractor/samplerMediaForm.html -->
 	<bean id="samplerMediaFormController"
 		class="com.tiffany.webapp.controller.SamplerMediaFormController">
 		<property name="successView" value="redirect:samplermedia.html" />
@@ -377,7 +377,6 @@
                 /officer/waterbodyform.html=waterbodyFormController
                 /officer/samplermediasamplers.html=samplerMediaListSamplersController
                 /officer/samplermedia.html=samplerMediaController
-                /officer/samplermediaform.html=samplerMediaFormController
                 /officer/screeningfrequencyform.html=screeningFrequencyFormController
                 /officer/screeningfrequencies.html=screeningFrequenciesController
                 /officer/samplingschedule.html=samplingScheduleController
@@ -392,6 +391,9 @@
                 /contractor/assignlaboratory.html=assignLaboratoryController
                 /contractor/assignlabpre.html=assignLabPreController
                 /contractor/assignlabpost.html=assignLabPostController
+                /contractor/samplermediasamplers.html=samplerMediaListSamplersController
+                /contractor/samplermedia.html=samplerMediaController
+                /contractor/samplermediaform.html=samplerMediaFormController
 				/laboratory/bulkupload.html=bulkUploadController
 				/laboratory/findcontractor.html=findContractorController
 				/laboratory/samples.html=sampleController
