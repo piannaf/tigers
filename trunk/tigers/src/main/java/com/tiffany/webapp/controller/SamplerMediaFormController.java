@@ -5,6 +5,7 @@ import java.lang.String;
 import org.apache.commons.lang.StringUtils;
 
 import com.tiffany.service.GenericManager;
+import com.tiffany.service.SamplerMediaManager;
 import com.tiffany.model.SamplerMedia;
 import com.tiffany.webapp.controller.BaseFormController;
 
@@ -60,12 +61,16 @@ public class SamplerMediaFormController extends BaseFormController {
 			} catch(Exception e) {};
             saveMessage(request, getText("samplerMedia.deleted", locale));
         } else {
-			// TODO: 10 file limit?
 			MultipartHttpServletRequest multipartRequest;
 			CommonsMultipartFile file = null;
 			String fileName;
 			File newFile = null; // shuddup Java compiler about possibly not being initialised
 			if(isNew) {
+				// check number of media files attached
+				if(((SamplerMediaManager)samplerMediaManager).findByTag(samplerMedia.getTag()).size() >= 10) {
+					throw new Exception("Can only have up to 10 sampler media files for each sampler.");
+				}
+				
 				// handle upload
 				multipartRequest = (MultipartHttpServletRequest) request;
 				file = (CommonsMultipartFile) multipartRequest.getFile("file");

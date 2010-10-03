@@ -2,7 +2,9 @@
 
 <head>
 <title><fmt:message key="samplerMediaList.title"/></title>
-
+<script type="text/javascript" src="<c:url value='/scripts/effects.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/scripts/lightwindow.js'/>"></script>
+<link rel="stylesheet" href="<c:url value='/styles/lightwindow.css'/>" type="text/css" media="screen" />
 </head>
 
 <c:set var="buttons">
@@ -61,7 +63,7 @@ function deleteSM(id) {
 id="samplerMediaList" pagesize="25" class="table sampleList">
 
 <display:column style="width: 40%;" titleKey="samplerMedia.fileName">
-<a href="/samplermedia/<c:out value="${samplerMediaList.id}" escapeXml="true"/>_<c:out value="${samplerMediaList.fileName}" escapeXml="true"/>"><c:out value="${samplerMediaList.fileName}" escapeXml="true"/></a>
+<a rel="Galleries[samplermedia]" class="lightwindow" caption='<c:out value="${samplerMediaList.description}" escapeXml="true"/>' href="/samplermedia/<c:out value="${samplerMediaList.id}" escapeXml="true"/>_<c:out value="${samplerMediaList.fileName}" escapeXml="true"/>"><c:out value="${samplerMediaList.fileName}" escapeXml="true"/></a>
 </display:column>
 <display:column titleKey="samplerMedia.description">
 <div id='sm_description_<c:out value="${samplerMediaList.id}" escapeXml="true"/>' ondblclick='editSM(<c:out value="${samplerMediaList.id}"/>);'><c:out value="${samplerMediaList.description}" escapeXml="true"/></div>
@@ -76,6 +78,7 @@ id="samplerMediaList" pagesize="25" class="table sampleList">
 </display:table>
 
 <hr/>
+<c:if test="${numSamplerMedia < 10}">
 <h2>Add Sampler Media File</h2>
 <form enctype="multipart/form-data" method="post" action="samplermediaform.html" onsubmit="if(this.elements['file'].value)return true;alert('You need to supply a file to upload.');return false;">
 <input type="hidden" name="tag" value="${tag}"/>
@@ -95,3 +98,7 @@ id="samplerMediaList" pagesize="25" class="table sampleList">
 	</tr>
 </table>
 </form>
+</c:if>
+<c:if test="${numSamplerMedia >= 10}">
+<p>The maximum number of sampler media files allowed per sampler is 10, so no more media files can be added to this sampler.</p>
+</c:if>

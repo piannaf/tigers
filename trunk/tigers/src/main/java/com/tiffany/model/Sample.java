@@ -130,6 +130,36 @@ public class Sample extends BaseObject {
 		this.sampler = sampler;
 	}
 	
+	// converts a value to string, taking into consideration special formatting rules
+	// eg, null -> "NaN"; -0.05 -> "<0.05", 2.5 -> "2.5"
+	public static String getValueDisplayString(BigDecimal value) {
+		if(value == null) return "NaN";
+		if(value.compareTo(new BigDecimal(0)) < 0)
+			return "<" + value.abs().toString();
+		return value.toString();
+	}
+	// reverse of the above
+	public static BigDecimal getDisplayStringValue(String value) {
+		// not part of the spec, but just in case...
+		if(value == null) return null;
+		
+		value = value.trim();
+		if(value.toLowerCase().equals("nan")) return null;
+		if(value.charAt(0) == '<')
+			return new BigDecimal(value.substring(1).trim()).negate();
+		return new BigDecimal(value);
+	}
+	// for easy use on JSP
+	@Transient public String getPhString()				{return getValueDisplayString(ph); }
+	@Transient public String getEcString()				{return getValueDisplayString(ec); }
+	@Transient public String getTemperatureString()		{return getValueDisplayString(temperature); }
+	@Transient public String getCollar_depthString()	{return getValueDisplayString(collar_depth); }
+	@Transient public String getArsenicString()			{return getValueDisplayString(arsenic); }
+	@Transient public String getGreaseString()			{return getValueDisplayString(grease); }
+	@Transient public String getFluorideString()		{return getValueDisplayString(fluoride); }
+	@Transient public String getChromiumString()		{return getValueDisplayString(chromium); }
+	
+	
 	@Override
 	public boolean equals(final Object other) {
 		if (!(other instanceof Sample))

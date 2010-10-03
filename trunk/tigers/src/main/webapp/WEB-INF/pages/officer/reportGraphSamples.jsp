@@ -36,6 +36,8 @@ Selected Parameter: <select name="display_parameter" onchange="$('graphparamsele
 </div>
 </form>
 
+<c:if test="${not empty data}">
+
 <table style="border: 0;">
 <tr>
 	<td><div style="width: 1em; white-space: nowrap; -webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg); text-align: center; font-size: smaller;"><c:out value="${parameterName.name}" escapeXml="true"/></div></td>
@@ -60,12 +62,7 @@ var startTime = <c:out value="${startTime}"/>, endTime = <c:out value="${endTime
 var makeLineArray = function(val) {
 	return [[startTime, val],[endTime, val]];
 };
-<c:if test="${thresMin != null}">
-dat.push({data: makeLineArray(<c:out value="${thresMin}"/>), label: "Min Thresh."});
-</c:if>
-<c:if test="${thresMax != null}">
-dat.push({data: makeLineArray(<c:out value="${thresMax}"/>), label: "Max Thresh."});
-</c:if>
+<c:out value="${thresMinMaxJS}" escapeXml="false"/>
 
 var minValue = <c:out value="${minValue}"/>, maxValue = <c:out value="${maxValue}"/>;
 var padding = (maxValue-minValue) * 0.1;
@@ -95,3 +92,7 @@ new Proto.Chart($('chart'), dat,
 /* --> */
 </script>
 
+</c:if>
+<c:if test="${empty data}">
+<p>No samples can be displayed for this parameter.</p>
+</c:if>

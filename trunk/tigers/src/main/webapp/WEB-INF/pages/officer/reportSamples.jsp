@@ -14,14 +14,14 @@
 
 	<display:column property="date_taken" escapeXml="true" sortable="true"
 		paramId="id" paramProperty="id" titleKey="sample.date_taken"/>
-	<display:column property="ph" escapeXml="true" sortable="true" titleKey="sample.ph"/>
-	<display:column property="ec" escapeXml="true" sortable="true" titleKey="sample.ec"/>
-	<display:column property="arsenic" escapeXml="true" sortable="true" titleKey="sample.arsenic"/>
-	<display:column property="chromium" escapeXml="true" sortable="true" titleKey="sample.chromium"/>
-	<display:column property="collar_depth" escapeXml="true" sortable="true" titleKey="sample.collar_depth"/>
-	<display:column property="fluoride" escapeXml="true" sortable="true" titleKey="sample.fluoride"/>
-	<display:column property="grease" escapeXml="true" sortable="true" titleKey="sample.grease"/>
-	<display:column property="temperature" escapeXml="true" sortable="true" titleKey="sample.temperature"/>
+	<display:column property="phString" escapeXml="true" sortable="true" titleKey="sample.ph"/>
+	<display:column property="ecString" escapeXml="true" sortable="true" titleKey="sample.ec"/>
+	<display:column property="arsenicString" escapeXml="true" sortable="true" titleKey="sample.arsenic"/>
+	<display:column property="chromiumString" escapeXml="true" sortable="true" titleKey="sample.chromium"/>
+	<display:column property="collar_depthString" escapeXml="true" sortable="true" titleKey="sample.collar_depth"/>
+	<display:column property="fluorideString" escapeXml="true" sortable="true" titleKey="sample.fluoride"/>
+	<display:column property="greaseString" escapeXml="true" sortable="true" titleKey="sample.grease"/>
+	<display:column property="temperatureString" escapeXml="true" sortable="true" titleKey="sample.temperature"/>
 
 	<display:setProperty name="paging.banner.item_name" value="sample"/>
 	<display:setProperty name="paging.banner.items_name" value="sample"/>

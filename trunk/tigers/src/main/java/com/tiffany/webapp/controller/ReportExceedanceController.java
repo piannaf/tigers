@@ -48,13 +48,13 @@ public class ReportExceedanceController implements Controller {
 		public Long sampleId;
 		public Date sampleTaken;
 		public String paramName;
-		public BigDecimal value;
+		public String value;
 		public BigDecimal magnitude;
 		
 		public Long getSampleId() { return sampleId; }
 		public Date getSampleTaken() { return sampleTaken; }
 		public String getParamName() { return paramName; }
-		public BigDecimal getValue() { return value; }
+		public String getValue() { return value; }
 		public BigDecimal getMagnitude() { return magnitude; }
 	}
 	
@@ -97,23 +97,28 @@ public class ReportExceedanceController implements Controller {
 					else // should never occur
 						throw new Exception("Invalid parameter (" + paramName + ") specified.");
 					
-					//exceedance = 0;
-					if(pt.getMin() != null && pt.getMin().compareTo(value) > 0)
-						exceedance = pt.getMin().subtract(value);
-					else if(pt.getMax() != null && pt.getMax().compareTo(value) < 0)
-						exceedance = value.subtract(pt.getMax());
-					else // no exceedance
-						continue;
-					
-					// TODO: exceedance counts
-					
-					datum = new ReportExceedanceController_Data();
-					datum.sampleId = sample.getId();
-					datum.sampleTaken = sample.getDate_taken();
-					datum.paramName = pt.getParameter().getName();
-					datum.value = value;
-					datum.magnitude = exceedance;
-					data.add(datum);
+					if(value != null) {
+						String valueString = Sample.getValueDisplayString(value);
+						if(value.compareTo(new BigDecimal(0)) < 0) // "<0.5" type values are treated as 0
+							value = new BigDecimal(0);
+						//exceedance = 0;
+						if(pt.getMin() != null && pt.getMin().compareTo(value) > 0)
+							exceedance = pt.getMin().subtract(value);
+						else if(pt.getMax() != null && pt.getMax().compareTo(value) < 0)
+							exceedance = value.subtract(pt.getMax());
+						else // no exceedance
+							continue;
+						
+						// TODO: exceedance counts
+						
+						datum = new ReportExceedanceController_Data();
+						datum.sampleId = sample.getId();
+						datum.sampleTaken = sample.getDate_taken();
+						datum.paramName = pt.getParameter().getName();
+						datum.value = valueString;
+						datum.magnitude = exceedance;
+						data.add(datum);
+					}
 				}
 			}
 		
