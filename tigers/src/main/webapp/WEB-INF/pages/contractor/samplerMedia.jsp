@@ -28,6 +28,12 @@ function editSM(id) {
 	var e = $('sm_description_' + id);
 	if((newValue = prompt("Enter in a new caption for the sampler media file.", unHtmlSpecialChar(e.innerHTML))) != null) {
 		e.innerHTML = htmlSpecialChar(newValue);
+		try {
+			var p = e.parentNode.parentNode.childNode[0].childNode[0];
+			if(p.className=="lightwindow")
+				p.setAttribute("caption", htmlSpecialChar(newValue));
+				//no-one cares about the loss of the download link >_>
+		} catch(err) {}
 		
 		// send this off and forget about it :P
 		new Ajax.Request('samplermediaform.html', {method: "post", parameters: {
@@ -76,6 +82,24 @@ id="samplerMediaList" pagesize="25" class="table sampleList">
 <display:setProperty name="paging.banner.item_name" value="samplermedia"/>
 <display:setProperty name="paging.banner.items_name" value="samplermedia"/>
 </display:table>
+
+<script type="text/javascript">
+<!--
+for(var i in document.links) {
+	e = document.links[i];
+	if(e.className=="lightwindow") {
+		p=e.href.lastIndexOf('.');
+		if(!p) continue;
+		ext = e.href.substring(p+1).toLowerCase();
+		if(ext == "flv" || ext == "mp4" || ext == "mp3" || ext == "m4a") {
+			e.setAttribute("caption", e.getAttribute("caption") + "<br/><center><a href=\"" + e.href + "\">Download File</a></center>");
+			e.setAttribute("params", "lightwindow_width=670,lightwindow_height=570");
+			e.href="/images/player.swf?file=" + e.href + "&autostart=true";
+		}
+	}
+}
+//-->
+</script>
 
 <hr/>
 <c:if test="${numSamplerMedia < 10}">

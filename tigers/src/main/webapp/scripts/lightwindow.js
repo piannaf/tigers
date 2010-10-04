@@ -227,7 +227,7 @@ lightwindow.prototype = {
 			},
 			formMethod : 'get',
 			hideFlash : false,
-			hideGalleryTab : false,
+			hideGalleryTab : true,
 			showTitleBar : true,
 			animationHandler : false,
 			navigationHandler : false,

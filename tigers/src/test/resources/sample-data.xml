@@ -627,5 +627,23 @@
 			<value>A useful pile of rocks</value>
 			<value>rocks.jpg</value>
 		</row>
+		<row>
+			<value>2</value>
+			<value>GW001</value>
+			<value>Example video</value>
+			<value>MtMorganPit.mp4</value>
+		</row>
+		<row>
+			<value>3</value>
+			<value>GW001</value>
+			<value>Look at the wire!</value>
+			<value>cord.jpg</value>
+		</row>
+		<row>
+			<value>4</value>
+			<value>GW001</value>
+			<value>The effects of global warming.</value>
+			<value>creek.jpg</value>
+		</row>
 	</table>
 </dataset>        
