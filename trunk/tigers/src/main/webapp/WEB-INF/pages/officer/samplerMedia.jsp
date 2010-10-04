@@ -20,3 +20,20 @@ id="samplerMediaList" pagesize="25" class="table sampleList">
 <display:setProperty name="paging.banner.items_name" value="samplermedia"/>
 </display:table>
 
+<script type="text/javascript">
+<!--
+for(var i in document.links) {
+	e = document.links[i];
+	if(e.className=="lightwindow") {
+		p=e.href.lastIndexOf('.');
+		if(!p) continue;
+		ext = e.href.substring(p+1).toLowerCase();
+		if(ext == "flv" || ext == "mp4" || ext == "mp3" || ext == "m4a") {
+			e.setAttribute("caption", e.getAttribute("caption") + "<br/><center><a href=\"" + e.href + "\">Download File</a></center>");
+			e.setAttribute("params", "lightwindow_width=670,lightwindow_height=570");
+			e.href="/images/player.swf?file=" + e.href + "&autostart=true";
+		}
+	}
+}
+//-->
+</script>
