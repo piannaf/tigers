@@ -3,15 +3,15 @@ package com.tiffany.webapp.controller;
 import java.util.Date;
 
 public class SampleSearch {
-	private String SamplerId;
+	private String samplerId;
 	private String from;
 	private String to;
 	
 	public String getSamplerId() {
-		return SamplerId;
+		return samplerId;
 	}
 	public void setSamplerId(String samplerId) {
-		SamplerId = samplerId;
+		this.samplerId = samplerId;
 	}
 	public String getFrom() {
 		return from;

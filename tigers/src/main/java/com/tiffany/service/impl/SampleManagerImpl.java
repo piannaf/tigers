@@ -54,4 +54,21 @@ public class SampleManagerImpl extends GenericManagerImpl<Sample, Long>
 		Date to) {
 		return sampleDao.findSamplesByLabAndDateRange(lab, from, to);
 	}
+	
+	public List<Sample> findSamplesByLabAndSamplerAndDateRange(User lab, String samplerId, 
+			Date from, Date to) {
+			return sampleDao.findSamplesByLabAndSamperIdAndDateRange(lab, samplerId, from, to);
+	}
+	
+	public List<String> getMySamplerIdList(User lab) {
+		List<Sample> sampleList = findSamplesByLab(lab);
+		Set<String> samplerIdList = new HashSet<String>();
+		for (Sample sample : sampleList) {
+			samplerIdList.add(sample.getSampler().getTag());
+		}
+		List<String> ids = new ArrayList<String>();
+		ids.addAll(samplerIdList);
+		Collections.sort(ids);
+		return ids;
+	}
 }
