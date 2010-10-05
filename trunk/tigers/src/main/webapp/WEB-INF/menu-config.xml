@@ -88,7 +88,7 @@
                 page="/laboratory/bulkupload.html" />
                 
             <Item name="ViewSamples" title="menu.laboratory.viewSamples"
-                page="/laboratory/samples.html" />
+                page="/laboratory/samplesearch.html" />
 		</Menu>
 		
 		<Menu name="LabContractorMenu" title="menu.laboratory.contractorMenu" 

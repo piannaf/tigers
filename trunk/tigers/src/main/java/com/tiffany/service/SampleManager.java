@@ -17,6 +17,8 @@ public interface SampleManager extends GenericManager<Sample, Long> {
 	List<Sample> findSamplesByTag(String tag);
 	List<Sample> findSamplesByLab(User lab);
 	List<Sample> findSamplesByLabAndDateRange(User lab, Date from, Date to);
+	List<Sample> findSamplesByLabAndSamplerAndDateRange(User lab, String samplerId, Date from, Date to);
+	List<String> getMySamplerIdList(User lab);
 }
 
 

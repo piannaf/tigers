@@ -79,11 +79,13 @@
         <property name="userManager" ref="userManager" />
 	</bean>
 
-	<!-- /officer/samplesearch.html -->
+	<!-- /laboratory/samplesearch.html -->
 	<bean id="sampleSearchController" class="com.tiffany.webapp.controller.SampleSearchController">
 		<property name="validator" ref="sampleSearchValidator" />
-		<property name="successView" value="/officer/samplesearch" />
+		<property name="successView" value="/laboratory/samplesearch" />
 		<property name="sampleManager" ref="sampleManager" />
+		<property name="samplerManager" ref="samplerManager" />
+		<property name="userManager" ref="userManager" />
 	</bean>
 
 
@@ -399,6 +401,7 @@
 				/laboratory/samples.html=sampleController
 				/laboratory/mycontractors.html=viewMyContractorsController
 				/laboratory/sampleform.html=sampleFormController
+				/laboratory/samplesearch.html=sampleSearchController
 				/mainMenu.html=filenameController
 				/passwordHint.html=passwordHintController
 				/resources/*.kml=kmlController

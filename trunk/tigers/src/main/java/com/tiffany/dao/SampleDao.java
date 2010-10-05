@@ -18,4 +18,6 @@ public interface SampleDao extends GenericDao<Sample, Long>{
     public List<Sample> findSamplesByLab(User lab);
     public List<Sample> findSamplesByLabAndDateRange(User lab, Date from,
 	    Date to);
+    public List<Sample> findSamplesByLabAndSamperIdAndDateRange(User lab, String sampelrId,
+    		Date from, Date to);
 }
