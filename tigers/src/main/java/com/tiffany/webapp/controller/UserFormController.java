@@ -114,6 +114,7 @@ public class UserFormController extends BaseFormController {
             boolean isNew = (user.getId() == null);
             boolean isReset = (request.getParameter("reset") != null);
             if (isReset) user.resetPassword();
+            log.debug("username: " + user.getUsername() + " password: " + user.getPassword());
             try {
                 getUserManager().saveUser(user);
             } catch (AccessDeniedException ade) {
@@ -145,7 +146,7 @@ public class UserFormController extends BaseFormController {
                 	sendUserMessage(user, model);
                 } catch (MailException me) {
                 	saveError(request, getText("email.failed", locale));
-                    log.debug("MailException");
+                    log.debug(me.toString());
                 } catch (Exception e) {
                 	log.debug("can't send email");
                 }
@@ -159,13 +160,14 @@ public class UserFormController extends BaseFormController {
                 	sendUserMessage(user, model);
                 } catch (MailException me) {
                 	saveError(request, getText("email.failed", locale));
-                    log.debug("MailException");
+                    log.debug(me.toString());
                 } catch (Exception e) {
                 	log.debug("can't send email");
                 }
             }
             //==================================================================
             log.debug("finish sending");
+            
             if (!StringUtils.equals(request.getParameter("from"), "list")) {
             	if (isNew) {
             		saveMessage(request, getText("user.added", user.getCompanyName(), locale));

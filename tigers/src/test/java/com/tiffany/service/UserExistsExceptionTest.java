@@ -29,6 +29,7 @@ public class UserExistsExceptionTest extends BaseManagerTestCase {
         user2.setId(null);
         user2.setVersion(null);
         user2.setRoles(null);
+        //user2.setChildren(null);
         
         // try saving as new user, this should fail b/c of unique keys
         try {

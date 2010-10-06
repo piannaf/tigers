@@ -318,8 +318,8 @@ public class User extends BaseObject implements Serializable, UserDetails {
     
     //=============================================
     public void resetPassword() {
-    	int size = 6;		
-		String chars = "abc";
+    	int size = 8;		
+		String chars = "abcefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		List<Character> charList = new ArrayList<Character>();
 		for (int i=0; i<chars.length(); i++) {
 			charList.add(chars.charAt(i));			
