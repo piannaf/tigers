@@ -78,8 +78,8 @@ public class BulkUploadService {
 		String column = fieldsMap.get(key);
 		field = field.trim();
 		log.debug("column:"+key+"("+column+")"+" value:"+field);
-		if (field.equalsIgnoreCase("NaN") || field.equals("")) return result;
-		if (column.equals("pH")) {
+		if (field.equalsIgnoreCase("NaN")) return result;
+		if (column.equals("PH")) {
 			result = setPh(sample, field, result);
 		} else if (column.equals("EC")) {
 			result = setEc(sample, field, result);
@@ -127,7 +127,7 @@ public class BulkUploadService {
 	
 	private Set<String> getFields(String type) {
 		Set<String> fields = new HashSet<String>();
-		fields.add("pH");
+		fields.add("PH");
 		fields.add("EC");
 		fields.add("Temp");
 		fields.add("As");
@@ -142,6 +142,7 @@ public class BulkUploadService {
 	}
 	//====================================================
 	private String setDate(Sample sample, String dateStr, String result) {
+		if (dateStr.equals("") || dateStr == null) return result += "Date(missing)/";
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date;
 		try {
@@ -153,6 +154,10 @@ public class BulkUploadService {
 		return result;
 	}
 	private String setPh(Sample sample, String phStr, String result) {
+		log.debug("setPh:"+phStr+":");
+		log.debug("phStr == null? "+phStr==null);
+		log.debug("phStr == empty? "+phStr.equals(""));
+		if (phStr.equals("") || phStr == null) return result += "Ph(missing)/";
 		int factor = 1;
 		if (phStr.charAt(0) == '<') {
 			factor = -1;
@@ -161,13 +166,14 @@ public class BulkUploadService {
 		DecimalFormat format = new DecimalFormat("##.##");
 		float ph;
 		try { ph = Float.parseFloat(phStr); } 
-		catch (Exception e) { return result += "pH(invalid format)/"; }
-		if (ph > 14 || ph < 0) { return result += "pH(out of range)/"; }
+		catch (Exception e) { return result += "Ph(invalid format)/"; }
+		if (ph > 14 || ph < 0) { return result += "Ph(out of range)/"; }
 		ph = ph * factor;
 		sample.setPh(new BigDecimal(format.format(ph)));
 		return result;
 	}
 	private String setEc(Sample sample, String ecStr, String result) {
+		if (ecStr.equals("") || ecStr == null) return result += "EC(missing)/";
 		int factor = 1;
 		DecimalFormat format = new DecimalFormat("#####");
 		if (ecStr.charAt(0) == '<') {
@@ -183,6 +189,7 @@ public class BulkUploadService {
 		return result;
 	}
 	private String setTemp(Sample sample, String tempStr, String result) {
+		if (tempStr.equals("") || tempStr == null) return result += "Temp(missing)/";
 		int factor = 1;
 		if (tempStr.charAt(0) == '<') {
 			factor = -1;
@@ -198,6 +205,7 @@ public class BulkUploadService {
 		return result;
 	}
 	private String setAs(Sample sample, String asStr, String result) {
+		if (asStr.equals("") || asStr == null) return result += "As(missing)/";
 		int factor = 1;
 		if (asStr.charAt(0) == '<') {
 			factor = -1;
@@ -213,6 +221,7 @@ public class BulkUploadService {
 		return result;
 	}
 	private String setOnG(Sample sample, String ongStr, String result) {
+		if (ongStr.equals("") || ongStr == null) return result += "O&G(missing)/";
 		int factor = 1;
 		if (ongStr.charAt(0) == '<') {
 			factor = -1;
@@ -228,6 +237,7 @@ public class BulkUploadService {
 		return result;
 	}
 	private String setDTC(Sample sample, String dtcStr, String result) {
+		if (dtcStr.equals("") || dtcStr == null) return result += "DTC(missing)/";
 		int factor = 1;
 		if (dtcStr.charAt(0) == '<') {
 			factor = -1;
@@ -243,6 +253,7 @@ public class BulkUploadService {
 		return result;
 	}
 	private String setFluoride(Sample sample, String fluorideStr, String result) {
+		if (fluorideStr.equals("") || fluorideStr == null) return result += "Fluoride(missing)/";
 		int factor = 1;
 		if (fluorideStr.charAt(0) == '<') {
 			factor = -1;
@@ -258,6 +269,7 @@ public class BulkUploadService {
 		return result;
 	}
 	private String setChromium(Sample sample, String chromiumStr, String result) {
+		if (chromiumStr.equals("") || chromiumStr == null) return result += "Chromium(missing)/";
 		int factor = 1;
 		if (chromiumStr.charAt(0) == '<') {
 			factor = -1;
