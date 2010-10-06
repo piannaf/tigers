@@ -225,20 +225,22 @@ public class BulkUploadController extends BaseFormController {
 	    }
 	}
 	// send complete email
-	User contractor = samplerManager.getContractorByTag2(samplerId);
-	message.setSubject(getText("bulkUpload.email.subject", samplerId,
-		locale));
-	Map<String, Serializable> model = new HashMap<String, Serializable>();
-	Object objs[] = { samplerId, request.getRemoteUser() };
-	model.put("message", getText("bulkUpload.email.message", objs, locale));
-	try {
-	    sendUserMessage(contractor, model);
-	} catch (MailException me) {
-	    saveError(request, getText("email.failed", locale));
-	    log.debug("MailException");
-	} catch (Exception e) {
-	    log.debug("can't send email");
-	}
+	if (!hasError) {
+		User contractor = samplerManager.getContractorByTag2(samplerId);
+		message.setSubject(getText("bulkUpload.email.subject", samplerId,
+			locale));
+		Map<String, Serializable> model = new HashMap<String, Serializable>();
+		Object objs[] = { samplerId, request.getRemoteUser() };
+		model.put("message", getText("bulkUpload.email.message", objs, locale));
+		try {
+		    sendUserMessage(contractor, model);
+		} catch (MailException me) {
+		    saveError(request, getText("email.failed", locale));
+		    log.debug(me.toString());
+		} catch (Exception e) {
+		    log.debug("can't send email");
+		}
+    }
 	// ===================================================
 	// place the data into the request for retrieval on next page
 
