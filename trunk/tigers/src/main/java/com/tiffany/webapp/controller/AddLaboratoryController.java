@@ -121,6 +121,7 @@ public class AddLaboratoryController extends BaseFormController {
         Locale locale = request.getLocale();
         log.debug("aaa");
         Integer originalVersion = user.getVersion();
+        log.debug("username: " + user.getUsername() + " password: " + user.getPassword());
         try {
             User lab = getUserManager().saveUser(user);
             User me = getUserManager().getUserByUsername(request.getRemoteUser());
@@ -156,7 +157,7 @@ public class AddLaboratoryController extends BaseFormController {
 	            sendUserMessage(user, model);
 	        } catch (MailException me) {
 	            saveError(request, getText("email.failed", locale));
-	            log.debug("MailException");
+	            log.debug(me.toString());
 	        } catch (Exception e) {
 	            log.debug("can't send email");
 	        }
@@ -165,7 +166,8 @@ public class AddLaboratoryController extends BaseFormController {
         } else {
         	saveMessage(request, "Contractor '" + user.getUsername() + "' has been updated.");
         }
-        //==================================================================  
+        //================================================================== 
+        
         // return to main Menu
         return new ModelAndView(getSuccessView());
     }	

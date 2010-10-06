@@ -115,6 +115,7 @@ public class AddContractorController extends BaseFormController {
         Locale locale = request.getLocale();
 
         Integer originalVersion = user.getVersion();
+        log.debug("username: " + user.getUsername() + " password: " + user.getPassword());
         log.debug("saving user...");
         try {
             getUserManager().saveUser(user);
@@ -145,7 +146,7 @@ public class AddContractorController extends BaseFormController {
 	            sendUserMessage(user, model);
 	        } catch (MailException me) {
 	            saveError(request, getText("email.failed", locale));
-	            log.debug("MailException");
+	            log.debug(me.toString());
 	        } catch (Exception e) {
 	            log.debug("can't send email");
 	        }
@@ -155,7 +156,6 @@ public class AddContractorController extends BaseFormController {
         	saveMessage(request, "Contractor '" + user.getUsername() + "' has been updated.");
         }
         //==================================================================  
-        
         // return to main Menu
         return new ModelAndView(getSuccessView());
     }	

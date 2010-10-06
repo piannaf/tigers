@@ -197,7 +197,7 @@ public class BaseFormController extends SimpleFormController {
     	if (log.isDebugEnabled()) {
     		log.debug("sending e-mail  to user [" + user.getEmail() + "]...");
     	}
-    	log.debug("message is null"+(message==null));
+    	//log.debug("message is null"+(message==null));
     	
     	message.setTo(user.getCompanyName() + "<" + user.getEmail() + ">");
     	
