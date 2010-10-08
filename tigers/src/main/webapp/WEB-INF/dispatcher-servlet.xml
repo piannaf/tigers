@@ -192,6 +192,9 @@
 	        <property name="screeningProgramSamplersManager" ref="screeningProgramSamplersManager"/>
 	        <property name="samplerManager" ref="samplerManager"/>
             <property name="parameterNamesManager" ref="parameterNamesManager"/>
+            <property name="mailEngine" ref="mailEngine" />
+			<property name="message" ref="mailMessage" />
+			<property name="templateName" value="screeningProgramHtml.vm" />
         </bean>
 	<!-- =============================== Reports ======================================== -->
 	<!-- officer/reportSamplers.html -->

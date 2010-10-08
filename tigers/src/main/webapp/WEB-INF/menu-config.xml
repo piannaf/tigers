@@ -72,7 +72,7 @@
         <Menu name="OfficerExecutionMenu" title="menu.officer.execution"
             description="Execution Menu" roles="ROLE_OFFICER">
             <Item name="screeningProgram" title="menu.officer.execution.screeningProgram"
-                page="TODO.jsp"/>
+                page="/officer/screeningprogram.html"/>
             
             <Item name="samplingFreq" title="menu.officer.execution.samplingFreq"
                 page="/officer/samplingschedule.html"/>

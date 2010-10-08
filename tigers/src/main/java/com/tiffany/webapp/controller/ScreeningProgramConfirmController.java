@@ -1,18 +1,31 @@
 package com.tiffany.webapp.controller;
 
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.validation.Errors;
+import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.mail.MailException;
 import org.springframework.validation.BindException;
-import com.tiffany.service.ParameterNamesManager;
-import com.tiffany.service.ScreeningProgramSamplersManager;
-import com.tiffany.service.SamplerManager;
-import com.tiffany.service.ScreeningProgramManager;
-import com.tiffany.model.ScreeningProgramSamplers;
+import org.springframework.validation.Errors;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.tiffany.model.ParameterNames;
 import com.tiffany.model.Sampler;
-
-import javax.servlet.http.*;
-import java.util.*;
+import com.tiffany.model.ScreeningProgramSamplers;
+import com.tiffany.model.User;
+import com.tiffany.service.ParameterNamesManager;
+import com.tiffany.service.SamplerManager;
+import com.tiffany.service.ScreeningProgramManager;
+import com.tiffany.service.ScreeningProgramSamplersManager;
 
 /**
  * Author: Jane
@@ -102,9 +115,35 @@ public class ScreeningProgramConfirmController extends BaseFormController {
             return new ModelAndView(success);
         }
         /*************************************************************************************************************/
-        /* Email processing to go here                                                                               */
-        /* Loop through                                                                                              */
-        /*         List<ScreeningProgramSamplers> samplers = screeningProgramSamplersManager.getSamplers(programId); */
+        //Email processing                         
+        List<ScreeningProgramSamplers> samplers = screeningProgramSamplersManager.getSamplers(programId);
+        for (ScreeningProgramSamplers sps : samplers) {
+        	DateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
+        	String startDate = format.format(sps.getScreeningprogram().getStartDate());
+        	Sampler sampler = samplerManager.get(sps.getId().getSampler());
+        	String samplerId = sampler.getTag();
+        	User contractor = sampler.getContractor();
+        	List<ParameterNames> janesParameterList = sps.getParameterNames();
+        	String parameters = "";
+        	for (ParameterNames janesParameter : janesParameterList) {
+        		parameters += janesParameter.getName() + ", ";
+        	}
+        	parameters = parameters.substring(0, parameters.length()-2);
+        	//==============================================================
+        	message.setSubject(getText("screeningProgram.email.subject", samplerId, locale));
+        	Map<String, Serializable> model = new HashMap<String, Serializable>();
+        	model.put("samplerId", samplerId);
+        	model.put("parameters", parameters);
+        	model.put("startDate", startDate);
+        	try {
+        	    sendUserMessage(contractor, model);
+        	} catch (MailException me) {
+        	    saveError(request, getText("email.failed", locale));
+        	    log.debug(me.toString());
+        	} catch (Exception e) {
+        	    log.debug("can't send email");
+        	}        		
+        }
         /* One email for each contractor listing samplers and parameters to be sampled                               */
         /*************************************************************************************************************/
         success = getSuccessView();
