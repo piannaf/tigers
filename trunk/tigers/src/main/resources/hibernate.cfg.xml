@@ -12,6 +12,8 @@
         <mapping class="com.tiffany.model.ParameterNames"/>
         <mapping class="com.tiffany.model.ParameterThresholds"/>
         <mapping class="com.tiffany.model.ScreeningFrequency"/>
+        <mapping class="com.tiffany.model.ScreeningProgram"/>
+        <mapping class="com.tiffany.model.ScreeningProgramSamplers"/>
         <mapping class="com.tiffany.model.SamplerMedia"/>
     </session-factory>
 </hibernate-configuration>
