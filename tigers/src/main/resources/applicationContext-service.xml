@@ -136,4 +136,10 @@
     <bean id="samplerMediaManager" class="com.tiffany.service.impl.SamplerMediaManagerImpl">
             <constructor-arg ref="samplerMediaDao"/>
     </bean>
+    <bean id="screeningProgramManager" class="com.tiffany.service.impl.ScreeningProgramManagerImpl">
+            <constructor-arg ref="screeningProgramDao"/>
+    </bean>
+    <bean id="screeningProgramSamplersManager" class="com.tiffany.service.impl.ScreeningProgramSamplersManagerImpl">
+            <constructor-arg ref="screeningProgramSamplersDao"/>
+    </bean>
 </beans>

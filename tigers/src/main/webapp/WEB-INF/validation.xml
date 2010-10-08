@@ -405,5 +405,13 @@
 		</field>
 	</form>
 </formset>
+<formset>
+	<form name="screeningProgramForm">
+		<field property="waterbody"
+			depends="required">
+			<arg0 key="screeningProgram.waterbody"/>
+		</field>
+	</form>
+</formset>
 
 </form-validation>

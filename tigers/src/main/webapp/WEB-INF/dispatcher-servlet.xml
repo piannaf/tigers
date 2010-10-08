@@ -162,6 +162,37 @@
 	        <property name="parameterNamesManager" ref="parameterNamesManager"/>
             <property name="waterbodyManager" ref="waterbodyManager"/>
         </bean>
+        <!-- screeningProgram.html -->
+        <bean id="screeningProgramFormController" class="com.tiffany.webapp.controller.ScreeningProgramFormController">
+            <property name="validator" ref="beanValidator"/>
+            <property name="formView" value="/officer/screeningprogram"/>
+            <property name="successView" value="redirect:/officer/parameterselection.html"/>
+            <property name="cancelView" value="redirect:../mainMenu.html" />
+	        <property name="samplerManager" ref="samplerManager"/>
+	        <property name="screeningProgramManager" ref="screeningProgramManager"/>
+	        <property name="screeningProgramSamplersManager" ref="screeningProgramSamplersManager"/>
+            <property name="waterbodyManager" ref="waterbodyManager"/>
+            <property name="userManager" ref="userManager"/>
+        </bean>
+        <!-- parameterSelection.html -->
+        <bean id="parameterSelectionController" class="com.tiffany.webapp.controller.ParameterSelectionController">
+            <property name="formView" value="/officer/parameterselection"/>
+            <property name="successView" value="redirect:/officer/parameterselection.html"/>
+	        <property name="samplerManager" ref="samplerManager"/>
+	        <property name="screeningProgramManager" ref="screeningProgramManager"/>
+	        <property name="screeningFrequencyManager" ref="screeningFrequencyManager"/>
+	        <property name="screeningProgramSamplersManager" ref="screeningProgramSamplersManager"/>
+            <property name="parameterNamesManager" ref="parameterNamesManager"/>
+        </bean>
+         <!-- screeningProgramConfirm.html -->
+        <bean id="screeningProgramConfirmController" class="com.tiffany.webapp.controller.ScreeningProgramConfirmController">
+            <property name="formView" value="/officer/screeningprogramconfirm"/>
+            <property name="successView" value="redirect:../mainMenu.html"/>
+	        <property name="screeningProgramManager" ref="screeningProgramManager"/>
+	        <property name="screeningProgramSamplersManager" ref="screeningProgramSamplersManager"/>
+	        <property name="samplerManager" ref="samplerManager"/>
+            <property name="parameterNamesManager" ref="parameterNamesManager"/>
+        </bean>
 	<!-- =============================== Reports ======================================== -->
 	<!-- officer/reportSamplers.html -->
 	<bean id="reportListSamplersController"
@@ -381,6 +412,9 @@
                 /officer/samplermedia.html=samplerMediaController
                 /officer/screeningfrequencyform.html=screeningFrequencyFormController
                 /officer/screeningfrequencies.html=screeningFrequenciesController
+                /officer/screeningprogramconfirm.html=screeningProgramConfirmController
+                /officer/screeningprogram.html=screeningProgramFormController
+                /officer/parameterselection.html=parameterSelectionController
                 /officer/samplingschedule.html=samplingScheduleController
                 /officer/addcontractor.html=addContractorController
                 /officer/contractorlist.html=viewContractorsController
