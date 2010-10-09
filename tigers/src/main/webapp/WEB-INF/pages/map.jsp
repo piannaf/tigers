@@ -222,4 +222,8 @@
         <div id="the_side_bar"></div>
         <div id="info_area"></div>
     </div>
+    <p></p>
+    <p>
+        Download the <a href="<fmt:message key="map.kml"/>">KML</a> for this map.
+    </p>
 </body> 
