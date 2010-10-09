@@ -4,15 +4,17 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.collections.MultiHashMap;
+import org.apache.commons.collections.MultiMap;
 import org.springframework.mail.MailException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.Errors;
@@ -115,26 +117,42 @@ public class ScreeningProgramConfirmController extends BaseFormController {
             return new ModelAndView(success);
         }
         /*************************************************************************************************************/
-        //Email processing                         
+        //Email processing                  
+        MultiMap contractorsSamplers = new MultiHashMap(); 
         List<ScreeningProgramSamplers> samplers = screeningProgramSamplersManager.getSamplers(programId);
         for (ScreeningProgramSamplers sps : samplers) {
-        	DateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
-        	String startDate = format.format(sps.getScreeningprogram().getStartDate());
         	Sampler sampler = samplerManager.get(sps.getId().getSampler());
-        	String samplerId = sampler.getTag();
         	User contractor = sampler.getContractor();
-        	List<ParameterNames> janesParameterList = sps.getParameterNames();
-        	String parameters = "";
-        	for (ParameterNames janesParameter : janesParameterList) {
-        		parameters += janesParameter.getName() + ", ";
+        	contractorsSamplers.put(contractor, sps);
+        }
+        List<User> contractorList = new ArrayList<User>();
+        contractorList.addAll(contractorsSamplers.keySet());
+        for (User contractor : contractorList) {
+        	List<ScreeningProgramSamplers> mySpss = (List)contractorsSamplers.get(contractor);
+        	DateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
+        	String subject = "Screening Programe for Sampler ";
+        	String content = "Following are the details of the screening programe<br/><br/>";
+        	for (ScreeningProgramSamplers sps : mySpss) {        		
+            	String startDate = format.format(sps.getScreeningprogram().getStartDate());
+            	String samplerId = samplerManager.get(sps.getId().getSampler()).getTag();
+            	List<ParameterNames> janesParameterList = sps.getParameterNames();
+            	String parameters = "";
+            	for (ParameterNames janesParameter : janesParameterList) {
+            		parameters += janesParameter.getName() + ", ";
+            	}
+            	parameters = parameters.substring(0, parameters.length()-2);
+            	//=========================================================
+            	subject += samplerId + ", ";
+            	content += "Sampler Id: " + samplerId + "<br/>" +     
+            			   "Start Date: " + startDate + "<br/>" +
+            			   "Parameters: " + parameters +"<br/><br/>";
         	}
-        	parameters = parameters.substring(0, parameters.length()-2);
-        	//==============================================================
-        	message.setSubject(getText("screeningProgram.email.subject", samplerId, locale));
+        	subject = subject.substring(0, subject.length()-2);
+        	
+        	//======================== send email ===============================
+        	message.setSubject(subject);
         	Map<String, Serializable> model = new HashMap<String, Serializable>();
-        	model.put("samplerId", samplerId);
-        	model.put("parameters", parameters);
-        	model.put("startDate", startDate);
+        	model.put("content", content);
         	try {
         	    sendUserMessage(contractor, model);
         	} catch (MailException me) {
@@ -142,7 +160,7 @@ public class ScreeningProgramConfirmController extends BaseFormController {
         	    log.debug(me.toString());
         	} catch (Exception e) {
         	    log.debug("can't send email");
-        	}        		
+        	}        
         }
         /* One email for each contractor listing samplers and parameters to be sampled                               */
         /*************************************************************************************************************/

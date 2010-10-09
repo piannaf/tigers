@@ -8,11 +8,7 @@
 	<body>
 		<div>Dear ${user.username},</div>
 		<br/>
-		<div>A screening program for sampler <strong>${samplerId}</strong> has been created. <br/>
-		     The program starts on ${startDate}. Following are the <br/>
-		     parameters that need to be sampled:<br/>
-		     <strong>${parameters}<strong>
-		</div>
+		<div>${content}</div>
 		
 		<br/>
 		<hr color="" align="left" width="70%" size="2">
