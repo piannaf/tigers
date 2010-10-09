@@ -4,8 +4,7 @@
         <column>id</column>
         <column>username</column>
         <column>password</column>
-        <column>first_name</column>
-        <column>last_name</column>
+        <column>company_name</column>
         <column>address</column>
         <column>city</column>
         <column>country</column>
@@ -13,28 +12,23 @@
         <column>phone_number</column>
         <column>postal_code</column>
         <column>province</column>
-        <column>website</column>
-        <column>password_hint</column>
         <column>version</column>
         <column>account_enabled</column>
         <column>account_expired</column>
         <column>account_locked</column>
         <column>credentials_expired</column>
         <row>
-            <value description="id">1</value>
+            <value description="id">-1</value>
             <value description="username">user</value>
             <value description="password">12dea96fec20593566ab75692c9949596833adc9</value>
-            <value description="first_name">Tomcat</value>
-            <value description="last_name">User</value>
-            <value description="address"></value>
+            <value description="company_name">Google</value>
+            <value description="address">101 Queen St.</value>
             <value description="city">Denver</value>
-            <value description="country">US</value>
+            <value description="country">AU</value>
             <value description="email">matt_raible@yahoo.com</value>
             <value description="phone_number"></value>
-            <value description="postal_code">80210</value>
-            <value description="province">CO</value>
-            <value description="website">http://tomcat.apache.org</value>
-            <value description="password_hint"><![CDATA[The same as your username.]]></value>
+            <value description="postal_code">4000</value>
+            <value description="province">AU</value>
             <value description="version">1</value>
             <value description="account_enabled">1</value>
             <value description="account_expired">0</value>
@@ -42,20 +36,108 @@
             <value description="credentials_expired">0</value>
         </row>
         <row>
-            <value description="id">2</value>
+            <value description="id">-2</value>
             <value description="username">admin</value>
             <value description="password">d033e22ae348aeb5660fc2140aec35850c4da997</value>
-            <value description="first_name">Matt</value>
-            <value description="last_name">Raible</value>
-            <value description="address"></value>
+            <value description="company_name">Microsoft</value>
+            <value description="address">100 Queen St.</value>
             <value description="city">Denver</value>
-            <value description="country">US</value>
+            <value description="country">AU</value>
             <value description="email">matt@raibledesigns.com</value>
             <value description="phone_number"></value>
             <value description="postal_code">80210</value>
             <value description="province">CO</value>
-            <value description="website">http://raibledesigns.com</value>
-            <value description="password_hint"><![CDATA[The same as your username.]]></value>
+            <value description="version">1</value>
+            <value description="account_enabled">1</value>
+            <value description="account_expired">0</value>
+            <value description="account_locked">0</value>
+            <value description="credentials_expired">0</value>
+        </row>
+        <row>
+            <value description="id">-3</value>
+            <value description="username">officer</value>
+            <value description="password">f90409b98ffb61424a01b4bb718aa602cebd5ee2</value>
+            <value description="company_name">Facebook</value>
+            <value description="address">100 Queen St.</value>
+            <value description="city">Denver</value>
+            <value description="country">AU</value>
+            <value description="email">officer@tiffanygoldmine.com</value>
+            <value description="phone_number"></value>
+            <value description="postal_code">80210</value>
+            <value description="province">CO</value>
+            <value description="version">1</value>
+            <value description="account_enabled">1</value>
+            <value description="account_expired">0</value>
+            <value description="account_locked">0</value>
+            <value description="credentials_expired">0</value>
+        </row>
+        <row>
+            <value description="id">-4</value>
+            <value description="username">contractor</value>
+            <value description="password">864dc49fe1876d8ee49c9f30338373ef1ada16b3</value>
+            <value description="company_name">Yahoo</value>
+            <value description="address">100 Queen St.</value>
+            <value description="city">Denver</value>
+            <value description="country">AU</value>
+            <value description="email">contractor@tiffanygoldmine.com</value>
+            <value description="phone_number"></value>
+            <value description="postal_code">80210</value>
+            <value description="province">CO</value>
+            <value description="version">1</value>
+            <value description="account_enabled">1</value>
+            <value description="account_expired">0</value>
+            <value description="account_locked">0</value>
+            <value description="credentials_expired">0</value>
+        </row>
+        <row>
+            <value description="id">-5</value>
+            <value description="username">lab</value>
+            <value description="password">3953f9ddf975ab5097ee468d99555c5b441169bf</value>
+            <value description="company_name">UQ</value>
+            <value description="address">100 Queen St.</value>
+            <value description="city">Denver</value>
+            <value description="country">AU</value>
+            <value description="email">lab@tiffanygoldmine.com</value>
+            <value description="phone_number"></value>
+            <value description="postal_code">80210</value>
+            <value description="province">CO</value>
+            <value description="version">1</value>
+            <value description="account_enabled">1</value>
+            <value description="account_expired">0</value>
+            <value description="account_locked">0</value>
+            <value description="credentials_expired">0</value>
+
+        </row>
+        <row>
+            <value description="id">-6</value>
+            <value description="username">contractor2</value>
+            <value description="password">3953f9ddf975ab5097ee468d99555c5b441169bf</value>
+            <value description="company_name">Super Duper</value>
+            <value description="address">100 Queen St.</value>
+            <value description="city">Denver</value>
+            <value description="country">AU</value>
+            <value description="email">suki@tiffanygoldmine.com</value>
+            <value description="phone_number"></value>
+            <value description="postal_code">80210</value>
+            <value description="province">CO</value>
+            <value description="version">1</value>
+            <value description="account_enabled">1</value>
+            <value description="account_expired">0</value>
+            <value description="account_locked">0</value>
+            <value description="credentials_expired">0</value>
+        </row>
+        <row>
+            <value description="id">-7</value>
+            <value description="username">lab2</value>
+            <value description="password">3953f9ddf975ab5097ee468d99555c5b441169bf</value>
+            <value description="company_name">Tiffany</value>
+            <value description="address">100 Queen St.</value>
+            <value description="city">Denver</value>
+            <value description="country">AU</value>
+            <value description="email">lab2@tiffanygoldmine.com</value>
+            <value description="phone_number"></value>
+            <value description="postal_code">80210</value>
+            <value description="province">CO</value>
             <value description="version">1</value>
             <value description="account_enabled">1</value>
             <value description="account_expired">0</value>
@@ -68,26 +150,500 @@
         <column>name</column>
         <column>description</column>
         <row>
-            <value description="id">1</value>
+            <value description="id">-1</value>
             <value description="name">ROLE_ADMIN</value>
             <value description="description"><![CDATA[Administrator role (can edit Users)]]></value>
         </row>
         <row>
-            <value description="id">2</value>
+            <value description="id">-2</value>
             <value description="name">ROLE_USER</value>
             <value description="description"><![CDATA[Default role for all Users]]></value>
+        </row>
+        <row>
+            <value description="id">-3</value>
+            <value description="name">ROLE_OFFICER</value>
+            <value description="description"><![CDATA[Default role for environmental officer]]></value>
+        </row>
+        <row>
+            <value description="id">-4</value>
+            <value description="name">ROLE_CONTRACTOR</value>
+            <value description="description"><![CDATA[Default role for contractor]]></value>
+        </row>
+        <row>
+            <value description="id">-5</value>
+            <value description="name">ROLE_LABORATORY</value>
+            <value description="description"><![CDATA[Default role for laboratory]]></value>
         </row>
     </table>
     <table name="user_role">
         <column>user_id</column>
         <column>role_id</column>
         <row>
-            <value description="user_id">1</value>
-            <value description="role_id">2</value>
+            <value description="user_id">-1</value>
+            <value description="role_id">-2</value>
         </row>
         <row>
-            <value description="user_id">2</value>
-            <value description="role_id">1</value>
+            <value description="user_id">-2</value>
+            <value description="role_id">-1</value>
+        </row>
+        <row>
+            <value description="user_id">-3</value>
+            <value description="role_id">-3</value>
+        </row>
+        <row>
+            <value description="user_id">-4</value>
+            <value description="role_id">-4</value>
+        </row>
+        <row>
+            <value description="user_id">-5</value>
+            <value description="role_id">-5</value>
+        </row>
+        <row>
+            <value description="user_id">-6</value>
+            <value description="role_id">-4</value>
+        </row>
+        <row>
+            <value description="user_id">-7</value>
+            <value description="role_id">-5</value>
         </row>
     </table>
-</dataset>
+    <table name='waterbody'>
+        <column>id</column>
+        <column>name</column>
+        <column>type</column>
+        <row>
+            <value>1</value>
+            <value>Lake Eyre</value>
+            <value>S</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>aquifer 61</value>
+            <value>G</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>aquifer 52</value>
+            <value>G</value>
+        </row>
+    </table>
+    <table name='sampler'>
+        <column>id</column>
+        <column>tag</column>
+        <column>license</column>
+        <column>longitude</column>
+        <column>latitude</column>
+        <column>comp_screening_freq</column>
+        <column>collar_height</column>
+        <column>purpose</column>
+        <column>contractor</column>
+        <column>waterbody</column>
+        <column>laboratory</column>
+        <column>depth_to_collar_screening_freq</column>
+        <row>
+            <value>1</value>
+            <value>SW006</value>
+            <value></value>
+            <value>151.766349</value>
+            <value>-25.297174</value>
+            <value>weekly</value>
+            <value>0</value>
+            <value>testing sw</value>
+            <value>-4</value>
+            <value>1</value>
+            <value>-5</value>
+            <value></value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>GW001</value>
+            <value>RTEED867484</value>
+            <value>151.78668</value>
+            <value>-25.280945</value>
+            <value>monthly</value>
+            <value>3</value>
+            <value>testing gw</value>
+            <value>-4</value>
+            <value>2</value>
+            <value>-5</value>
+            <value>yearly</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>GW002</value>
+            <value>LNO87454533</value>
+            <value>151.778612</value>
+            <value>-25.248616</value>
+            <value>daily</value>
+            <value>2</value>
+            <value>testing gw again</value>
+            <value>-6</value>
+            <value>3</value>
+            <value>-7</value>
+            <value>monthly</value>
+        </row>
+        <row>
+            <value>4</value>
+            <value>SW001</value>
+            <value></value>
+            <value>151.758828</value>
+            <value>-25.266218</value>
+            <value>daily</value>
+            <value>0</value>
+            <value>testing gw again</value>
+            <value>-6</value>
+            <value>1</value>
+            <value>-5</value>
+            <value></value>
+        </row>
+        <row>
+            <value>5</value>
+            <value>SW002</value>
+            <value></value>
+            <value>151.764493</value>
+            <value>-25.256185</value>
+            <value>daily</value>
+            <value>0</value>
+            <value>testing gw again</value>
+            <value>-6</value>
+            <value>1</value>
+            <value>-7</value>
+            <value></value>
+        </row>
+        <row>
+            <value>6</value>
+            <value>SW003</value>
+            <value></value>
+            <value>151.772282</value>
+            <value>-25.266315</value>
+            <value>daily</value>
+            <value>0</value>
+            <value>testing gw again</value>
+            <value>-6</value>
+            <value>1</value>
+            <value>-5</value>
+            <value></value>
+        </row>
+        <row>
+            <value>7</value>
+            <value>SW004</value>
+            <value></value>
+            <value>151.757154</value>
+            <value>-25.279859</value>
+            <value>daily</value>
+            <value>0</value>
+            <value>testing gw again</value>
+            <value>-6</value>
+            <value>1</value>
+            <value>-5</value>
+            <value></value>
+        </row>
+        <row>
+            <value>8</value>
+            <value>SW005</value>
+            <value></value>
+            <value>151.751747</value>
+            <value>-25.253701</value>
+            <value>daily</value>
+            <value>0</value>
+            <value>testing gw again</value>
+            <value>-4</value>
+            <value>1</value>
+            <value>-5</value>
+            <value></value>
+        </row>
+        <row>
+            <value>9</value>
+            <value>GW003</value>
+            <value>LNO87454533</value>
+            <value>151.802044</value>
+            <value>-25.302752</value>
+            <value>daily</value>
+            <value>2</value>
+            <value>testing gw again</value>
+            <value>-4</value>
+            <value>3</value>
+            <value>-5</value>
+            <value>monthly</value>
+        </row>
+    </table>
+    <table name='sample'>
+        <column>id</column>
+        <column>date_taken</column>
+        <column>ph</column>
+        <column>ec</column>
+        <column>temperature</column>
+        <column>collar_depth</column>
+        <column>arsenic</column>
+        <column>grease</column>
+        <column>fluoride</column>
+        <column>chromium</column>
+        <column>laboratory</column>
+        <column>sampler</column>
+        <row>
+            <value>1</value>
+            <value><![CDATA[2010-01-10 10:00:00]]></value>
+            <value>7</value>
+            <value>7</value>
+            <value>20</value>
+            <value>0.01</value>
+            <value>0.02</value>
+            <value>0.11</value>
+            <value>0.01</value>
+            <value>0.004</value>
+            <value>-5</value>
+            <value>2</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value><![CDATA[2010-02-10 10:30:00]]></value>
+            <value>3</value>
+            <value>1</value>
+            <value>24</value>
+            <value>0.011</value>
+            <value>0.005</value>
+            <value>0.19</value>
+            <value>0.012</value>
+            <value>0.006</value>
+            <value>-5</value>
+            <value>3</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value><![CDATA[2010-02-11 10:30:00]]></value>
+            <value>4</value>
+            <value>2</value>
+            <value>22</value>
+            <value>0.011</value>
+            <value>0.005</value>
+            <value>0.19</value>
+            <value>0.012</value>
+            <value>0.006</value>
+            <value>-5</value>
+            <value>3</value>
+        </row>
+        <row>
+            <value>4</value>
+            <value><![CDATA[2010-02-12 10:30:00]]></value>
+            <value>2</value>
+            <value>0.5</value>
+            <value>23</value>
+            <value>0.011</value>
+            <value>0.005</value>
+            <value>0.19</value>
+            <value>0.012</value>
+            <value>0.006</value>
+            <value>-7</value>
+            <value>3</value>
+        </row>
+        <row>
+            <value>5</value>
+            <value><![CDATA[2010-02-13 10:30:00]]></value>
+            <value>3</value>
+            <value>1</value>
+            <value>24</value>
+            <value>0.011</value>
+            <value>0.005</value>
+            <value>0.19</value>
+            <value>0.012</value>
+            <value>0.006</value>
+            <value>-7</value>
+            <value>3</value>
+        </row>
+    </table>
+    <table name='contractor'>
+        <column>username</column>
+        <column>name</column>
+        <column>contact</column>
+        <column>phone</column>
+        <column>email</column>
+        <column>address</column>
+        <row>
+            <value>USER1</value>
+            <value>Fred Smith</value>
+            <value>Bob Smith</value>
+            <value>11111111</value>
+            <value>bob@job</value>
+            <value>1 NeverWhere St</value>
+        </row>
+        <row>
+            <value>USER2</value>
+            <value>Supertester</value>
+            <value>Peter Piper</value>
+            <value>22222222</value>
+            <value>peter@home</value>
+            <value>2 NeverMind Rd</value>
+        </row>
+    </table>
+    <table name='parameternames'>
+        <column>id</column>
+        <column>name</column>
+        <column>internal_name</column>
+        <column>type</column>
+        <row>
+            <value>1</value>
+            <value>pH</value>
+            <value>ph</value>
+            <value>B</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>Electrical Conductivity</value>
+            <value>ec</value>
+            <value>B</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>Temperature</value>
+            <value>temperature</value>
+            <value>B</value>
+        </row>
+        <row>
+            <value>4</value>
+            <value>Arsenic</value>
+            <value>arsenic</value>
+            <value>B</value>
+        </row>
+        <row>
+            <value>5</value>
+            <value>Oil &amp; Grease</value>
+            <value>grease</value>
+            <value>B</value>
+        </row>
+        <row>
+            <value>6</value>
+            <value>Depth to Collar</value>
+            <value>collar_depth</value>
+            <value>G</value>
+        </row>
+        <row>
+            <value>7</value>
+            <value>Fluoride</value>
+            <value>fluoride</value>
+            <value>S</value>
+        </row>
+        <row>
+            <value>8</value>
+            <value>Chromium</value>
+            <value>chromium</value>
+            <value>S</value>
+        </row>
+    </table>
+    <table name='parameterthresholds'>
+        <column>id</column>
+        <column>parameter</column>
+        <column>waterbody</column>
+        <column>min</column>
+        <column>max</column>
+        <row>
+            <value>2</value>
+            <value>1</value>
+            <value>3</value>
+            <value>2</value>
+            <value>3</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>2</value>
+            <value>3</value>
+            <value>1</value>
+            <value>10</value>
+        </row>
+        <row>
+            <value>4</value>
+            <value>3</value>
+            <value>3</value>
+            <value>20</value>
+            <value>30</value>
+        </row>
+        <row>
+            <value>5</value>
+            <value>4</value>
+            <value>3</value>
+            <value>0.1</value>
+            <value>0.5</value>
+        </row>
+        <row>
+            <value>6</value>
+            <value>5</value>
+            <value>3</value>
+            <value>0.1</value>
+            <value>0.5</value>
+        </row>
+        <row>
+            <value>7</value>
+            <value>6</value>
+            <value>3</value>
+            <value>0.1</value>
+            <value>0.5</value>
+        </row>
+    </table>
+    <table name='screeningfrequency'>
+        <column>id</column>
+        <column>description</column>
+        <column>frequency</column>
+        <column>sampler</column>
+        <row>
+            <value>1</value>
+            <value>Chemicals</value>
+            <value>monthly</value>
+            <value>8</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>Acidity</value>
+            <value>weekly</value>
+            <value>9</value>
+        </row>
+    </table>
+    <table name='frequencyitem'>
+        <column>frequency_id</column>
+        <column>parameter_id</column>
+        <row>
+            <value>1</value>
+            <value>4</value>
+        </row>
+        <row>
+            <value>1</value>
+            <value>7</value>
+        </row>
+        <row>
+            <value>1</value>
+            <value>8</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>1</value>
+        </row>
+    </table>
+    <table name='samplermedia'>
+        <column>id</column>
+        <column>tag</column>
+        <column>description</column>
+        <column>fileName</column>
+        <row>
+            <value>1</value>
+            <value>GW001</value>
+            <value>A useful pile of rocks</value>
+            <value>rocks.jpg</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>GW001</value>
+            <value>Example video</value>
+            <value>MtMorganPit.mp4</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>GW001</value>
+            <value>Look at the wire!</value>
+            <value>cord.jpg</value>
+        </row>
+        <row>
+            <value>4</value>
+            <value>GW001</value>
+            <value>The effects of global warming.</value>
+            <value>creek.jpg</value>
+        </row>
+    </table>
+</dataset>        

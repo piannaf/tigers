@@ -824,6 +824,14 @@
                             <src>src/main/resources/default-data.xml</src>
                         </configuration>
                     </plugin>
+                    
+                    <!-- skip tests -->
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                          <skip>true</skip>
+                        </configuration>
+                    </plugin> 
                 </plugins>
             </build>
         </profile>
