@@ -6,6 +6,8 @@
 <script type="text/javascript" src="<c:url value='/scripts/lightwindow.js'/>"></script>
 <link rel="stylesheet" href="<c:url value='/styles/lightwindow.css'/>" type="text/css" media="screen" />
 </head>
+<div id="breadcrumb"><a href="<c:url value='samplermediasamplers.html'/>"><fmt:message key="reportSamplers.title"/></a> &raquo;</div>
+<h2>Sampler Media Files for <em><c:out value="${tag}" escapeXml="true"/></em></h2>
 
 <c:set var="buttons">
 <input type="button" style="margin-right: 5px"
@@ -89,12 +91,19 @@ for(var i in document.links) {
 	e = document.links[i];
 	if(e.className=="lightwindow") {
 		p=e.href.lastIndexOf('.');
-		if(!p) continue;
-		ext = e.href.substring(p+1).toLowerCase();
+		if(p)
+			ext = e.href.substring(p+1).toLowerCase();
+		else
+			ext = "";
 		if(ext == "flv" || ext == "mp4" || ext == "mp3" || ext == "m4a") {
 			e.setAttribute("caption", e.getAttribute("caption") + "<br/><center><a href=\"" + e.href + "\">Download File</a></center>");
 			e.setAttribute("params", "lightwindow_width=670,lightwindow_height=570");
+			e.setAttribute("rel", ""); // video controls don't work in a gallery
 			e.href="/images/player.swf?file=" + e.href + "&autostart=true";
+		} else if(ext != "jpg" && ext != "jpeg" && ext != "jpe" && ext != "gif" && ext != "png" && ext != "bmp") {
+			// unsupported file, remove lightwindow stuff
+			e.setAttribute("class", "");
+			e.setAttribute("rel", "");
 		}
 	}
 }

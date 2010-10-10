@@ -49,23 +49,31 @@ public class ReportGraphSamplesController implements Controller {
 		//log.debug("entering 'handleRequest' method...");
         
 		String samplerTag = request.getParameter("tag");
-		if(samplerTag == null || samplerTag.isEmpty())
-			throw new Exception("Tag not specified");
+		if(samplerTag == null || samplerTag.isEmpty()) {
+			response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Tag not specified");
+			return null;
+		}
 		
 		String paramStr = request.getParameter("display_parameter");
-		if(paramStr == null || paramStr.isEmpty())
-			throw new Exception("Parameter not specified");
+		if(paramStr == null || paramStr.isEmpty()) {
+			response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Parameter not specified");
+			return null;
+		}
 		
 
 		Long param = Long.parseLong(paramStr);
 		ParameterNames parameterName = ((ParameterNamesManager)parameterNamesManager).getId(param);
-		if(parameterName == null)
-			throw new Exception("Parameter name could not be found");
+		if(parameterName == null) {
+			response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid parameter name");
+			return null;
+		}
 		String paramName = parameterName.getInternal_name();
 		
 		Sampler sampler = ((SamplerManager)samplerManager).getByTag(samplerTag);
-		if(sampler == null)
-			throw new Exception("Could not find sampler");
+		if(sampler == null) {
+			response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Could not find sampler");
+			return null;
+		}
 		String waterbody = sampler.getWaterbody().getName();
 		ParameterThresholds pt = ((ParameterThresholdsManager)parameterThresholdsManager).findByWaterBodyAndId(waterbody, param);
 		

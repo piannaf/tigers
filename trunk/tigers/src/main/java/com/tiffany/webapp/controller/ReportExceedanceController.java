@@ -62,8 +62,10 @@ public class ReportExceedanceController implements Controller {
 			HttpServletResponse response) throws Exception {
         
 		String samplerTag = request.getParameter("tag");
-		if(samplerTag == null || samplerTag.isEmpty())
-			throw new Exception("Tag not specified");
+		if(samplerTag == null || samplerTag.isEmpty()) {
+			response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Tag not specified");
+			return null;
+		}
 		
 		/* ParameterNames parameterName = ((ParameterNamesManager)parameterNamesManager).getId(param);
 		if(parameterName == null)
@@ -71,11 +73,23 @@ public class ReportExceedanceController implements Controller {
 		String paramName = parameterName.getInternal_name(); */
 		
 		Sampler sampler = ((SamplerManager)samplerManager).getByTag(samplerTag);
-		if(sampler == null)
-			throw new Exception("Could not find sampler");
+		if(sampler == null) {
+			response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Could not find sampler");
+			return null;
+		}
 		String waterbody = sampler.getWaterbody().getName();
 		List<ParameterThresholds> thresholds = ((ParameterThresholdsManager)parameterThresholdsManager).findByWaterBody(waterbody);
 		
+		
+		HashMap<String, Long> exceedCounts = new HashMap<String, Long>(8);
+		exceedCounts.put("ph", new Long(0));
+		exceedCounts.put("ec", new Long(0));
+		exceedCounts.put("temperature", new Long(0));
+		exceedCounts.put("collar_depth", new Long(0));
+		exceedCounts.put("arsenic", new Long(0));
+		exceedCounts.put("grease", new Long(0));
+		exceedCounts.put("fluoride", new Long(0));
+		exceedCounts.put("chromium", new Long(0));
 		
 		List<Sample> samples = ((SampleManager)sampleManager).findSamplesByTag(samplerTag);
 		BigDecimal exceedance, value;
@@ -109,7 +123,7 @@ public class ReportExceedanceController implements Controller {
 						else // no exceedance
 							continue;
 						
-						// TODO: exceedance counts
+						exceedCounts.put(paramName, new Long(exceedCounts.get(paramName).longValue()+1));
 						
 						datum = new ReportExceedanceController_Data();
 						datum.sampleId = sample.getId();
@@ -126,6 +140,7 @@ public class ReportExceedanceController implements Controller {
 		return new ModelAndView()
 			.addObject("data", data)
 			.addObject("tag", samplerTag)
-			.addObject("thresholds", thresholds);
+			.addObject("thresholds", thresholds)
+			.addObject("exceedCounts", exceedCounts);
 	}
 }

@@ -33,8 +33,10 @@ public class ReportListSamplesController implements Controller {
 		//log.debug("entering 'handleRequest' method...");
         
 		String samplerTag = request.getParameter("tag");
-		if(samplerTag == null || samplerTag.isEmpty())
-			throw new Exception("Tag not specified");
+		if(samplerTag == null || samplerTag.isEmpty()) {
+			response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Tag not specified");
+			return null;
+		}
 		
 		// TODO: do we need to determine the waterbody?
 		// TODO: display exceedances in table?
