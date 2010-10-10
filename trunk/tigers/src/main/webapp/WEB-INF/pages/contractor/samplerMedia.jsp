@@ -26,6 +26,7 @@ function htmlSpecialChar(s) {
 	return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
 }
 
+var timeoutHndlr=null;
 function editSM(id) {
 	var e = $('sm_description_' + id);
 	if((newValue = prompt("Enter in a new caption for the sampler media file.", unHtmlSpecialChar(e.innerHTML))) != null) {
@@ -36,6 +37,13 @@ function editSM(id) {
 				p.setAttribute("caption", htmlSpecialChar(newValue));
 				//no-one cares about the loss of the download link >_>
 		} catch(err) {}
+		
+		e.parentNode.style.background = "#E0FFE0";
+		//if(timeoutHndlr) clearTimeout(timeoutHndlr);
+		timeoutHndlr = setTimeout(function(){
+			e.parentNode.style.background = "";
+			timeoutHndlr = null;
+		}, 5000);
 		
 		// send this off and forget about it :P
 		new Ajax.Request('samplermediaform.html', {method: "post", parameters: {
@@ -113,7 +121,7 @@ for(var i in document.links) {
 <hr/>
 <c:if test="${numSamplerMedia < 10}">
 <h2>Add Sampler Media File</h2>
-<form enctype="multipart/form-data" method="post" action="samplermediaform.html" onsubmit="if(this.elements['file'].value)return true;alert('You need to supply a file to upload.');return false;">
+<form enctype="multipart/form-data" method="post" action="samplermediaform.html" onsubmit="return validateUploadForm(this);">
 <input type="hidden" name="tag" value="${tag}"/>
 <table>
 	<tr>
@@ -131,6 +139,27 @@ for(var i in document.links) {
 	</tr>
 </table>
 </form>
+<script type="text/javascript">
+<!--
+function validateUploadForm(f) {
+	var v = f.elements['file'].value;
+	if(!v) {
+		alert('You need to supply a file to upload.');
+		return false;
+	}
+	p=v.lastIndexOf('.');
+	if(p)
+		ext = v.substring(p+1).toLowerCase();
+	else
+		ext = "";
+	if(ext != "jpg" && ext != "jpe" && ext != "jpeg" && ext != "png" && ext != "bmp" && ext != "gif" && ext != "mp4" && ext != "flv" && ext != "m4a") {
+		alert("The selected file type is not allowed.  Only image (JPEG/PNG/GIF/BMP) or audio/video (MP3/MP4/M4A/FLV) files can be uploaded.");
+		return false;
+	}
+	return true;
+}
+//-->
+</script>
 </c:if>
 <c:if test="${numSamplerMedia >= 10}">
 <p>The maximum number of sampler media files allowed per sampler is 10, so no more media files can be added to this sampler.</p>
