@@ -27,7 +27,10 @@ public class SamplerMediaController implements Controller{
                         HttpServletResponse response) throws Exception {
                 
                 String tag = (String)request.getParameter("tag");
-                if( tag == null ) throw new Exception("No tag specified");
+                if( tag == null ) {
+					response.sendError(HttpServletResponse.SC_BAD_REQUEST, "No tag specified");
+					return null;
+				}
 				
 				List<SamplerMedia> samplerMediaList = ((SamplerMediaManager)samplerMediaManager).findByTag(tag);
 				return new ModelAndView().addObject("samplerMediaList", samplerMediaList).addObject("tag", tag).addObject("numSamplerMedia", samplerMediaList.size());

@@ -68,14 +68,16 @@ public class SamplerMediaFormController extends BaseFormController {
 			if(isNew) {
 				// check number of media files attached
 				if(((SamplerMediaManager)samplerMediaManager).findByTag(samplerMedia.getTag()).size() >= 10) {
-					throw new Exception("Can only have up to 10 sampler media files for each sampler.");
+					response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Can only have up to 10 sampler media files for each sampler");
+					return null;
 				}
 				
 				// handle upload
 				multipartRequest = (MultipartHttpServletRequest) request;
 				file = (CommonsMultipartFile) multipartRequest.getFile("file");
-				if(file == null) {
-					throw new Exception("No file received.");
+				if(file == null)  {
+					response.sendError(HttpServletResponse.SC_BAD_REQUEST, "No file received");
+					return null;
 				}
 				
 				// dummy value

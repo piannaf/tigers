@@ -111,6 +111,7 @@
                     border: 1px solid silver;
                     border-bottom: 0;
                     font-size: 1em;
+                    width: 100%;
                 }
                     ul#primary-nav ul li ul {
                         margin-left: 149px;
