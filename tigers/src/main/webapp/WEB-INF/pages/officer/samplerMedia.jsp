@@ -9,7 +9,6 @@
 </head>
 <div id="breadcrumb"><a href="<c:url value='samplermediasamplers.html'/>"><fmt:message key="reportSamplers.title"/></a> &raquo;</div>
 <h2>Sampler Media Files for <em><c:out value="${tag}" escapeXml="true"/></em></h2>
-
 <display:table name="samplerMediaList" cellspacing="0" cellpadding="0" requestURI=""
 id="samplerMediaList" pagesize="25" class="table sampleList">
 
