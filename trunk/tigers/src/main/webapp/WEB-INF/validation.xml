@@ -75,10 +75,25 @@
             </field>
         </form>
     </formset>
+  
   <formset>
-  <!--
-    Define form validation config in validation-forms.xml
-  -->
+    <form name="sendSample">
+            <field property="date_taken"
+                depends="required">
+                
+                <arg0 key="sample.date_taken"/>
+            </field>
+            <field property="laboratory"
+            depends="required">
+                <arg0 key="sample.laboratoryName"/>
+	        </field>
+	        <field property="sampler"
+	            depends="required">
+	            <arg0 key="sample.sampler"/>
+	        </field>
+    </form>
+  </formset>
+  <formset>
 
 	  <form name="sample">
 	  		<field property="date_taken"
@@ -193,7 +208,7 @@
               <field property="country"
                      depends="required">
 
-                  <arg0 key="address.country"/>
+                  <arg0 key="address.country" />
               </field>
               <field property="postalCode"
                      depends="required,mask">

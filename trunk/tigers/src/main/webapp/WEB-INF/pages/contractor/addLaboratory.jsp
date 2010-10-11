@@ -75,7 +75,7 @@
         <label class="desc"><fmt:message key="user.address.address"/></label>
         <div class="group">
             <div>
-				<p><appfuse:label key="user.address.address"/></p>
+                <p><appfuse:label key="user.address.address"/></p>
                 <form:errors path="address.address" cssClass="fieldError"/>
                 <form:input path="address.address" id="address.address" cssClass="text large" cssErrorClass="text large error"/>                
             </div>
@@ -108,7 +108,7 @@
 </ul>
 </form:form>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     Form.focusFirstElement($('addContractor'));
     highlightFormElements();
 
@@ -124,8 +124,8 @@
                               "true", passwordField.form);
         }
     }
-
-<!-- This is here so we can exclude the selectAll call when roles is hidden -->
+ -->
+<!-- This is here so we can exclude the selectAll call when roles is hidden 
 function onFormSubmit(theForm) {
 <c:if test="${param.from == 'list'}">
     selectAll('userRoles');
@@ -133,7 +133,7 @@ function onFormSubmit(theForm) {
     return validateUser(theForm);
 }
 </script>
-
+-->
 <v:javascript formName="user" staticJavascript="false"/>
 <script type="text/javascript" src="<c:url value="/scripts/validator.jsp"/>"></script>
 

@@ -78,6 +78,19 @@
         <property name="samplerManager" ref="samplerManager" />
         <property name="userManager" ref="userManager" />
 	</bean>
+	
+	<!-- sendsampleform.html -->
+    <bean id="sendSampleFormController" class="com.tiffany.webapp.controller.SendSampleFormController">
+        <property name="validator" ref="beanValidator" />
+        <property name="successView" value="redirect:/mainMenu.html" />
+        <property name="cancelView" value="redirect:/mainMenu.html" />
+        <property name="sampleManager" ref="sampleManager" />
+        <property name="samplerManager" ref="samplerManager" />
+        <property name="userManager" ref="userManager" />
+        <property name="mailEngine" ref="mailEngine" />
+        <property name="message" ref="mailMessage" />
+        <property name="templateName" value="screeningProgramHtml.vm" />
+    </bean>
 
 	<!-- /laboratory/samplesearch.html -->
 	<bean id="sampleSearchController" class="com.tiffany.webapp.controller.SampleSearchController">
@@ -131,7 +144,7 @@
 	 	    <property name="validator" ref="beanValidator"/>
         	<property name="formView" value="/officer/samplerform"/>	    	
 	        <property name="successView" value="redirect:../samplers.html"/>
-            	<property name="cancelView" value="redirect:/samplers.html" />
+            <property name="cancelView" value="redirect:/samplers.html" />
 	        <property name="samplerManager" ref="samplerManager"/>
 	        <property name="sampleManager" ref="sampleManager"/>
 	        <property name="userManager" ref="userManager"/>
@@ -433,6 +446,7 @@
                 /contractor/samplermediasamplers.html=samplerMediaListSamplersController
                 /contractor/samplermedia.html=samplerMediaController
                 /contractor/samplermediaform.html=samplerMediaFormController
+                /contractor/sendsampleform.html=sendSampleFormController
 				/laboratory/bulkupload.html=bulkUploadController
 				/laboratory/findcontractor.html=findContractorController
 				/laboratory/samples.html=sampleController
