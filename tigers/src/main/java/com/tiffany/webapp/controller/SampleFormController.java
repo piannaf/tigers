@@ -95,12 +95,22 @@ public class SampleFormController extends BaseFormController {
             saveMessage(request, getText(key, sample.getId().toString(), locale));
 
             if (!isNew) {
-                success = "redirect:samples.html?id=" + sample.getId();
+                success = "redirect:samplesearch.html";
             } else {
-            	success = "redirect:samples.html?id=" + sample.getId();
+            	success = "redirect:samplesearch.html";
             }
         }
 
         return new ModelAndView(success);
+    }
+    //====================================================
+    protected void onBind(HttpServletRequest request, Object command)
+    throws Exception {
+        // if the user is being deleted, turn off validation
+        if (request.getParameter("delete") != null || request.getParameter("cancel") != null) {
+            super.setValidateOnBinding(false);
+        } else {
+            super.setValidateOnBinding(true);
+        }
     }
 }
