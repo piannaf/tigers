@@ -25,7 +25,7 @@
             <value description="address">101 Queen St.</value>
             <value description="city">Denver</value>
             <value description="country">AU</value>
-            <value description="email">justin.mancinelli+1@uqconnect.edu.au</value>
+            <value description="email">justin.mancinelli+tigers_user@uqconnect.edu.au</value>
             <value description="phone_number"></value>
             <value description="postal_code">4000</value>
             <value description="province">AU</value>
@@ -43,7 +43,7 @@
             <value description="address">100 Queen St.</value>
             <value description="city">Denver</value>
             <value description="country">AU</value>
-            <value description="email">justin.mancinelli+2@uqconnect.edu.au</value>
+            <value description="email">justin.mancinelli+tigers_admin@uqconnect.edu.au</value>
             <value description="phone_number"></value>
             <value description="postal_code">80210</value>
             <value description="province">CO</value>
@@ -61,7 +61,7 @@
             <value description="address">100 Queen St.</value>
             <value description="city">Denver</value>
             <value description="country">AU</value>
-            <value description="email">justin.mancinelli+3@uqconnect.edu.au</value>
+            <value description="email">justin.mancinelli+tigers_officer@uqconnect.edu.au</value>
             <value description="phone_number"></value>
             <value description="postal_code">80210</value>
             <value description="province">CO</value>
@@ -79,7 +79,7 @@
             <value description="address">100 Queen St.</value>
             <value description="city">Denver</value>
             <value description="country">AU</value>
-            <value description="email">justin.mancinelli+4@uqconnect.edu.au</value>
+            <value description="email">justin.mancinelli+tigers_contractor@uqconnect.edu.au</value>
             <value description="phone_number"></value>
             <value description="postal_code">80210</value>
             <value description="province">CO</value>
@@ -97,7 +97,7 @@
             <value description="address">100 Queen St.</value>
             <value description="city">Denver</value>
             <value description="country">AU</value>
-            <value description="email">justin.mancinelli+5@uqconnect.edu.au</value>
+            <value description="email">justin.mancinelli+tigers_lab@uqconnect.edu.au</value>
             <value description="phone_number"></value>
             <value description="postal_code">80210</value>
             <value description="province">CO</value>
@@ -111,12 +111,12 @@
         <row>
             <value description="id">-6</value>
             <value description="username">contractor2</value>
-            <value description="password">3953f9ddf975ab5097ee468d99555c5b441169bf</value>
+            <value description="password">864dc49fe1876d8ee49c9f30338373ef1ada16b3</value>
             <value description="company_name">Super Duper</value>
             <value description="address">100 Queen St.</value>
             <value description="city">Denver</value>
             <value description="country">AU</value>
-            <value description="email">justin.mancinelli+6@uqconnect.edu.au</value>
+            <value description="email">justin.mancinelli+tigers_contractor2@uqconnect.edu.au</value>
             <value description="phone_number"></value>
             <value description="postal_code">80210</value>
             <value description="province">CO</value>
@@ -134,7 +134,7 @@
             <value description="address">100 Queen St.</value>
             <value description="city">Denver</value>
             <value description="country">AU</value>
-            <value description="email">lab2@tiffanygoldmine.com</value>
+            <value description="email">justin.mancinelli+tigers_lab2@uqconnect.edu.au</value>
             <value description="phone_number"></value>
             <value description="postal_code">80210</value>
             <value description="province">CO</value>

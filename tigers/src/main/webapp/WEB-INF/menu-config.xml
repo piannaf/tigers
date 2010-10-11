@@ -127,7 +127,7 @@
         </Menu>
         
         <Menu name="ContractorSendSample" title="menu.contractor.sendSample"
-            page="TODO.jsp" roles="ROLE_CONTRACTOR" />
+            page="/contractor/sendsampleform.html" roles="ROLE_CONTRACTOR" />
         
         <Menu name="ContractorMap" title="menu.map"
             page="/map.html" roles="ROLE_CONTRACTOR" />

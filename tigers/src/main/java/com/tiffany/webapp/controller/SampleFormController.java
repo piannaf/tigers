@@ -2,6 +2,7 @@ package com.tiffany.webapp.controller;
 
 import org.apache.commons.lang.StringUtils;
 
+import org.apache.commons.logging.*;
 import com.tiffany.service.GenericManager;
 import com.tiffany.service.SampleManager;
 import com.tiffany.service.SamplerManager;
@@ -22,6 +23,7 @@ import java.util.Locale;
 import java.util.Map;
 
 public class SampleFormController extends BaseFormController {
+    private final Log log = LogFactory.getLog(SampleController.class);
     private SampleManager sampleManager = null;
     private SamplerManager samplerManager = null;
     private UserManager userManager = null;
@@ -63,6 +65,13 @@ public class SampleFormController extends BaseFormController {
     	
     	return referenceData;
     }
+    
+    public ModelAndView processFormSubmission(HttpServletRequest request,
+	    HttpServletResponse response, Object command, BindException errors) throws Exception {
+        log.debug("\n\t!!!! " + (Sample)command);
+	
+	return super.processFormSubmission(request, response, command, errors);
+    }
 
     public ModelAndView onSubmit(HttpServletRequest request,
                                  HttpServletResponse response, Object command,
@@ -71,8 +80,10 @@ public class SampleFormController extends BaseFormController {
         log.debug("entering 'onSubmit' method...");
 
         Sample sample = (Sample) command;
+        
         boolean isNew = (sample.getId() == null);
         String success = getSuccessView();
+        
         Locale locale = request.getLocale();
         
         if (request.getParameter("delete") != null) {
