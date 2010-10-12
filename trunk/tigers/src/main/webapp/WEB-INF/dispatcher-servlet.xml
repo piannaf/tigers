@@ -133,8 +133,13 @@
 		<property name="templateName" value="generalHtml.vm" />
 	</bean>
 
+    
+    <!-- =============================== Officer Help ======================================== -->
+         <bean id="baseHelpController" class="com.tiffany.webapp.controller.BaseHelpController">
+         </bean>
+    
 	<!-- =============================== Sampler ======================================== -->
-	<!-- samplers.html -->
+	   <!-- samplers.html -->
     	 <bean id="samplerController" class="com.tiffany.webapp.controller.SamplerController">
     	     <property name="samplerManager" ref="samplerManager"/>
              <property name="userManager" ref="userManager"/>
@@ -434,6 +439,7 @@
                 /officer/samplingschedule.html=samplingScheduleController
                 /officer/addcontractor.html=addContractorController
                 /officer/contractorlist.html=viewContractorsController
+                /officer/help/help.html=baseHelpController
                 /contractor/addlaboratory.html=addLaboratoryController
                 /contractor/addlaboratorypre.html=addLaboratoryPreController
                 /contractor/laboratorylist.html=viewMyLaboratoriesController
@@ -459,7 +465,7 @@
             </value>
 		</property>
 		<property name="order" value="0" />
-	</bean>
+	</bean>    
 
 	<bean
 		class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">

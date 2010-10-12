@@ -199,7 +199,7 @@ public class BulkUploadController extends BaseFormController {
 	    if (data.errorFields.equals("")) {
 		data.complete = "Y";
 	    } else {
-		data.complete = "Faild";
+		data.complete = "Failed";
 		hasError = true;
 		result += line + "\n";
 	    }

@@ -80,6 +80,9 @@
         
         <Menu name="OfficerMap" title="menu.map"
             page="/map.html" roles="ROLE_OFFICER" />
+            
+        <Menu name="OfficerHelp" title="menu.officer.help"
+            page="/officer/help/help.html" roles="ROLE_OFFICER" />
 		
 		<!-- Lab Menus -->
 		<Menu name="LabSampleMenu" title="menu.laboratory.sample"
