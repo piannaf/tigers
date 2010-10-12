@@ -13,6 +13,7 @@
     <menu:displayMenu name="OfficerAdministrationMenu"/>
     <menu:displayMenu name="OfficerExecutionMenu"/>
     <menu:displayMenu name="OfficerMap"/>
+    <menu:displayMenu name="OfficerHelp"/>
     
     <menu:displayMenu name="LabSampleMenu"/>
     <menu:displayMenu name="LabContractorMenu"/>
